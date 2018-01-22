@@ -1,11 +1,8 @@
-import  Vue from 'vue'
-
 //插件开发
-export default{
-  install(Vue,options)
-  {
+export default {
+  install(Vue, options) {
     Date.prototype.Format = function (fmt) {
-      var o = {
+      let o = {
         "M+": this.getMonth() + 1, //月份
         "d+": this.getDate(), //日
         "h+": this.getHours(), //小时
@@ -18,20 +15,35 @@ export default{
       for (var k in o)
         if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
       return fmt;
-    }
+    };
     Vue.prototype.rebackToLogin = function () {
-      if(window)
-      {
-        window.location.href="/";
+      if (window) {
+        window.location.href = "/";
       }
-    }
-    Vue.prototype.Constants={
-       LOGIN_USERS:"LOGIN_USERS",
-       LOGIN_TOKEN:"LOGIN_TOKEN",
-       BASE_URL:"",
-       PROXY_URL:"",
-       //发送验证码的接口地址
-       REST_MEBILE_CODE:"",
+    };
+    Vue.prototype.Constants = function () {
+      let LOGIN_CLOUD_USERNAME = "LOGIN_CLOUD_USERNAME",
+        LOGIN_CLOUD_TOKEN = "LOGIN_CLOUD_TOKEN",
+        LOGIN_CLOUD_UID = "LOGIN_CLOUD_UID",
+        LOGIN_COULD_TYPE = "LOGIN_COULD_TYPE";
+      //dev
+
+      // let BASE_URL = "http://localhost:9109";
+      //
+      // let PROXY_URL = "";
+      let BASE_URL ="http://cloud.chinahtiot.com",PROXY_URL="/api";
+      return {
+        LOGIN_COULD_TYPE,
+        LOGIN_CLOUD_USERNAME,
+        LOGIN_CLOUD_TOKEN,
+        LOGIN_CLOUD_UID,
+        BASE_URL:BASE_URL,
+        PROXY_URL:PROXY_URL,
+        //用户个人中心信息展示
+        REST_GATE_LOG_LIST: BASE_URL + PROXY_URL + "/gate/log",
+        REST_GATE_LOG_INFO: BASE_URL + PROXY_URL + "/gate/log",
+
+      }
     }
   }
 

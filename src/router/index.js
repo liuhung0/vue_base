@@ -1,23 +1,27 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/map'
-/*import index from '@/components/index'
-import main from '@/components/main'*/
-import index from '@/components/index'
-import map from '@/components/map'
+
+import Login from '@/components/page/Login'
+import Main from '@/components/page/Main'
+
 Vue.use(Router);
 
 export default new Router({
   routes: [
     {
       path: '/',
-      name: 'index',
-      component: index
+      name: 'login',
+      component: Login
     },
     {
-      path:'/page',
-      name:'map',
-      component:map
-    }
+      path: '/login',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/main',
+      name: 'main',
+      component: Main
+    },
   ]
 })
