@@ -2,7 +2,7 @@
     <div>
       <div class="flex_box">
         <div class="flex_item flex_item_60">
-          <el-select :model="parking.id">
+          <el-select :model="parking.id" :value="'请选择要管理的停车场'">
             <el-option v-for="(parking,index) of parkingList" :key="index" :value="parking.id" v-text="parking.name">
             </el-option>
           </el-select>
@@ -14,7 +14,6 @@
           <a @click="logout">退出</a>
         </div>
       </div>
-
     </div>
 </template>
 <script type="text/ecmascript-6">

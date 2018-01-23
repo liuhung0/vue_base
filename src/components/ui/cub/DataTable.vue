@@ -184,7 +184,7 @@
           this.$emit("delObjHandler", ids);
         }
         else {
-          this.$swal("警告!", "您需要选择至少一项记录才可以执行删除操作!", "warning");
+          that.$message.warning("您需要选择至少一项记录才可以执行删除操作!");
         }
 
       },
@@ -266,10 +266,10 @@
                 }
               }
               else {
-                that.$swal("错误", res.data.message, "error");
+                that.$message.error(res.data.message,);
               }
             }, function (e) {
-              that.$swal("错误", JSON.stringify(e), "error");
+              that.$message.error("数据访问发生错误!");
             });
         }
 
@@ -300,29 +300,29 @@
   .table table thead th {
     text-align: center;
     font-size: 15px;
-    border-left: 1px solid #fd934e;
+    border-left: 1px solid #23adfd;
     border-right: 1px solid #fff;
     margin-left: 2px;
     font-weight: 400;
-    background: #fd934e;
+    background: #23adfd;
     line-height: 26px;
     padding: 4px 10px;
     color: #fff;
   }
 
   .table table thead th:last-child {
-    border-right: 1px solid #fd934e;
+    border-right: 1px solid #23adfd;
   }
 
   .table table thead td {
     text-align: center;
     padding: 2px 4px;
     font-size: 15px;
-    border-left: 1px solid #fd934e;
-    border-right: 1px solid #fd934e;
+    border-left: 1px solid #23adfd;
+    border-right: 1px solid #23adfd;
     margin-left: 2px;
     font-weight: 400;
-    background: #fd934e;
+    background: #23adfd;
 
   }
 
@@ -330,10 +330,10 @@
     text-align: left;
     width: calc(100% - 32px);
     padding: 2px 2px;
-    border: 1px solid #c0a16b;
+    border: 1px solid #37baec;
     border-radius: 4px;
     font-size: 15px;
-    color: #80a16b;
+    color: #679ba1;
   }
 
   .table table thead th i {
@@ -349,12 +349,12 @@
     padding: 4px 10px;
     color: #828282;
     font-size: 15px;
-    border-bottom: 1px dashed #fd934e;
-    border-left: 1px dashed #fd934e;
+    border-bottom: 1px dashed #23adfd;
+    border-left: 1px dashed #23adfd;
   }
 
   .table table tbody td:first-child {
-    border-left: 0px dashed #fd934e;
+    border-left: 0px dashed #23adfd;
   }
 
   .table table .ids {
@@ -386,10 +386,10 @@
     line-height: 18px;
     overflow: hidden;
     border-bottom: 1px solid #fff;
-    border-left: 1px solid #fd934e;
-    border-right: 1px solid #fd934e;
+    border-left: 1px solid #23adfd;
+    border-right: 1px solid #23adfd;
     clear: both;
-    background: #fd934e;
+    background: #23adfd;
   }
 
   .pageation .info {
@@ -400,7 +400,7 @@
   }
 
   .pageation .info select {
-    color: #fd934e;
+    color: #23adfd;
     height: 26px;
     line-height: 36px;
     margin: 2px 10px 2px 0;
@@ -427,7 +427,7 @@
   }
 
   .pageation .pages .active {
-    color: #fd934e;
+    color: rgba(29, 122, 191, 1);
     background: #ffffff;
     border: 1px solid #ffffff;
     min-width: 30px;
@@ -453,12 +453,12 @@
 </style>
 <style>
   .table table tbody td > a {
-    color: #865514;
+    color: rgba(134, 85, 20, 0.03);
     cursor: pointer;
   }
 
   .table table tbody td > a:hover {
-    color: #c0a16b;
+    color: rgba(192, 161, 107, 0.07);
     text-decoration: none;
   }
 </style>
