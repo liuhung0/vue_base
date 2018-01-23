@@ -109,7 +109,9 @@
     }
   }
 </script>
-
 <style scoped>
-
+ .tac
+ {
+   width:230px;
+ }
 </style>

@@ -36,11 +36,15 @@
 
   .HolyGrail-content {
     flex: 1;
+    overflow:auto;
+    min-height: 100vh;
   }
 
   .HolyGrail-nav{
     /* 两个边栏的宽度设为12em */
     flex: 0 0 12em;
+    min-height: 100vh;
+    background:#8c939d;
   }
 
   .HolyGrail-nav {
