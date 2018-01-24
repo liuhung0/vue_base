@@ -91,11 +91,7 @@ export default new Router({
           name: 'device',
           component: DeviceList,
         },
-
-
-
-
-
+        
       ]
     },
   ]
