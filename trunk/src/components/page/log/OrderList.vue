@@ -1,6 +1,5 @@
 <template>
   <div class="on">
-    <h1>订单记录</h1>
     <div class="main">
       <data-table
         :confignation="dataTableConfig"
@@ -11,13 +10,13 @@
 </template>
 <script type="text/ecmascript-6">
   import DataTable from "../../ui/cub/DataTable";
-
   export default {
     props: [],
     components: {
       DataTable,
     },
     data() {
+      let that = this;
       return {
         dataTableConfig: {
           draw: 1,
@@ -41,7 +40,6 @@
               width: "160px",
               render: function (data) {
                 return new Date(data * 1000).Format("yyyy-MM-dd hh:mm:ss");
-                ;
               },
               filter: {
                 type: "none",
@@ -124,7 +122,6 @@
           ],
           dataset: [],
         }
-
       }
     },
     methods: {}
