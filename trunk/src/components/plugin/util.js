@@ -42,6 +42,7 @@ export default {
         //用户个人中心信息展示
         REST_GATE_LOG_LIST: BASE_URL + PROXY_URL + "/gate/log",
         REST_GATE_LOG_INFO: BASE_URL + PROXY_URL + "/gate/log",
+        REST_WORKLOG_LIST:  BASE_URL +PROXY_URL  +  "",
 
       }
     }
