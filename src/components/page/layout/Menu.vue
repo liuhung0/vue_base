@@ -88,7 +88,7 @@
               },
               {
                 title:"停车场参数",
-                path:"/main/setting/parkingSettings"
+                path:"/main/setting/parking"
               },
               {
                 title:"收费规则",
