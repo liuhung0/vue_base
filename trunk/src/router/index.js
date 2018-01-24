@@ -15,9 +15,13 @@ import WorkLog from '@/components/page/account/WorkLog'
 import PDAList from '@/components/page/device/Pda'
 import DeviceList from '@/components/page/device/Device'
 
+import Base from '@/components/page/settings/Base'
+import ParkingInfo from '@/components/page/settings/ParkingInfo'
+import MoneyRules from '@/components/page/settings/MoneyRules'
 
 
-Vue.use(Router);
+
+
 
 export default new Router({
   routes: [
@@ -42,42 +46,32 @@ export default new Router({
           component: Welcome
         },
         {
-          path: '/main/welcome',
+          path: '/main/statistics/doorlog',
           name: 'welcome',
           component: Welcome
         },
         {
-          path: '/main/log/inout',
-          name: 'inout',
-          component: Welcome
-        },
-        {
-          path: '/main/log/order',
+          path: '/main/statistics/orderlog',
           name: 'order',
           component: OrderList
         },
         {
-          path: '/main/log/peccancy',
+          path: '/main/statistics/errorlog',
           name: 'peccancy',
           component: PeccancyList
         },
         {
-          path: '/main/log/settle',
+          path: '/main/statistics/settlelog',
           name: 'settle',
           component: SettleList
         },
         {
-          path: '/main/account/list',
+          path: '/main/staff/account',
           name: 'accountList',
           component: AccountList,
         },
         {
-          path: '/main/account/workLog',
-          name: 'workLog',
-          component: WorkLog,
-        },
-        {
-          path: '/main/account/workLog',
+          path: '/main/staff/worklog',
           name: 'workLog',
           component: WorkLog,
         },
@@ -87,12 +81,27 @@ export default new Router({
           component: PDAList,
         },
         {
-          path: '/main/device/device',
+          path: '/main/device/other',
           name: 'device',
           component: DeviceList,
         },
-        
+        {
+          path: '/main/setting/setting',
+          name: 'base',
+          component: Base,
+        },
+        {
+          path: '/main/setting/parking',
+          name: 'parking',
+          component: ParkingInfo,
+        },
+        {
+          path: '/main/setting/moneyRoles',
+          name: 'moneyRoles',
+          component: MoneyRules,
+        },
       ]
     },
   ]
 })
+Vue.use(Router);
