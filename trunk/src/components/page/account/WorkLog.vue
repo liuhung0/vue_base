@@ -54,9 +54,8 @@
               name: "姓名",
               width: "160px",
               filter: {
-                type: "none",
-
-              },
+                type: "input",
+              }
             },
             {
               sortable: false,
