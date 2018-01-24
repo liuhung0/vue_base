@@ -1,6 +1,5 @@
 <template>
   <div class="on">
-    <h1>违章记录</h1>
     <div class="main">
       <data-table
         :confignation="dataTableConfig"
@@ -18,6 +17,7 @@
       DataTable,
     },
     data() {
+      let that=this;
       return {
         dataTableConfig: {
           draw: 1,
@@ -25,7 +25,7 @@
           showDel: 0,
           showCheckBack: 0,
           serverurl: that.Constants().REST_GATE_LOG_LIST,
-          title: "违章记录",
+          title: "清分记录",
           key: "id",
           pagenation: {
             page: 1,

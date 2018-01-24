@@ -162,7 +162,7 @@
         }
       }
     },
-    method: {
+    methods: {
       addObjHandler() {
         console.log("触发添加事件");
       },
