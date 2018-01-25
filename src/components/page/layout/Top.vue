@@ -46,7 +46,7 @@
         logout(){
           sessionStorage.removeItem("LOGIN_BOSS");
           sessionStorage.removeItem("LOGIN_TOKEN");
-          this.$route.path("/login");
+          this.$router.push('/login')
         }
       }
     }

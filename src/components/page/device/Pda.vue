@@ -12,7 +12,6 @@
 <script>
     import DataTable from "../../ui/cub/DataTable";
     import PdaItem from "../../parts/PdaItem";
-
     export default {
       components: {
         PdaItem,
@@ -57,6 +56,41 @@
               cpu:"hiseo 8x1.5Ghz",
               ram:"3G"
             },
+            {
+              id:5,
+              code:"zx_001",
+              brand:"中兴",
+              cpu:"hiseo 8x1.5Ghz",
+              ram:"3G"
+            },
+            {
+              id:5,
+              code:"zx_001",
+              brand:"中兴",
+              cpu:"hiseo 8x1.5Ghz",
+              ram:"3G"
+            },
+            {
+              id:5,
+              code:"zx_001",
+              brand:"中兴",
+              cpu:"hiseo 8x1.5Ghz",
+              ram:"3G"
+            },
+            {
+              id:5,
+              code:"zx_001",
+              brand:"中兴",
+              cpu:"hiseo 8x1.5Ghz",
+              ram:"3G"
+            },
+            {
+              id:5,
+              code:"zx_001",
+              brand:"中兴",
+              cpu:"hiseo 8x1.5Ghz",
+              ram:"3G"
+            },
           ]
 
         }
@@ -67,5 +101,6 @@
 <style scoped>
   .box{
     display: flex;
+    flex-flow: row wrap;
   }
 </style>

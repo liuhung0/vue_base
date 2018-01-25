@@ -73,7 +73,7 @@
                 path:"/main/device/pda"
               },
               {
-                title: "考勤管理",
+                title: "设备管理",
                 path: "/main/device/other"
               }
             ]
