@@ -13,6 +13,7 @@ import AccountList from '@/components/page/account/AccountList'
 import WorkLog from '@/components/page/account/WorkLog'
 
 import PDAList from '@/components/page/device/Pda'
+import PDAInfo from '@/components/page/device/PdaInfo'
 import DeviceList from '@/components/page/device/Device'
 
 import Base from '@/components/page/settings/Base'
@@ -79,6 +80,11 @@ export default new Router({
           path: '/main/device/pda',
           name: 'pda',
           component: PDAList,
+        },
+        {
+          path: '/main/device/pdainfo',
+          name: 'pdaInfo',
+          component: PDAInfo,
         },
         {
           path: '/main/device/other',
