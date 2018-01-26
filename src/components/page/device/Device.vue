@@ -65,104 +65,134 @@
             num: 0,
           },
           columns: [
-
-            {
-              sortable: false,
-              sort: "asc",
-              prop: "number",
-              name: "工号",
-              width: "80px",
-              render: function (data) {
-                return "<B>" + data + "</B>"
-              },
-              filter: {
-                type: "none",
-              },
-              filterData: ""
-            },
             {
               sortable: false,
               sort: "asc",
               prop: "name",
-              name: "姓名",
-              width: "160px",
+              name: "设备名称",
+              width: "200px",
+              render: function (data) {
+                return "<B>" + data + "</B>"
+              },
               filter: {
                 type: "input",
-              }
+              },
             },
             {
               sortable: false,
               sort: "asc",
-              prop: "role",
-              name: "角色",
-              width: "160px",
+              prop: "terminal",
+              name: "设备编号",
+              width: "200px",
+              render: function (data) {
+                return data;
+              },
+              filter: {
+                type: "none",
+              },
+            },
+            {
+              sortable: false,
+              sort: "asc",
+              prop: "made_time",
+              name: "设备生产日期",
+              width: "200px",
+              render: function (data) {
+                return data;
+              },
+              filter: {
+                type: "none",
+              },
+            },
+            {
+              sortable: true,
+              sort: "desc",
+              prop: "type",
+              name: "设备类型",
+              width: '200px',
               render: function (data) {
                 if (data == 1) {
-                  return "<label>岗亭操作员</label>"
+                  return "<label>门闸</label>"
                 }
                 else if (data == 2) {
-                  return "<label>停车场巡检员</label>"
+                  return "<label>地锁</label>"
                 }
                 else if (data == 3){
-                  return "<label>PDA</label>"
+                  return "<label>超声波</label>"
                 }
                 else if (data == 4){
-                  return "<label>财务</label>"
+                  return "<label>地感器</label>"
                 }
-
               },
               filter: {
                 type: "select",
                 data: [
                   {
                     value: 1,
-                    text: "岗亭操作员"
+                    text: "门闸"
                   },
                   {
                     value: 2,
-                    text: "停车场巡检员"
+                    text: "地锁"
                   },
                   {
                     value: 3,
-                    text: "PDA"
+                    text: "超声波"
                   }
                   ,
                   {
                     value: 4,
-                    text: "财务"
+                    text: "地感器"
                   }
                 ]
               },
             },
             {
-              sortable: false,
-              sort: "asc",
-              prop: "status",
-              name: "状态",
-              width: "160px",
+              sortable: true,
+              sort: "desc",
+              prop: "type",
+              name: "设备状态",
+              width: '200px',
               render: function (data) {
                 if (data == 1) {
-                  return "<label>启用</label>"
+                  return "<label>正常</label>"
                 }
                 else if (data == 2) {
-                  return "<label>停用</label>"
+                  return "<label>离线</label>"
                 }
-
-
+                else if (data == 3){
+                  return "<label>报警</label>"
+                }
               },
               filter: {
                 type: "select",
                 data: [
                   {
                     value: 1,
-                    text: "启用"
+                    text: "正常"
                   },
                   {
                     value: 2,
-                    text: "停用"
+                    text: "离线"
                   },
-
+                  {
+                    value: 3,
+                    text: "报警"
+                  },
                 ]
+              },
+            },
+            {
+              sortable: false,
+              sort: "asc",
+              prop: "dateline",
+              name: "创建日期",
+              width: "200px",
+              render: function (data) {
+                return data;
+              },
+              filter: {
+                type: "none",
               },
             },
           ],

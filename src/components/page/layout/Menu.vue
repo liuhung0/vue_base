@@ -40,12 +40,12 @@
                 title:"订单明细",
                 path:"/main/statistics/orderlog"
               },
-              {
+              /*{
                 title:"违章记录",
                 path:"/main/statistics/errorlog"
-              },
+              },*/
               {
-                title:"清分明细",
+                title:"财务收入统计表",
                 path:"/main/statistics/settlelog"
               },
             ]
