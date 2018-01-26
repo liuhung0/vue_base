@@ -19,6 +19,8 @@ import DeviceList from '@/components/page/device/Device'
 import Base from '@/components/page/settings/Base'
 import ParkingInfo from '@/components/page/settings/ParkingInfo'
 import MoneyRules from '@/components/page/settings/MoneyRules'
+import DoorWay from '@/components/page/settings/DoorWay'
+import SeatList from '@/components/page/settings/SeatList'
 
 
 
@@ -105,6 +107,16 @@ export default new Router({
           path: '/main/setting/moneyRoles',
           name: 'moneyRoles',
           component: MoneyRules,
+        },
+        {
+          path: '/main/setting/doorWay',
+          name: 'doorWay',
+          component: DoorWay,
+        },
+        {
+          path: '/main/setting/SeatList',
+          name: 'seatList',
+          component: SeatList,
         },
       ]
     },
