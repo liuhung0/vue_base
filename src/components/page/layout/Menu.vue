@@ -87,22 +87,6 @@
                 path:"/main/setting/setting"
               },
               {
-                title:"停车场参数",
-                path:"/main/setting/parking"
-              },
-              {
-                title:"出入口管理",
-                path:"/main/setting/doorWay"
-              },
-              {
-                title:"车位管理",
-                path:"/main/setting/seatList"
-              },
-              {
-                title:"停车场地图",
-                path:"/main/setting/map"
-              },
-              {
                 title:"收费规则",
                 path:"/main/setting/moneyRoles"
               }
