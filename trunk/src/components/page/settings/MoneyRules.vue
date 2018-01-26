@@ -121,7 +121,17 @@
     },
     methods: {
       onSubmit() {
-        console.log('submit!');
+       let that = this;
+       that.$http.post(that.Constants.REST_MERCHANT_SETPRICE,that.form,{elmulateJSON:true}).then(function(res){
+         if(res.data.result){
+
+         }else{
+           that.$message.info(that.res.data.message)
+         }
+         },function () {
+           that.$message.error("网络发生错误");
+         }
+        )
       }
     }
   }

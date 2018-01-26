@@ -47,6 +47,8 @@ export default {
         REST_MERCHANT_INFO: BASE_URL + PROXY_URL + "/parkingManager/v1/OwnerAndParking/queryMerchantByUid",
         //企业信息和企业信息新增
         REST_MERCHANT_ADD: BASE_URL + PROXY_URL + "/parkingManager/v1/OwnerAndParking/addMerchant",
+        //收费引擎接口
+        REST_MERCHANT_SETPRICE: BASE_URL + PROXY_URL + "/parkingManager/v1/setParkingPrice/andParkingPrice",
        }
     }
   }
