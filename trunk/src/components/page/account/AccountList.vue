@@ -32,13 +32,12 @@
             num: 0,
           },
           columns: [
-
             {
               sortable: false,
               sort: "asc",
               prop: "number",
               name: "工号",
-              width: "80px",
+              width: "180px",
               render: function (data) {
                 return "<B>" + data + "</B>"
               },
@@ -52,7 +51,7 @@
               sort: "asc",
               prop: "name",
               name: "姓名",
-              width: "160px",
+              width: "180px",
               filter: {
                 type: "input",
               }
@@ -60,9 +59,37 @@
             {
               sortable: false,
               sort: "asc",
+              prop: "identity_card",
+              name: "身份证号",
+              width: "260px",
+              render: function (data) {
+                return "<B>" + data + "</B>"
+              },
+              filter: {
+                type: "none",
+              },
+              filterData: ""
+            },
+            {
+              sortable: false,
+              sort: "asc",
+              prop: "phone",
+              name: "手机号",
+              width: "180px",
+              render: function (data) {
+                return "<B>" + data + "</B>"
+              },
+              filter: {
+                type: "none",
+              },
+              filterData: ""
+            },
+            {
+              sortable: false,
+              sort: "asc",
               prop: "role",
               name: "角色",
-              width: "160px",
+              width: "180px",
               render: function (data) {
                 if (data == 1) {
                   return "<label>岗亭操作员</label>"
@@ -114,8 +141,6 @@
                 else if (data == 2) {
                   return "<label>停用</label>"
                 }
-
-
               },
               filter: {
                 type: "select",
@@ -128,7 +153,6 @@
                     value: 2,
                     text: "停用"
                   },
-
                 ]
               },
             },

@@ -38,7 +38,7 @@
               sort: "asc",
               prop: "number",
               name: "工号",
-              width: "80px",
+              width: "160px",
               render: function (data) {
                 return "<B>" + data + "</B>"
               },
@@ -62,10 +62,9 @@
               sort: "asc",
               prop: "start_time",
               name: "上班时间",
-              width: "160px",
+              width: "200px",
               render: function (data) {
                 return new Date(data * 1000).Format("yyyy-MM-dd hh:mm:ss");
-                ;
               },
               filter: {
                 type: "none",
@@ -76,7 +75,7 @@
               sort: "asc",
               prop: "end_time",
               name: "下班时间",
-              width: "160px",
+              width: "200px",
               render: function (data) {
                 return new Date(data * 1000).Format("yyyy-MM-dd hh:mm:ss");
                 ;
