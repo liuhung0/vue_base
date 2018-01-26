@@ -8,7 +8,7 @@
         <el-form-item label="用户名" prop="username">
           <el-input type="text" v-model="boss.username" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item label="确认密码" prop="password">
+        <el-form-item label="密码" prop="password">
           <el-input type="password" v-model="boss.password" auto-complete="off"></el-input>
         </el-form-item>
         <el-form-item>
