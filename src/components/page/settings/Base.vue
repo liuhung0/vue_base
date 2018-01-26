@@ -6,9 +6,6 @@
       <el-form-item label="企业名称">
         <el-input v-model="form.name"></el-input>
       </el-form-item>
-      <el-form-item label="企业执照号">
-        <el-input v-model="form.name"></el-input>
-      </el-form-item>
       <el-form-item label="统一信用代码">
         <el-input v-model="form.name"></el-input>
       </el-form-item>
@@ -20,9 +17,8 @@
       <el-form-item label="管理者姓名">
         <el-input v-model="form.name"></el-input>
       </el-form-item>
-      <el-form-item label="现居住地">
-        <el-select v-model="form.name"></el-select>
-        <el-select v-model="form.name"></el-select>
+      <el-form-item style="width: 90%" label="选择城市">
+        <area-select  :level='2' type='text' v-model='form.selected'></area-select>
       </el-form-item>
       <el-form-item label="联系电话">
         <el-input v-model="form.name"></el-input>
@@ -42,11 +38,10 @@
   export default {
     data() {
       return {
-        reqData:{
-          uId:1,
-        },
         form: {
+          uId:1,
           name: '',
+          creditno:'',
           region: '',
           date1: '',
           date2: '',
@@ -59,9 +54,12 @@
     },
     mounted(){
       let that = this;
-      that.$http.post(that.Constants().REST_MERCHANT_INFO, that.reqData, {emulateJSON: true}).then(function (res) {
+      that.$http.post(that.Constants().REST_MERCHANT_INFO, that.form, {emulateJSON: true}).then(function (res) {
         if (res.data.result) {
-
+          console.log(res.data.data)
+//          that.$set(that, "form", res.data.data);
+//          that.form.name = res.data.data.name;
+          console.log(that.form.name)
         }
         else {
           that.$message.info(that.res.data.message);
@@ -72,7 +70,20 @@
     },
     methods: {
       onSubmit() {
-        console.log('submit!');
+        let that =this;
+        that.$http.post(that.Constants().REST_MERCHANT_ADD, that.form, {emulateJSON: true}).then(function (res) {
+          if (res.data.result) {
+            console.log(res.data.data)
+            that.$set(that, "form", res.data.data);
+//          that.form.name = res.data.data.name;
+            console.log(that.form.name)
+          }
+          else {
+            that.$message.info(that.res.data.message);
+          }
+        }, function () {
+          that.$message.error("网络发生错误");
+        })
       }
     }
   }
@@ -95,6 +106,11 @@
     height:100%;
     padding:60px 40px;
     border-radius: 10px;
+  }
+  .area-select{
+    width: 100%;
+    float: left;
+    margin-left: -11px;
   }
 
 </style>
