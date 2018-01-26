@@ -42,6 +42,9 @@
   export default {
     data() {
       return {
+        reqData:{
+          uId:1,
+        },
         form: {
           name: '',
           region: '',
@@ -53,6 +56,19 @@
           desc: ''
         }
       }
+    },
+    mounted(){
+      let that = this;
+      that.$http.post(that.Constants().REST_MERCHANT_INFO, that.reqData, {emulateJSON: true}).then(function (res) {
+        if (res.data.result) {
+
+        }
+        else {
+          that.$message.info(that.res.data.message);
+        }
+      }, function () {
+        that.$message.error("网络发生错误");
+      })
     },
     methods: {
       onSubmit() {
