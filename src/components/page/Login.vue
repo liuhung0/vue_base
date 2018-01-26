@@ -5,8 +5,8 @@
     </div>
     <div class="flex_item_center">
       <el-form :model="boss" status-icon :rules="bossRole" ref="bossForm" label-width="100px" class="demo-ruleForm">
-        <el-form-item label="密码" prop="username">
-          <el-input type="password" v-model="boss.username" auto-complete="off"></el-input>
+        <el-form-item label="用户名" prop="username">
+          <el-input type="text" v-model="boss.username" auto-complete="off"></el-input>
         </el-form-item>
         <el-form-item label="确认密码" prop="password">
           <el-input type="password" v-model="boss.password" auto-complete="off"></el-input>
@@ -75,25 +75,35 @@
 </script>
 
 <style scoped>
+  html,body{
+    padding:0;
+    margin:0;
+    width:100vw;
+    height:100vh;
+  }
   .flex_box{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding:100px;
     flex-wrap: wrap;
+    background:#48ace6;
+    min-height:101vh;
+    overflow: hidden;
+    flex-flow: column;
+
   }
   .flex_item_title  {
     flex: 0 0 100%;
   }
   .flex_item_center{
-    width:580px;
+    width:480px;
     align-self: center;
     border:1px solid  #ccc;
-    padding:60px 30px  20px  30px;
-    border-radius: 20px;
+    padding:100px 40px  20px 20px;
+    border-radius: 4px;
     background:#f3f3f6;
   }
-  .flex_item_title  h1{
+  .flex_item_title h1{
     font-size:4.2rem;
   }
 
