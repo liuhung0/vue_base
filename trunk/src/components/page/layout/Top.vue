@@ -11,7 +11,7 @@
           当前值班: 李大力
         </div>
         <div class="flex_item">
-          <a @click="logout">退出</a>
+          <span @click="logout">退出</span>
         </div>
       </div>
     </div>
@@ -42,7 +42,7 @@
           ],
         }
       },
-      method:{
+      methods:{
         logout(){
           sessionStorage.removeItem("LOGIN_BOSS");
           sessionStorage.removeItem("LOGIN_TOKEN");
