@@ -1,5 +1,4 @@
 <template>
-
   <div class="flex_box">
     <div class="flex_item flex_item_4" >
       <img src="@/assets/image/logo.png" style="width:32px;Height:32px">
@@ -16,7 +15,7 @@
     </div>
     <div class="flex_item flex_item_10">
       <span><B>当前值班:</B>{{username}} </span>
-      <span @click="logout">退出</span>
+      <router-link id="index" @click.native="logout" to="">注销登录</router-link>
     </div>
     <div class="flex_item flex_item_100_w" >
     </div>
@@ -25,49 +24,61 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
-  export default {
-    components: {},
-    props: [],
-    data() {
-      return {
-        username:sessionStorage.getItem("LOGIN_PARKING_USENAME"),
-        parking: {
-          id: 0,
-          name: "",
-        },
-        parkingList: [
-          {
-            id: 1,
-            name: "浩泰电建停车场",
+    export default {
+      components: {},
+      props: [],
+      data(){
+        return {
+          username:sessionStorage.getItem("LOGIN_PARKING_USENAME"),
+          form:{
+            uId:sessionStorage.getItem("LOGIN_PARKING_UID"),
+            platform:sessionStorage.getItem("LOGIN_PARKING_TYPE") == 8 ? 8 : 20,
           },
-          {
-            id: 2,
-            name: "三维浩泰地下停车场",
+          parking:{
+            id:0,
+            name:"",
           },
-          {
-            id: 3,
-            name: "中川地下停车场",
+          parkingList:[],
+        }
+      },
+
+
+      mounted(){
+        let uid = sessionStorage.getItem("LOGIN_PARKING_UID");
+        if(uid == null){
+          this.$message.error("您的登录信息已过期！");
+          this.$router.push('/login')
+        }
+        let that = this;
+        that.$http.post(that.Constants().VIP_PARKING_LIST, that.form,{emulateJSON: true}).then(function (res) {
+          if(res.data.result){
+            that.parkingList.splice(0, that.parking.length, ...res.data.data);
+          }else {
+            that.$message.error(that.res.data.message);
           }
-        ],
-      }
-    },
-    mounted(){
-      let uid = sessionStorage.getItem("LOGIN_PARKING_UID");
-      if(uid == null){
-        this.$message.error("您的登录信息已过期！");
-        this.$router.push('/login')
-      }
-    },
-    methods: {
-      logout() {
-        sessionStorage.removeItem("LOGIN_PARKING_UID");
-        sessionStorage.removeItem("LOGIN_PARKING_TOKEN");
-        sessionStorage.removeItem("LOGIN_PARKING_SUBID");
-        sessionStorage.removeItem("LOGIN_PARKING_TYPE");
-        this.$router.push('/login')
+        },function (res) {
+          that.$message.error(res);
+        });
+      },
+      methods:{
+        logout(){
+          let that = this;
+          that.$http.post(that.Constants().REST_USER_LOGINOUT, that.form,{emulateJSON: true}).then(function (res) {
+              if(res.data.result){
+                sessionStorage.removeItem("LOGIN_PARKING_UID");
+                sessionStorage.removeItem("LOGIN_PARKING_TOKEN");
+                sessionStorage.removeItem("LOGIN_PARKING_SUBID");
+                sessionStorage.removeItem("LOGIN_PARKING_TYPE");
+                this.$router.push('/login')
+              }else {
+                that.$message.error(that.res.data.message);
+              }
+          },function (res) {
+            that.$message.error(res);
+          });
+        }
       }
     }
-  }
 </script>
 <style>
   .flex_box {
