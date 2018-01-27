@@ -21,7 +21,8 @@ import ParkingInfo from '@/components/page/settings/ParkingInfo'
 import MoneyRules from '@/components/page/settings/MoneyRules'
 import DoorWay from '@/components/page/settings/DoorWay'
 import SeatList from '@/components/page/settings/SeatList'
-
+import VipList from '@/components/page/vip/VipList'
+import VipAdd from '@/components/page/vip/VipAdd'
 
 
 
@@ -117,6 +118,16 @@ export default new Router({
           path: '/main/setting/SeatList',
           name: 'seatList',
           component: SeatList,
+        },
+        {
+          path: '/page/vip/VipList',
+          name: 'viplist',
+          component: VipList,
+        },
+        {
+          path: '/page/vip/VipAdd',
+          name: 'vipadd',
+          component: VipAdd,
         },
       ]
     },
