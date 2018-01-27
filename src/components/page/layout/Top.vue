@@ -42,10 +42,19 @@
           ],
         }
       },
+      mounted(){
+        let uid = sessionStorage.getItem("LOGIN_PARKING_UID");
+        if(uid == null){
+          this.$message.error("您的登录信息已过期！");
+          this.$router.push('/login')
+        }
+      },
       methods:{
         logout(){
-          sessionStorage.removeItem("LOGIN_BOSS");
-          sessionStorage.removeItem("LOGIN_TOKEN");
+          sessionStorage.removeItem("LOGIN_PARKING_UID");
+          sessionStorage.removeItem("LOGIN_PARKING_TOKEN");
+          sessionStorage.removeItem("LOGIN_PARKING_SUBID");
+          sessionStorage.removeItem("LOGIN_PARKING_TYPE");
           this.$router.push('/login')
         }
       }
