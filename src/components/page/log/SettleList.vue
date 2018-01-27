@@ -1,31 +1,34 @@
 <template>
-  <div class="on">
-    <div class="main">
-      <data-table
-        :confignation="dataTableConfig"
-        ref="datatable">
-      </data-table>
+  <div style="padding: 20px;">
+    <div id="show" style="color: red;font-size: 20px;font-weight:bold;">
+
     </div>
+    <P></P>
+    <div>
+      停车场收费标准:首小时6元/每小时4元
+    </div>
+    <data-table id="out-table"
+                :confignation="config"
+                @addObjHandler="addObjHandler"
+                ref="datatable">
+    </data-table>
   </div>
 </template>
-<script type="text/ecmascript-6">
-  import DataTable from "../../ui/cub/DataTable";
-
+<script>
+  import DataTable from '@/components/ui/cub/DataTable2'
   export default {
-    props: [],
     components: {
-      DataTable,
-    },
+      DataTable},
     data() {
-      let that=this;
+      let that = this;
       return {
-        dataTableConfig: {
+        config: {
           draw: 1,
-          showAdd: 0,
-          showDel: 0,
-          showCheckBack: 0,
-          serverurl: that.Constants().REST_GATE_LOG_LIST,
-          title: "财务收入统计表",
+          hi:1,
+          showAdd: 1,
+          fanhui:2,
+          serverurl:that.Constants().FINANCE_LIST,
+          title: "业主管理/财务收入统计表",
           key: "id",
           pagenation: {
             page: 1,
@@ -38,7 +41,7 @@
               sort: "asc",
               prop: "car_number",
               name: "车牌号",
-              width: "180px",
+              width: "80px",
               render: function (data) {
                 return "<B>" + data + "</B>"
               },
@@ -87,7 +90,7 @@
               sort: "asc",
               prop: "total_time",
               name: "停车时长",
-              width: "200px",
+              width: "160px",
               render: function (data) {
                 return "<B>" + data + "</B>"
               },
@@ -100,7 +103,7 @@
               sort: "asc",
               prop: "cope_with",
               name: "应付金额",
-              width: "200px",
+              width: "160px",
               render: function (data) {
                 return "<span>" + data + "</span>";
               },
@@ -113,7 +116,7 @@
               sort: "desc",
               prop: "real_income",
               name: "实收金额",
-              width: '200px',
+              width: '80px',
               render: function (data) {
                 return "<span>" + data + "</span>";
               },
@@ -126,7 +129,7 @@
               sort: "desc",
               prop: "payment",
               name: "支付方式",
-              width: '180px',
+              width: '160px',
               render: function (data) {
                 if (data == 1) {
                   return "<label style='color: #1AC45D;padding:2px 10px;display: inline-block;'>支付宝</label>"
@@ -171,42 +174,57 @@
               },
             },
           ],
-          actions: [
-            {
-              name: "详情",
-              show() {
-                return true;
-              },
-              btnClass: "btn-main",
-              handler: function (id) {
-                that.$message.info("打开详情页面");
-              }
-            },
-          ],
           dataset: [],
         }
-
       }
     },
-    methods: {}
+    methods: {
+      //获取当期时间并显示
+      getCurrtentTime :function () {
+        setInterval(function() {
+          // 程序计时的月从0开始取值后+1
+          var show = document.getElementById("show");
+          var time = new Date();
+          var year =  time.getFullYear();
+          var m = time.getMonth() + 1;
+          var d = time.getDate();
+          var h = time.getHours();
+          var min =  time.getMinutes();
+          var s = time.getSeconds();
+          var currentTime;
+          if(s<10){
+            currentTime = year+"-"+m+"-"+d+" "+h+":"+min+":0"+s;
+          } else{
+            currentTime = year+"-"+m+"-"+d+" "+h+":"+min+":"+s;
+          }
+          show.innerHTML = currentTime;
+        }, 1000 );
+      },
+
+      addObjHandler:function (evt) {
+
+        var wb =XLSX.utils.table_to_book(document.getElementById('out-table'));
+
+        var wbout =XLSX.write(wb,{bookType:'xlsx',type:'binary'});
+
+        saveAs(new Blob([this.s2ab(wbout)],{type: 'application/octet-stream'}), "sheetjs.xlsx");
+
+      },
+      s2ab:function (s) {
+        if(typeof ArrayBuffer !== 'undefined'){
+          var buf = new ArrayBuffer(s.length);
+          var view = new Uint8Array(buf);
+          for(var i=0; i!=s.length;++i) view[i] =s.charCodeAt(i) & 0xFF;
+          return buf;
+        }else{
+          var buf = new Array(s.length);
+          for(var i=0; i!=s.length;++i) view[i] =s.charCodeAt(i) & 0xFF;
+          return buf;
+        }
+      },
+    }
   }
 </script>
-<style>
-  .on {
-    display: flex;
-    flex-flow: row wrap;
-    width: 100%;
-    overflow: auto;
-    min-height: 100vh;
-  }
+<style scoped>
 
-  .main {
-    display: flex;
-    flex-flow: row nowrap;
-    align-content: flex-start;
-  }
-
-  main:nth-child(0) {
-    border-left: 0px;
-  }
 </style>

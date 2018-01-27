@@ -6,7 +6,6 @@ import Main from '@/components/page/Main'
 import Welcome from '@/components/page/WelCome'
 
 import OrderList from '@/components/page/log/OrderList'
-import PeccancyList from '@/components/page/log/PeccancyList'
 import SettleList from '@/components/page/log/SettleList'
 
 import AccountList from '@/components/page/account/AccountList'
@@ -23,10 +22,8 @@ import DoorWay from '@/components/page/settings/DoorWay'
 import SeatList from '@/components/page/settings/SeatList'
 import VipList from '@/components/page/vip/VipList'
 import VipAdd from '@/components/page/vip/VipAdd'
-
-
-
-
+import FinancePic from '@/components/page/log/FinancePic'
+Vue.use(Router);
 export default new Router({
   routes: [
     {
@@ -58,11 +55,6 @@ export default new Router({
           path: '/main/statistics/orderlog',
           name: 'order',
           component: OrderList
-        },
-        {
-          path: '/main/statistics/errorlog',
-          name: 'peccancy',
-          component: PeccancyList
         },
         {
           path: '/main/statistics/settlelog',
@@ -128,6 +120,11 @@ export default new Router({
           path: '/page/vip/VipAdd',
           name: 'vipadd',
           component: VipAdd,
+        },
+        {
+          path: '/page/log/FinancePic',
+          name:'financepic',
+          component:FinancePic
         },
       ]
     },
