@@ -3,17 +3,17 @@
     <h1>收费规则</h1>
     <el-form ref="form" :model="form" label-width="120px" class="settings">
       <h2>包年包月用户</h2>
-      <el-form-item label="是否开启包年包月" >
+      <el-form-item label="是否开启包年包季包月" >
         <el-switch  style="float:left;padding:10px 0;" v-model="form.delivery"></el-switch>
       </el-form-item>
       <el-form-item label="包年费用">
-        <el-input v-model="form.name"></el-input>
+        <el-input v-model="form.annualFee"></el-input>
       </el-form-item>
       <el-form-item label="包季费用">
-        <el-input v-model="form.name"></el-input>
+        <el-input v-model="form.quarterFee"></el-input>
       </el-form-item>
       <el-form-item label="包月费用">
-        <el-input v-model="form.name"></el-input>
+        <el-input v-model="form.monthlyFee"></el-input>
       </el-form-item>
 
       <h2>业主管理费用</h2>
@@ -108,14 +108,10 @@
     data() {
       return {
         form: {
-          name: '',
-          region: '',
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''
+          annualFee:'',
+          quarterFee:'',
+          monthlyFee:'',
+
         }
       }
     },

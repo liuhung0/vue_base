@@ -60,7 +60,27 @@
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            alert('submit!');
+            let that = this;
+            this.$http.post(that.Constants().REST_USER_LOGIN, that.boss,{emulateJSON: true}).then(function (response) {
+              that.resData = response.data;
+              if (that.resData.result) {
+                //登录成功
+                //登录信息保存在sessionStorage中
+                sessionStorage.setItem("LOGIN_PARKING_UID", that.resData.data.uid);
+                sessionStorage.setItem("LOGIN_PARKING_TOKEN", that.resData.data.token);
+                sessionStorage.setItem("LOGIN_PARKING_TYPE", that.resData.data.type);
+                that.$router.replace("/main");
+                that.$message.success('登录成功');
+              }
+              else {
+                that.$message.error(that.resData.message);
+//                if(that.resData.message=='账号未激活,请激活!'){
+//                  that.$router.replace("/fore/active/"+username);
+//                }
+              }
+            },function (res) {
+              that.$message.error(res);
+            });
           } else {
             console.log('error submit!!');
             return false;

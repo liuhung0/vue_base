@@ -28,7 +28,7 @@ export default {
         LOGIN_COULD_TYPE = "LOGIN_COULD_TYPE";
       //dev
 
-      let BASE_URL = "http://192.168.0.10:9109";
+      let BASE_URL = "http://192.168.0.11:9109";
       let PROXY_URL = "";
       // let BASE_URL ="http://cloud.chinahtiot.com",PROXY_URL="/api";
       return {
@@ -43,6 +43,10 @@ export default {
         REST_GATE_LOG_INFO: BASE_URL + PROXY_URL + "/gate/log",
         REST_WORKLOG_LIST:  BASE_URL +PROXY_URL  +  "",
 
+        //用户登录接口
+        REST_USER_LOGIN: BASE_URL + PROXY_URL + "/parkingManager/v1/user/userLogin",
+        //用户登出接口
+        REST_USER_LOGINOUT: BASE_URL + PROXY_URL + "/parkingManager/v1/user/loginOut",
         //基础设置企业信息展示
         REST_MERCHANT_INFO: BASE_URL + PROXY_URL + "/parkingManager/v1/OwnerAndParking/queryMerchantByUid",
         //企业信息和企业信息新增
