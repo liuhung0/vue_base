@@ -1,26 +1,25 @@
 <template>
   <div class="gate">
-    <div class="row">
-      <div class="item"><b class="label">出入口:</b>{{doorway.name}}</div>
-      <div class="item"><b class="label">门闸编号:</b>{{doorway.doorCode}}</div>
-      <div class="item"><b class="label">摄像头编号:</b>{{doorway.cameraCode}}</div>
-      <div class="item"><b class="label">摄像头编号:</b>{{doorway.cameraCode}}</div>
-    </div>
-    <div class="row">
-      <img  style="width:400px;height:240px;border:1px dashed #ddd;border-radius: 4px;"src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516619827841&di=9420eae12f3b5cdc288563b04da354cc&imgtype=0&src=http%3A%2F%2Fphoto.iautos.cn%2Fcarupload%2Fphoto%2F2015%2F0501%2F15%2F20150501151705920907.jpg">
-    </div>
-    <div class="row">
+    <div class="row img">
+      <div class="item">
+        <img  style="width:400px;height:240px;border:1px dashed #ddd;border-radius: 4px;"src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516619827841&di=9420eae12f3b5cdc288563b04da354cc&imgtype=0&src=http%3A%2F%2Fphoto.iautos.cn%2Fcarupload%2Fphoto%2F2015%2F0501%2F15%2F20150501151705920907.jpg">
+      </div>
       <div class="item">
         <el-input style="width:200px"></el-input><el-button>手工校正</el-button><el-button>手动开闸</el-button>
       </div>
     </div>
+
     <div class="row">
-      <div class="item"><b class="label">出入口:</b>{{doorway.name}}</div>
-      <div class="item"><b class="label">门闸编号:</b>{{doorway.doorCode}}</div>
-      <div class="item"><b class="label">摄像头编号:</b>{{doorway.cameraCode}}</div>
-      <div class="item"><b class="label">摄像头编号:</b>{{doorway.cameraCode}}</div>
+      <div class="item"><b class="label">出入口:</b><span>{{doorway.name}}</span></div>
+      <div class="item"><b class="label">门闸编号:</b><span>{{doorway.doorCode}}</span></div>
+      <div class="item"><b class="label">摄像头编号:</b><span>{{doorway.cameraCode}}</span></div>
+      <div class="item"><b class="label">摄像头编号:</b><span>{{doorway.cameraCode}}</span></div>
+      <div class="item"><b class="label">出入口:</b><span>{{doorway.name}}</span></div>
+      <div class="item"><b class="label">门闸编号:</b><span>{{doorway.doorCode}}</span></div>
+      <div class="item"><b class="label">摄像头编号:</b><span>{{doorway.cameraCode}}</span></div>
+      <div class="item"><b class="label">摄像头编号:</b><span>{{doorway.cameraCode}}</span></div>
     </div>
-    <div class="row">
+    <div class="table">
       <data-table
         :confignation="dataTableConfig"
         @addObjHandler="addObjHandler"
@@ -174,29 +173,41 @@
 </script>
 <style>
   .gate {
-    flex: 1 0 10%;
     display: flex;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
     align-content: flex-start;
     padding:20px;
-    border-left:1px solid #5e7382;
+    border-bottom:4px dashed #5e7382;
     margin-left: -1px;
   }
   .row{
+    flex:1;
+    display:flex;
+    flex-flow:row wrap;
+    justify-content: flex-start;
+  }
+   .img {
+     flex:2;
+     display:flex;
+   }
+   .img .item{
+     flex:1;
+   }
+  .row .item{
     flex: 0 0 100%;
     display:flex;
-    flex-wrap: wrap;
-    align-content: space-between;
+    align-items: flex-start;
+    justify-content: flex-start;
   }
-  .row .item{
-    flex: 0 0 50%;
-    display:flex;
+  .item .label,.item span{
+    flex: 1;
+    text-align: left;
+  }
+  .table {
+    flex: 4;
+    display:block;
     align-content: start;
     justify-content: left;
   }
-  .item .label {
-    flex: 0 0 50%;
-    justify-content: left;
-    align-content: start
-  }
+
 </style>
