@@ -11,7 +11,8 @@
           当前值班: 李大力
         </div>
         <div class="flex_item">
-          <span @click="logout">退出</span>
+          <router-link id="index" @click.native="logout" to="">注销登录</router-link>
+          <!--<span @click="logout">退出</span>-->
         </div>
       </div>
     </div>
