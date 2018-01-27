@@ -38,7 +38,7 @@
     data() {
       return {
         form: {
-          uId:13,
+          uId:sessionStorage.getItem("LOGIN_PARKING_UID"),
           cid:'',
           cname:'',
           creditno:'',
