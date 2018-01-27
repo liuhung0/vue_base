@@ -1,6 +1,8 @@
 <template>
   <div class="HolyGrail">
-    <header><Top></Top></header>
+    <header>
+      <Top></Top>
+    </header>
     <div class="HolyGrail-body">
       <main class="HolyGrail-content">
         <router-view></router-view>
@@ -21,35 +23,31 @@
   .HolyGrail {
     display: flex;
     min-height: 100vh;
-    flex-direction: column;
+    flex-flow: row wrap;
   }
-
-  header,
-  footer {
-    flex: 0;
+  header{
+    display: flex;
+    flex:0 0 100%;
+    height:6vh;
+    background:#48ace6;
   }
-
   .HolyGrail-body {
     display: flex;
-    flex: 1;
+    flex:1 1 100%;
+    height:95vh;
+    background: #fff2ea;
   }
-
   .HolyGrail-content {
-    flex: 1;
-    overflow:auto;
-    min-height: 100vh;
+    flex:1;
+    max-width: 88vw;
+    overflow-x:auto;
+    overflow-y:auto;
   }
 
   .HolyGrail-nav{
     /* 两个边栏的宽度设为12em */
-    flex: 0 0 12em;
-    min-height: 100vh;
-    background:#8c939d;
-  }
-
-  .HolyGrail-nav {
-    /* 导航放到最左边 */
+    flex: 0 0 12vw;
+    background: #45494e;
     order: -1;
   }
-
 </style>

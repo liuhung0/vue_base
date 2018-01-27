@@ -2,7 +2,7 @@
   <div class="on">
     <el-checkbox  v-for="(door,index) of doorList" :checked="door.checked" :key="index" @change="toggle(index)">{{door.name}}</el-checkbox>
     <div class="main">
-      <gate v-for="(door,index) of doorList" :key="index" v-if="door.checked"></gate>
+      <gate v-for="(door,index) of doorList" :key="index" v-if="door.checked" class="gate"></gate>
     </div>
   </div>
 </template>
@@ -41,7 +41,6 @@
     },
     methods:{
       toggle(i){
-        console.log("?SDKas")
         if(this.doorList[i].checked){
           this.doorList[i].checked =false
         }
@@ -63,11 +62,16 @@
 
   .main {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     align-content: flex-start;
   }
+  .main .gate{
+    flex: 0 0 100%;
+  }
 
-  main:nth-child(0) {
+
+  .main:nth-child(0) {
     border-left: 0px;
+
   }
 </style>

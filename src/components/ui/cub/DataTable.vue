@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div><h2>{{config.title}}</h2><br/></div>
     <div class="btn—group">
       <button v-if="config.showCheckAll=='1'" class="btn btn-blue" @click="checkAll">全 选</button>
       <button v-if="config.showCheckBack=='1'" class="btn btn-main" @click="checkBack">反 选</button>
@@ -8,7 +7,6 @@
       <button v-if="config.showDel=='1'" class="btn btn-err" @click="delObj">删 除</button>
     </div>
     <div class="table">
-
       <div class="pageation" ref="pagenation" v-if="config.pageable==undefined||config.pageable==true">
         <div class="info">
           <select v-model="pagenation.rows" @change="changeRows">
@@ -287,9 +285,8 @@
 
   .btn—group {
     width: 100%;
-
     padding: 10px 20px;
-    margin-top: -36px;
+    margin-top: -16px;
     text-align: right;
   }
 
@@ -300,29 +297,29 @@
   .table table thead th {
     text-align: center;
     font-size: 15px;
-    border-left: 1px solid #23adfd;
+    border-left: 1px solid #dedede;
     border-right: 1px solid #fff;
     margin-left: 2px;
     font-weight: 400;
-    background: #23adfd;
+    background: #dedede;
     line-height: 26px;
     padding: 4px 10px;
-    color: #fff;
+    color: #828282;
   }
 
   .table table thead th:last-child {
-    border-right: 1px solid #23adfd;
+    border-right: 1px solid #dedede;
   }
 
   .table table thead td {
     text-align: center;
     padding: 2px 4px;
     font-size: 15px;
-    border-left: 1px solid #23adfd;
-    border-right: 1px solid #23adfd;
+    border-left: 1px solid #dedede;
+    border-right: 1px solid #dedede;
     margin-left: 2px;
     font-weight: 400;
-    background: #23adfd;
+    background: #dedede;
 
   }
 
@@ -330,10 +327,10 @@
     text-align: left;
     width: calc(100% - 32px);
     padding: 2px 2px;
-    border: 1px solid #37baec;
+    border: 1px solid #dedede;
     border-radius: 4px;
     font-size: 15px;
-    color: #679ba1;
+    color: #dedede;
   }
 
   .table table thead th i {
@@ -349,12 +346,12 @@
     padding: 4px 10px;
     color: #828282;
     font-size: 15px;
-    border-bottom: 1px dashed #23adfd;
-    border-left: 1px dashed #23adfd;
+    border-bottom: 1px dashed #dedede;
+    border-left: 1px dashed #dedede;
   }
 
   .table table tbody td:first-child {
-    border-left: 0px dashed #23adfd;
+    border-left: 0px dashed #dedede;
   }
 
   .table table .ids {
@@ -381,26 +378,27 @@
   }
 
   .pageation {
-    height: 56px;
+    height: 32px;
     padding: 6px 10px;
     line-height: 18px;
     overflow: hidden;
     border-bottom: 1px solid #fff;
-    border-left: 1px solid #23adfd;
-    border-right: 1px solid #23adfd;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
     clear: both;
-    background: #23adfd;
+    background: #dedede;
   }
 
   .pageation .info {
-    color: #fff;
+    color: #676767;
     float: left;
     width: 30%;
     line-height: 36px;
+    font-size:13px;
   }
 
   .pageation .info select {
-    color: #23adfd;
+    color: #dedede;
     height: 26px;
     line-height: 36px;
     margin: 2px 10px 2px 0;
