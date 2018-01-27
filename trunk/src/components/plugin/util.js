@@ -59,6 +59,23 @@ export default {
         VIP_ADD: BASE_URL + PROXY_URL + "/parkingManager/v1/vip/saveVipInfo",
 
         VIP_PARKING_LIST: BASE_URL + PROXY_URL +"/parkingManager/v1/vip/getParkingList",
+
+        //停车场出入记录
+        PARKING_EXIT:BASE_URL + PROXY_URL + "/parkingManager/v1/record/recordlist",
+        //导出停车场excel表格
+        EXCEL:BASE_URL + PROXY_URL + "/cloud/exportexcel/download/",
+        //导出财务报表excel表格
+        DOWNLOADFINACE:BASE_URL + PROXY_URL + "/cloud/exportexcel/downloadFinace/",
+        //财务列表
+        FINANCE_LIST:BASE_URL + PROXY_URL + "/parkingManager/v1/financeList/statement/financeList",
+        //各类车辆数，及其收入金额
+        CARTYPE:BASE_URL + PROXY_URL + "/parkingManager/v1/financeList/statement/carType",
+        //查詢全年月数据
+        MONTHMPNRY:BASE_URL + PROXY_URL + "/parkingManager/v1/financeList/statement/monthMoney",
+        //查询当年数据
+        PARKING_YEAR_LIST:BASE_URL + PROXY_URL+"/parkingManager/v1/record/allYear",
+        //按照条件年月日周查询，进出车辆及其收入
+        DATECARTYPE:BASE_URL + PROXY_URL + "/parkingManager/v1/financeList/statement/dateCarType",
        }
 
     }

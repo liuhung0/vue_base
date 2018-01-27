@@ -1,30 +1,37 @@
 <template>
-  <div class="on">
-    <div class="main">
-      <data-table
-        :confignation="dataTableConfig"
-        ref="datatable">
-      </data-table>
+  <div style="padding: 20px;">
+    <div id="show" style="color: red;font-size: 20px;font-weight:bold;">
+
     </div>
+    <P></P>
+    <div>
+      停车场收费标准:首小时6元/每小时4元
+    </div>
+    <data-table id="out-table"
+                :confignation="config"
+                @addObjHandler="addObjHandler"
+                ref="datatable">
+    </data-table>
   </div>
 </template>
-
 <script>
-  import DataTable from "../../ui/cub/DataTable";
+  import DataTable from '@/components/ui/cub/DataTable2'
   export default {
     components: {
       DataTable},
-    props: [],
     data() {
       let that = this;
       return {
-        dataTableConfig: {
+        reqData: {
+          user_id:sessionStorage.getItem("LOGIN_PARKING_UID"),
+
+        },
+        config: {
           draw: 1,
-          showAdd: 0,
-          showDel: 0,
-          showCheckBack: 0,
-          serverurl: that.Constants().REST_WORKLOG_LIST,
-          title: "账户管理",
+          A:1,
+          showAdd: 1,
+          serverurl:that.Constants().PARKING_EXIT,
+          title: "停车场报表",
           key: "id",
           pagenation: {
             page: 1,
@@ -35,111 +42,178 @@
             {
               sortable: false,
               sort: "asc",
-              prop: "number",
-              name: "工号",
-              width: "180px",
+              prop: "car_number",
+              name: "车牌号",
+              width: "120px",
               render: function (data) {
+                console.log(data);
                 return "<B>" + data + "</B>"
               },
-              filter: {
-                type: "none",
-              },
-              filterData: ""
-            },
-            {
-              sortable: false,
-              sort: "asc",
-              prop: "name",
-              name: "姓名",
-              width: "180px",
               filter: {
                 type: "input",
-              }
-            },
-            {
-              sortable: false,
-              sort: "asc",
-              prop: "identity_card",
-              name: "身份证号",
-              width: "260px",
-              render: function (data) {
-                return "<B>" + data + "</B>"
-              },
-              filter: {
-                type: "none",
               },
               filterData: ""
             },
             {
               sortable: false,
               sort: "asc",
-              prop: "phone",
-              name: "手机号",
-              width: "180px",
+              prop: "approach_time",
+              name: "进场时间",
+              width: "160px",
               render: function (data) {
-                return "<B>" + data + "</B>"
+                return new Date(data * 1000).Format("yyyy-MM-dd hh:mm:ss");
               },
               filter: {
                 type: "none",
               },
-              filterData: ""
             },
             {
               sortable: false,
               sort: "asc",
-              prop: "role",
-              name: "角色",
-              width: "180px",
+              prop: "approach_picture",
+              name: "进场图片",
+              width: "120px",
+              render: function (data) {
+                return "<img src='" + data + "' width='120px'/>";
+              },
+              filter: {
+                type: "none",
+              },
+            },
+            {
+              sortable: false,
+              sort: "asc",
+              prop: "approach_alleyway",
+              name: "入场通道",
+              width: "160px",
+              render: function (data) {
+                return "<span>" + data + "</span>";
+              },
+              filter: {
+                type: "none",
+              },
+            },
+            {
+              sortable: false,
+              sort: "desc",
+              prop: "exit_picture",
+              name: "出场图片",
+              width: '120px',
+              render: function (data) {
+                return "<img src='" + data + "' width='120px'/>";
+              },
+              filter: {
+                type: "none",
+              },
+            },
+            {
+              sortable: false,
+              sort: "desc",
+              prop: "exit_time",
+              name: "出场时间",
+              width: '160px',
+              render: function (data) {
+                return new Date(data * 1000).Format("yyyy-MM-dd hh:mm:ss");
+              },
+              filter: {
+                type: "none",
+              },
+            },
+            {
+              sortable: false,
+              sort: "desc",
+              prop: "exit_alleyway",
+              name: "出场通道",
+              width: '80px',
+              render: function (data) {
+                return "<span>" + data + "</span>";
+              },
+              filter: {
+                type: "none",
+              },
+            },
+            {
+              sortable: false,
+              sort: "desc",
+              prop: "cope_with",
+              name: "应付金额",
+              width: '80px',
+              render: function (data) {
+                return "<span>" + data + "</span>";
+              },
+              filter: {
+                type: "none",
+              },
+            },
+            {
+              sortable: false,
+              sort: "desc",
+              prop: "real_income",
+              name: "实收金额",
+              width: '80px',
+              render: function (data) {
+                return "<span>" + data + "</span>";
+              },
+              filter: {
+                type: "none",
+              },
+            },
+            {
+              sortable: false,
+              sort: "desc",
+              prop: "vehicle_type",
+              name: "车辆类型",
+              width: '160px',
               render: function (data) {
                 if (data == 1) {
-                  return "<label>岗亭操作员</label>"
+                  return "<label style='color: #1AC45D;padding:2px 10px;display: inline-block;'>临时车</label>"
                 }
-                else if (data == 2) {
-                  return "<label>停车场巡检员</label>"
+                if (data == 2) {
+                  return "<label style='color: #1AC45D;padding:2px 10px;display: inline-block;'>月租车</label>"
                 }
-                else if (data == 3){
-                  return "<label>PDA</label>"
+                if (data == 3) {
+                  return "<label style='color: #e64242;padding:2px 10px;display: inline-block;'>免费车</label>"
                 }
-              else if (data == 4){
-                  return "<label>财务</label>"
-                }
-
               },
               filter: {
                 type: "select",
                 data: [
                   {
                     value: 1,
-                    text: "岗亭操作员"
+                    text: "临时车"
                   },
                   {
                     value: 2,
-                    text: "停车场巡检员"
+                    text: "月租车"
                   },
                   {
                     value: 3,
-                    text: "PDA"
-                  }
-                  ,
-                  {
-                    value: 4,
-                    text: "财务"
+                    text: "免费车"
                   }
                 ]
               },
             },
             {
               sortable: false,
-              sort: "asc",
-              prop: "status",
-              name: "状态",
-              width: "160px",
+              sort: "desc",
+              prop: "payment",
+              name: "支付方式",
+              width: '160px',
               render: function (data) {
                 if (data == 1) {
-                  return "<label>启用</label>"
+                  return "<label style='color: #1AC45D;padding:2px 10px;display: inline-block;'>支付宝</label>"
                 }
-                else if (data == 2) {
-                  return "<label>停用</label>"
+                if (data == 2) {
+                  return "<label style='color: #1AC45D;padding:2px 16px;display: inline-block;'>微信</label>"
+                }
+                if (data == 3) {
+                  return "<label style='color: #1AC45D;padding:2px 10px;display: inline-block;'>现金</label>"
+                }
+                if (data == 4) {
+                  return "<label style='color: #1AC45D;padding:2px 10px;display: inline-block;'>一卡通</label>"
+                }
+                if (data == 5) {
+                  return "<label style='color: #e64242;padding:2px 10px;display: inline-block;'>免费</label>"
                 }
               },
               filter: {
@@ -147,12 +221,24 @@
                 data: [
                   {
                     value: 1,
-                    text: "启用"
+                    text: "支付宝"
                   },
                   {
                     value: 2,
-                    text: "停用"
+                    text: "微信"
                   },
+                  {
+                    value: 3,
+                    text: "现金"
+                  },
+                  {
+                    value: 4,
+                    text: "一卡通"
+                  },
+                  {
+                    value: 5,
+                    text: "免费"
+                  }
                 ]
               },
             },
@@ -162,25 +248,50 @@
 
       }
     },
-    methods: {}
+    methods: {
+
+      //获取当期时间并显示
+      getCurrtentTime :function () {
+        setInterval(function() {
+          // 程序计时的月从0开始取值后+1
+          var show = document.getElementById("show");
+          var time = new Date();
+          var year =  time.getFullYear();
+          var m = time.getMonth() + 1;
+          var d = time.getDate();
+          var h = time.getHours();
+          var min =  time.getMinutes();
+          var s = time.getSeconds();
+          var currentTime;
+          if(s<10){
+            currentTime = year+"-"+m+"-"+d+" "+h+":"+min+":0"+s;
+          } else{
+            currentTime = year+"-"+m+"-"+d+" "+h+":"+min+":"+s;
+          }
+          show.innerHTML = currentTime;
+        }, 1000 );
+      },
+      addObjHandler(){
+        let that = this;
+
+        console.log(that.reqData);
+        this.$http.get(that.Constants().EXCEL,that.reqData,{emulateJSON: true}).then(function (res) {
+          console.log(res.data);
+          if (res.data.result) {
+
+            that.$message.info("下载文件成功！请去桌面查看！");
+          } else {
+            that.$message.error("下载文件失败！"+res.date.message);
+          }
+        }).catch(function () {
+          that.$message.error("网络发生异常");
+        })
+      }
+    }
   }
 </script>
 <style>
-  .on {
-    display: flex;
-    flex-flow: row wrap;
-    width: 100%;
-    overflow: auto;
-    min-height: 100vh;
-  }
 
-  .main {
-    display: flex;
-    flex-flow: row nowrap;
-    align-content: flex-start;
-  }
-
-  main:nth-child(0) {
-    border-left: 0px;
-  }
 </style>
+
+
