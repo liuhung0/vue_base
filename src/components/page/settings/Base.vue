@@ -18,7 +18,7 @@
         <el-input v-model="form.oname"></el-input>
       </el-form-item>
       <el-form-item style="width: 90%" label="选择城市">
-        <area-select  :level='2' type='text' v-model='form.selected'></area-select>
+        <area-select style="width: 114%;" :level='2' type='text' v-model='form.selected'></area-select>
       </el-form-item>
       <el-form-item label="联系电话">
         <el-input v-model="form.tel"></el-input>
