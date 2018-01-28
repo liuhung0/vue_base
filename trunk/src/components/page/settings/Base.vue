@@ -9,10 +9,6 @@
       <el-form-item label="统一信用代码">
         <el-input v-model="form.creditno"></el-input>
       </el-form-item>
-      <el-form-item label="企业对公账户">
-        <el-input ></el-input>
-      </el-form-item>
-
       <h2>管理者信息</h2>
       <el-form-item label="管理者姓名">
         <el-input v-model="form.oname"></el-input>
