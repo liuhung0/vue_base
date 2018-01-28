@@ -22,6 +22,7 @@ import DoorWay from '@/components/page/settings/DoorWay'
 import SeatList from '@/components/page/settings/SeatList'
 import VipList from '@/components/page/vip/VipList'
 import VipAdd from '@/components/page/vip/VipAdd'
+import VipEdit from '@/components/page/vip/VipEdit'
 import FinancePic from '@/components/page/log/FinancePic'
 import echarts from 'echarts'
 Vue.use(Router);
@@ -122,6 +123,11 @@ export default new Router({
           path: '/page/vip/VipAdd',
           name: 'vipadd',
           component: VipAdd,
+        },
+        {
+          path: '/page/vip/VipEdit/:id',
+          name: 'vipedit',
+          component: VipEdit,
         },
         {
           path: '/page/log/FinancePic',
