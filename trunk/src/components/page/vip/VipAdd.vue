@@ -72,7 +72,7 @@
       return {
         ruleForm: {
           uId: sessionStorage.getItem("LOGIN_PARKING_UID"),
-          token: sessionStorage.getItem("LOGIN_COULD_TOKEN"),
+          token: sessionStorage.getItem("LOGIN_PARKING_TOKEN"),
           type: '',
           reserve:'',
           name: '',

@@ -61,21 +61,21 @@ export default {
         VIP_PARKING_LIST: BASE_URL + PROXY_URL +"/parkingManager/v1/vip/getParkingList",
 
         //停车场出入记录
-        PARKING_EXIT:BASE_URL + PROXY_URL + "/parkingManager/v1/record/recordlist",
+        PARKING_EXIT:BASE_URL + PROXY_URL + "/parkingManager/v1/record/recordList",
         //导出停车场excel表格
-        EXCEL:BASE_URL + PROXY_URL + "/cloud/exportexcel/download/",
+        EXCEL:BASE_URL + PROXY_URL + "/parkingManager/v1/record/download/",
         //导出财务报表excel表格
-        DOWNLOADFINACE:BASE_URL + PROXY_URL + "/cloud/exportexcel/downloadFinace/",
+        DOWNLOADFINACE:BASE_URL + PROXY_URL + "/parkingManager/v1/record/downloadFinace/",
         //财务列表
-        FINANCE_LIST:BASE_URL + PROXY_URL + "/parkingManager/v1/financeList/statement/financeList",
+        FINANCE_LIST:BASE_URL + PROXY_URL + "/parkingManager/v1/financeList/financeList",
         //各类车辆数，及其收入金额
-        CARTYPE:BASE_URL + PROXY_URL + "/parkingManager/v1/financeList/statement/carType",
+        CARTYPE:BASE_URL + PROXY_URL + "/parkingManager/v1/financeList/carType",
         //查詢全年月数据
-        MONTHMPNRY:BASE_URL + PROXY_URL + "/parkingManager/v1/financeList/statement/monthMoney",
+        MONTHMPNRY:BASE_URL + PROXY_URL + "/parkingManager/v1/financeList/monthMoney",
         //查询当年数据
         PARKING_YEAR_LIST:BASE_URL + PROXY_URL+"/parkingManager/v1/record/allYear",
         //按照条件年月日周查询，进出车辆及其收入
-        DATECARTYPE:BASE_URL + PROXY_URL + "/parkingManager/v1/financeList/statement/dateCarType",
+        DATECARTYPE:BASE_URL + PROXY_URL + "/parkingManager/v1/financeList/dateCarType",
        }
 
     }

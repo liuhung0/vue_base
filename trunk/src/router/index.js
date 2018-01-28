@@ -23,7 +23,9 @@ import SeatList from '@/components/page/settings/SeatList'
 import VipList from '@/components/page/vip/VipList'
 import VipAdd from '@/components/page/vip/VipAdd'
 import FinancePic from '@/components/page/log/FinancePic'
+import echarts from 'echarts'
 Vue.use(Router);
+Vue.prototype.$echarts = echarts;
 export default new Router({
   routes: [
     {
@@ -130,4 +132,4 @@ export default new Router({
     },
   ]
 })
-Vue.use(Router);
+

@@ -24,7 +24,6 @@
       return {
         reqData: {
           user_id:sessionStorage.getItem("LOGIN_PARKING_UID"),
-
         },
         config: {
           draw: 1,
