@@ -244,8 +244,8 @@
         let page = queryData.page;
         queryData.rows = that.pagenation.rows?that.pagenation.rows:10;
         let rows = queryData.rows;
-        let user_id = sessionStorage.getItem("LOGIN_COULD_UID");
-        let token = sessionStorage.getItem("LOGIN_COULD_TOKEN");
+        let user_id = sessionStorage.getItem("LOGIN_PARKING_UID");
+        let token = sessionStorage.getItem("LOGIN_PARKING_TOKEN");
         let exit_time ='1514099197';
         queryData.year = that.resData.year;
         let year;
@@ -332,8 +332,8 @@
         let page = queryData.page;
         queryData.rows = that.pagenation.rows?that.pagenation.rows:10;
         let rows = queryData.rows;
-        let user_id = sessionStorage.getItem("LOGIN_COULD_UID");
-        let token = sessionStorage.getItem("LOGIN_COULD_TOKEN");
+        let user_id = sessionStorage.getItem("LOGIN_PARKING_UID");
+        let token = sessionStorage.getItem("LOGIN_PARKING_TOKEN");
         queryData.exit_time = '1514099197';
         let exit_time =queryData.exit_time;
         queryData.year = that.resData.year;
@@ -554,9 +554,9 @@
         that.pagenation =that.pagenation?that.pagenation:{};
         queryData.page = that.pagenation.page?that.pagenation.page:1;
         queryData.rows = that.pagenation.rows?that.pagenation.rows:10;
-        queryData.user_id = sessionStorage.getItem("LOGIN_COULD_UID");
-        queryData.token = sessionStorage.getItem("LOGIN_COULD_TOKEN");
-        queryData.username = sessionStorage.getItem("LOGIN_COULD_USERNAME");
+        queryData.user_id = sessionStorage.getItem("LOGIN_PARKING_UID");
+        queryData.token = sessionStorage.getItem("LOGIN_PARKING_TOKEN");
+        queryData.username = sessionStorage.getItem("LOGIN_PARKING_USENAME");
         queryData.appId = this.$route.params.id;
         queryData.exit_time = '1514099197';
         queryData.year = that.resData.year;
