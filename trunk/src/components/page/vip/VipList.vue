@@ -196,19 +196,27 @@
               },
               btnClass: "btn-main",
               handler: function (id) {
-                that.$router.push('/console/parkingUp/' + id)
+                that.$router.push('/page/vip/VipEdit/' + id)
               }
             },
             {
-              name: "申请审核",
-
+              name: "冻结",
               show: function (data) {
-                //没有通过的且没有上线的还能编辑
-
-                return data.verify == 3;
+                //没有上线的且已经通过的可以上线
+                return data.status == 1;
               },
-              btnClass: "btn-main",
-
+              btnClass: "btn-green",
+              handler: function (id) {
+                that.online(id);
+              }
+            },
+            {
+              name: "解冻",
+              show: function (data) {
+                //没有上线的且已经通过的可以上线
+                return data.status == 3;
+              },
+              btnClass: "btn-green",
               handler: function (id) {
                 that.agree(id);
               }
@@ -235,7 +243,7 @@
           closeOnConfirm: true,
           allowOutsideClick: true,
         }).then(function(){
-          that.$http.post(that.Constants().PARKING_DEL,{id:id},{emulateJSON: true}).then(function(res){
+          that.$http.post(that.Constants().VIP_ID_DEL,{id:id},{emulateJSON: true}).then(function(res){
             if(res.data.result){
               that.$message.info("删除成功","您选择的数据已经成功删除!");
               this.$refs.datatable.loadData();
@@ -248,29 +256,55 @@
           });
         })
       },
-      agree(id) {
+      online(id) {
         let that = this;
         that.$swal({
-          title: "是否申请审核？",
-          text: "通过审核的应用才可以上线正式运营",
-          type: "question",
+          title: "你确定要冻结此Vip用户么?",
+          text: "冻结后此用户的Vip特权将失效...",
+          type: "warning",
           showCancelButton: true,
-          confirmButtonColor: "#5f8bdd",
-          confirmButtonText: "申请",
-          cancelButtonText: "不申请",
+          confirmButtonColor: "#dd8b1f",
+          confirmButtonText: "确定",
+          cancelButtionText: "再考虑下",
           closeOnConfirm: true,
           allowOutsideClick: true,
         }).then(function () {
-          that.$http.post(that.Constants().PARK_APPLY + id, {}, {emulateJSON: true}).then(function (res) {
+          that.$http.post(that.Constants().VIP_FREEZE+id,{}, {emulateJSON: true}).then(function (res) {
             if (res.data.result) {
-              that.$message.info("申请成功,等待审核结果");
+              that.$message.info("此Vip已被冻结...请联系管理员");
               this.$refs.datatable.loadData();
             }
             else {
-              that.$message.error("审核失败：" + res.data.message);
+              that.$message.error("冻结失败：" + res.data.message);
             }
           }, function () {
-            that.$message.error("审核失败");
+            that.$message.error("冻结失败");
+          });
+        })
+      },
+      agree(id) {
+        let that = this;
+        that.$swal({
+          title: "确定要解冻此用户的Vip权限吗？",
+          text: "解冻后此用户的Vip权限变更为正常",
+          type: "question",
+          showCancelButton: true,
+          confirmButtonColor: "#5f8bdd",
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          closeOnConfirm: true,
+          allowOutsideClick: true,
+        }).then(function () {
+          that.$http.post(that.Constants().VIP_THAW + id, {}, {emulateJSON: true}).then(function (res) {
+            if (res.data.result) {
+              that.$message.info("解冻成功");
+              this.$refs.datatable.loadData();
+            }
+            else {
+              that.$message.error("解冻失败：" + res.data.message);
+            }
+          }, function () {
+            that.$message.error("解冻失败");
           })
         }).catch(function () {
           that.unagree(id);

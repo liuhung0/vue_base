@@ -5,13 +5,13 @@
       <h2>{{$route.params.id?"编辑":"添加"}}Vip</h2>
       <hr style="background:#249CFA; height: 2px;width: 100%;border:0px;"/>
       <el-tabs type="border-card">
-        <el-tab-pane label="单个设备添加">
+        <el-tab-pane label="Vip用户信息录入">
           <el-form ref="ruleForm" v-model="ruleForm" label-width="120px">
             <el-form-item  label="停车场名称">
-              <el-select v-model="ruleForm.FId" filterable placeholder="请选择停车场" style="width:300px;margin-left: -55px">
+              <el-select v-model="ruleForm.pId" filterable placeholder="请选择停车场" style="width:300px;margin-left: -55px">
                 <el-option
-                  v-for="item in fidList"
-                  :key="item.FId"
+                  v-for="item in pidList"
+                  :key="item.pId"
                   :label="item.name"
                   :value="item.id">
                 </el-option>
@@ -45,7 +45,7 @@
             </el-form-item>
 
             <el-form-item label="会员开始时间">
-              <el-col :span="15">
+              <el-col :span="11">
                 <el-date-picker type="date" id="beginDate" placeholder="选择日期" v-model="ruleForm.startTime" style="width: 300px;margin-left: 10px;"></el-date-picker>
               </el-col>
             </el-form-item>
@@ -76,19 +76,21 @@
           type: '',
           reserve:'',
           name: '',
-          FId:'',
+          pId:'',
           phone: '',
           carNumber:'',
           siteNumber:'',
+          startTime:'',
+          endTime:''
         },
-        fidList:[]
+        pidList:[]
       }
     },
     mounted() {
       let that = this;
         that.$http.post(that.Constants().VIP_PARKING_LIST,that.ruleForm,{emulateJSON: true}).then(function (res) {
           if (res.data.result) {
-            that.fidList.splice(0, that.fidList.length, ...res.data.data);
+            that.pidList.splice(0, that.pidList.length, ...res.data.data);
           }
         }).catch(function () {
         })
@@ -96,8 +98,14 @@
     methods: {
       onSubmit() {
         let that = this;
-
-
+        if (that.ruleForm.startTime instanceof Date) {
+          let startTime = parseInt(that.ruleForm.startTime.getTime()/1000);
+          that.ruleForm.startTime = startTime;
+        }
+        if (that.ruleForm.endTime instanceof Date) {
+          let endTime = parseInt(that.ruleForm.endTime.getTime()/1000);
+          that.ruleForm.endTime = endTime;
+        }
         /* that.ruleForm.user_id = sessionStorage.getItem("LOGIN_COULD_UID");*/
         this.$http.post(that.Constants().VIP_ADD, that.ruleForm,{emulateJSON: true}).then(function (res) {
 

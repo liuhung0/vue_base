@@ -97,10 +97,6 @@
             icon:"el-icon-setting",
             children:[
               {
-                title:"基本信息设置",
-                path:"/page/vip/VipAdd"
-              },
-              {
                 title:"Vip会员列表",
                 path:"/page/vip/VipList"
               }

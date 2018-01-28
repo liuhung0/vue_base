@@ -28,7 +28,7 @@ export default {
         LOGIN_COULD_TYPE = "LOGIN_COULD_TYPE";
       //dev
 
-      let BASE_URL = "http://192.168.0.11:9109";
+      let BASE_URL = "http://192.168.0.9:9109";
       let PROXY_URL = "";
       // let BASE_URL ="http://cloud.chinahtiot.com",PROXY_URL="/api";
       return {
@@ -53,12 +53,22 @@ export default {
         REST_MERCHANT_ADD: BASE_URL + PROXY_URL + "/parkingManager/v1/OwnerAndParking/addMerchant",
         //收费引擎接口
         REST_MERCHANT_SETPRICE: BASE_URL + PROXY_URL + "/parkingManager/v1/setParkingPrice/andParkingPrice",
-
+        //vip列表
         VIP_LIST: BASE_URL + PROXY_URL + "/parkingManager/v1/vip/getVipInfo",
-
+        //Vip添加
         VIP_ADD: BASE_URL + PROXY_URL + "/parkingManager/v1/vip/saveVipInfo",
-
+        //vip停车场选择下拉框
         VIP_PARKING_LIST: BASE_URL + PROXY_URL +"/parkingManager/v1/vip/getParkingList",
+        //vip根据id查询
+        VIP_ID_LIST: BASE_URL + PROXY_URL +"/parkingManager/v1/vip/setVipId",
+        //修改
+        VIP_ID_EDIT: BASE_URL + PROXY_URL +"/parkingManager/v1/vip/updateVipInfo",
+        //删除
+        VIP_ID_DEL: BASE_URL + PROXY_URL +"/parkingManager/v1/vip/deleteVipInfo",
+        //冻结Vip
+        VIP_FREEZE:BASE_URL + PROXY_URL +"/parkingManager/v1/vip/setVipFreeze/",
+        //解冻Vip
+        VIP_THAW:BASE_URL + PROXY_URL +"/parkingManager/v1/vip/setVipThaw/",
 
         //停车场出入记录
         PARKING_EXIT:BASE_URL + PROXY_URL + "/parkingManager/v1/record/recordList",
