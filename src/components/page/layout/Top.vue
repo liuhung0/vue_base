@@ -33,6 +33,7 @@
           form:{
             uId:sessionStorage.getItem("LOGIN_PARKING_UID"),
             platform:sessionStorage.getItem("LOGIN_PARKING_TYPE") == 8 ? 8 : 20,
+            token:sessionStorage.getItem("LOGIN_PARKING_TOKEN"),
           },
           parking:{
             id:0,
