@@ -64,7 +64,7 @@
               }
             ]
           },
-          {
+         /* {
             title:"设备管理",
             icon:"el-icon-info",
             children:[
@@ -77,15 +77,15 @@
                 path: "/main/device/other"
               }
             ]
-          },
+          },*/
           {
             title:"基本设置",
             icon:"el-icon-setting",
             children:[
-              {
+             /* {
                 title:"基础设置",
                 path:"/main/setting/setting"
-              },
+              },*/
               {
                 title:"收费规则",
                 path:"/main/setting/moneyRoles"
@@ -93,11 +93,15 @@
             ]
           },
           {
-            title:"Vip管理",
+            title:"租户管理",
             icon:"el-icon-setting",
             children:[
               {
-                title:"Vip会员列表",
+                title:"租户列表",
+                path:"/page/vip/VipList"
+              },
+              {
+                title:"管理费列表",
                 path:"/page/vip/VipList"
               }
             ]
