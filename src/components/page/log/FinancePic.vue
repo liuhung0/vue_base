@@ -35,9 +35,10 @@
 </template>
 
 <script>
+  import ElContainer from "../../../../node_modules/element-ui/packages/container/src/main.vue";
   var echarts = require('echarts');
   export default {
-    components: {},
+    components: {ElContainer},
     props: [],
     data() {
       return {

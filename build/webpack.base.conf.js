@@ -38,7 +38,10 @@ module.exports = {
         loader: 'babel-loader',
         include: [resolve('src'),
           resolve('test'),
-          resolve('node_modules/sweetalert2')
+          resolve('node_modules/sweetalert2'),
+          resolve('node_modules/vue-echarts'),
+          resolve('node_modules/element-ui/src'),
+          resolve('node_modules/element-ui/packages'),
         ]
       },
       {

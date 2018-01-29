@@ -1,4 +1,6 @@
 import Vue from 'vue'
+Vue.use(Router);
+Vue.prototype.$echarts = echarts;
 import Router from 'vue-router'
 
 import Login from '@/components/page/Login'
@@ -25,8 +27,7 @@ import VipAdd from '@/components/page/vip/VipAdd'
 import VipEdit from '@/components/page/vip/VipEdit'
 import FinancePic from '@/components/page/log/FinancePic'
 import echarts from 'echarts'
-Vue.use(Router);
-Vue.prototype.$echarts = echarts;
+
 export default new Router({
   routes: [
     {
