@@ -245,8 +245,9 @@
         that.pagenation =that.pagenation?that.pagenation:{};
         queryData.page = that.pagenation.page?that.pagenation.page:1;
         queryData.rows = that.pagenation.rows?that.pagenation.rows:10;
-        queryData.username = sessionStorage.getItem(that.Constants.LOGIN_USERS);
-        queryData.token = sessionStorage.getItem(that.Constants.LOGIN_TOKEN);
+        queryData.user_id = sessionStorage.getItem("LOGIN_PARKING_UID");
+        queryData.token = sessionStorage.getItem("LOGIN_PARKING_TOKEN");
+        queryData.username = sessionStorage.getItem("LOGIN_PARKING_USENAME");
         if(that.config.serverurl){
           that.$http.post(that.config.serverurl, queryData, {emulateJSON: true})
             .then(function (res) {
