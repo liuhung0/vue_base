@@ -35,6 +35,7 @@
       return {
         form: {
           uId:sessionStorage.getItem("LOGIN_PARKING_UID"),
+          token:sessionStorage.getItem("LOGIN_PARKING_TOKEN"),
           cid:'',
           cname:'',
           creditno:'',
