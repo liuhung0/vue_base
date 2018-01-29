@@ -15,6 +15,8 @@ import util from './components/plugin/util.js'
 import VueSweetAlert from 'vue-sweetalert'
 import VueAMap from 'vue-amap';
 import VueAreaLinkage from 'vue-area-linkage';
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
 Vue.use(VueAMap);
 VueAMap.initAMapApiLoader({
   key: '37693160a67c833c65e50467707a4e98',

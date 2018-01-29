@@ -1,7 +1,7 @@
 <template>
   <div class="flex_box">
     <div class="flex_item flex_item_4" >
-      <img src="@/assets/image/logo.png" style="width:32px;Height:32px">
+      <!--<img src="@/assets/image/logo.png" style="width:32px;Height:32px">-->
     </div>
     <div class="flex_item flex_item_20" >
       <span>泊联停车场管理系统</span>
