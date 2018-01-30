@@ -1,7 +1,7 @@
 <template>
   <div class="box ">
     <h1>收费规则</h1>
-    <el-form ref="form" :model="form" label-width="120px" class="settings">
+    <el-form ref="form" :model="form" label-width="155px" class="settings">
       <h2>包年包月用户</h2>
       <el-form-item label="是否开启包年包季包月" >
         <el-switch  style="float:left;padding:10px 0;" v-model="form.delivery"></el-switch>

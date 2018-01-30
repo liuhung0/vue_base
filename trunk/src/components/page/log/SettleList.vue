@@ -5,7 +5,7 @@
     </div>
     <P></P>
     <div>
-      停车场收费标准:首小时6元/每小时4元
+
     </div>
     <data-table id="out-table"
                 :confignation="config"
