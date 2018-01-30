@@ -34,7 +34,7 @@
               name: "小区名称",
               width: "80px",
               render: function (data) {
-
+                return data;
               },
               filter: {
                 type: "none",

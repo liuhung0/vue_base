@@ -1,12 +1,12 @@
 <template>
-  <div class="on">
-    <div class="main" style="margin-left: 20%;margin-top: 50px">
+    <div class="main">
+      <h2>考勤记录</h2>
+
       <data-table
         :confignation="dataTableConfig"
         ref="datatable">
       </data-table>
     </div>
-  </div>
 </template>
 
 <script>
@@ -29,7 +29,6 @@
             num: 0,
           },
           columns: [
-
             {
               sortable: false,
               sort: "asc",
@@ -100,6 +99,7 @@
               },
             },
           ],
+          actions:[],
           dataset: [],
         }
 
@@ -108,22 +108,17 @@
     methods: {}
   }
 </script>
-<style>
-  .on {
-    display: flex;
-    flex-flow: row wrap;
-    width: 100%;
-    overflow: auto;
-    min-height: 100vh;
+<style scoped>
+  .main{
+    padding:30px;
+    display:block;
   }
-
-  .main {
-    display: flex;
-    flex-flow: row nowrap;
-    align-content: flex-start;
-  }
-
-  main:nth-child(0) {
-    border-left: 0px;
+  .main h2{
+    font-size:24px;
+    font-weight: 400;
+    text-align: left;
+    color: #666666;
+    padding-bottom:60px;
+    border-bottom: 1px dashed #666666;
   }
 </style>

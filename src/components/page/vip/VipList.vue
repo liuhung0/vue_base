@@ -1,6 +1,7 @@
 <!--韩彩霞-->
 <template>
-  <div style="padding: 20px;">
+  <div class="main">
+    <h2>租户管理</h2>
     <data-table
       :confignation="dataTableConfig"
       @addObjHandler="addObjHandler"
@@ -193,40 +194,8 @@
               },
             }
           ],
-     /*     actions: [
-            {
-              name: "编辑",
-              show(){
-                return true;
-              },
-              btnClass: "btn-main",
-              handler: function (id) {
-                that.$router.push('/page/vip/VipEdit/' + id)
-              }
-            },
-            {
-              name: "冻结",
-              show: function (data) {
-                //没有上线的且已经通过的可以上线
-                return data.status == 1;
-              },
-              btnClass: "btn-green",
-              handler: function (id) {
-                that.online(id);
-              }
-            },
-            {
-              name: "解冻",
-              show: function (data) {
-                //没有上线的且已经通过的可以上线
-                return data.status == 3;
-              },
-              btnClass: "btn-green",
-              handler: function (id) {
-                that.agree(id);
-              }
-            },
-          ],*/
+          actions: [
+          ],
           dataset: [],
         }
       }
@@ -318,22 +287,18 @@
     }
   }
 </script>
-<style>
-  .on {
-    display: flex;
-    flex-flow: row wrap;
-    width: 100%;
-    overflow: auto;
-    min-height: 100vh;
+<style scoped>
+  .main{
+    padding:30px;
+    display:block;
   }
-
-  .main {
-    display: flex;
-    flex-flow: row nowrap;
-    align-content: flex-start;
-  }
-
-  main:nth-child(0) {
-    border-left: 0px;
+  .main h2{
+    font-size:24px;
+    font-weight: 400;
+    text-align: left;
+    color: #666666;
+    padding-bottom:60px;
+    border-bottom: 1px dashed #666666;
   }
 </style>
+

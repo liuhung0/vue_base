@@ -1,16 +1,10 @@
 <template>
-  <div>
+  <div style="display:block;">
     <div class="btn—group">
       <button v-if="config.showCheckAll=='1'" class="btn hvr-bounce-to-bottom" @click="checkAll">全 选</button>
       <button v-if="config.showCheckBack=='1'" class="btn hvr-bounce-to-bottom" @click="checkBack">反 选</button>
       <button v-if="config.showAdd=='1'" class="btn hvr-bounce-to-bottom" @click="addObj">新 增</button>
       <button v-if="config.showDel=='1'" class="btn hvr-bounce-to-bottom" @click="delObj">删 除</button>
-      <button v-if="config.hi=='1'"
-              class="btn btn-green" @click="hi()"
-              style="float: left;
-              margin-bottom: 10px;height: 50px;width: 100px">
-        {{status == 2 || status == 3? "下班打卡" : "上班打卡"}}
-      </button>
     </div>
     <div class="table">
       <div class="pageation" ref="pagenation" v-if="config.pageable==undefined||config.pageable==true">
@@ -57,7 +51,8 @@
 
             <i v-if="c.sortable" class="el-icon-caret-bottom" @click="changeSort($event,i)"></i>
           </th>
-          <!--<th class="actions" >操作</th>-->
+
+          <th v-if="config.actions.length>0" class="actions" >操作</th>
         </tr>
         </thead>
         <tbody v-if="config.dataset.length>0">
@@ -66,11 +61,11 @@
             <input type="checkbox" ref="ids" :key="data[config.key]" :value="data[config.key]"/>
           </td>
           <td v-for="(c,i) in config.columns" v-html="c.render(data[c.prop])"></td>
-         <!-- <td style="text-align:right"  class="actions">
-            <button v-for=" (a,i) in config.actions" v-if="a.show(data)" @click="a.handler(data[config.key])"
+          <td style="text-align:right" v-if="config.actions.length>0"  class="actions">
+            <button v-for=" (a,i) in config.actions" v-if="a.show(data)"  @click="a.handler(data[config.key])"
                     v-text="a.name"
                     class="btn" :class="a.btnClass"></button>
-          </td>-->
+          </td>
         </tr>
         </tbody>
       </table>
@@ -148,10 +143,10 @@
         deep: true
       },
       confignation(val){
-          this.config=val;
-          this.$set(this,"config",val);
-          this.pagenation =val.pagenation;
-          this.loadData();
+        this.config=val;
+        this.$set(this,"config",val);
+        this.pagenation =val.pagenation;
+        this.loadData();
       }
     },
     mounted(){
@@ -212,8 +207,9 @@
         let that = this;
         that.$http.post(that.Constants().REST_USER_CLOCKONANDOFF, that.queryData,{emulateJSON: true}).then(function (res) {
           if(res.data.result){
-              that.$message.success(res.data.data);
-              that.loadData();
+            that.$message.success(res.data.data);
+
+            that.loadData();
           }else {
             that.$message.error(that.res.data.message);
           }
@@ -230,7 +226,7 @@
         let that = this;
         setTimeout(function(){
           if(prop=="username"){
-              prop = prop+"Search";
+            prop = prop+"Search";
           }
           that.queryData[prop] = fitervalue;
           that.pagenation.page = parseInt(1);
@@ -300,7 +296,7 @@
                 }
               }
               else {
-                that.$message.error(res.data.message,);
+                that.$message.error(res.data.message);
               }
             }, function (e) {
               that.$message.error("数据访问发生错误!");
@@ -430,7 +426,6 @@
   .pageation .info {
     color: #676767;
     float: left;
-    width: 30%;
     line-height: 36px;
     font-size:13px;
   }

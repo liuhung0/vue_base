@@ -183,6 +183,7 @@
 <style scoped>
   .main{
     padding:30px;
+    display:block;
   }
   .main h2{
     font-size:24px;
@@ -191,5 +192,4 @@
     color: #666666;
     border-bottom: 1px dashed #666666;
   }
-
 </style>
