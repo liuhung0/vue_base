@@ -214,7 +214,6 @@
         that.$http.post(that.Constants().REST_USER_CLOCKONANDOFF, that.queryData,{emulateJSON: true}).then(function (res) {
           if(res.data.result){
               that.$message.success(res.data.data);
-
               that.loadData();
           }else {
             that.$message.error(that.res.data.message);
