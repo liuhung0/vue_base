@@ -1,6 +1,7 @@
 <!--韩彩霞-->
 <template>
-  <div style="padding: 20px;">
+  <div class="main">
+    <h2>管理费列表</h2>
     <data-table
       :confignation="dataTableConfig"
       @addObjHandler="addObjHandler"
@@ -48,7 +49,7 @@
               name: "所属区域",
               width: "80px",
               render: function (data) {
-
+                return data;
               },
               filter: {
                 type: "none",
@@ -62,7 +63,7 @@
               name: "楼号(栋)",
               width: "80px",
               render: function (data) {
-
+                return data;
               },
               filter: {
                 type: "none",
@@ -76,7 +77,7 @@
               name: "单元",
               width: "80px",
               render: function (data) {
-
+                return data;
               },
               filter: {
                 type: "none",
@@ -90,7 +91,7 @@
               name: "房间号",
               width: "80px",
               render: function (data) {
-
+                return data;
               },
               filter: {
                 type: "none",
@@ -104,7 +105,7 @@
               name: "车牌号",
               width: "80px",
               render: function (data) {
-
+                return data;
               },
               filter: {
                 type: "none",
@@ -118,7 +119,7 @@
               name: "车位号",
               width: "80px",
               render: function (data) {
-
+                return data;
               },
               filter: {
                 type: "none",
@@ -139,21 +140,16 @@
   }
 </script>
 <style>
-  .on {
-    display: flex;
-    flex-flow: row wrap;
-    width: 100%;
-    overflow: auto;
-    min-height: 100vh;
+  .main{
+    padding:30px;
+    display:block;
   }
-
-  .main {
-    display: flex;
-    flex-flow: row nowrap;
-    align-content: flex-start;
-  }
-
-  main:nth-child(0) {
-    border-left: 0px;
+  .main h2{
+    font-size:24px;
+    font-weight: 400;
+    text-align: left;
+    color: #666666;
+    padding-bottom:60px;
+    border-bottom: 1px dashed #666666;
   }
 </style>
