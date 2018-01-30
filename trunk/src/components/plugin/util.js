@@ -54,7 +54,7 @@ export default {
         //收费引擎接口
         REST_MERCHANT_SETPRICE: BASE_URL + PROXY_URL + "/parkingManager/v1/setParkingPrice/andParkingPrice",
         //vip列表
-        VIP_LIST: BASE_URL + PROXY_URL + "/parkingManager/v1/vip/getVipInfo",
+        VIP_LIST: BASE_URL + PROXY_URL + "/parkingManager/v1/vip/getTenant",
         //Vip添加
         VIP_ADD: BASE_URL + PROXY_URL + "/parkingManager/v1/vip/saveVipInfo",
         //vip停车场选择下拉框
@@ -69,6 +69,8 @@ export default {
         VIP_FREEZE:BASE_URL + PROXY_URL +"/parkingManager/v1/vip/setVipFreeze/",
         //解冻Vip
         VIP_THAW:BASE_URL + PROXY_URL +"/parkingManager/v1/vip/setVipThaw/",
+
+        VIP_MANAGE: BASE_URL + PROXY_URL +"/parkingManager/v1/vip/getManagementExpense",
 
         //停车场出入记录
         PARKING_EXIT:BASE_URL + PROXY_URL + "/parkingManager/v1/record/recordList",

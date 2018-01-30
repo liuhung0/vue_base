@@ -24,6 +24,8 @@ import MoneyRules from '@/components/page/settings/MoneyRules'
 import DoorWay from '@/components/page/settings/DoorWay'
 import SeatList from '@/components/page/settings/SeatList'
 import VipList from '@/components/page/vip/VipList'
+
+import Management_Expense from '@/components/page/vip/Management_Expense'
 import VipAdd from '@/components/page/vip/VipAdd'
 import VipEdit from '@/components/page/vip/VipEdit'
 import FinancePic from '@/components/page/log/FinancePic'
@@ -125,6 +127,11 @@ export default new Router({
           path: '/page/vip/VipList',
           name: 'viplist',
           component: VipList,
+        },
+        {
+          path: '/page/vip/ManageList',
+          name: 'managelist',
+          component: Management_Expense,
         },
         {
           path: '/page/vip/VipAdd',

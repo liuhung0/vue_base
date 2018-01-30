@@ -18,12 +18,8 @@
       let that = this;
       return {
         dataTableConfig: {
-          draw: 1,
-          showAdd: 1,
-          showDel: 1,
-          showCheckBack: 1,
           serverurl:that.Constants().VIP_LIST,
-          title: "Vip管理",
+          title: "租户管理",
           key: "id",
           pagenation: {
             page: 1,
@@ -31,6 +27,20 @@
             num: 0,
           },
           columns: [
+            {
+              sortable: false,
+              sort: "asc",
+              prop: "nick",
+              name: "用户姓名",
+              width: "80px",
+              render: function (data) {
+                return "<B>" + data + "</B>"
+              },
+              filter: {
+                type: "input",
+              },
+              filterData: ""
+            },
             {
               sortable: false,
               sort: "asc",
@@ -65,23 +75,25 @@
               name: "车位类型",
               width: "160px",
               render: function (data) {
-                return "<span>" + data + "</span>";
+                if (data == 1) {
+                  return "<label style='color: #1AC45D;padding:2px 6px;display: inline-block;'>自助车位</label>"
+                }
+                if (data == 2) {
+                  return "<label style='color: #40A6FF;padding:2px 6px;display: inline-block;'>预定车位</label>"
+                }
               },
               filter: {
-                type: "none",
-              },
-            },
-            {
-              sortable: false,
-              sort: "desc",
-              prop: "siteNumber",
-              name: "车位号",
-              width: '80px',
-              render: function (data) {
-                return "<span>" + data + "</span>";
-              },
-              filter: {
-                type: "none",
+                type: "select",
+                data: [
+                  {
+                    value: 1,
+                    text: "自助车位"
+                  },
+                  {
+                    value: 2,
+                    text: "预定车位"
+                  }
+                ]
               },
             },
             {
@@ -89,19 +101,16 @@
               sort: "asc",
               prop: "type",
               name: "会员类型",
-              width: '100px',
+              width: '120px',
               render: function (data) {
                 if (data == 1) {
-                  return "<label style='color: #ff5e46;padding:2px 6px;display: inline-block;'>月卡用户</label>"
+                  return "<label style='color: #EEEE00;padding:2px 6px;display: inline-block;'>月卡用户</label>"
                 }
                 if (data == 2) {
                   return "<label style='color: #1AC45D;padding:2px 6px;display: inline-block;'>季卡用户</label>"
                 }
                 if (data == 3) {
                   return "<label style='color: #40A6FF;padding:2px 6px;display: inline-block;'>年卡用户</label>"
-                }
-                if (data == 4) {
-                  return "<label style='color: #40A6FF;padding:2px 6px;display: inline-block;'>管理费</label>"
                 }
               },
               filter: {
@@ -118,10 +127,6 @@
                   {
                     value: 3,
                     text: "年卡用户"
-                  },
-                  {
-                    value: 4,
-                    text: "管理费"
                   }
                 ]
               },
@@ -130,8 +135,8 @@
               sortable: false,
               sort: "desc",
               prop: "startTime",
-              name: "会员开始时间",
-              width: '80px',
+              name: "付费时间",
+              width: '160px',
               render: function (data) {
                 return new Date(data * 1000).Format("yyyy-MM-dd hh:mm:ss");
               },
@@ -143,8 +148,8 @@
               sortable: false,
               sort: "desc",
               prop: "endTime",
-              name: "会员结束时间",
-              width: '80px',
+              name: "到期时间",
+              width: '160px',
               render: function (data) {
                 return new Date(data * 1000).Format("yyyy-MM-dd hh:mm:ss");
               },
@@ -160,10 +165,10 @@
               width: '100px',
               render: function (data) {
                 if (data == 1) {
-                  return "<label style='color: #ff5e46;padding:2px 6px;display: inline-block;'>正常</label>"
+                  return "<label style='color: #1AC45D;padding:2px 6px;display: inline-block;'>正常</label>"
                 }
                 if (data == 2) {
-                  return "<label style='color: #1AC45D;padding:2px 6px;display: inline-block;'>已过期</label>"
+                  return "<label style='color: #ff5e46;padding:2px 6px;display: inline-block;'>已过期</label>"
                 }
                 if (data == 3) {
                   return "<label style='color: #40A6FF;padding:2px 6px;display: inline-block;'>已冻结</label>"
@@ -188,7 +193,7 @@
               },
             }
           ],
-          actions: [
+     /*     actions: [
             {
               name: "编辑",
               show(){
@@ -221,7 +226,7 @@
                 that.agree(id);
               }
             },
-          ],
+          ],*/
           dataset: [],
         }
       }

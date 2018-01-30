@@ -57,8 +57,7 @@
 
             <i v-if="c.sortable" class="el-icon-caret-bottom" @click="changeSort($event,i)"></i>
           </th>
-
-           <th v-if="config.actions.length>0" class="actions" >操作</th>
+          <!--<th class="actions" >操作</th>-->
         </tr>
         </thead>
         <tbody v-if="config.dataset.length>0">
@@ -67,11 +66,11 @@
             <input type="checkbox" ref="ids" :key="data[config.key]" :value="data[config.key]"/>
           </td>
           <td v-for="(c,i) in config.columns" v-html="c.render(data[c.prop])"></td>
-          <td style="text-align:right" v-if="config.actions.length>0"  class="actions">
-            <button v-for=" (a,i) in config.actions" v-if="a.show(data)"  @click="a.handler(data[config.key])"
+         <!-- <td style="text-align:right"  class="actions">
+            <button v-for=" (a,i) in config.actions" v-if="a.show(data)" @click="a.handler(data[config.key])"
                     v-text="a.name"
                     class="btn" :class="a.btnClass"></button>
-          </td>
+          </td>-->
         </tr>
         </tbody>
       </table>
@@ -301,7 +300,7 @@
                 }
               }
               else {
-                that.$message.error(res.data.message);
+                that.$message.error(res.data.message,);
               }
             }, function (e) {
               that.$message.error("数据访问发生错误!");
@@ -431,6 +430,7 @@
   .pageation .info {
     color: #676767;
     float: left;
+    width: 30%;
     line-height: 36px;
     font-size:13px;
   }

@@ -101,7 +101,7 @@
               },
               {
                 title:"管理费列表",
-                path:"/page/vip/VipList"
+                path:"/page/vip/ManageList"
               }
             ]
           }
