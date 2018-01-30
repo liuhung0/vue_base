@@ -1,15 +1,8 @@
 <template>
   <el-container style="height: 780px;">
     <el-container style="background-color: rgb(249, 249, 249);height: 1150px">
-      <el-header style="text-align: left; font-size: 12px;background-color: #fff">
-        <el-dropdown>
-          <p style="font-size: 14px;padding-top: 8px">
-            <strong>业主管理/可视化统计图表</strong>
-          </p>
-        </el-dropdown>
-      </el-header>
       <button  style="cursor: pointer;text-align: center;letter-spacing: 2px; width: 50px;
-      height: 30px; margin-left:2%;color: #fff;background: #239BFA;border: 1px solid #45bb77"><router-link style="color: #0000cc" to="/console/financelist">返回</router-link></button>
+      height: 30px; margin-left:2%;color: #fff;background: #239BFA;border: 1px solid #45bb77"><router-link style="color: #0000cc" to="/main/statistics/settlelog">返回</router-link></button>
       <div style="border: 2px #C5C5C5;width: 100%;height:500px;position:relative;margin-top:35px">
 
         <div class="bing2">

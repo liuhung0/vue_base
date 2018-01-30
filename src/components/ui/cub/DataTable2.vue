@@ -1,10 +1,11 @@
 <template>
   <div >
-    <div><h2>{{config.title}}</h2><br/>
+    <div>
+      <h2 style="float: left">{{config.title}}</h2><br/>
     </div>
     <div class="btn—group">
-      <div style="text-align: left">
-        <h3 style="width: 20%;float: left;">当日总金额:<span style="color: red">{{resData.moy}}</span>元</h3>
+      <div style="padding-top: 20px">
+        <h3 style="width: 20%;">当日总金额:<span style="color: red">{{resData.moy}}</span>元</h3>
         <h3 style="width: 20%">当前总金额:<span style="color: red">{{resData.sumMoney}}</span>元</h3>
       </div>
       <button v-if="config.hi=='1'" style="cursor: pointer;text-align: center;letter-spacing: 2px; min-width: 30px;

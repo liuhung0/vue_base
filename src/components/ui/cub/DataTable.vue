@@ -5,6 +5,12 @@
       <button v-if="config.showCheckBack=='1'" class="btn btn-main" @click="checkBack">反 选</button>
       <button v-if="config.showAdd=='1'" class="btn btn-green" @click="addObj">新 增</button>
       <button v-if="config.showDel=='1'" class="btn btn-err" @click="delObj">删 除</button>
+      <button v-if="config.hi=='1'"
+              class="btn btn-green" @click="hi()"
+              style="float: left;
+              margin-bottom: 10px;height: 50px;width: 100px">
+        {{status == 2 || status == 3? "下班打卡" : "上班打卡"}}
+      </button>
     </div>
     <div class="table">
       <div class="pageation" ref="pagenation" v-if="config.pageable==undefined||config.pageable==true">
@@ -111,9 +117,13 @@
     data(){
       let that = this;
       return {
+        status:'',
         config: that.confignation,
         pagenation: that.confignation.pagenation,
-        queryData: {},
+        queryData: {
+          suId:sessionStorage.getItem("LOGIN_PARKING_UID"),
+          id:'',
+        },
         checkedIds: "",
         defaultConfig:{
           pagenation: {
@@ -145,6 +155,18 @@
       }
     },
     mounted(){
+      let that = this;
+      that.$http.post(that.Constants().REST_USER_QUERYWORKINFO, that.queryData,{emulateJSON: true}).then(function (res) {
+        if(res.data.result){
+          that.status = res.data.data.status;
+          that.queryData.id = res.data.data.id;
+          console.log(that.queryData.id)
+        }else {
+          that.$message.error(that.res.data.message);
+        }
+      },function (res) {
+        that.$message.error(res);
+      });
       this.config=this.confignation;
       this.pagenation =this.confignation.pagenation;
       this.loadData();
@@ -185,6 +207,20 @@
           that.$message.warning("您需要选择至少一项记录才可以执行删除操作!");
         }
 
+      },
+      hi(){
+        let that = this;
+        that.$http.post(that.Constants().REST_USER_CLOCKONANDOFF, that.queryData,{emulateJSON: true}).then(function (res) {
+          if(res.data.result){
+              that.$message.success(res.data.data);
+
+              that.loadData();
+          }else {
+            that.$message.error(that.res.data.message);
+          }
+        },function (res) {
+          that.$message.error(res);
+        });
       },
       changeRows(){
         let that = this;

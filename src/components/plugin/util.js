@@ -86,6 +86,12 @@ export default {
         PARKING_YEAR_LIST:BASE_URL + PROXY_URL+"/parkingManager/v1/record/allYear",
         //按照条件年月日周查询，进出车辆及其收入
         DATECARTYPE:BASE_URL + PROXY_URL + "/parkingManager/v1/financeList/dateCarType",
+        //打卡接口
+        REST_USER_CLOCKONANDOFF:BASE_URL + PROXY_URL + "/parkingManager/v1/work/clockOnAndOff",
+        //根据当前的子账号id，查询当天的打卡状态
+        REST_USER_QUERYWORKINFO:BASE_URL + PROXY_URL + "/parkingManager/v1/work/queryWorkInfo",
+        //根据当前的uid查询打卡列表
+        REST_USER_QUERYWORK_LIST:BASE_URL + PROXY_URL + "/parkingManager/v1/work/queryWorkList",
        }
 
     }
