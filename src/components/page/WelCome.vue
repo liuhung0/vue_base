@@ -1,17 +1,22 @@
 <template>
   <div class="on">
-    <el-checkbox  v-for="(door,index) of doorList" :checked="door.checked" :key="index" @change="toggle(index)">{{door.name}}</el-checkbox>
-    <div class="main">
-      <gate v-for="(door,index) of doorList" :key="index" v-if="door.checked" class="gate"></gate>
+    <div class="outOrIn">
+     请选择要显示的出入口:
+      <el-checkbox  v-for="(door,index) of doorList" :checked="door.checked" :key="index" @change="toggle(index)">{{door.name}}</el-checkbox>
+    </div>
+    <div  v-for="(door,index) of doorList"   class="main">
+      <gate-in  v-if="door.type=='in'"  v-show="door.checked" class="gate"></gate-in>
+      <gate-out v-if="door.type=='out'"  :key="index" v-show="door.checked" class="gate"></gate-out>
     </div>
   </div>
 </template>
 <script type="text/ecmascript-6">
-  import Gate from "@/components/parts/Gate"
+  import GateIn from "@/components/parts/GateIn"
+  import GateOut from "@/components/parts/GateOut"
   export default {
     props: [],
     components: {
-      Gate
+      GateIn,GateOut
     },
     data(){
       return{
@@ -51,27 +56,19 @@
     }
   }
 </script>
-<style>
+<style scoped>
   .on {
-    display: flex;
-    flex-flow: row wrap;
+    display: block;
     width:100%;
-    overflow: auto;
-    min-height: 100vh;
   }
-
   .main {
-    display: flex;
-    flex-flow: row wrap;
-    align-content: flex-start;
+    display: block;
+    overflow: hidden;
   }
-  .main .gate{
-    flex: 0 0 100%;
-  }
-
-
-  .main:nth-child(0) {
-    border-left: 0px;
-
+  .outOrIn{
+    padding:20px;
+    text-align: left;
+    border:1px solid #ddd;
+    margin:20px 20px 0;
   }
 </style>
