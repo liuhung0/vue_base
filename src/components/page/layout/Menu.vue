@@ -22,7 +22,6 @@
     </el-col>
   </el-row>
 </template>
-
 <script>
   export default {
     data(){
@@ -40,10 +39,6 @@
                 title:"订单明细",
                 path:"/main/statistics/orderlog"
               },
-              /*{
-                title:"违章记录",
-                path:"/main/statistics/errorlog"
-              },*/
               {
                 title:"财务收入统计表",
                 path:"/main/statistics/settlelog"
@@ -57,6 +52,10 @@
               {
                 title:"账户管理",
                 path:"/main/staff/account"
+              },
+              {
+                title: "角色管理",
+                path: "/main/staff/rule"
               },
               {
                 title: "考勤管理",

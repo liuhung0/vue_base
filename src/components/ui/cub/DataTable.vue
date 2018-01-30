@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="btn—group">
-      <button v-if="config.showCheckAll=='1'" class="btn btn-blue" @click="checkAll">全 选</button>
-      <button v-if="config.showCheckBack=='1'" class="btn btn-main" @click="checkBack">反 选</button>
-      <button v-if="config.showAdd=='1'" class="btn btn-green" @click="addObj">新 增</button>
-      <button v-if="config.showDel=='1'" class="btn btn-err" @click="delObj">删 除</button>
+      <button v-if="config.showCheckAll=='1'" class="btn hvr-bounce-to-bottom" @click="checkAll">全 选</button>
+      <button v-if="config.showCheckBack=='1'" class="btn hvr-bounce-to-bottom" @click="checkBack">反 选</button>
+      <button v-if="config.showAdd=='1'" class="btn hvr-bounce-to-bottom" @click="addObj">新 增</button>
+      <button v-if="config.showDel=='1'" class="btn hvr-bounce-to-bottom" @click="delObj">删 除</button>
       <button v-if="config.hi=='1'"
               class="btn btn-green" @click="hi()"
               style="float: left;
@@ -40,7 +40,7 @@
       <table>
         <thead>
         <tr class="header">
-          <th class="ids" style="width:76px">编号</th>
+          <th class="ids" style="width:76px"> </th>
           <th v-for="(c,i) in  config.columns" :prop="c.prop" :width="c.width">
             <input v-if="c.filter.type=='input'"
                    type="text" ref="c.prop"
@@ -57,7 +57,8 @@
 
             <i v-if="c.sortable" class="el-icon-caret-bottom" @click="changeSort($event,i)"></i>
           </th>
-          <th class="actions" >操作</th>
+
+           <th v-if="config.actions.length>0" class="actions" >操作</th>
         </tr>
         </thead>
         <tbody v-if="config.dataset.length>0">
@@ -66,8 +67,8 @@
             <input type="checkbox" ref="ids" :key="data[config.key]" :value="data[config.key]"/>
           </td>
           <td v-for="(c,i) in config.columns" v-html="c.render(data[c.prop])"></td>
-          <td style="text-align:right"  class="actions">
-            <button v-for=" (a,i) in config.actions" v-if="a.show(data)" @click="a.handler(data[config.key])"
+          <td style="text-align:right" v-if="config.actions.length>0"  class="actions">
+            <button v-for=" (a,i) in config.actions" v-if="a.show(data)"  @click="a.handler(data[config.key])"
                     v-text="a.name"
                     class="btn" :class="a.btnClass"></button>
           </td>
@@ -204,7 +205,7 @@
           this.$emit("delObjHandler", ids);
         }
         else {
-          that.$message.warning("您需要选择至少一项记录才可以执行删除操作!");
+          this.$message.warning("您需要选择至少一项记录才可以执行删除操作!");
         }
 
       },
@@ -301,7 +302,7 @@
                 }
               }
               else {
-                that.$message.error(res.data.message,);
+                that.$message.error(res.data.message);
               }
             }, function (e) {
               that.$message.error("数据访问发生错误!");
@@ -322,13 +323,15 @@
 
   .btn—group {
     width: 100%;
-    padding: 10px 20px;
-    margin-top: -16px;
+    padding-bottom:40px;
     text-align: right;
+    margin-top: -72px;
   }
 
   .table table {
     width: 100%;
+    border-left:1px solid #cccccc;
+    border-right:1px solid #cccccc;
   }
 
   .table table thead th {
@@ -419,9 +422,9 @@
     padding: 6px 10px;
     line-height: 18px;
     overflow: hidden;
-    border-bottom: 1px solid #fff;
-    border-left: 1px solid #fff;
-    border-right: 1px solid #fff;
+    border-bottom: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
     clear: both;
     background: #dedede;
   }
@@ -429,7 +432,6 @@
   .pageation .info {
     color: #676767;
     float: left;
-    width: 30%;
     line-height: 36px;
     font-size:13px;
   }
@@ -450,8 +452,8 @@
   }
 
   .pageation .pages .pageLi {
-    color: #fff;
-    border: 1px solid #fff;
+    color: #828282;
+    border: 1px solid #828282;
     min-width: 30px;
     text-align: center;
     padding: 4px 6px;
@@ -459,6 +461,7 @@
     display: inline-block;
     border-radius: 4px;
     cursor: pointer;
+    font-size:13px;
   }
 
   .pageation .pages .active {
@@ -483,6 +486,17 @@
     padding: 4px 12px;
     cursor: pointer;
     font-size: 24px;
+
+  }
+  .btn{
+    padding:6px 16px;
+    font-size:14px;
+    border-radius: 4px;
+    border:1px solid #ccc;
+    cursor: pointer;
+    background: #ececec;
+    opacity: 1;
+    font-weight: 300;
   }
 
 </style>

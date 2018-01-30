@@ -28,8 +28,8 @@ export default {
         LOGIN_COULD_TYPE = "LOGIN_COULD_TYPE";
       //dev
 
-      let BASE_URL = "http://192.168.0.11:9109";
-      let PROXY_URL = "";
+      let BASE_URL = "http://localhost:9000";
+      let PROXY_URL = "/api";
       // let BASE_URL ="http://cloud.chinahtiot.com",PROXY_URL="/api";
       return {
         LOGIN_COULD_TYPE,
@@ -92,6 +92,19 @@ export default {
         REST_USER_QUERYWORKINFO:BASE_URL + PROXY_URL + "/parkingManager/v1/work/queryWorkInfo",
         //根据当前的uid查询打卡列表
         REST_USER_QUERYWORK_LIST:BASE_URL + PROXY_URL + "/parkingManager/v1/work/queryWorkList",
+
+
+        //角色
+        //列表
+        REST_RULE_LIST:BASE_URL + PROXY_URL + "/parkingManager/v1/rule",
+        //保存
+        REST_RULE_SAVE:BASE_URL + PROXY_URL + "/parkingManager/v1/rule/save",
+        //单条
+        REST_RULE_INFO:BASE_URL + PROXY_URL + "/parkingManager/v1/rule/info",
+        //删除
+        REST_RULE_DELETE:BASE_URL + PROXY_URL + "/parkingManager/v1/rule/delete",
+        //权限列表接口
+        REST_MENU_LIST:BASE_URL + PROXY_URL + "/parkingManager/v1/menu",
        }
 
     }
