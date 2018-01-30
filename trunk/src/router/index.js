@@ -12,6 +12,7 @@ import SettleList from '@/components/page/log/SettleList'
 
 import AccountList from '@/components/page/account/AccountList'
 import WorkLog from '@/components/page/account/WorkLog'
+import Rule from '@/components/page/account/Rule'
 
 import PDAList from '@/components/page/device/Pda'
 import PDAInfo from '@/components/page/device/PdaInfo'
@@ -69,6 +70,11 @@ export default new Router({
           path: '/main/staff/account',
           name: 'accountList',
           component: AccountList,
+        },
+        {
+          path: '/main/staff/rule',
+          name: 'rule',
+          component: Rule,
         },
         {
           path: '/main/staff/worklog',

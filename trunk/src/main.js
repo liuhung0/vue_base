@@ -7,10 +7,15 @@ import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
+import './assets/css/hover-min.css'
 
 //引入本地全局
 //引入这个可以传多个参数——fanzeyu
 import VueResource from 'vue-resource'
+Vue.prototype.$http=VueResource
+Vue.prototype.$http.options={}
+Vue.prototype.$http.options.emulateJSON=true
+
 import util from './components/plugin/util.js'
 import VueSweetAlert from 'vue-sweetalert'
 import VueAMap from 'vue-amap';

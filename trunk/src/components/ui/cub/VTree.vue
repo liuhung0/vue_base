@@ -2,7 +2,7 @@
   <div>
     <div class="treeClass">
       <input type="hidden" readonly  v-model="currentValue">
-      <input type="text" readonly @click="showTree" v-model="currentName" class="defaultInput" :class="{'opens':open==1}">
+      <input type="text" readonly @click="showTree" v-model="currentName" class="defaultInput" :class="{'opens':open==1}"></input>
       <div class="treeview">
         <VTreeCom :rootMenu.sync="rootMenu" :open.sync="open" @checkNode="checkNode" :data_id="data_id" :data_pid="data_pid"></VTreeCom>
       </div>
@@ -124,15 +124,15 @@
 <style scoped>
   .defaultInput{
     width:100%;
-    padding:2px 4px;
+    padding:5px 0;
     line-height:24px;
-    border:1px solid #ffbe96;
+    border:1px solid #9fb4c1;
     border-radius:4px;
     color:#828282;
   }
   .opens{
     border-radius: 4px 4px 0 0;
     border-bottom: 0;
-    background: #FFFCF6;
+    background: #FFFfff;
   }
 </style>

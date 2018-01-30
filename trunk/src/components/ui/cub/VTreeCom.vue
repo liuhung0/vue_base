@@ -74,13 +74,13 @@
 
   .treeview {
     position: absolute;
-    border: 1px solid #ffbe96;
+    border:1px solid #9fb4c1;
     border-top: 0;
     width: 100%;
     margin-top: -4px;
-    background: #FFFCF6;
+    background: #FFFFFF;
     border-radius: 0 0 4px 4px;
-    z-index: 20;
+    z-index: 200000;
   }
   .rootUL{
     margin-left: 10px;
