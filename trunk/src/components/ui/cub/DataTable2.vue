@@ -5,8 +5,8 @@
     </div>
     <div class="btn—group">
       <div style="padding-top: 20px">
-        <h3 style="width: 20%;">当日总金额:<span style="color: red">{{resData.moy}}</span>元</h3>
-        <h3 style="width: 20%">当前总金额:<span style="color: red">{{resData.sumMoney}}</span>元</h3>
+        <h3 style="width: 20%;" v-if="config.j=='1'">当日总金额:<span style="color: red">{{resData.moy}}</span>元</h3>
+        <h3 style="width: 20%" v-if="config.j=='1'">当前总金额:<span style="color: red">{{resData.sumMoney}}</span>元</h3>
       </div>
       <button v-if="config.hi=='1'" style="cursor: pointer;text-align: center;letter-spacing: 2px; min-width: 30px;
       min-height: 37px;color: #fff; background: #f7ba2a;border: 1px solid #f7ba2a" @click="tu()">可视化统计图表</button>
@@ -85,6 +85,8 @@
 
             <i v-if="c.sortable" class="el-icon-caret-bottom" @click="changeSort($event,i)"></i>
           </th>
+
+          <th v-if="config.actions.length>0" class="actions" >操作</th>
         </tr>
         </thead>
         <tbody v-if="config.dataset.length>0">
