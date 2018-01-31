@@ -86,7 +86,7 @@
             <i v-if="c.sortable" class="el-icon-caret-bottom" @click="changeSort($event,i)"></i>
           </th>
 
-          <th v-if="config.actions.length>0" class="actions" >操作</th>
+          <!--<th v-if="config.actions.length>0" class="actions" >操作</th>-->
         </tr>
         </thead>
         <tbody v-if="config.dataset.length>0">

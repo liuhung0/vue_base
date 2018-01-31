@@ -25,6 +25,7 @@
         config: {
           draw: 1,
           hi:1,
+          j:1,
           showAdd: 1,
           fanhui:2,
           serverurl:that.Constants().FINANCE_LIST,
