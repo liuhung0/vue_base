@@ -24,11 +24,11 @@ import MoneyRules from '@/components/page/settings/MoneyRules'
 import DoorWay from '@/components/page/settings/DoorWay'
 import SeatList from '@/components/page/settings/SeatList'
 import VipList from '@/components/page/vip/VipList'
-
 import Management_Expense from '@/components/page/vip/Management_Expense'
 import VipAdd from '@/components/page/vip/VipAdd'
 import VipEdit from '@/components/page/vip/VipEdit'
 import FinancePic from '@/components/page/log/FinancePic'
+import Gate from '@src/components/parts/Gate'
 import echarts from 'echarts'
 
 export default new Router({
@@ -56,7 +56,7 @@ export default new Router({
         {
           path: '/main/statistics/doorlog',
           name: 'welcome',
-          component: Welcome
+          component: Gate
         },
         {
           path: '/main/statistics/orderlog',
@@ -132,6 +132,11 @@ export default new Router({
           path: '/page/vip/ManageList',
           name: 'managelist',
           component: Management_Expense,
+        },
+        {
+          path: '/page/parts/Gate',
+          name: 'gate',
+          component: Gate,
         },
         {
           path: '/page/vip/VipAdd',
