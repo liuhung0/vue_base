@@ -8,7 +8,7 @@
     </div>
     <div class="flex_item flex_item_40" >
 
-      <el-select :model="parking.id">
+      <el-select :model="pid">
         <el-option v-for="(parking,index) of parkingList" :key="index" :value="parking.id" v-text="parking.name">
         </el-option>
       </el-select>
@@ -35,15 +35,16 @@
             platform:sessionStorage.getItem("LOGIN_PARKING_TYPE") == 8 ? 8 : 20,
             token:sessionStorage.getItem("LOGIN_PARKING_TOKEN"),
           },
-          parking:{
-            id:0,
-            name:"",
-          },
+          pid:null,
           parkingList:[],
         }
       },
-
-
+      watch:{
+        pid(val){
+          sessionStorage.setItem("THIS_PARKING_ID",val);
+          this.$router.push('/main')
+        }
+      },
       mounted(){
         let uid = sessionStorage.getItem("LOGIN_PARKING_UID");
         if(uid == null){
@@ -53,7 +54,8 @@
         let that = this;
         that.$http.post(that.Constants().VIP_PARKING_LIST, that.form,{emulateJSON: true}).then(function (res) {
           if(res.data.result){
-            that.parkingList.splice(0, that.parking.length, ...res.data.data);
+            that.parkingList.splice(0, that.parkingList.length, ...res.data.data);
+            that.pid =res.data.data[0].id;
           }else {
             that.$message.error(that.res.data.message);
           }
