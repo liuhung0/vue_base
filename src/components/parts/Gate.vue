@@ -31,7 +31,7 @@
           A:1,
           showAdd: 1,
           serverurl:that.Constants().PARKING_EXIT,
-          title: "停车场报表",
+          title: "出入明细",
           key: "id",
           pagenation: {
             page: 1,
@@ -124,32 +124,6 @@
               sort: "desc",
               prop: "exit_alleyway",
               name: "出场通道",
-              width: '80px',
-              render: function (data) {
-                return "<span>" + data + "</span>";
-              },
-              filter: {
-                type: "none",
-              },
-            },
-            {
-              sortable: false,
-              sort: "desc",
-              prop: "cope_with",
-              name: "应付金额",
-              width: '80px',
-              render: function (data) {
-                return "<span>" + data + "</span>";
-              },
-              filter: {
-                type: "none",
-              },
-            },
-            {
-              sortable: false,
-              sort: "desc",
-              prop: "real_income",
-              name: "实收金额",
               width: '80px',
               render: function (data) {
                 return "<span>" + data + "</span>";
