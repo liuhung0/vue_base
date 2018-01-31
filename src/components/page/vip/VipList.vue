@@ -38,7 +38,7 @@
                 return "<B>" + data + "</B>"
               },
               filter: {
-                type: "input",
+                type: "none",
               },
               filterData: ""
             },
@@ -52,7 +52,7 @@
                 return "<B>" + data + "</B>"
               },
               filter: {
-                type: "input",
+                type: "none",
               },
               filterData: ""
             },
