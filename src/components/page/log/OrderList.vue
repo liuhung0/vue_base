@@ -27,6 +27,7 @@
         },
         config: {
           draw: 1,
+          j:1,
           A:1,
           showAdd: 1,
           serverurl:that.Constants().PARKING_EXIT,
