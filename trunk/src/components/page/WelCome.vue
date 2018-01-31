@@ -5,8 +5,8 @@
       <el-checkbox  v-for="(door,index) of doorList" :checked="door.checked" :key="index" @change="toggle(index)">{{door.name}}</el-checkbox>
     </div>
     <div  v-for="(door,index) of doorList"   class="main">
-      <gate-in  v-if="door.type=='in'"  v-show="door.checked" class="gate"></gate-in>
-      <gate-out v-if="door.type=='out'"  :key="index" v-show="door.checked" class="gate"></gate-out>
+      <gate-in  v-if="door.type==1"  v-show="door.checked" class="gate" :doorId="door.id"></gate-in>
+      <gate-out v-if="door.type==2"  :key="index" v-show="door.checked" :doorId="door.id" class="gate"></gate-out>
     </div>
   </div>
 </template>
@@ -21,28 +21,11 @@
     data(){
       return{
         doorList:[
-          {
-            name:"东入口",
-            type:"in",
-            checked:true
-          },
-          {
-            name:"东出口",
-            type:"out",
-            checked:true
-          },
-          {
-            name:"西入口",
-            type:"in",
-            checked:false
-          },
-          {
-            name:"东出口",
-            type:"out",
-            checked:false
-          }
         ]
       }
+    },
+    mounted(){
+      this.getDoors();
     },
     methods:{
       toggle(i){
@@ -52,6 +35,30 @@
         else{
           this.doorList[i].checked =true
         }
+      },
+      getDoors(){
+        let that = this;
+        let pid = sessionStorage.getItem("THIS_PARKING_ID");
+        if (!pid){
+          that.$message.error("请先选择停车场");
+          return;
+        }
+        that.$http.post(that.Constants().REST_BARRIER_LIST,{pId:pid},{emulateJSON: true}).then(function(res){
+          if(res.data.result){
+            that.doorList.splice(0,that.doorList.length,...res.data.data.data);
+            let len = that.doorList.length;
+            for(let i=0; i<len;i++){
+              that.$set(that.doorList[i],"checked",true);
+            }
+            console.log(that.doorList);
+          }
+          else{
+            that.$message.error("出入口列表获取失败:"+res.data.message);
+          }
+        },function(){
+          that.$message.error("数据交互发生错误");
+        })
+
       }
     }
   }

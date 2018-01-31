@@ -28,8 +28,8 @@ export default {
         LOGIN_COULD_TYPE = "LOGIN_COULD_TYPE";
       //dev
 
-      let BASE_URL = "http://localhost:9109";
-      let PROXY_URL = "";
+      let BASE_URL = "http://192.168.0.45:9000";
+      let PROXY_URL = "/api";
       // let BASE_URL ="http://cloud.chinahtiot.com",PROXY_URL="/api";
       return {
         LOGIN_COULD_TYPE,
@@ -38,9 +38,11 @@ export default {
         LOGIN_CLOUD_UID,
         BASE_URL:BASE_URL,
         PROXY_URL:PROXY_URL,
-        //用户个人中心信息展示
-        REST_GATE_LOG_LIST: BASE_URL + PROXY_URL + "/gate/log",
-        REST_GATE_LOG_INFO: BASE_URL + PROXY_URL + "/gate/log",
+
+        //停车场出入口列表
+        REST_BARRIER_LIST: BASE_URL + PROXY_URL + "/parkingManager/v1/barrier",
+        REST_RECORD_IN_FIRST: BASE_URL + PROXY_URL + "/parkingManager/v1/barrier/in/first",
+        REST_RECORD_OUT_FIRST: BASE_URL + PROXY_URL + "/parkingManager/v1/barrier/out/first",
         REST_WORKLOG_LIST:  BASE_URL +PROXY_URL  +  "",
 
         //用户登录接口
@@ -107,17 +109,6 @@ export default {
         REST_RULE_DELETE:BASE_URL + PROXY_URL + "/parkingManager/v1/rule/delete",
         //权限列表接口
         REST_MENU_LIST:BASE_URL + PROXY_URL + "/parkingManager/v1/menu",
-
-        //新增子账号管理
-        REST_SUB_USER_SAVE:BASE_URL + PROXY_URL + "/parkingManager/v1/work/save",
-        //查询用户列表
-        REST_SUB_USER_LIST:BASE_URL + PROXY_URL  + "/parkingManager/v1/work/queryInfoList",
-        //根据id获取单个账户信息
-        REST_SUB_USER_INFO: BASE_URL + PROXY_URL + "/parkingManager/v1/work/info",
-        //根据id删除账号
-        REST_SUB_USER_DELETE_INFO: BASE_URL + PROXY_URL + "/parkingManager/v1/work/delete",
-        //查看角色列表
-        REST_SUB_USER_ROLE_INFO:BASE_URL + PROXY_URL + "/parkingManager/v1/work/queryRuleInfo",
        }
 
     }
