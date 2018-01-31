@@ -1,7 +1,7 @@
 <template>
     <div class="main">
       <h2>考勤记录</h2>
-
+      <button @click="daka()">{{status == 2 || status == 3? "下班打卡" : "上班打卡"}}</button>
       <data-table
         :confignation="dataTableConfig"
         ref="datatable">
@@ -32,8 +32,8 @@
             {
               sortable: false,
               sort: "asc",
-              prop: "suId",
-              name: "打卡账户",
+              prop: "username",
+              name: "账户",
               width: "160px",
               render: function (data) {
                 return "<B>" + data + "</B>"
@@ -101,11 +101,46 @@
           ],
           actions:[],
           dataset: [],
+        },
+        status:'',
+        queryData:{
+          suId:sessionStorage.getItem("LOGIN_PARKING_UID"),
+          id:'',
         }
 
       }
     },
-    methods: {}
+    mounted(){
+      let that = this;
+      that.$http.post(that.Constants().REST_USER_QUERYWORKINFO, that.queryData,{emulateJSON: true}).then(function (res) {
+        if(res.data.result){
+          that.status = res.data.data.status;
+          that.queryData.id = res.data.data.id;
+        }else {
+          that.$message.error(that.res.data.message);
+        }
+      },function (res) {
+        that.$message.error(res);
+      });
+      this.config=this.confignation;
+      this.pagenation =this.confignation.pagenation;
+      this.loadData();
+    },
+    methods: {
+      daka(){
+        let that = this;
+        that.$http.post(that.Constants().REST_USER_CLOCKONANDOFF, that.queryData,{emulateJSON: true}).then(function (res) {
+          if(res.data.result){
+            that.$message.success(res.data.data);
+            location.reload();
+          }else {
+            that.$message.error(that.res.data.message);
+          }
+        },function (res) {
+          that.$message.error(res);
+        });
+      },
+    }
   }
 </script>
 <style scoped>
