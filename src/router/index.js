@@ -28,7 +28,7 @@ import Management_Expense from '@/components/page/vip/Management_Expense'
 import VipAdd from '@/components/page/vip/VipAdd'
 import VipEdit from '@/components/page/vip/VipEdit'
 import FinancePic from '@/components/page/log/FinancePic'
-import Gate from '@src/components/parts/Gate'
+import Gate from '@/components/parts/Gate'
 import echarts from 'echarts'
 
 export default new Router({
@@ -56,7 +56,7 @@ export default new Router({
         {
           path: '/main/statistics/doorlog',
           name: 'welcome',
-          component: Gate
+          component: Welcome
         },
         {
           path: '/main/statistics/orderlog',
@@ -134,7 +134,7 @@ export default new Router({
           component: Management_Expense,
         },
         {
-          path: '/page/parts/Gate',
+          path: '/page/parts/Gates',
           name: 'gate',
           component: Gate,
         },
