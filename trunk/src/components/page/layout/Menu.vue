@@ -33,7 +33,7 @@
             children:[
               {
                 title:"出入明细",
-                path:"/main/statistics/doorlog"
+                path:"/page/parts/Gates"
               },
               {
                 title:"订单明细",
