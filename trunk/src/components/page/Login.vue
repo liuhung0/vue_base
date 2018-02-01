@@ -66,6 +66,7 @@
               if (that.resData.result) {
                 //登录成功
                 //登录信息保存在sessionStorage中
+                sessionStorage.setItem("LOGIN_PARKING_PID",that.resData.data.pId);
                 sessionStorage.setItem("LOGIN_PARKING_USENAME",that.boss.username);
                 sessionStorage.setItem("LOGIN_PARKING_SUBID",that.resData.data.subId);
                 sessionStorage.setItem("LOGIN_PARKING_UID", that.resData.data.uid);
