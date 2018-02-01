@@ -8,7 +8,7 @@
     </div>
     <div class="flex_item flex_item_40" >
 
-      <el-select :model="pid">
+      <el-select :model="pid" v-if="type == 8">
         <el-option v-for="(parking,index) of parkingList" :key="index" :value="parking.id" v-text="parking.name">
         </el-option>
       </el-select>
@@ -29,6 +29,7 @@
       props: [],
       data(){
         return {
+          type:sessionStorage.getItem("LOGIN_PARKING_TYPE"),
           username:sessionStorage.getItem("LOGIN_PARKING_USENAME"),
           form:{
             uId:sessionStorage.getItem("LOGIN_PARKING_UID"),
