@@ -109,6 +109,17 @@ export default {
         REST_RULE_DELETE:BASE_URL + PROXY_URL + "/parkingManager/v1/rule/delete",
         //权限列表接口
         REST_MENU_LIST:BASE_URL + PROXY_URL + "/parkingManager/v1/menu",
+
+        //新增子账号管理
+        REST_SUB_USER_SAVE:BASE_URL + PROXY_URL + "/parkingManager/v1/work/save",
+        //查询用户列表
+        REST_SUB_USER_LIST:BASE_URL + PROXY_URL  + "/parkingManager/v1/work/queryInfoList",
+        //根据id获取单个账户信息
+        REST_SUB_USER_INFO: BASE_URL + PROXY_URL + "/parkingManager/v1/work/info",
+        //根据id删除账号
+        REST_SUB_USER_DELETE_INFO: BASE_URL + PROXY_URL + "/parkingManager/v1/work/delete",
+        //查看角色列表
+        REST_SUB_USER_ROLE_INFO:BASE_URL + PROXY_URL + "/parkingManager/v1/work/queryRuleInfo",
        }
 
     }
