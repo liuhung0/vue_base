@@ -242,6 +242,41 @@
                 ]
               },
             },
+            {
+              sortable: false,
+              sort: "desc",
+              prop: "sluice_state",
+              name: "开闸方式",
+              width: '160px',
+              render: function (data) {
+                if (data == 1) {
+                  return "<label style='color: #e64242;padding:2px 10px;display: inline-block;'>免费开闸</label>"
+                }
+                if (data == 2) {
+                  return "<label style='color: #FFEC8B;padding:2px 16px;display: inline-block;'>收费开闸</label>"
+                }
+                if (data == 3) {
+                  return "<label style='color: #1AC45D;padding:2px 16px;display: inline-block;'>正常开闸</label>"
+                }
+              },
+              filter: {
+                type: "select",
+                data: [
+                  {
+                    value: 1,
+                    text: "免费开闸"
+                  },
+                  {
+                    value: 2,
+                    text: "收费开闸"
+                  },
+                  {
+                    value: 3,
+                    text: "正常开闸"
+                  }
+                ]
+              },
+            },
           ],
           dataset: [],
         }
