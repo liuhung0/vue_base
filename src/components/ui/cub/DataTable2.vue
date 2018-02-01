@@ -4,59 +4,66 @@
       <h2 style="float: left">{{config.title}}</h2><br/>
     </div>
     <div class="btn—group">
-      <div style="padding-top: 20px;">
-        <h3 v-if="config.j=='1'">当日总金额:<span style="color: red">{{resData.moy}}</span>元</h3>
-        <h3 v-if="config.j=='1'">当前总金额:<span style="color: red">{{resData.sumMoney}}</span>元</h3>
+      <div style="padding-top: 20px">
+        <h3 style="width: 20%;" v-if="config.j=='1'">当日总金额:<span style="color: red">{{resData.moy}}</span>元</h3>
+        <h3 style="width: 20%" v-if="config.j=='1'">当前总金额:<span style="color: red">{{resData.sumMoney}}</span>元</h3>
       </div>
-      <button v-if="config.hi=='1'" class="biao"  @click="tu()">可视化统计图表</button>
-      <!--<button v-if="config.showAdd=='1'" style="cursor: pointer;text-align: center;letter-spacing: 2px; min-width: 30px;-->
-      <!--min-height: 37px;color: #fff;background: #239BFA;border: 1px solid #45bb77" @click="myall(5652)">全部</button>-->
-      <button v-if="config.showAdd=='1'"  @click="myyear(454)">年</button>
-      <button v-if="config.showAdd=='1'"  @click="mymonth(5656)">月</button>
-      <button v-if="config.showAdd=='1'"  @click="myweek(565)">周</button>
-      <button v-if="config.showAdd=='1'"  @click="myday(56)">日</button>
-
+      <button v-if="config.hi=='1'" style="cursor: pointer;text-align: center;letter-spacing: 2px; min-width: 30px;
+      min-height: 37px;color: #fff; background: #f7ba2a;border: 1px solid #f7ba2a" @click="tu()">可视化统计图表</button>
+      <button v-if="config.showAdd=='1'" style="cursor: pointer;text-align: center;letter-spacing: 2px; min-width: 30px;
+      min-height: 37px;color: #fff;background: #239BFA;border: 1px solid #45bb77" @click="myall(5652)">全部</button>
+      <button v-if="config.showAdd=='1'" style="cursor: pointer;text-align: center;letter-spacing: 2px; min-width: 30px;
+      min-height: 37px;color: #fff; background: #f7ba2a;border: 1px solid #f7ba2a" @click="myyear(454)">全年</button>
+      <button v-if="config.showAdd=='1'" style="cursor: pointer;text-align: center;letter-spacing: 2px; min-width: 30px;
+      min-height: 37px;color: #fff;background: red;border: 1px solid red" @click="mymonth(5656)">本月</button>
+      <button v-if="config.showAdd=='1'" style="cursor: pointer;text-align: center;letter-spacing: 2px; min-width: 30px;
+      min-height: 37px;color: #fff;background: #00ff00;border: 1px solid #00ff00" @click="myday(56)">今日</button>
+      <button v-if="config.showAdd=='1'" style="cursor: pointer;text-align: center;letter-spacing: 2px; min-width: 30px;
+      min-height: 37px;color: #fff;background: #239BFA;border: 1px solid #45bb77" @click="myweek(565)">本周</button>
       <el-date-picker
         v-model="resData.startTime"
         type="date"
         placeholder="开始时间">
       </el-date-picker>
-      <span class="z">至</span>
+      至
       <el-date-picker
         v-model="resData.endTime"
         type="date"
         placeholder="结束时间">
       </el-date-picker>
-      <button v-if="config.showAdd=='1'" class="search" @click="sousuo">搜索</button>
-      <button v-if="config.A=='1'" class="search" @click="addObj(454)">导出excel表格</button>
-      <button v-if="config.hi=='1'" class="search" @click="excelExport(454)">导出excel表格</button>
+      <button v-if="config.showAdd=='1'" style="cursor: pointer;text-align: center;letter-spacing: 2px; min-width: 80px;
+      min-height: 37px;color: #fff;background: #239BFA;border: 1px solid #45bb77" @click="sousuo">搜索</button>
+      <button v-if="config.A=='1'" style="cursor: pointer;text-align: center;letter-spacing: 2px; min-width: 80px;
+      min-height: 37px;color: #fff;background: #239BFA;border: 1px solid #45bb77" @click="addObj(454)">导出excel表格</button>
+      <button v-if="config.hi=='1'" style="cursor: pointer;text-align: center;letter-spacing: 2px; min-width: 80px;
+      min-height: 37px;color: #fff;background: #239BFA;border: 1px solid #45bb77" @click="excelExport(454)">导出excel表格</button>
     </div>
     <!--<hr style="background:#249CFA; height: 2px;width: 100%;border:0px;"/>-->
     <div class="table table_all" >
-      <!--<div class="pageation" ref="pagenation" v-if="config.pageable==undefined||config.pageable==true">-->
-        <!--<div class="info">-->
-          <!--<select v-model="pagenation.rows" @change="changeRows">-->
-            <!--<option value="5">5</option>-->
-            <!--<option value="10">10</option>-->
-            <!--<option value="20">20</option>-->
-            <!--<option value="50">50</option>-->
-            <!--<option value="100">100</option>-->
-          <!--</select>显示第{{(pagenation.page - 1) * pagenation.rows + 1}}至-->
-          <!--{{pagenation.page * pagenation.rows}}项,共{{pagenation.num}}项-->
-        <!--</div>-->
-        <!--<div class="pages">-->
-          <!--<span v-if="pagenation.page > 1" class="pageLi" @click="pagePev">上页</span>-->
-          <!--<span v-for="i in pagenation.total">-->
-              <!--<i v-if="i<5 || i > pagenation.total-1 || (i > (pagenation.page-2)  && i < (pagenation.page+2))"-->
-                 <!--class="pageLi" :class="{'active':i==pagenation.page}" @click="pageTo(i)">-->
-                <!--{{i}}-->
-              <!--</i>-->
-              <!--<i v-else-if="i==5||i==pagenation.total-4" class="pageLis">...</i>-->
-          <!--</span>-->
-          <!--<span v-if="pagenation.page < pagenation.total" class="pageLi"-->
-                <!--@click="pageNext">下页</span>-->
-        <!--</div>-->
-      <!--</div>-->
+      <div class="pageation" ref="pagenation" v-if="config.pageable==undefined||config.pageable==true">
+        <div class="info">
+          <select v-model="pagenation.rows" @change="changeRows">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>显示第{{(pagenation.page - 1) * pagenation.rows + 1}}至
+          {{pagenation.page * pagenation.rows}}项,共{{pagenation.num}}项
+        </div>
+        <div class="pages">
+          <span v-if="pagenation.page > 1" class="pageLi" @click="pagePev">上页</span>
+          <span v-for="i in pagenation.total">
+              <i v-if="i<5 || i > pagenation.total-1 || (i > (pagenation.page-2)  && i < (pagenation.page+2))"
+                 class="pageLi" :class="{'active':i==pagenation.page}" @click="pageTo(i)">
+                {{i}}
+              </i>
+              <i v-else-if="i==5||i==pagenation.total-4" class="pageLis">...</i>
+          </span>
+          <span v-if="pagenation.page < pagenation.total" class="pageLi"
+                @click="pageNext">下页</span>
+        </div>
+      </div>
 
       <table>
         <thead>
@@ -167,6 +174,7 @@
         queryData: {
           appId:'',
           payment:null,
+          ppID:sessionStorage.getItem("LOGIN_PARKING_PID"),
         },
         checkedIds: "",
         defaultConfig:{
@@ -242,7 +250,7 @@
         let rows = queryData.rows;
         let user_id = sessionStorage.getItem("LOGIN_PARKING_UID");
         let token = sessionStorage.getItem("LOGIN_PARKING_TOKEN");
-        let exit_time ='1514099197';
+        let to_time ='1514099197';
         queryData.year = that.resData.year;
         let year;
         let month;
@@ -301,7 +309,7 @@
         //用此种方式可以解决excel表格导出不弹窗的问题
         window.open(
           that.Constants().EXCEL+
-          user_id+"/"+month+"/"+exit_time+"/"+token+
+          user_id+"/"+month+"/"+to_time+"/"+token+
           "/"+startTime+"/"+endTime+"/"+year+"/"+day+
           "/"+week+"/"+all+"/"+payment+"/"+vehicle_type
         );
@@ -330,8 +338,8 @@
         let rows = queryData.rows;
         let user_id = sessionStorage.getItem("LOGIN_PARKING_UID");
         let token = sessionStorage.getItem("LOGIN_PARKING_TOKEN");
-        queryData.exit_time = '1514099197';
-        let exit_time =queryData.exit_time;
+        queryData.to_time = '1514099197';
+        let to_time =queryData.to_time;
         queryData.year = that.resData.year;
         let year;
         let month;
@@ -393,7 +401,7 @@
         //用此种方式可以解决excel表格导出不弹窗的问题
         window.open(
           that.Constants().DOWNLOADFINACE+
-          user_id+"/"+month+"/"+exit_time+"/"+token+
+          user_id+"/"+month+"/"+to_time+"/"+token+
           "/"+startTime+"/"+endTime+"/"+year+"/"+day+
           "/"+week+"/"+all+"/"+payment+"/"+charge_standard
         );
@@ -554,7 +562,7 @@
         queryData.token = sessionStorage.getItem("LOGIN_PARKING_TOKEN");
         queryData.username = sessionStorage.getItem("LOGIN_PARKING_USENAME");
         queryData.appId = this.$route.params.id;
-        queryData.exit_time = '1514099197';
+        queryData.to_time = '1514099197';
         queryData.year = that.resData.year;
         queryData.month = that.resData.month;
         queryData.day = that.resData.day;
@@ -595,30 +603,13 @@
 </script>
 <style scoped>
   .table_all{
-    /*border:1px solid #eee;*/
+    border:1px solid #eee;
   }
   h2 {
     color: #333;
     font-weight: 300;
     padding-left:20px;
     border-left:4px solid #49a9ff;
-  }
-  h3{
-    width: 20%;
-    float: left;
-    color: #fff;
-    font-weight: normal;
-    -webkit-margin-before: 1em;
-    -webkit-margin-after: 1em;
-  }
-  .biao{
-    cursor: pointer;
-    text-align: center;letter-spacing: 2px;
-    min-width: 30px;
-    min-height: 37px;
-    color: #fff;
-    border:none;
-    background: #278BFF;
   }
   .btn—group {
     width: 100%;
@@ -635,20 +626,20 @@
 
   .table table thead th {
     text-align: center;
-
+    font-size: 14px;
+    border-left: 2px solid #e8e8e8;
+    border-right: 2px solid #fff;
     margin-left: 2px;
     font-weight: 400;
-    background: #2F3B4C;
-    line-height: 20px;
+    background: #e8e8e8;
+    line-height: 26px;
     padding: 4px 10px;
-    color: #fff;
+    color: #888;
   }
-  .table table thead th > span{
-    font-size: 14px;
+
+  .table table thead th:last-child {
+    border-right: 1px solid #e8e8e8;
   }
-  /*.table table thead th:last-child {*/
-    /*border-right: 1px solid #e8e8e8;*/
-  /*}*/
 
   .table table thead td {
     text-align: center;
@@ -694,11 +685,7 @@
   .table table tbody td:first-child {
     border-left: 0px dashed #e8e8e8;
   }
-  #out-table{
-    background-color: #3d4e66;
-    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.50);
-    border-radius: 2px;
-  }
+
   .table table .ids {
     margin: 2px 4px;
     width: 76px;
@@ -732,17 +719,17 @@
     height: 32px;
     padding: 2px 6px;
     line-height: 18px;
-    /*overflow: hidden;*/
-    /*border-bottom: 1px solid #fff;*/
-    /*border-left: 1px solid #e8e8e8;*/
-    /*border-right: 1px solid #e8e8e8;*/
+    overflow: hidden;
+    border-bottom: 1px solid #fff;
+    border-left: 1px solid #e8e8e8;
+    border-right: 1px solid #e8e8e8;
     clear: both;
-
+    background: #e8e8e8;
   }
 
   .pageation .info {
     color: #888;
-    float: right;
+    float: left;
     width: 30%;
     line-height: 36px;
   }
@@ -795,23 +782,7 @@
     cursor: pointer;
     font-size: 12px;
   }
-  button{
-    background: #2F3B4C;
-    border: 1px solid #FFFFFF;
-    border-radius: 2px;
-    color: #fff;
-  }
-  button:hover{
-    background: #278BFF;
-  }
-  .search{
-    background: #278BFF;
-    border-radius: 2px;
-    border:none;
-  }
-  h2[data-v-6114fb42] {
-    color: #fff;
-  }
+
 </style>
 <style>
   .table table tbody td > a {
@@ -822,24 +793,5 @@
   .table table tbody td > a:hover {
     color: #5faec0;
     text-decoration: none;
-  }
-  .el-input__icon {
-      display: none;
-  }
-  .el-input__inner{
-    background-color: none;
-    height: 20px;
-  }
-  .el-input--prefix .el-input__inner {
-     padding-left: 0px;
-  }
-  .el-input--suffix .el-input__inner{
-    padding-right: 0px;
-  }
-  .el-date-editor.el-input, .el-date-editor.el-input__inner{
-    width: 80px;
-    height: 20px;
-    background-color: none;
-    border:1px solid #fff;
   }
 </style>

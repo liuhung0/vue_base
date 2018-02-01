@@ -24,14 +24,13 @@
       return {
         reqData: {
           user_id:sessionStorage.getItem("LOGIN_PARKING_UID"),
+          pId:80
         },
         config: {
           draw: 1,
-          j:1,
-          A:1,
           showAdd: 1,
-          serverurl:that.Constants().PARKING_EXIT,
-          title: "停车场报表",
+          serverurl:that.Constants().ORDER_LIST,
+          title: "订单明细",
           key: "id",
           pagenation: {
             page: 1,
@@ -42,7 +41,7 @@
             {
               sortable: false,
               sort: "asc",
-              prop: "car_number",
+              prop: "carNumber",
               name: "车牌号",
               width: "120px",
               render: function (data) {
@@ -57,7 +56,7 @@
             {
               sortable: false,
               sort: "asc",
-              prop: "approach_time",
+              prop: "fromTime",
               name: "进场时间",
               width: "160px",
               render: function (data) {
@@ -69,64 +68,12 @@
             },
             {
               sortable: false,
-              sort: "asc",
-              prop: "approach_picture",
-              name: "进场图片",
-              width: "120px",
-              render: function (data) {
-                return "<img src='" + data + "' width='120px'/>";
-              },
-              filter: {
-                type: "none",
-              },
-            },
-            {
-              sortable: false,
-              sort: "asc",
-              prop: "approach_alleyway",
-              name: "入场通道",
-              width: "160px",
-              render: function (data) {
-                return "<span>" + data + "</span>";
-              },
-              filter: {
-                type: "none",
-              },
-            },
-            {
-              sortable: false,
               sort: "desc",
-              prop: "exit_picture",
-              name: "出场图片",
-              width: '120px',
-              render: function (data) {
-                return "<img src='" + data + "' width='120px'/>";
-              },
-              filter: {
-                type: "none",
-              },
-            },
-            {
-              sortable: false,
-              sort: "desc",
-              prop: "exit_time",
+              prop: "toTime",
               name: "出场时间",
               width: '160px',
               render: function (data) {
                 return new Date(data * 1000).Format("yyyy-MM-dd hh:mm:ss");
-              },
-              filter: {
-                type: "none",
-              },
-            },
-            {
-              sortable: false,
-              sort: "desc",
-              prop: "exit_alleyway",
-              name: "出场通道",
-              width: '80px',
-              render: function (data) {
-                return "<span>" + data + "</span>";
               },
               filter: {
                 type: "none",
@@ -148,7 +95,7 @@
             {
               sortable: false,
               sort: "desc",
-              prop: "real_income",
+              prop: "payPrice",
               name: "实收金额",
               width: '80px',
               render: function (data) {
@@ -196,7 +143,7 @@
             {
               sortable: false,
               sort: "desc",
-              prop: "payment",
+              prop: "payType",
               name: "支付方式",
               width: '160px',
               render: function (data) {

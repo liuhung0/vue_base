@@ -22,6 +22,7 @@
 <script>
   export default {
     data(){
+
       return{
         menuList:[
           {
@@ -35,6 +36,10 @@
               {
                 title:"订单明细",
                 path:"/main/statistics/orderlog"
+              },
+              {
+                title:"开闸记录",
+                path:"/main/log/sluicestatelist"
               },
               {
                 title:"财务收入统计表",
