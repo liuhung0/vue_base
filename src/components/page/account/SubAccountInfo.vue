@@ -5,9 +5,6 @@
       <el-form-item label="用户名" prop="name">
         <el-input v-model="form.username"></el-input>
       </el-form-item>
-      <el-form-item label="密码" prop="name">
-        <el-input v-model="form.password"></el-input>
-      </el-form-item>
       <el-form-item label="编号" prop="remark">
         <el-input  v-model="form.number"></el-input>
       </el-form-item>
@@ -76,7 +73,6 @@
           parkingId:24,
           id:this.id||-1,
           username:'',
-          password:'',
           number:'',
           phone:'',
           name: '',
@@ -109,7 +105,6 @@
           if(res.data.result){
             console.log(res.data.data)
             that.form = res.data.data;
-            that.form.password = null;
             console.log("账号信息获取成功!");
           }
           else{
