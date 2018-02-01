@@ -8,6 +8,7 @@
         <router-view></router-view>
       </main>
       <nav class="HolyGrail-nav"><Menu></Menu></nav>
+
     </div>
   </div>
 </template>
@@ -28,14 +29,16 @@
   header{
     display: flex;
     flex:0 0 100%;
-    height:6vh;
-    background:#48ace6;
+    height:6.5vh;
+    background: #181D24;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.50);
   }
   .HolyGrail-body {
     display: flex;
     flex:1 1 100%;
     height:95vh;
-    background: #fff2ea;
+    background: #2F3B4C
+  ;
   }
   .HolyGrail-content {
     flex:1;
@@ -47,7 +50,8 @@
   .HolyGrail-nav{
     /* 两个边栏的宽度设为12em */
     flex: 0 0 12vw;
-    background: #45494e;
+    background: #181D24;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.50);
     order: -1;
   }
 </style>

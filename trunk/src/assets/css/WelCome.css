@@ -1,0 +1,53 @@
+.on {
+  width:100%;
+  position: relative;
+}
+.main {
+  display: block;
+  overflow: hidden;
+}
+.outOrIn{
+  padding:20px;
+  text-align: left;
+  background: #1D242E;
+  box-shadow: 0 2px 6px 0 rgba(46,46,46,0.50);
+  position: relative;
+}
+/*top*/
+.shangban{
+  position: absolute;
+  top:30%;
+  left: 5%;
+}
+.shangban2{
+  position: absolute;
+  top:30%;
+  left: 15%;
+}
+.dk{
+  margin-left: 6%;
+}
+.el-checkbox-group{
+  position: absolute;
+  top:30%;
+  right: 5%;
+}
+.el-checkbox__inner{
+  background: rgba(216,216,216,0.00);
+  border: 1px solid #979797;
+  border-radius: 2px;
+}
+.el-checkbox__label{
+  color: #979797;
+}
+.ruk.is-checked .el-checkbox__inner{
+
+}
+.el-checkbox__input.is-checked+.el-checkbox__label {
+  color: #fff;
+}
+.el-checkbox__input.is-checked .el-checkbox__inner{
+  background-color: #1D242E;
+  border-color: #fff;
+}
+

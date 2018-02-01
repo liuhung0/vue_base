@@ -1,12 +1,22 @@
 <template>
   <div class="on">
     <div class="outOrIn">
-     请选择要显示的出入口:
+        <div>
+            <span class="dk"><img src="../../assets/image/kaoqing.png" class="shangban"/>上班打卡</span>
+            <span class="dk"><img src="../../assets/image/kaoqinglan.png" class="shangban2"/>已打卡</span>
+        </div>
+      <el-checkbox-group v-model="checkList">
+        <el-checkbox label="东入口"></el-checkbox>
+        <el-checkbox label="东出口"></el-checkbox>
+        <el-checkbox label="西入口"></el-checkbox>
+        <el-checkbox label="西出口" ></el-checkbox>
+      </el-checkbox-group>
       <el-checkbox  v-for="(door,index) of doorList" :checked="door.checked" :key="index" @change="toggle(index)">{{door.name}}</el-checkbox>
     </div>
-    <div  v-for="(door,index) of doorList"   class="main">
+    <div  v-for="(door,index) of doorList"   class="contain">
       <gate-in  v-if="door.type==1"  v-show="door.checked" class="gate" :doorId="door.id"></gate-in>
       <gate-out v-if="door.type==2"  :key="index" v-show="door.checked" :doorId="door.id" class="gate"></gate-out>
+
     </div>
   </div>
 </template>
@@ -21,7 +31,8 @@
     data(){
       return{
         doorList:[
-        ]
+        ],
+        checkList: ['选中且禁用','复选框 A'],
       }
     },
     mounted(){
@@ -64,18 +75,5 @@
   }
 </script>
 <style scoped>
-  .on {
-    display: block;
-    width:100%;
-  }
-  .main {
-    display: block;
-    overflow: hidden;
-  }
-  .outOrIn{
-    padding:20px;
-    text-align: left;
-    border:1px solid #ddd;
-    margin:20px 20px 0;
-  }
+  @import "../../assets/css/WelCome.css";
 </style>

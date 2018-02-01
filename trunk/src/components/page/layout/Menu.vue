@@ -1,12 +1,9 @@
 <template>
-  <el-row class="tac">
+  <el-row>
     <el-col :span="24">
       <el-menu
         default-active="2"
-        class="el-menu-vertical-demo"
-        background-color="#545c64"
-        text-color="#fff"
-        active-text-color="#ffd04b">
+        class="el-menu-vertical-demo">
         <el-submenu  v-for="(MENU,index) of menuList" :index="index" :key="index">
           <template slot="title">
             <i :class="MENU.icon"></i>
@@ -118,7 +115,46 @@
     }
   }
 </script>
-<style scoped>
+<style>
+  .el-menu-vertical-demo{
+    background-color:#181D24;
+    text-color:#fff;
+    active-text-color:#ffd04b;
+  }
+  .el-col{
+    width: 100%;
+  }
+  .el-menu-item{
+    background:  #1D242E;
+
+  }
+ a{
+   font-size: 16px;
+   text-color: #A5A5A5;
+ }
+  .router-link-active{
+
+  }
+
+  .el-menu{
+    border-right: none;
+  }
+  .el-menu-item-group__title{
+    padding: 0;
+  }
+  .router-link{
+    color: #fff;
+  }
+  .el-submenu__title:hover {
+    background: #203A59;
+    box-shadow: 0 0 2px 0 rgba(113,160,255,0.50);
+    border-radius: 2px;
+    color: #fff;
+  }
+  span{
+    font-size: 18px;
+    color: #fff;
+  }
  .tac
  {
    width:230px;
