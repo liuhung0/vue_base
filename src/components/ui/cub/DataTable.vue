@@ -116,7 +116,7 @@
         config: that.confignation,
         pagenation: that.confignation.pagenation,
         queryData: {
-          parkingId:24,
+          parkingId:sessionStorage.getItem("LOGIN_PARKING_PID"),
           suId:sessionStorage.getItem("LOGIN_PARKING_UID"),
           id:'',
         },

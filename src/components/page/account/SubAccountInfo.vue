@@ -2,22 +2,32 @@
   <div class="main">
     <h2>{{id?"编辑":"新增"}}账号</h2>
     <el-form ref="form" :rules="form" :model="form" label-width="80px">
-      <el-form-item label="用户名" prop="name">
+      <el-form-item label="隶属停车场" prop="name">
+        <el-select v-model="form.pId" filterable placeholder="请选择停车场" style="width:300px;margin-left: -55px">
+          <el-option
+            v-for="item in pidList"
+            :key="item.pId"
+            :label="item.name"
+            :value="item.id">
+          </el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="用户名" prop="username">
         <el-input v-model="form.username"></el-input>
       </el-form-item>
-      <el-form-item label="编号" prop="remark">
+      <el-form-item label="编号" prop="number">
         <el-input  v-model="form.number"></el-input>
       </el-form-item>
-      <el-form-item label="手机号" prop="remark">
+      <el-form-item label="手机号" prop="phone">
         <el-input v-model="form.phone"></el-input>
       </el-form-item>
-      <el-form-item label="姓名" prop="remark">
+      <el-form-item label="姓名" prop="name">
         <el-input  v-model="form.name"></el-input>
       </el-form-item>
-      <el-form-item label="身份证号" prop="remark">
+      <el-form-item label="身份证号" prop="identityCard">
         <el-input  v-model="form.identityCard"></el-input>
       </el-form-item>
-      <el-form-item label="性别" prop="remark">
+      <el-form-item label="性别" prop="gender">
         <el-radio-group v-model="form.gender" size="medium" style="width: 400px">
           <el-radio  label="1" >男</el-radio>
           <el-radio  label="2" >女</el-radio>
@@ -38,13 +48,13 @@
           </el-radio>
         </el-form-item>
 
-      <el-form-item label="账号状态" prop="remark">
+      <el-form-item label="账号状态" prop="status">
         <el-radio-group v-model="form.status" size="medium" style="width: 400px">
           <el-radio  label="1" >启用</el-radio>
           <el-radio  label="2" >禁用</el-radio>
         </el-radio-group>
       </el-form-item>
-      <el-form-item label="描述" prop="remark">
+      <el-form-item label="描述" prop="mark">
         <el-input type="textarea" v-model="form.mark"></el-input>
       </el-form-item>
       <el-form-item>
@@ -69,8 +79,9 @@
     data() {
       return {
         form: {
+          uId: sessionStorage.getItem("LOGIN_PARKING_UID"),
           ids:'',
-          parkingId:24,
+          pId:'',
           id:this.id||-1,
           username:'',
           number:'',
@@ -80,13 +91,24 @@
           gender:'',
           mark:'',
           status:'',
+          parkingId:'',
         },
         roleList:[],
+        pidList:[],
       }
     },
     mounted(){
       let that = this;
-      that.getInfo();
+      console.log(that.id);
+      if(that.form.id&&that.form.id>0){
+        that.getInfo();
+      }
+      that.$http.post(that.Constants().VIP_PARKING_LIST,that.form,{emulateJSON: true}).then(function (res) {
+        if (res.data.result) {
+          that.pidList.splice(0, that.pidList.length, ...res.data.data);
+        }
+      }).catch(function () {
+      }),
       that.$http.post(that.Constants().REST_SUB_USER_ROLE_INFO,{emulateJSON: true}).then(function (res) {
         if(res.data.result){
           console.log("进入角色list");
@@ -105,6 +127,9 @@
           if(res.data.result){
             console.log(res.data.data)
             that.form = res.data.data;
+            that.form.status = res.data.data.status.toString();
+            that.form.gender = res.data.data.gender.toString();
+            that.form.pId = res.data.data.parkingId;
             console.log("账号信息获取成功!");
           }
           else{
@@ -116,9 +141,11 @@
       },
       setInfo(){
         let that = this;
+        that.form.parkingId = that.form.pId;
         that.$http.post(that.Constants().REST_SUB_USER_SAVE, that.form,{emulateJSON: true}).then(function (res) {
           if(res.data.result){
-            that.$message.success("保存子账号信息成功！")
+            that.$message.success("保存子账号信息成功！");
+            that.$emit("addOK");
           }else {
             that.$message.error(that.res.data.message);
           }

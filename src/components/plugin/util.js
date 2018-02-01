@@ -40,9 +40,9 @@ export default {
         PROXY_URL:PROXY_URL,
 
         //停车场出入口列表
-        REST_BARRIER_LIST: BASE_URL + PROXY_URL + "/parkingManager/v1/userbarrier",
-        REST_RECORD_IN_FIRST: BASE_URL + PROXY_URL + "/parkingManager/v1/userbarrier/in/first",
-        REST_RECORD_OUT_FIRST: BASE_URL + PROXY_URL + "/parkingManager/v1/userbarrier/out/first",
+        REST_BARRIER_LIST: BASE_URL + PROXY_URL + "/parkingManager/v1/userbarrier/list",
+        REST_RECORD_IN_FIRST: BASE_URL + PROXY_URL + "/parkingManager/v1/userbarrier/in",
+        REST_RECORD_OUT_FIRST: BASE_URL + PROXY_URL + "/parkingManager/v1/userbarrier/out",
         REST_WORKLOG_LIST:  BASE_URL +PROXY_URL  +  "",
 
         //用户登录接口
