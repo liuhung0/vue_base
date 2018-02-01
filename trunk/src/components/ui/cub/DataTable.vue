@@ -116,9 +116,10 @@
         config: that.confignation,
         pagenation: that.confignation.pagenation,
         queryData: {
-          parkingId:sessionStorage.getItem("LOGIN_PARKING_PID"),
+//          parkingId:sessionStorage.getItem("LOGIN_PARKING_PID") == null ? "":sessionStorage.getItem("LOGIN_PARKING_PID"),
+          paID:sessionStorage.getItem("LOGIN_PARKING_PID"),
           suId:sessionStorage.getItem("LOGIN_PARKING_UID"),
-          id:'',
+//          id:'',
         },
         checkedIds: "",
         defaultConfig:{
@@ -155,8 +156,6 @@
       that.$http.post(that.Constants().REST_USER_QUERYWORKINFO, that.queryData,{emulateJSON: true}).then(function (res) {
         if(res.data.result){
           that.status = res.data.data.status;
-          that.queryData.id = res.data.data.id;
-          console.log(that.queryData.id)
         }else {
           that.$message.error(that.res.data.message);
         }

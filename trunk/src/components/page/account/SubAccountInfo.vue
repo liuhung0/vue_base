@@ -34,19 +34,17 @@
         </el-radio-group>
       </el-form-item>
 
-      <el-form-item  label="角色名称">
-          <el-radio v-model="form.ids"  style="width:300px;margin-left: -55px" v-for="item in roleList"
-                    :key="item.ids"
-                    :label="item.name"
-                    :value="item.id">
-            <!--<el-option-->
-              <!--v-for="item in roleList"-->
-              <!--:key="item.ids"-->
-              <!--:label="item.name"-->
-              <!--:value="item.id">-->
-            <!--</el-option>-->
-          </el-radio>
-        </el-form-item>
+
+      <el-form-item label="角色名称" prop="name">
+        <el-select v-model="form.rId" filterable placeholder="请选择角色" style="width:300px;margin-left: -55px">
+          <el-option
+            v-for="item in roleList"
+            :key="item.rId"
+            :label="item.name"
+            :value="item.id">
+          </el-option>
+        </el-select>
+      </el-form-item>
 
       <el-form-item label="账号状态" prop="status">
         <el-radio-group v-model="form.status" size="medium" style="width: 400px">
@@ -82,6 +80,7 @@
           uId: sessionStorage.getItem("LOGIN_PARKING_UID"),
           ids:'',
           pId:'',
+          rId:'',
           id:this.id||-1,
           username:'',
           number:'',
@@ -91,6 +90,7 @@
           gender:'',
           mark:'',
           status:'',
+          role:'',
           parkingId:'',
         },
         roleList:[],
@@ -130,6 +130,7 @@
             that.form.status = res.data.data.status.toString();
             that.form.gender = res.data.data.gender.toString();
             that.form.pId = res.data.data.parkingId;
+            that.form.rId = res.data.data.role;
             console.log("账号信息获取成功!");
           }
           else{
