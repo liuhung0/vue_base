@@ -1,27 +1,34 @@
 <template>
-  <div class="flex_box">
+  <div class="flex_box_login">
     <div class="flex_item_title">
       <h1>泊联停车场管理系统</h1>
     </div>
     <div class="flex_item_center">
-      <el-form :model="boss" status-icon :rules="bossRole" ref="bossForm" label-width="100px" class="demo-ruleForm">
+      <el-form :model="boss" status-icon :rules="bossRole" ref="bossForm" label-width="60px" class="demo-ruleForm">
         <el-form-item label="用户名" prop="username">
           <el-input type="text" v-model="boss.username" auto-complete="off"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
           <el-input type="password" v-model="boss.password" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="submitForm('bossForm')">提交</el-button>
-          <el-button @click="resetForm('bossForm')">重置</el-button>
+        <el-form-item style="border:none">
+          <input type="text" class="yzm" />
+          <button class="hq">获取验证码</button>
         </el-form-item>
       </el-form>
+      <el-button @click="submitForm('bossForm')">登录</el-button>
     </div>
   </div>
 
 </template>
 <script type="text/ecmascript-6">
+  import ElButton from "../../../node_modules/element-ui/packages/button/src/button.vue";
+  import ElFormItem from "../../../node_modules/element-ui/packages/form/src/form-item.vue";
+
   export default {
+    components: {
+      ElFormItem,
+      ElButton},
     data() {
      var validateName = (rule, value, callback) => {
         if (value === '') {
@@ -97,38 +104,110 @@
   }
 </script>
 
-<style scoped>
+<style>
   html,body{
     padding:0;
     margin:0;
     width:100vw;
     height:100vh;
   }
-  .flex_box{
+  .flex_box_login{
     display: flex;
-    justify-content: center;
+    /*justify-content: center;*/
     align-items: center;
     flex-wrap: wrap;
-    background:#48ace6;
+    background: url("../../assets/image/background-b.jpg") no-repeat;
+    background-size: cover;
     min-height:101vh;
     overflow: hidden;
     flex-flow: column;
-
+    position: relative;
   }
-  .flex_item_title  {
+  .el-input__inner {
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    color: #CFCFCF;
+  }
+  .flex_item_title{
     flex: 0 0 100%;
+    margin-top:12%;
+  }
+  .flex_item_title h1{
+    font-size: 1.8rem !important;
+    color: #EFEFEF;
   }
   .flex_item_center{
-    width:480px;
+    width:492px;
     align-self: center;
-    border:1px solid  #ccc;
-    padding:100px 40px  20px 20px;
-    border-radius: 4px;
-    background:#f3f3f6;
+    padding:50px 40px  20px 20px;
+    background: rgba(231,236,255,0.30);
+    box-shadow: 0 0 6px 0 rgba(109,114,146,0.60);
+    border-radius: 6px;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
   }
   .flex_item_title h1{
     font-size:4.2rem;
   }
-
+  .el-form{
+    width: 100%;
+    height: 100%;
+    margin-left: 15%;
+  }
+  .el-form-item{
+    width: 360px;
+    border: 1px solid #FFFFFF;
+    border-radius: 2px;
+  }
+  .el-input{
+    width: 80%;
+    display: flex;
+    margin-top: 5px;
+    background: none!important;
+  }
+  .el-form-item__content{
+    width: 100%;
+    margin-left: 0 !important;
+  }
+  .yzm{
+    width: 50%;
+    height: 35px;
+    background: none;
+    color: #CFCFCF;
+    border: 1px solid #FFFFFF;
+    margin-right: 6%;
+    padding-left: 8px;
+ }
+  .el-form-item__label {
+    text-align: right;
+    vertical-align: middle;
+    float: left;
+    font-size: 14px;
+    color: #fff !important;
+    line-height: 40px;
+    padding: 0 12px 0 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .hq{
+    width: 40%;
+    background: #aaaaaa;
+    border-radius: 2px;
+    font-size: 1rem;
+    color: #FFFFFF;
+    border:none !important;
+    padding: 10px 20px;
+  }
+  .el-button{
+    width: 360px;
+    border:none !important;
+    background: #1B94FF;
+    border-radius: 2px;
+    font-size: 1rem;
+    color: #FFFFFF;
+  }
 
 </style>

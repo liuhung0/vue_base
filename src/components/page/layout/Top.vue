@@ -15,12 +15,13 @@
     </div>
     <div class="flex_item flex_item_10">
       <span><B>当前值班:</B>{{username}} </span>
-      <router-link id="index" @click.native="logout" to="">注销登录</router-link>
+      <router-link  to="" class="router-link-active">修改密码</router-link>
+      <!--<router-link id="index" @click.native="logout" to=""><span><img src="../../assets/image/zhuxiao3x.png" /></span></router-link>-->
     </div>
-    <div class="flex_item flex_item_100_w" >
-    </div>
-    <div class="flex_item flex_item_100_w2" >
-    </div>
+    <!--<div class="flex_item flex_item_100_w" >-->
+    <!--</div>-->
+    <!--<div class="flex_item flex_item_100_w2" >-->
+    <!--</div>-->
   </div>
 </template>
 <script type="text/ecmascript-6">
@@ -46,24 +47,24 @@
           this.$router.push('/main')
         }
       },
-      mounted(){
-        let uid = sessionStorage.getItem("LOGIN_PARKING_UID");
-        if(uid == null){
-          this.$message.error("您的登录信息已过期！");
-          this.$router.push('/login')
-        }
-        let that = this;
-        that.$http.post(that.Constants().VIP_PARKING_LIST, that.form,{emulateJSON: true}).then(function (res) {
-          if(res.data.result){
-            that.parkingList.splice(0, that.parkingList.length, ...res.data.data);
-            that.pid =res.data.data[0].id;
-          }else {
-            that.$message.error(that.res.data.message);
-          }
-        },function (res) {
-          that.$message.error(res);
-        });
-      },
+//      mounted(){
+//        let uid = sessionStorage.getItem("LOGIN_PARKING_UID");
+//        if(uid == null){
+//          this.$message.error("您的登录信息已过期！");
+//          this.$router.push('/login')
+//        }
+//        let that = this;
+//        that.$http.post(that.Constants().VIP_PARKING_LIST, that.form,{emulateJSON: true}).then(function (res) {
+//          if(res.data.result){
+//            that.parkingList.splice(0, that.parkingList.length, ...res.data.data);
+//            that.pid =res.data.data[0].id;
+//          }else {
+//            that.$message.error(that.res.data.message);
+//          }
+//        },function (res) {
+//          that.$message.error(res);
+//        });
+//      },
       methods:{
         logout(){
           let that = this;
@@ -90,37 +91,47 @@
     display: flex;
     justify-content: space-between;
     flex-flow: row wrap;
-    background: rgb(84, 92, 100);
-    color: #fff;
-    height: 100%;
+    background: #181D24;
   }
-
   .flex_item {
     flex:0;
     display: flex;
   }
   .flex_item_20{
-    flex:0 0 18%;
+    flex:0 0 20%;
     text-align: left;
     padding-top:16px;
   }
-  .flex_item_20 span{
-    font-size:26px;
+  .flex_item_20 > span{
+    font-size:20px;
+    display: inline-block;
+    line-height: 42px;
   }
   .flex_item_40{
-    flex:0 0 60%;
+    flex:0 0 50%;
     text-align: left;
     padding-top:16px;
   }
   .flex_item_10{
-    flex:0 0 14%;
+    flex:0 0 20%;
     display:flex;
     justify-content: flex-end;
     align-items: center;
-    padding-top:16px;
+    margin-right: 75px;
   }
-  .flex_item_10 span{
-    padding:0 10px;
+
+  .flex_item_10 > span{
+    font-size: 16px;
+    color: #FFFFFF;;
+    display: inline-block;
+    line-height: 72px;
+    padding-right:40px;
+  }
+  .flex_item_10> .router-link-active{
+    font-size: 16px;
+    color: #FFFFFF;;
+    display: inline-block;
+    line-height: 72px;
   }
   .flex_item_4{
     flex:0 0 4%;
@@ -143,4 +154,5 @@
     height:2px;
     background: #fff;
   }
+
 </style>
