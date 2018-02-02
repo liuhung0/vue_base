@@ -1,13 +1,17 @@
 <template>
   <div class="on">
     <div class="outOrIn">
-      <span class="dk"><img src="../../assets/image/kaoqing.png" class="shangban"/>上班打卡/下班打卡</span>
-      <el-checkbox  v-for="(door,index) of doorList" :checked="door.checked" :key="index" @change="toggle(index)">{{door.name}}</el-checkbox>
-    </div>
+        <div>
+            <img src="../../assets/image/kaoqing.png" class="shangban"/>
+            <span class="dk">上班打卡</span>
+        </div>
+      <el-checkbox-group v-model="checkList">
+        <el-checkbox  v-for="(door,index) of doorList" :checked="door.checked" :key="index" @change="toggle(index)">{{door.name}}</el-checkbox>
+      </el-checkbox-group>
+     </div>
     <div  v-for="(door,index) of doorList"   class="contain">
       <gate-in  v-if="door.type==1"  v-show="door.checked" class="gate" :doorId="door.id"></gate-in>
       <gate-out v-if="door.type==2"  :key="index" v-show="door.checked" :doorId="door.id" class="gate"></gate-out>
-
     </div>
   </div>
 </template>
