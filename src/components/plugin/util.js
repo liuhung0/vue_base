@@ -28,7 +28,7 @@ export default {
         LOGIN_COULD_TYPE = "LOGIN_COULD_TYPE";
       //dev
 
-      let BASE_URL = "http://192.168.0.9:9109";
+      let BASE_URL = "http://192.168.0.11:9109";
       let PROXY_URL = "";
       // let BASE_URL ="http://cloud.chinahtiot.com",PROXY_URL="/api";
       return {
@@ -55,6 +55,8 @@ export default {
         REST_MERCHANT_ADD: BASE_URL + PROXY_URL + "/parkingManager/v1/OwnerAndParking/addMerchant",
         //收费引擎接口
         REST_MERCHANT_SETPRICE: BASE_URL + PROXY_URL + "/parkingManager/v1/setParkingPrice/addParkingPrice",
+        //根据pid查询收费引擎设置
+        REST_MERCHANT_QUERYPRICE: BASE_URL + PROXY_URL + "/parkingManager/v1/setParkingPrice/queryParkingPriceByPid",
         //vip列表
         VIP_LIST: BASE_URL + PROXY_URL + "/parkingManager/v1/vip/getTenant",
         //Vip添加

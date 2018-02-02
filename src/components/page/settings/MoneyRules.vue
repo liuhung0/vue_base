@@ -130,6 +130,10 @@
     data() {
       return {
         form: {
+          id:'',
+          pId:'900',
+          uId:sessionStorage.getItem("LOGIN_PARKING_UID"),
+          token:sessionStorage.getItem("LOGIN_PARKING_TOKEN"),
           //年优惠价
           annualManagerDiscountFee:'',
           //季优惠价
@@ -152,9 +156,6 @@
           beforeFee:'',
           //   后几小时
           afterFee:'',
-
-          delivery:'',
-
           //   夜间开始时间
           nightStartTime:'',
           //   夜间结束时间
@@ -184,10 +185,35 @@
         }
       }
     },
+    mounted(){
+      let that = this;
+
+      that.$http.post(that.Constants().REST_MERCHANT_QUERYPRICE, that.form,{emulateJSON: true}).then(function (res) {
+          if(res.data.result){
+            that.$set(that,"form",res.data.data)
+            console.log("拉取收费设置成功");
+            that.form.isOpenThird === 1 ? that.form.isOpenThird=false : that.form.isOpenThird=true;
+            that.form.isOpenFourth === 1 ? that.form.isOpenFourth=false : that.form.isOpenFourth=true;
+            that.form.isOpenFifth === 1 ? that.form.isOpenFifth=false : that.form.isOpenFifth=true;
+            that.form.isOpenSecond === 1 ? that.form.isOpenSecond=false : that.form.isOpenSecond=true;
+            that.form.isOpenFirst === 1 ? that.form.isOpenFirst=false : that.form.isOpenFirst=true;
+          }else{
+            that.$message.info(that.res.data.message)
+          }
+        },function () {
+          that.$message.error("网络发生错误");
+        }
+      )
+    },
     methods: {
       onSubmit() {
        let that = this;
-       that.$http.post(that.Constants.REST_MERCHANT_SETPRICE,that.form,{elmulateJSON:true}).then(function(res){
+        that.form.isOpenThird === false ? that.form.isOpenThird=1 : that.form.isOpenThird=2;
+        that.form.isOpenFourth === false ? that.form.isOpenFourth=1 : that.form.isOpenFourth=2;
+        that.form.isOpenFifth === false ? that.form.isOpenFifth=1 : that.form.isOpenFifth=2;
+        that.form.isOpenSecond === false ? that.form.isOpenSecond=1 : that.form.isOpenSecond=2;
+        that.form.isOpenFirst === false ? that.form.isOpenFirst=1 : that.form.isOpenFirst=2;
+        that.$http.post(that.Constants().REST_MERCHANT_SETPRICE, that.form,{emulateJSON: true}).then(function (res) {
          if(res.data.result){
             that.$message.success("信息修改成功！");
          }else{
