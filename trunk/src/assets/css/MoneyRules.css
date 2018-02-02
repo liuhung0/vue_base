@@ -1,5 +1,5 @@
 .el-button--primary {
-  margin-left: 237%;
+  margin-left: 200%;
   background: #278BFF;
   box-shadow: 0 0 2px 0 rgba(0,0,0,0.50);
   border-radius: 2px;
@@ -100,12 +100,13 @@ label{
 .el-date-editor.el-input, .el-date-editor.el-input__inner{
   width: 80px;
   height: 20px;
-  background-color: none;
-  border:1px solid #fff;
 }
 .time{
   margin-top: 15%;
 }
 .el-checkbox__label{
   color: #fff !important;
+}
+.feiy{
+  margin-right: 10px;
 }

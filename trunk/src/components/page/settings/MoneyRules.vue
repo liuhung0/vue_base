@@ -28,14 +28,22 @@
                 <el-time-picker  style="float:left;" v-model="form.name"></el-time-picker>
                 <el-time-picker  style="float:left;" v-model="form.name"></el-time-picker>
               </el-form-item>
-              <el-form-item>
-                <el-checkbox-group style="float:left;" v-model="form.type">
-                  <el-checkbox  style="float:left;margin-left:-80px;" label="过夜费" name="type">过夜费<el-input style="width:20%;">
-                  </el-input>元</el-checkbox>
-                  <br><div style="clean:both;height:10px;Width:100%;">123</div>
-                  <el-checkbox style="float:left;margin-left:-80px;" label="每小时" name="type">每小时<el-input style="width:20%;">
-                  </el-input>元</el-checkbox>
-                </el-checkbox-group>
+              <el-form-item style="color: #fff;width: 70%">
+                <label class="feiy">过夜费</label>
+                  <el-input style="width:20%;"></el-input>元
+                  <br>
+                <div>
+                  <!--<label class="feiy">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;前</label>-->
+                  <!--<el-input style="width:20%;"></el-input>-->
+                  <label class="feiy">每小时</label>
+                   <el-input style="width:20%;"></el-input>元
+                </div>
+                <!--<div>-->
+                  <!--<label class="feiy">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后</label>-->
+                  <!--<el-input style="width:20%;"></el-input>-->
+                  <!--<label class="feiy">每小时</label>-->
+                  <!--<el-input style="width:20%;"></el-input>元-->
+                <!--</div>-->
               </el-form-item>
             </div>
             <div class="time">
@@ -47,8 +55,8 @@
                 </el-select>
               </el-form-item>
               <el-form-item label="最高">
-                <el-input  style="float:left;width:42%;"v-model="form.name"></el-input>
-                <label style="float:left;padding-left:20px">元</label>
+                <el-input  style="float:left;width:16%;"v-model="form.name"></el-input>
+                <label>元</label>
               </el-form-item>
               <el-form-item>
                 <el-button type="primary" @click="onSubmit">保存</el-button>
@@ -68,7 +76,7 @@
               </el-form-item>
               </div>
               <div style="display: flex">
-              <el-form-item label="包季费用">
+              <el-form-item label="包季费用" class="years">
                 <el-input v-model="form.quarterFee"></el-input>
               </el-form-item>
               <el-form-item label="优惠价格" class="years">
@@ -76,7 +84,7 @@
               </el-form-item>
               </div>
                 <div style="display: flex">
-              <el-form-item label="包月费用">
+              <el-form-item label="包月费用" class="years">
                 <el-input v-model="form.monthlyFee"></el-input>
               </el-form-item>
               <el-form-item label="优惠价格" class="years">
@@ -87,11 +95,21 @@
 
             <div class="yez">
               <h2>业主管理费用<el-switch  style="float:right;padding:10px 0;" v-model="form.delivery"></el-switch></h2>
-              <el-radio-group v-model="form.delivery" size="medium" style="width: 500px">
-                <el-checkbox  label="1" >月费用（一个月）</el-checkbox>
-                <el-checkbox  label="2" >季费用（三个月）</el-checkbox>
-                <el-checkbox  label="3" >年费用（十二个月）</el-checkbox>
-              </el-radio-group>
+              <el-form v-model="form.delivery" style="color: #fff">
+                <el-form-item >
+                  <label class="feiy">月费用（一个月）</label>
+                  <el-input style="width:30%;"></el-input>元
+                </el-form-item>
+                <el-form-item>
+                  <label class="feiy">季费用（三个月）</label>
+                  <el-input style="width:30%;"></el-input>元
+                </el-form-item>
+                <el-form-item>
+                  <label class="feiy">年费用（十二个月）</label>
+                  <el-input style="width:30%;"></el-input>元
+                </el-form-item>
+              </el-form>
+
             </div>
           </div>
       </div>
@@ -102,9 +120,14 @@
 <script>
 
   import ElCheckbox from "../../../../node_modules/element-ui/packages/checkbox/src/checkbox.vue";
+  import ElFormItem from "../../../../node_modules/element-ui/packages/form/src/form-item.vue";
+  import ElForm from "../../../../node_modules/element-ui/packages/form/src/form.vue";
 
   export default {
-    components: {ElCheckbox},
+    components: {
+      ElForm,
+      ElFormItem,
+      ElCheckbox},
     data() {
       return {
         form: {
