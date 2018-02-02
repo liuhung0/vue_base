@@ -11,18 +11,12 @@
         <el-form-item label="密码" prop="password">
           <el-input type="password" v-model="boss.password" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item  label="验证码"style="width:360px">
-          <el-row style="width: 100%">
-            <el-col :span="9" style="width: 30%;height:36px">
+        <el-form-item  label="验证码" prop="picLyanzhengma" style="width:360px">
               <el-input  type="text" placeholder="请输入验证码" class="yanzhengma_input" @blur="checkLpicma"
                          v-model="boss.picLyanzhengma" auto-complete="off"></el-input>
-            </el-col>
-            <el-col :span="9" style="padding-left: 65px;height:40px;">
-              <el-input type="button" id="code" @click.native="createCode" class="verification1"
-                        v-model="boss.checkCode"></el-input>
-            </el-col>
-          </el-row>
         </el-form-item>
+          <el-input type="button" id="code" @click.native="createCode" class="verification1"
+                    v-model="boss.checkCode" STYLE="margin-top:-60px;margin-left:260px; padding-bottom:40px;"></el-input>
       </el-form>
       <el-button @click="submitForm('bossForm')">登录</el-button>
     </div>
@@ -55,13 +49,19 @@
           callback();
         }
       };
-      var validatePic = (rule, value, callback) => {
+      let validateCode = (rule, value, callback) => {
         if (value === ''){
-          console.log(value)
-          this.checkLpicma();
+          console.log(value);
           callback(new Error('请输入验证码'));
         }else{
-          callback();
+          console.log(value)
+          console.log(this.boss.checkCode)
+          if(value!==this.boss.checkCode){
+            callback(new Error('验证码不符'));
+          }else{
+            callback();
+          }
+
         }
       };
       return {
@@ -83,8 +83,7 @@
             { min: 6, max: 20, message: '长度在 6 到 20 个字符', trigger: 'blur' }
           ],
           picLyanzhengma:[
-            { validator: validatePic, trigger: 'blur'},
-            { min: 4, max: 4, message: '请输入正确的验证码', trigger: 'blur'}
+            { validator: validateCode, trigger: 'blur'},
           ],
         }
       };
