@@ -16,7 +16,7 @@
     <div class="flex_item flex_item_10">
       <span><B>当前值班:</B>{{username}} </span>
       <router-link  to="" class="router-link-active">修改密码</router-link>
-      <!--<router-link id="index" @click.native="logout" to=""><span><img src="../../assets/image/zhuxiao3x.png" /></span></router-link>-->
+      <router-link id="index" @click.native="logout" to=""><span><img src="../../../assets/image/zhuxiao3x.png"/></span></router-link>
     </div>
     <!--<div class="flex_item flex_item_100_w" >-->
     <!--</div>-->
@@ -47,24 +47,24 @@
           this.$router.push('/main')
         }
       },
-//      mounted(){
-//        let uid = sessionStorage.getItem("LOGIN_PARKING_UID");
-//        if(uid == null){
-//          this.$message.error("您的登录信息已过期！");
-//          this.$router.push('/login')
-//        }
-//        let that = this;
-//        that.$http.post(that.Constants().VIP_PARKING_LIST, that.form,{emulateJSON: true}).then(function (res) {
-//          if(res.data.result){
-//            that.parkingList.splice(0, that.parkingList.length, ...res.data.data);
-//            that.pid =res.data.data[0].id;
-//          }else {
-//            that.$message.error(that.res.data.message);
-//          }
-//        },function (res) {
-//          that.$message.error(res);
-//        });
-//      },
+      mounted(){
+        let uid = sessionStorage.getItem("LOGIN_PARKING_UID");
+        if(uid == null){
+          this.$message.error("您的登录信息已过期！");
+          this.$router.push('/login')
+        }
+        let that = this;
+        that.$http.post(that.Constants().VIP_PARKING_LIST, that.form,{emulateJSON: true}).then(function (res) {
+          if(res.data.result){
+            that.parkingList.splice(0, that.parkingList.length, ...res.data.data);
+            that.pid =res.data.data[0].id;
+          }else {
+            that.$message.error(that.res.data.message);
+          }
+        },function (res) {
+          that.$message.error(res);
+        });
+      },
       methods:{
         logout(){
           let that = this;

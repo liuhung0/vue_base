@@ -21,6 +21,9 @@ import VueSweetAlert from 'vue-sweetalert'
 import VueAMap from 'vue-amap';
 import VueAreaLinkage from 'vue-area-linkage';
 import echarts from 'echarts'
+import $ from 'jquery';
+window.jQuery = $;
+window.$ = $;
 Vue.prototype.$echarts = echarts
 Vue.use(VueAMap);
 VueAMap.initAMapApiLoader({

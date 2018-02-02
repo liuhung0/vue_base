@@ -65,28 +65,10 @@
               }
             ]
           },
-         /* {
-            title:"设备管理",
-            icon:"el-icon-info",
-            children:[
-              {
-                title:"PDA管理",
-                path:"/main/device/pda"
-              },
-              {
-                title: "设备管理",
-                path: "/main/device/other"
-              }
-            ]
-          },*/
           {
             title:"基本设置",
             icon:"el-icon-setting",
             children:[
-             /* {
-                title:"基础设置",
-                path:"/main/setting/setting"
-              },*/
               {
                 title:"收费规则",
                 path:"/main/setting/moneyRoles"
@@ -116,6 +98,7 @@
       }
     },
     methods: {
+
       handleOpen(key, keyPath) {
         console.log(key, keyPath);
       },
