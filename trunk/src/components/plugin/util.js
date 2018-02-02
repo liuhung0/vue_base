@@ -54,7 +54,7 @@ export default {
         //企业信息和企业信息新增
         REST_MERCHANT_ADD: BASE_URL + PROXY_URL + "/parkingManager/v1/OwnerAndParking/addMerchant",
         //收费引擎接口
-        REST_MERCHANT_SETPRICE: BASE_URL + PROXY_URL + "/parkingManager/v1/setParkingPrice/andParkingPrice",
+        REST_MERCHANT_SETPRICE: BASE_URL + PROXY_URL + "/parkingManager/v1/setParkingPrice/addParkingPrice",
         //vip列表
         VIP_LIST: BASE_URL + PROXY_URL + "/parkingManager/v1/vip/getTenant",
         //Vip添加
