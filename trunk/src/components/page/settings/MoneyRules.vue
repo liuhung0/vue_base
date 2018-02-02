@@ -67,17 +67,31 @@
           <div class="right">
             <div class="yue">
               <h2>包年包月用户<el-switch  style="float:right;padding:10px 0;" v-model="form.isOpenFirst"></el-switch></h2>
-              <el-form-item label="包年费用">
-                <el-input v-model="form.annualFee"></el-input>
-              </el-form-item>
-              <el-form-item label="包季费用" class="years">
-                <el-input v-model="form.quarterFee"></el-input>
-              </el-form-item>
-              <el-form-item label="包月费用" class="years">
-                <el-input v-model="form.monthlyFee"></el-input>
-              </el-form-item>
+              <div style="display: flex">
+                <el-form-item label="包年费用" class="years">
+                  <el-input v-model="form.annualFee"></el-input>
+                </el-form-item>
+                <el-form-item label="优惠价格" class="years">
+                  <el-input v-model="form.annualFee"></el-input>
+                </el-form-item>
+              </div>
+              <div style="display: flex">
+                <el-form-item label="包季费用" class="years">
+                  <el-input v-model="form.quarterFee"></el-input>
+                </el-form-item>
+                <el-form-item label="优惠价格" class="years">
+                  <el-input v-model="form.annualFee"></el-input>
+                </el-form-item>
+              </div>
+              <div style="display: flex">
+                <el-form-item label="包月费用" class="years">
+                  <el-input v-model="form.monthlyFee"></el-input>
+                </el-form-item>
+                <el-form-item label="优惠价格" class="years">
+                  <el-input v-model="form.annualFee"></el-input>
+                </el-form-item>
+              </div>
             </div>
-
             <div class="yez">
               <h2>业主管理费用<el-switch  style="float:right;padding:10px 0;" v-model="form.isOpenSecond"></el-switch></h2>
               <el-form v-model="form.delivery" style="color: #fff">
