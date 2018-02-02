@@ -37,8 +37,7 @@
     display: flex;
     flex:1 1 100%;
     height:95vh;
-    background: #2F3B4C
-  ;
+    background: #2F3B4C;
   }
   .HolyGrail-content {
     flex:1;

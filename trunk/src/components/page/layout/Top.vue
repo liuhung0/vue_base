@@ -16,7 +16,7 @@
     <div class="flex_item flex_item_10">
       <span><B>当前值班:</B>{{username}} </span>
       <router-link  to="" class="router-link-active">修改密码</router-link>
-      <router-link id="index" @click.native="logout" to=""><span><img src="../../../assets/image/zhuxiao3x.png"/></span></router-link>
+      <router-link id="index" @click.native="logout" to=""><img src="../../../assets/image/zhuxiao.png" class="zhuxiao"/></router-link>
     </div>
     <!--<div class="flex_item flex_item_100_w" >-->
     <!--</div>-->
@@ -131,7 +131,8 @@
     font-size: 16px;
     color: #FFFFFF;;
     display: inline-block;
-    line-height: 72px;
+    /*line-height: 72px;*/
+    margin-right: 5px;
   }
   .flex_item_4{
     flex:0 0 4%;
@@ -153,6 +154,9 @@
     flex:1 1 100%;
     height:2px;
     background: #fff;
+  }
+  .zhuxiao{
+    line-height: 10px;
   }
 
 </style>
