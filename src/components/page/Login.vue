@@ -11,9 +11,17 @@
         <el-form-item label="密码" prop="password">
           <el-input type="password" v-model="boss.password" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item style="border:none">
-          <input type="text" class="yzm" />
-          <button class="hq">获取验证码</button>
+        <el-form-item  label="验证码"style="width:360px">
+          <el-row style="width: 100%">
+            <el-col :span="9" style="width: 30%;height:36px">
+              <el-input  type="text" placeholder="请输入验证码" class="yanzhengma_input" @blur="checkLpicma"
+                         v-model="boss.picLyanzhengma" auto-complete="off"></el-input>
+            </el-col>
+            <el-col :span="9" style="padding-left: 65px;height:40px;">
+              <el-input type="button" id="code" @click.native="createCode" class="verification1"
+                        v-model="boss.checkCode"></el-input>
+            </el-col>
+          </el-row>
         </el-form-item>
       </el-form>
       <el-button @click="submitForm('bossForm')">登录</el-button>
@@ -22,6 +30,7 @@
 
 </template>
 <script type="text/ecmascript-6">
+  var code; //在全局定义验证码
   import ElButton from "../../../node_modules/element-ui/packages/button/src/button.vue";
   import ElFormItem from "../../../node_modules/element-ui/packages/form/src/form-item.vue";
 
@@ -46,8 +55,21 @@
           callback();
         }
       };
+      var validatePic = (rule, value, callback) => {
+        if (value === ''){
+          console.log(value)
+          this.checkLpicma();
+          callback(new Error('请输入验证码'));
+        }else{
+          callback();
+        }
+      };
       return {
+        picLyanzhengma: '',
+        checkCode: '',
         boss: {
+          checkCode: '',
+          picLyanzhengma:'',
           username: '',
           password: '',
         },
@@ -60,10 +82,46 @@
             { validator: validatePass, trigger: 'blur' },
             { min: 6, max: 20, message: '长度在 6 到 20 个字符', trigger: 'blur' }
           ],
+          picLyanzhengma:[
+            { validator: validatePic, trigger: 'blur'},
+            { min: 4, max: 4, message: '请输入正确的验证码', trigger: 'blur'}
+          ],
         }
       };
     },
+    mounted(){
+      this.createCode();
+      this.checkLpicma();
+    },
     methods: {
+      // 图片验证码
+      createCode: function() {
+        code = "";
+        var codeLength = 4;//验证码的长度
+        var random = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+          'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');//随机数
+        for (var i = 0; i < codeLength; i++) {//循环操作
+          var index = Math.floor(Math.random() * 36);//取得随机数的索引（0~35）
+          code += random[index];//根据索引取得随机数加到code上
+        }
+        this.boss.checkCode = code;//把code值赋给验证码
+      },
+      // 失焦验证图和密码
+      checkLpicma: function() {
+        this.boss.picLyanzhengma.toUpperCase();//取得输入的验证码并转化为大写
+        if (this.boss.picLyanzhengma == '') {
+          $(".login_content1 span:eq(2)").removeClass("disappear");
+        } else if (this.boss.picLyanzhengma.toUpperCase() != this.boss.checkCode) { //若输入的验证码与产生的验证码不一致时
+          $(".login_content1 span:eq(2)").removeClass("disappear");
+          this.createCode();//刷新验证码
+          this.boss.picLyanzhengma = '';
+        } else { //输入正确时
+          $(".login_content1 span:eq(2)").addClass("disappear");
+          return true;
+
+        }
+
+      },
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
@@ -210,4 +268,32 @@
     color: #FFFFFF;
   }
 
+
+  body{
+    margin:0;
+    padding:0;
+  }
+  .el-form-item{
+    width: 360px;
+  }
+  .el-col{
+    border:none;
+  }
+  .yanzhengma_input {
+    width: 170px;
+  }
+  .verification1 {
+    vertical-align: middle;
+    transform: translate(0px, 0);
+    width: 102px;
+  }
+  #code {
+    font-size: 18px;
+    letter-spacing: 3px;
+    color: #053d84;
+    background: #f2f2f5;
+  }
+  .disappear {
+    visibility: hidden;
+  }
 </style>
