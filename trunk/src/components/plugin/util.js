@@ -28,7 +28,7 @@ export default {
         LOGIN_COULD_TYPE = "LOGIN_COULD_TYPE";
       //dev
 
-      let BASE_URL = "http://192.168.0.11:9109";
+      let BASE_URL = "http://192.168.0.9:9109";
       let PROXY_URL = "";
       // let BASE_URL ="http://cloud.chinahtiot.com",PROXY_URL="/api";
       return {
@@ -116,12 +116,21 @@ export default {
         REST_SUB_USER_LIST:BASE_URL + PROXY_URL  + "/parkingManager/v1/work/queryInfoList",
         //根据id获取单个账户信息
         REST_SUB_USER_INFO: BASE_URL + PROXY_URL + "/parkingManager/v1/work/info",
+
         //根据id删除账号
         REST_SUB_USER_DELETE_INFO: BASE_URL + PROXY_URL + "/parkingManager/v1/work/delete",
         //查看角色列表
         REST_SUB_USER_ROLE_INFO:BASE_URL + PROXY_URL + "/parkingManager/v1/work/queryRuleInfo",
-       }
 
+        HOUSE_OWNER_LIST:BASE_URL + PROXY_URL + "/parkingManager/v1/houseOwner/houseOwnerList",
+
+
+        HOUSE_OWNER_ADD:BASE_URL + PROXY_URL + "/parkingManager/v1/houseOwner/addOwner",
+
+        HOUSE_OWNER_ID:BASE_URL + PROXY_URL + "/parkingManager/v1/houseOwner/houseById",
+
+
+       }
     }
   }
 
