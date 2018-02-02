@@ -1,16 +1,7 @@
 <template>
   <div class="on">
     <div class="outOrIn">
-        <div>
-            <span class="dk"><img src="../../assets/image/kaoqing.png" class="shangban"/>上班打卡</span>
-            <span class="dk"><img src="../../assets/image/kaoqinglan.png" class="shangban2"/>已打卡</span>
-        </div>
-      <el-checkbox-group v-model="checkList">
-        <el-checkbox label="东入口"></el-checkbox>
-        <el-checkbox label="东出口"></el-checkbox>
-        <el-checkbox label="西入口"></el-checkbox>
-        <el-checkbox label="西出口" ></el-checkbox>
-      </el-checkbox-group>
+      <span class="dk"><img src="../../assets/image/kaoqing.png" class="shangban"/>上班打卡/下班打卡</span>
       <el-checkbox  v-for="(door,index) of doorList" :checked="door.checked" :key="index" @change="toggle(index)">{{door.name}}</el-checkbox>
     </div>
     <div  v-for="(door,index) of doorList"   class="contain">

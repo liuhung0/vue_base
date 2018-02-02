@@ -15,7 +15,7 @@
             </el-form-item>
             <el-form-item label="前">
               <el-input style="float:left;width:10%;" v-model="form.name"></el-input>
-              <label style="float:left;width:20%;">小时每小时</label>
+              <label style="float:left;">小时每小时</label>
               <el-input style="float:left;width:10%;" v-model="form.name"></el-input>
               <label style="float:left;width:10%;">元</label>
               <label style="float:left;width:20%;">后每小时</label>
@@ -59,15 +59,30 @@
           <div class="right">
             <div class="yue">
               <h2>包年包月用户<el-switch  style="float:right;padding:10px 0;" v-model="form.delivery"></el-switch></h2>
-              <el-form-item label="包年费用">
+              <div style="display: flex">
+              <el-form-item label="包年费用" class="years">
                 <el-input v-model="form.annualFee"></el-input>
               </el-form-item>
+              <el-form-item label="优惠价格" class="years">
+                <el-input v-model="form.annualFee"></el-input>
+              </el-form-item>
+              </div>
+              <div style="display: flex">
               <el-form-item label="包季费用">
                 <el-input v-model="form.quarterFee"></el-input>
               </el-form-item>
+              <el-form-item label="优惠价格" class="years">
+                <el-input v-model="form.annualFee"></el-input>
+              </el-form-item>
+              </div>
+                <div style="display: flex">
               <el-form-item label="包月费用">
                 <el-input v-model="form.monthlyFee"></el-input>
               </el-form-item>
+              <el-form-item label="优惠价格" class="years">
+                <el-input v-model="form.annualFee"></el-input>
+              </el-form-item>
+            </div>
             </div>
 
             <div class="yez">

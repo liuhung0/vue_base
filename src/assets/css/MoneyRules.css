@@ -32,6 +32,7 @@
   letter-spacing: 1.25px;
 }
 .el-form h3{
+  color: #fff;
   text-align:left;
   padding:10px 20px;
   border-bottom: 1px solid #314158;
@@ -40,6 +41,7 @@
   text-align: left;
 }
 .el-form-item__label{
+  width: 118px !important;
   font-size: 16px;
   color: #FFFFFF
 }
@@ -56,5 +58,54 @@
   text-align: left;
   margin-left: 5%;
 }
-
-
+.minner{
+  margin-left: 5px;
+}
+label{
+  color: #fff;
+  margin-right:0px;
+}
+.el-input{
+  margin-right: 5px;
+  width: 40%
+}
+.el-form-item__content{
+  margin-left: 20% !important;
+}
+.years{
+  width: 50%;
+}
+.el-form-item__label{
+  width: 150px !important;
+}
+.night{
+  margin-top: 10px;
+}
+.el-input__icon {
+  display: none;
+}
+.el-input__inner{
+  background-color: none;
+  height: 20px;
+}
+.el-date-editor.el-input{
+  line-height: 40px;
+}
+.el-input--prefix .el-input__inner {
+  padding-left: 0px;
+}
+.el-input--suffix .el-input__inner{
+  padding-right: 0px;
+}
+.el-date-editor.el-input, .el-date-editor.el-input__inner{
+  width: 80px;
+  height: 20px;
+  background-color: none;
+  border:1px solid #fff;
+}
+.time{
+  margin-top: 15%;
+}
+.el-checkbox__label{
+  color: #fff !important;
+}
