@@ -4,13 +4,13 @@
     <el-form ref="form" :model="form" label-width="200px" class="settings">
       <div  style="display: flex">
           <div class="left">
-            <h2>临时停车收费规则<span style="font-size:20px">(时段计费)</span>
+            <h2>临时停车收费规则(时段计费)
               <el-switch  style="float:right;padding:10px 0;width:10%;" v-model="form.delivery"></el-switch>
             </h2>
+            <p class="sd">时段计费</p>
             <el-form-item label="临停免费时间">
-
               <el-input  style="float:left;width:30%;" v-model="form.name"></el-input>
-              <span style="float:left;width:80px;">分钟</span>
+              <span class="minner">分钟</span>
 
             </el-form-item>
             <el-form-item label="前">
@@ -118,44 +118,6 @@
   }
 </script>
 <style scoped>
-  /*@import "../../assets/css/MoneyRules.css";*/
-  .box{
-    padding:20px;
-  }
-  .box h1{
-    text-align: left;
-    font-size: 16px;
-    color: #FFFFFF;
-  }
-  .settings{
-    max-width: 100%;
-    margin:2%;
-    background: #3D4E66;
-    box-shadow: 0 0 8px 0 rgba(5,5,5,0.50);
-    padding:10px 20px;
-    border-radius: 10px;
-  }
-  .el-form h2,.el-form h3{
-    text-align:left;
-    padding:10px 20px;
-    border-bottom: 1px dashed #ccc;
-  }
-  .left{
-    width: 45%;
-  }
-  .right{
-    width: 45%;
-    margin-left: 9%;
-  }
+  @import "../../../assets/css/MoneyRules.css";
 </style>
-<style>
-  .el-button--primary {
-    margin-left: 237%;
-    background: #278BFF;
-    box-shadow: 0 0 2px 0 rgba(0,0,0,0.50);
-    border-radius: 2px;
-    font-size: 13px;
-    color: #FFFFFF;
-    width: 100px;
-  }
-</style>
+
