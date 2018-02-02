@@ -3,29 +3,26 @@
     <h2>{{id?"编辑":"新增"}}业主</h2>
     <el-form ref="form" :rules="form" :model="form" label-width="80px">
 
-      <!--<el-form-item label="小区名称" prop="username">
-        <el-input v-model="form.username"></el-input>
-      </el-form-item>-->
-      <el-form-item label="所属区域" prop="number">
-        <el-input  v-model="form.district"></el-input>
+      <el-form-item label="所属区域" prop="username">
+        <el-input v-model="form.district"></el-input>
       </el-form-item>
-      <el-form-item label="楼号(栋)" prop="phone">
-        <el-input v-model="form.tower"></el-input>
+      <el-form-item label="楼号(栋)" prop="number">
+        <el-input  v-model="form.tower"></el-input>
       </el-form-item>
-      <el-form-item label="单元" prop="name">
-        <el-input  v-model="form.element"></el-input>
+      <el-form-item label="单元" prop="phone">
+        <el-input v-model="form.element"></el-input>
       </el-form-item>
-      <el-form-item label="房间号" prop="identityCard">
+      <el-form-item label="房间号" prop="name">
         <el-input  v-model="form.room"></el-input>
       </el-form-item>
-      <el-form-item label="姓名" prop="gender">
-        <el-input  v-model="form.ownerName"></el-input>
+      <el-form-item label="姓名" prop="identityCard">
+        <el-input  v-model="form.identityCard"></el-input>
       </el-form-item>
       <el-form-item label="电话" prop="gender">
         <el-input  v-model="form.tel"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="setInfo">保 &nbsp;&nbsp;&nbsp;&nbsp;   存</el-button>
+        <el-button type="primary" @click="setInfo">保 &nbsp;&nbsp;&nbsp;&nbsp;存</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -48,15 +45,15 @@
         form: {
           uId: sessionStorage.getItem("LOGIN_PARKING_UID"),
           ids:'',
-          pId:67,
+          pId:'',
+          rId:'',
           id:this.id||-1,
           district:'',
           tower:'',
           element:'',
           room: '',
-          ownerName:'',
+          identityCard:'',
           tel:'',
-
         },
         roleList:[],
         pidList:[],
@@ -68,22 +65,18 @@
       if(that.form.id&&that.form.id>0){
         that.getInfo();
       }
-      that.$http.post(that.Constants().REST_SUB_USER_INFO,that.tower,{emulateJSON: true}).then(function (res) {
-        if (res.data.result) {
-          that.pidList.splice(0, that.pidList.length, ...res.data.data);
-        }
-      })
     },
     methods: {
       getInfo(){
         let that = this;
-        that.$http.post(that.Constants().REST_SUB_USER_INFO,{id:that.form.id},{emulateJSON: true}).then(function(res){
+        that.$http.post(that.Constants().HOUSE_OWNER_ID,{id:that.form.id},{emulateJSON: true}).then(function(res){
           if(res.data.result){
             console.log(res.data.data)
             that.form = res.data.data;
             that.form.status = res.data.data.status.toString();
             that.form.gender = res.data.data.gender.toString();
             that.form.pId = res.data.data.parkingId;
+            that.form.rId = res.data.data.role;
             console.log("账号信息获取成功!");
           }
           else{
@@ -96,7 +89,7 @@
       setInfo(){
         let that = this;
         that.form.parkingId = that.form.pId;
-        that.$http.post(that.Constants().HOUSE_OWNER_ADD, that.form,{emulateJSON: true}).then(function (res) {
+        that.$http.post(that.Constants().REST_SUB_USER_SAVE, that.form,{emulateJSON: true}).then(function (res) {
           if(res.data.result){
             that.$message.success("保存子账号信息成功！");
             that.$emit("addOK");
