@@ -72,7 +72,7 @@
                   <el-input v-model="form.annualFee"></el-input>
                 </el-form-item>
                 <el-form-item label="优惠价格" class="years">
-                  <el-input v-model="form.annualFee"></el-input>
+                  <el-input v-model="form.annualManagerDiscountFee"></el-input>
                 </el-form-item>
               </div>
               <div style="display: flex">
@@ -80,7 +80,7 @@
                   <el-input v-model="form.quarterFee"></el-input>
                 </el-form-item>
                 <el-form-item label="优惠价格" class="years">
-                  <el-input v-model="form.annualFee"></el-input>
+                  <el-input v-model="form.quarterManagerDiscountFee"></el-input>
                 </el-form-item>
               </div>
               <div style="display: flex">
@@ -88,7 +88,7 @@
                   <el-input v-model="form.monthlyFee"></el-input>
                 </el-form-item>
                 <el-form-item label="优惠价格" class="years">
-                  <el-input v-model="form.annualFee"></el-input>
+                  <el-input v-model="form.monthlyManagerDiscountFee"></el-input>
                 </el-form-item>
               </div>
             </div>
@@ -130,6 +130,12 @@
     data() {
       return {
         form: {
+          //年优惠价
+          annualManagerDiscountFee:'',
+          //季优惠价
+          quarterManagerDiscountFee:'',
+          //月度优惠价
+          monthlyManagerDiscountFee:'',
           //是否开启临时停车计费规则(1,关闭  2 开启)
           isOpenThird:'',
           //是否开启夜间计费(1,关闭  2，开启)
@@ -183,7 +189,7 @@
        let that = this;
        that.$http.post(that.Constants.REST_MERCHANT_SETPRICE,that.form,{elmulateJSON:true}).then(function(res){
          if(res.data.result){
-
+            that.$message.success("信息修改成功！");
          }else{
            that.$message.info(that.res.data.message)
          }
@@ -196,44 +202,5 @@
   }
 </script>
 <style scoped>
-  /*@import "../../assets/css/MoneyRules.css";*/
-  .box{
-    padding:20px;
-  }
-  .box h1{
-    text-align: left;
-    font-size: 16px;
-    color: #FFFFFF;
-  }
-  .settings{
-    max-width: 100%;
-    margin:2%;
-    background: #3D4E66;
-    box-shadow: 0 0 8px 0 rgba(5,5,5,0.50);
-    padding:10px 20px;
-    border-radius: 10px;
-  }
-  .el-form h2,.el-form h3{
-    text-align:left;
-    padding:10px 20px;
-    border-bottom: 1px dashed #ccc;
-  }
-  .left{
-    width: 45%;
-  }
-  .right{
-    width: 45%;
-    margin-left: 9%;
-  }
-</style>
-<style>
-  .el-button--primary {
-    margin-left: 237%;
-    background: #278BFF;
-    box-shadow: 0 0 2px 0 rgba(0,0,0,0.50);
-    border-radius: 2px;
-    font-size: 13px;
-    color: #FFFFFF;
-    width: 100px;
-  }
+  @import "../../../assets/css/MoneyRules.css";
 </style>
