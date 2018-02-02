@@ -1,2 +1,60 @@
+.el-button--primary {
+  margin-left: 237%;
+  background: #278BFF;
+  box-shadow: 0 0 2px 0 rgba(0,0,0,0.50);
+  border-radius: 2px;
+  font-size: 13px;
+  color: #FFFFFF;
+  width: 100px;
+}
+.box{
+  padding:20px;
+}
+.box h1{
+  text-align: left;
+  font-size: 16px;
+  color: #FFFFFF;
+}
+.settings{
+  max-width: 100%;
+  margin:2%;
+  background: #3D4E66;
+  box-shadow: 0 0 8px 0 rgba(5,5,5,0.50);
+  padding:10px 20px;
+  border-radius: 10px;
+}
+.el-form h2{
+  text-align:left;
+  padding:10px 20px;
+  border-bottom: 1px solid #314158;
+  font-size: 20px;
+  color: #FFFFFF;
+  letter-spacing: 1.25px;
+}
+.el-form h3{
+  text-align:left;
+  padding:10px 20px;
+  border-bottom: 1px solid #314158;
+}
+.el-form-item{
+  text-align: left;
+}
+.el-form-item__label{
+  font-size: 16px;
+  color: #FFFFFF
+}
+.left{
+  width: 45%;
+}
+.right{
+  width: 45%;
+  margin-left: 9%;
+}
+.sd{
+  font-size: 16px;
+  color: #FFFFFF;
+  text-align: left;
+  margin-left: 5%;
+}
 
 
