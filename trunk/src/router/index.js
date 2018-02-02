@@ -27,6 +27,8 @@ import VipList from '@/components/page/vip/VipList'
 import Management_Expense from '@/components/page/vip/Management_Expense'
 import VipAdd from '@/components/page/vip/VipAdd'
 import VipEdit from '@/components/page/vip/VipEdit'
+import HouseOwnerList from '@/components/page/vip/HouseOwnerList'
+import HouseOwnerAdd from '@/components/page/vip/HouseOwnerAdd'
 import FinancePic from '@/components/page/log/FinancePic'
 import Gate from '@/components/parts/Gate'
 import echarts from 'echarts'
@@ -149,9 +151,19 @@ export default new Router({
           component: VipEdit,
         },
         {
+          path: '/page/vip/HouseOwnerList',
+          name: 'houseownerlist',
+          component: HouseOwnerList,
+        },
+        {
           path: '/page/log/FinancePic',
           name:'financepic',
           component:FinancePic
+        },
+        {
+          path: '/page/vip/HouseOwnerAdd',
+          name:'houseOwnerAdd',
+          component:HouseOwnerAdd
         },
       ]
     },

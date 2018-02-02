@@ -28,8 +28,8 @@ export default {
         LOGIN_COULD_TYPE = "LOGIN_COULD_TYPE";
       //dev
 
-      let BASE_URL = "http://localhost:9000";
-      let PROXY_URL = "/api";
+      let BASE_URL = "http://192.168.0.11:9109";
+      let PROXY_URL = "";
       // let BASE_URL ="http://cloud.chinahtiot.com",PROXY_URL="/api";
       return {
         LOGIN_COULD_TYPE,
@@ -76,8 +76,6 @@ export default {
 
         //停车场出入记录
         PARKING_EXIT:BASE_URL + PROXY_URL + "/parkingManager/v1/record/recordList",
-
-        ORDER_LIST:BASE_URL + PROXY_URL + "/parkingManager/v1/order/orderList",
         //导出停车场excel表格
         EXCEL:BASE_URL + PROXY_URL + "/parkingManager/v1/record/download/",
         //导出财务报表excel表格

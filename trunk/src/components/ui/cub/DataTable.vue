@@ -279,6 +279,7 @@
         queryData.user_id = sessionStorage.getItem("LOGIN_PARKING_UID");
         queryData.token = sessionStorage.getItem("LOGIN_PARKING_TOKEN");
         queryData.username = sessionStorage.getItem("LOGIN_PARKING_USENAME");
+        queryData.pId = 67;
         if(that.config.serverurl){
           that.$http.post(that.config.serverurl, queryData, {emulateJSON: true})
             .then(function (res) {

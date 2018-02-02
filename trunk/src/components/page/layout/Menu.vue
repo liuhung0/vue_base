@@ -102,9 +102,14 @@
                 path:"/page/vip/VipList"
               },
               {
+                title:"业主管理",
+                path:"/page/vip/HouseOwnerList"
+              },
+              {
                 title:"管理费列表",
                 path:"/page/vip/ManageList"
-              }
+              },
+
             ]
           }
         ]
