@@ -15,16 +15,13 @@
   </div>
 </template>
 <script>
-  import DataTable from '@/components/ui/cub/DataTable2'
+  import DataTable from '@/components/ui/cub/DataTable3'
   export default {
     components: {
       DataTable},
     data() {
       let that = this;
       return {
-        reqData: {
-          user_id:sessionStorage.getItem("LOGIN_PARKING_UID"),
-        },
         config: {
           draw: 1,
           j:2,
