@@ -32,10 +32,13 @@
             </el-form-item>
           </el-form>
         </div>
-        <div class="item"><b class="label">进场时间:</b><span>{{new Date(record.dateline*1000).Format("yyyy-MM-dd hh:mm:ss")}}</span></div>
-        <div class="item"><b class="label">出场时间:</b><span>{{record.car_number}}</span></div>
-        <div class="item"><b class="label">停泊类型:</b><span>{{record.car_nuber}}</span></div>
-        <div class="item"><b class="label">收费金额:</b><span>{{record.car_nummber}}</span></div>
+        <div class="item item2"><b class="label">进场时间:</b><span>{{new Date(record.dateline*1000).Format("yyyy-MM-dd hh:mm:ss")}}</span></div>
+        <div class="item item2"><b class="label">出场时间:</b><span>{{record.car_number}}</span></div>
+        <div class="item item2"><b class="label">停泊类型:</b><span>{{record.car_nuber}}</span></div>
+        <div class="item item2"><b class="label">收费金额:</b><span>{{record.car_nummber}}</span></div>
+        <div class="item item2"><b class="label">应收金额:</b><span>{{record.cope_with}}</span></div>
+        <div class="item item2"><b class="label">实收金额:</b><span>{{record.real_income}}</span></div>
+        <div class="item item2"><b class="label">支付方式:</b><span>{{record.payment}}</span></div>
       </div>
         <el-button @click="GateOut">收费开闸</el-button>
         <el-button @click="FreeOut">免费开闸</el-button>

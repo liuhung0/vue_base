@@ -120,15 +120,14 @@
   .el-menu-item{
       background:  #1D242E;
     }
-  .el-menu-item :focus, .el-menu-item:hover{
-    background: #22404e;
+  .el-menu-item:focus, .el-menu-item:hover{
+    background: #203A59;
+    box-shadow: 0 0 6px 0 #588FFF;
+    border-radius: 2px;
   }
- a{
-   font-size: 16px;
-   text-color: #A5A5A5;
- }
-  .router-link-active{
 
+  .router-link-active{
+    color: #FFFFFF
   }
 
   .el-menu{
@@ -137,7 +136,7 @@
   .el-menu-item-group__title{
     padding: 0;
   }
-  .router-link{
+  .router-link > a{
     color: #fff;
   }
   .el-submenu__title:hover {

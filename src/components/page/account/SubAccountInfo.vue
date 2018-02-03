@@ -1,9 +1,9 @@
 <template>
   <div class="main">
     <h2>{{id?"编辑":"新增"}}账号</h2>
-    <el-form ref="form" :rules="form" :model="form" label-width="80px">
+    <el-form ref="form" :rules="form" :model="form" label-width="100px" class="addAccount">
       <el-form-item label="隶属停车场" prop="name">
-        <el-select v-model="form.pId" filterable placeholder="请选择停车场" style="width:300px;margin-left: -55px">
+        <el-select v-model="form.pId" filterable placeholder="请选择停车场"  class="selec">
           <el-option
             v-for="item in pidList"
             :key="item.pId"
@@ -28,15 +28,13 @@
         <el-input  v-model="form.identityCard"></el-input>
       </el-form-item>
       <el-form-item label="性别" prop="gender">
-        <el-radio-group v-model="form.gender" size="medium" style="width: 400px">
+        <el-radio-group v-model="form.gender" size="medium" class="radio">
           <el-radio  label="1" >男</el-radio>
           <el-radio  label="2" >女</el-radio>
         </el-radio-group>
       </el-form-item>
-
-
       <el-form-item label="角色名称" prop="name">
-        <el-select v-model="form.rId" filterable placeholder="请选择角色" style="width:300px;margin-left: -55px">
+        <el-select v-model="form.rId" filterable placeholder="请选择角色" class="selec">
           <el-option
             v-for="item in roleList"
             :key="item.rId"
@@ -47,7 +45,7 @@
       </el-form-item>
 
       <el-form-item label="账号状态" prop="status">
-        <el-radio-group v-model="form.status" size="medium" style="width: 400px">
+        <el-radio-group v-model="form.status" size="medium" class="radio2">
           <el-radio  label="1" >启用</el-radio>
           <el-radio  label="2" >禁用</el-radio>
         </el-radio-group>
@@ -55,9 +53,7 @@
       <el-form-item label="描述" prop="mark">
         <el-input type="textarea" v-model="form.mark"></el-input>
       </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="setInfo">保 &nbsp;&nbsp;&nbsp;&nbsp;   存</el-button>
-      </el-form-item>
+        <el-button type="primary" @click="setInfo">保 &nbsp;&nbsp;存</el-button>
     </el-form>
   </div>
 
@@ -161,18 +157,34 @@
 <style scoped>
   .main{
     padding:20px 60px;
-    background:#fff;
-    border-radius: 10px;
+    background: #3D4E66;
+    border-radius: 4px;
   }
   .main h2{
     color: #fff;
     font-weight: 300;
     padding-left:20px;
     border-left:4px solid #49a9ff;
+    text-align: left;
   }
   .el-transfer {
     font-size: 14px;
     float: left;
     text-align: left;
+  }
+</style>
+<style>
+  .addAccount .el-form-item__label{
+    color:#fff;
+  }
+  .addAccount .selec{
+    width:300px;
+    margin-left: -194px;
+  }
+  .addAccount .radio{
+    margin-left: -364px;
+  }
+  .addAccount .radio2{
+    margin-left: -340px;
   }
 </style>

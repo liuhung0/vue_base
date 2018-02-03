@@ -82,8 +82,10 @@
     position: fixed;
     top: 36px;
     left:230px;
+    height: 72px;
     z-index:300;
-    background:#666666;
+    background: #1D242E;
+    box-shadow: 0 2px 6px 0 rgba(46,46,46,0.50);
     width:100%;
 
   }
