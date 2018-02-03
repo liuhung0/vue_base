@@ -134,9 +134,10 @@
                   sessionStorage.setItem("LOGIN_PARKING_PID",that.resData.data.pId);
                 }
                 //pid  键名为：sessionStorage.getItem("LOGIN_PARKING_PID")
-
                 sessionStorage.setItem("LOGIN_PARKING_USENAME",that.boss.username);
-                sessionStorage.setItem("LOGIN_PARKING_SUBID", that.resData.data.subId);
+                if(that.resData.data.type == 20){
+                   sessionStorage.setItem("LOGIN_PARKING_SUBID", that.resData.data.subId);
+                }
                 sessionStorage.setItem("LOGIN_PARKING_UID", that.resData.data.uid);
                 sessionStorage.setItem("LOGIN_PARKING_TOKEN", that.resData.data.token);
                 sessionStorage.setItem("LOGIN_PARKING_TYPE", that.resData.data.type);

@@ -2,17 +2,17 @@
   <div class="main" style="width:500px;margin-left:450px;margin-top: 150px">
     <h2>修改账号密码</h2>
     <el-form ref="form" :rules="form" :model="form" label-width="100px" class="addAccount">
-      <el-form-item label="用户名" prop="username">
-        <el-input v-model="form.username"></el-input>
+      <el-form-item label="用户名" prop="username" >
+        <el-input v-model="form.username" :disabled="true"></el-input>
       </el-form-item>
       <el-form-item label="原密码" prop="password">
-        <el-input v-model="form.password"></el-input>
+        <el-input type="password" v-model="form.password"></el-input>
       </el-form-item>
       <el-form-item label="新密码" prop="passwordA">
-        <el-input v-model="form.passwordA"></el-input>
+        <el-input type="password" v-model="form.passwordA"></el-input>
       </el-form-item>
       <el-form-item label="确认密码" prop="newPassword">
-        <el-input v-model="form.newPassword"></el-input>
+        <el-input type="password" v-model="form.newPassword"></el-input>
       </el-form-item>
       <el-button type="primary" @click="setInfo">保 &nbsp;&nbsp;存</el-button>
       <el-button type="primary" @click="callback" >返 &nbsp;&nbsp;回</el-button>
@@ -33,40 +33,14 @@
     name: "sub-info",
     props:["id"],
     data() {
-      var validateName = (rule, value, callback) => {
-        if (value === '') {
-          console.log(value)
-          callback(new Error('请输入用户名'));
-        } else {
-          callback();
-        }
-      };
-      var validatePass = (rule, value, callback) => {
-        if (value === '') {
-          console.log(value)
-          callback(new Error('请输入密码'));
-        }else {
-          callback();
-        }
-      };
       return {
         form: {
-          passwordA:'',
-          suId:'',
+          username:sessionStorage.getItem("LOGIN_PARKING_USENAME"),
           password:'',
+          suId:sessionStorage.getItem("LOGIN_PARKING_SUBID"),
+          passwordA:'',
           newPassword:'',
         },
-        bossRole: {
-          username: [
-            { validator: validateName, trigger: 'blur' },
-            { min: 2, max: 20, message: '长度在 2 到 20 个字符', trigger: 'blur' }
-          ],
-          password: [
-            { validator: validatePass, trigger: 'blur' },
-            { min: 6, max: 20, message: '长度在 6 到 20 个字符', trigger: 'blur' }
-          ],
-        },
-
       }
     },
     mounted(){
@@ -80,9 +54,15 @@
         that.$http.post(that.Constants().REST_USER_UPDATA_PASSWORD, that.form,{emulateJSON: true}).then(function (res) {
           if(res.data.result){
             that.$message.success("保存子账号信息成功！");
-            that.$emit("addOK");
+            sessionStorage.removeItem("LOGIN_PARKING_UID");
+            sessionStorage.removeItem("LOGIN_PARKING_TOKEN");
+            sessionStorage.removeItem("LOGIN_PARKING_SUBID");
+            sessionStorage.removeItem("LOGIN_PARKING_TYPE");
+            sessionStorage.removeItem("LOGIN_PARKING_PID");
+            sessionStorage.removeItem("LOGIN_PARKING_USENAME");
+            that.$router.replace("/login");
           }else {
-            that.$message.error(that.res.data.message);
+            that.$message.error(res.data.message);
           }
         },function (res) {
           that.$message.error(res);
