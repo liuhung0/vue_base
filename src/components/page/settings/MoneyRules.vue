@@ -5,21 +5,21 @@
       <div  style="display: flex">
           <div class="left">
             <h2>临时停车收费规则<span style="font-size:20px">(时段计费)</span>
-              <el-switch  style="float:right;padding:10px 0;width:10%;" v-model="form.isOpenThird"></el-switch>
+              <el-switch  style="float:right;padding:10px 0;width:10%;" v-model="form.isOpenThird" ></el-switch>
             </h2>
             <el-form-item label="临停免费时间">
 
-              <el-input  style="float:left;width:30%;" v-model="form.beforeMinute"></el-input>
+              <el-input  style="float:left;width:30%;" v-model="form.beforeMinute" ></el-input>
               <span style="float:left;width:80px;">分钟</span>
 
             </el-form-item>
             <el-form-item label="前">
-              <el-input style="float:left;width:10%;" v-model="form.beforeHour"></el-input>
+              <el-input style="float:left;width:10%;" v-model="form.beforeHour" ></el-input>
               <label style="float:left;width:20%;">小时每小时</label>
               <el-input style="float:left;width:10%;" v-model="form.beforeFee"></el-input>
               <label style="float:left;width:10%;">元</label>
               <label style="float:left;width:20%;">后每小时</label>
-              <el-input style="float:left;width:10%;" v-model="form.afterFee"></el-input>
+              <el-input style="float:left;width:10%;" v-model="form.afterFee" ></el-input>
               <label style="float:left;width:10%;">元</label>
             </el-form-item>
             <div class="night">
@@ -130,6 +130,8 @@
     data() {
       return {
         form: {
+          isOpenThird1:'',
+
           id:'',
           pId:'900',
           uId:sessionStorage.getItem("LOGIN_PARKING_UID"),
@@ -187,16 +189,15 @@
     },
     mounted(){
       let that = this;
-
       that.$http.post(that.Constants().REST_MERCHANT_QUERYPRICE, that.form,{emulateJSON: true}).then(function (res) {
           if(res.data.result){
             that.$set(that,"form",res.data.data)
             console.log("拉取收费设置成功");
-            that.form.isOpenThird === 1 ? that.form.isOpenThird=false : that.form.isOpenThird=true;
-            that.form.isOpenFourth === 1 ? that.form.isOpenFourth=false : that.form.isOpenFourth=true;
-            that.form.isOpenFifth === 1 ? that.form.isOpenFifth=false : that.form.isOpenFifth=true;
-            that.form.isOpenSecond === 1 ? that.form.isOpenSecond=false : that.form.isOpenSecond=true;
-            that.form.isOpenFirst === 1 ? that.form.isOpenFirst=false : that.form.isOpenFirst=true;
+            res.data.data.isOpenThird === 1 ? that.form.isOpenThird=false : that.form.isOpenThird=true;
+            res.data.data.isOpenFourth === 1 ? that.form.isOpenFourth=false : that.form.isOpenFourth=true;
+            res.data.data.isOpenFifth === 1 ? that.form.isOpenFifth=false : that.form.isOpenFifth=true;
+            res.data.data.isOpenSecond === 1 ? that.form.isOpenSecond=false : that.form.isOpenSecond=true;
+            res.data.data.isOpenFirst === 1 ? that.form.isOpenFirst=false : that.form.isOpenFirst=true;
           }else{
             that.$message.info(that.res.data.message)
           }

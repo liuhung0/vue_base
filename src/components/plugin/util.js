@@ -28,7 +28,7 @@ export default {
         LOGIN_COULD_TYPE = "LOGIN_COULD_TYPE";
       //dev
 
-      let BASE_URL = "http://192.168.0.9:9109";
+      let BASE_URL = "http://192.168.0.11:9109";
       let PROXY_URL = "";
       // let BASE_URL ="http://cloud.chinahtiot.com",PROXY_URL="/api";
       return {
@@ -136,6 +136,9 @@ export default {
         REST_MENZHA_OUT: BASE_URL + PROXY_URL + "/parkingManager/v1/userbarrier/gateout",
         //门闸免费操作
         REST_MENZHA_FREE: BASE_URL + PROXY_URL + "/parkingManager/v1/userbarrier/freeout",
+
+        //根据子账号uId查询权限列表
+        REST_ROLE_SU_ID: BASE_URL + PROXY_URL + "/parkingManager/v1/user/queryBySuidRole",
 
         HOUSE_OWNER_DELETE:BASE_URL + PROXY_URL + "/parkingManager/v1/houseOwner/delOwner",
 

@@ -45,7 +45,7 @@
           username:sessionStorage.getItem("LOGIN_PARKING_USENAME"),
           form:{
             uId:sessionStorage.getItem("LOGIN_PARKING_UID"),
-            platform:sessionStorage.getItem("LOGIN_PARKING_TYPE") == 8 ? 8 : 20,
+            platform:sessionStorage.getItem("LOGIN_PARKING_TYPE") === 8 ? 8 : 20,
             token:sessionStorage.getItem("LOGIN_PARKING_TOKEN"),
           },
           pid:null,
@@ -90,6 +90,8 @@
                 sessionStorage.removeItem("LOGIN_PARKING_TOKEN");
                 sessionStorage.removeItem("LOGIN_PARKING_SUBID");
                 sessionStorage.removeItem("LOGIN_PARKING_TYPE");
+                sessionStorage.removeItem("LOGIN_PARKING_PID");
+                sessionStorage.removeItem("LOGIN_PARKING_USENAME");
                 this.$router.push('/login')
               }else {
                 that.$message.error(that.res.data.message);
