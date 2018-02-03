@@ -5,31 +5,42 @@
         <img  :src="record.exit_picture">
       </div>
     </div>
-    <div v-if="record.car_number" class="row">
-      <div class="item">
-        <el-input style="width:200px"></el-input>
-        <el-button>手工校正</el-button>
+    <div class="enter">
+        <div class="enter_top">
+          <span>出口:{{record.approach_alleyway}}</span>
+          <span>门闸编号:{{record.approach_door}}</span>
+          <span>摄像头编号:{{record.approach_camera}}</span>
+        </div>
+      <!--<div v-if="record.car_number" class="row">-->
+        <!--<div class="item item2"><b class="label">车牌号:</b><span>{{record.car_number}}</span></div>-->
+        <!--<div class="item item2"><b class="label">进场时间:</b><span>{{new Date(record.dateline*1000).Format("yyyy-MM-dd hh:mm:ss")}}</span></div>-->
+        <!--<div class="item item2"><b class="label">出口:</b><span>{{record.exit_alleyway}}</span></div>-->
+        <!--<div class="item item2"><b class="label">出口门闸编号:</b><span>{{record.exit_door}}</span></div>-->
+        <!--<div class="item item2"><b class="label">出口摄像头编号:</b><span>{{record.exit_camera}}</span></div>-->
+        <!--<div class="item item2"><b class="label">出场时间:</b><span>{{new Date(record.exit_time*1000).Format("yyyy-MM-dd hh:mm:ss")}}</span></div>-->
+        <!--<div class="item item2"><b class="label">应收金额:</b><span>{{record.cope_with}}</span></div>-->
+        <!--<div class="item item2"><b class="label">实收金额:</b><span>{{record.real_income}}</span></div>-->
+        <!--<div class="item item2"><b class="label">支付方式:</b><span>{{record.payment}}</span></div>-->
+      <!--</div>-->
+      <div v-if="record.car_number" class="row">
+        <div class="item">
+          <b class="label">车牌号:</b><span>{{record.car_number}}</span>
+          <el-form class="number">
+            <el-form-item>
+              <el-input placeholder="手动矫正车牌号"></el-input>
+              <el-button class="sure">确定</el-button>
+            </el-form-item>
+          </el-form>
+        </div>
+        <div class="item"><b class="label">进场时间:</b><span>{{new Date(record.dateline*1000).Format("yyyy-MM-dd hh:mm:ss")}}</span></div>
+        <div class="item"><b class="label">出场时间:</b><span>{{record.car_number}}</span></div>
+        <div class="item"><b class="label">停泊类型:</b><span>{{record.car_nuber}}</span></div>
+        <div class="item"><b class="label">收费金额:</b><span>{{record.car_nummber}}</span></div>
+      </div>
         <el-button @click="GateOut">收费开闸</el-button>
         <el-button @click="FreeOut">免费开闸</el-button>
-      </div>
-      <div class="item item2"><b class="label">入口:</b><span>{{record.approach_alleyway}}</span></div>
-      <div class="item item2"><b class="label">入口门闸编号:</b><span>{{record.approach_door}}</span></div>
-      <div class="item item2"><b class="label">入口摄像头编号:</b><span>{{record.approach_camera}}</span></div>
-      <div class="item item2"><b class="label">车牌号:</b><span>{{record.car_number}}</span></div>
-      <div class="item item2"><b class="label">进场时间:</b><span>{{new Date(record.dateline*1000).Format("yyyy-MM-dd hh:mm:ss")}}</span></div>
-      <div class="item item2"><b class="label">出口:</b><span>{{record.exit_alleyway}}</span></div>
-      <div class="item item2"><b class="label">出口门闸编号:</b><span>{{record.exit_door}}</span></div>
-      <div class="item item2"><b class="label">出口摄像头编号:</b><span>{{record.exit_camera}}</span></div>
-      <div class="item item2"><b class="label">出场时间:</b><span>{{new Date(record.exit_time*1000).Format("yyyy-MM-dd hh:mm:ss")}}</span></div>
-      <div class="item item2"><b class="label">应付金额:</b><span>{{record.cope_with}}</span></div>
-      <div class="item item2"><b class="label">实收金额:</b><span>{{record.real_income}}</span></div>
-      <div class="item item2"><b class="label">支付方式:</b><span>{{record.payment}}</span></div>
-      <div class="item item2"><b class="label">停车时长:</b><span>{{record.parkTimes}}</span></div>
-      <div class="link">
-        <a> 更多记录</a>
-      </div>
+      <div v-if="!record.car_number">暂无记录</div>
     </div>
-    <div v-if="!record.car_number">暂无记录</div>
   </div>
 </template>
 <script type="text/ecmascript-6">
@@ -97,55 +108,5 @@
   }
 </script>
 <style scoped>
-  .gate {
-    display: block;
-    margin:20px;
-    border:1px solid #ccc;
-    padding:20px;
-    width:92%;
-    overflow: hidden;
-    background: #fed4d9;
-  }
-  .img {
-    width:400px;
-    float:left;
-    display: block;
-  }
-  .img .item{
-    margin:4px;
-    text-align: left;
-  }
-  .img .item img{
-    max-width: 392px;
-  }
-  .row{
-    float:right;
-    display: block;
-    padding: 0 20px;
-    width:760px;
-  }
-  .row .item{
-    width:100%;
-    float:left;
-    display: block;
-    text-align: left;
-    line-height: 36px;
-    border-bottom:1px dashed #ccc;padding-bottom: 10px;
-  }
-  .row .item2{
-    width:50%;
-  }
-  .row .item2 B{
-    width:140px;
-    float:left;
-    display: block;
-    text-align: left;
-  }
-  .row .link{
-    clear: both;
-    float:right;
-    margin-top:30px;
-  }
-
-
+  @import "../../assets/css/GateIn.css";
 </style>

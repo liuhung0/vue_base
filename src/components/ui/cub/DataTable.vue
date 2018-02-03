@@ -313,7 +313,10 @@
 </script>
 <style scoped>
   h2 {
-    color: #828282;
+    color: #fff;
+    font-weight: 300;
+    padding-left:20px;
+    border-left:4px solid #49a9ff;
   }
 
   .btn—group {

@@ -1,4 +1,5 @@
 <template>
+  <!--入场-->
   <div class="gate">
     <div v-if="record.car_number" class="img">
       <div class="item">
@@ -80,52 +81,5 @@
   }
 </script>
 <style scoped>
-  .gate {
-    display: block;
-    margin:20px;
-    border:1px solid #ccc;
-    padding:20px;
-    width:92%;
-    overflow: hidden;
-    background: #c8feed;
-  }
-  .img {
-    width:400px;
-    float:left;
-    display: block;
-  }
-  .img .item{
-    width:100%;
-    margin:4px;
-    text-align: left;
-  }
-  .img .item img{
-    max-width: 392px;
-  }
-  .row{
-    float:right;
-    display: block;
-    padding: 0 20px;
-    width:760px;
-  }
-  .row .item{
-    width:100%;
-    float:left;
-    display: block;
-    text-align: left;
-    line-height: 36px;
-    border-bottom:1px dashed #ccc;padding-bottom: 10px;
-  }
-  .row .item B{
-    width:100px;
-    float:left;
-    display: block;
-    text-align: left;
-  }
-  .row .link{
-    clear: both;
-    float:right;
-    margin-top:30px;
-  }
-
+  @import "../../assets/css/GateIn.css";
 </style>

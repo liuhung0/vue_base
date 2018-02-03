@@ -9,8 +9,7 @@
         <h3 v-if="config.j=='1'">当前总金额:<span style="color: red">{{resData.sumMoney}}</span>元</h3>
       </div>
       <button v-if="config.hi=='1'" class="biao"  @click="tu()">可视化统计图表</button>
-      <!--<button v-if="config.showAdd=='1'" style="cursor: pointer;text-align: center;letter-spacing: 2px; min-width: 30px;-->
-      <!--min-height: 37px;color: #fff;background: #239BFA;border: 1px solid #45bb77" @click="myall(5652)">全部</button>-->
+      <button v-if="config.showAdd=='1'"  @click="myall(5652)">全部</button>
       <button v-if="config.showAdd=='1'"  @click="myyear(454)">年</button>
       <button v-if="config.showAdd=='1'"  @click="mymonth(5656)">月</button>
       <button v-if="config.showAdd=='1'"  @click="myweek(565)">周</button>
@@ -19,13 +18,13 @@
       <el-date-picker
         v-model="resData.startTime"
         type="date"
-        placeholder="开始时间">
+        placeholder="开始时间" class="startTime">
       </el-date-picker>
       <span class="z">至</span>
       <el-date-picker
         v-model="resData.endTime"
         type="date"
-        placeholder="结束时间">
+        placeholder="结束时间" class="startTime">
       </el-date-picker>
       <button v-if="config.showAdd=='1'" class="search" @click="sousuo">搜索</button>
       <button v-if="config.A=='1'" class="search" @click="addObj(454)">导出excel表格</button>
@@ -599,7 +598,7 @@
     /*border:1px solid #eee;*/
   }
   h2 {
-    color: #333;
+    color: #fff;
     font-weight: 300;
     padding-left:20px;
     border-left:4px solid #49a9ff;
@@ -637,11 +636,9 @@
   .table table thead th {
     text-align: center;
     font-size: 14px;
-    border-left: 2px solid #e8e8e8;
-    border-right: 2px solid #fff;
     margin-left: 2px;
     font-weight: 400;
-    background: #e8e8e8;
+    background: #2F3B4C;
     line-height: 26px;
     padding: 4px 10px;
     color: #888;
@@ -659,7 +656,7 @@
     border-right: 1px solid #e8e8e8;
     margin-left: 2px;
     font-weight: 400;
-    background: #e8e8e8;
+    background: #2F3B4C;
 
   }
 
@@ -684,12 +681,10 @@
   .table table tbody td {
     line-height: 26px;
     padding: 4px 10px;
-    color: #828282;
+    color: #fff;
     font-size:12px!important;
-    border-bottom: 1px dashed #e8e8e8;
-    border-left: 1px dashed #e8e8e8;
-    word-wrap:break-word;
-    word-break:break-all;
+    /*word-wrap:break-word;*/
+    /*word-break:break-all;*/
   }
 
   .table table tbody td:first-child {
@@ -701,10 +696,10 @@
     width: 76px;
   }
   .sin {
-    background: #e7f6ff;
+    background: #394B64;
   }
   .odd {
-    background: #fefefe;
+    background: #4B607C;
   }
 
   .table table .actions {
@@ -730,11 +725,9 @@
     padding: 2px 6px;
     line-height: 18px;
     overflow: hidden;
-    border-bottom: 1px solid #fff;
-    border-left: 1px solid #e8e8e8;
-    border-right: 1px solid #e8e8e8;
     clear: both;
-    background: #e8e8e8;
+    margin-left: 70%;
+
   }
 
   .pageation .info {
@@ -810,9 +803,10 @@
     border-radius: 2px;
     border:none;
   }
-  h2[data-v-6114fb42] {
-    color: #fff;
+
+  .startTime{
   }
+
 </style>
 <style>
   .table table tbody td > a {
@@ -841,6 +835,8 @@
     width: 80px;
     height: 20px;
     background-color: none;
-    border:1px solid #fff;
+  }
+  .startTime > .el-input__inner{
+    width: 80px;
   }
 </style>
