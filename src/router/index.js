@@ -2,18 +2,26 @@ import Vue from 'vue'
 Vue.use(Router);
 Vue.prototype.$echarts = echarts;
 import Router from 'vue-router'
+
 import Login from '@/components/page/Login'
 import Main from '@/components/page/Main'
 import Welcome from '@/components/page/WelCome'
+
 import OrderList from '@/components/page/log/OrderList'
 import SettleList from '@/components/page/log/SettleList'
+import SpecialVehicleList from '@/components/page/specialvehicle/SpecialVehicleList'
+import Add from '@/components/page/specialvehicle/Add'
+import Update from '@/components/page/specialvehicle/Update'
+
 
 import AccountList from '@/components/page/account/AccountList'
 import WorkLog from '@/components/page/account/WorkLog'
 import Rule from '@/components/page/account/Rule'
+
 import PDAList from '@/components/page/device/Pda'
 import PDAInfo from '@/components/page/device/PdaInfo'
 import DeviceList from '@/components/page/device/Device'
+
 import Base from '@/components/page/settings/Base'
 import ParkingInfo from '@/components/page/settings/ParkingInfo'
 import MoneyRules from '@/components/page/settings/MoneyRules'
@@ -29,7 +37,6 @@ import HouseOwnerEdit from '@/components/page/vip/HouseOwnerEdit'
 import FinancePic from '@/components/page/log/FinancePic'
 import Gate from '@/components/parts/Gate'
 import echarts from 'echarts'
-import UpdatePassword from '@/components/page/account/UpdatePassword'
 
 export default new Router({
   routes: [
@@ -38,7 +45,6 @@ export default new Router({
       name: 'login',
       component: Login
     },
-
     {
       path: '/login',
       name: 'login',
@@ -64,6 +70,7 @@ export default new Router({
           name: 'order',
           component: OrderList
         },
+
         {
           path: '/main/statistics/settlelog',
           name: 'settle',
@@ -168,6 +175,21 @@ export default new Router({
           path: '/page/vip/HouseOwnerAdd',
           name:'houseOwnerAdd',
           component:HouseOwnerAdd
+        },
+        {
+          path: '/page/specialvehicle/list',
+          name:'specialvehiclelist',
+          component:SpecialVehicleList
+        },
+        {
+          path: '/page/specialvehicle/add',
+          name:'specialvehicleadd',
+          component:Add
+        },
+        {
+          path: '/page/specialvehicle/update/:id',
+          name:'specialvehicleupdate',
+          component:Update
         },
         {
           path:'/page/user/updatePassword',

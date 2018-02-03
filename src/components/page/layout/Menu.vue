@@ -85,7 +85,10 @@
                 title:"管理费列表",
                 path:"/page/vip/ManageList"
               },
-
+              {
+                title:"黑白名单",
+                path:"/page/specialvehicle/list"
+              },
             ]
           }
         ]

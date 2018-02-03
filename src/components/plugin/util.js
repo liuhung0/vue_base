@@ -59,6 +59,12 @@ export default {
         REST_MERCHANT_SETPRICE: BASE_URL + PROXY_URL + "/parkingManager/v1/setParkingPrice/addParkingPrice",
         //根据pid查询收费引擎设置
         REST_MERCHANT_QUERYPRICE: BASE_URL + PROXY_URL + "/parkingManager/v1/setParkingPrice/queryParkingPriceByPid",
+
+        /*
+        *vip
+        * begin
+        */
+
         //vip列表
         VIP_LIST: BASE_URL + PROXY_URL + "/parkingManager/v1/vip/getTenant",
         //Vip添加
@@ -77,6 +83,11 @@ export default {
         VIP_THAW:BASE_URL + PROXY_URL +"/parkingManager/v1/vip/setVipThaw/",
 
         VIP_MANAGE: BASE_URL + PROXY_URL +"/parkingManager/v1/vip/getManagementExpense",
+
+        /*
+        *vip
+        *end
+         */
 
         //停车场出入记录
         PARKING_EXIT:BASE_URL + PROXY_URL + "/parkingManager/v1/record/recordList",
@@ -126,6 +137,7 @@ export default {
         //查看角色列表
         REST_SUB_USER_ROLE_INFO:BASE_URL + PROXY_URL + "/parkingManager/v1/work/queryRuleInfo",
 
+
         HOUSE_OWNER_LIST:BASE_URL + PROXY_URL + "/parkingManager/v1/houseOwner/houseOwnerList",
 
 
@@ -148,6 +160,23 @@ export default {
 
         //导出停车场excel表格
         EXCEL_ORDER:BASE_URL + PROXY_URL + "/parkingManager/v1/excel/download/",
+
+        /*
+        *黑白名单
+        * begin
+         */
+
+        SPECIAlVEHICLE_LIST:BASE_URL + PROXY_URL +"/parkingManager/v1/SpecialVehicle/get",
+
+        SPECIAlVEHICLE_ADD:BASE_URL + PROXY_URL +"/parkingManager/v1/SpecialVehicle/save",
+
+        SPECIAlVEHICLE_ID:BASE_URL + PROXY_URL + "/parkingManager/v1/SpecialVehicle/queryById",
+
+        SPECIAlVEHICLE_DELETE:BASE_URL + PROXY_URL + "/parkingManager/v1/SpecialVehicle/delete",
+        /*
+        *黑白名单
+        * begin
+         */
 
        }
     }
