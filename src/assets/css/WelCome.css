@@ -18,36 +18,35 @@
 .dk{
   margin-left: 6%;
 }
-.el-checkbox-group{
+.wel{
   position: absolute;
   top:30%;
   right: 5%;
 }
-.el-checkbox__inner{
+.chek >.el-checkbox__inner{
   background: rgba(216,216,216,0.00);
   border: 1px solid #979797;
   border-radius: 2px;
 }
-.el-checkbox__label{
+.chek>.el-checkbox__label{
   color: #979797;
 }
 .ruk.is-checked .el-checkbox__inner{
 
 }
-.el-checkbox__input.is-checked+.el-checkbox__label {
+.chek > .el-checkbox__input.is-checked+.el-checkbox__label {
   color: #fff;
 }
-.el-checkbox__input.is-checked .el-checkbox__inner{
+.chek >.el-checkbox__input.is-checked .el-checkbox__inner{
   background-color: #1D242E;
   border-color: #fff;
 }
 /*车场停车*/
 .contain{
-  width: 45%;
-  background: #3D4E66;
-  box-shadow: 0 4px 16px 0 rgba(0,0,0,0.30);
-  border-radius: 4px;
-  margin: 20px;
+  width: 100%;
   display: flex;
+  position: relative;
+  /*justify-content:center;*/
+  /*align-items:center;*/
 }
 

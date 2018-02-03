@@ -32,30 +32,30 @@
     </div>
     <!--<hr style="background:#249CFA; height: 2px;width: 100%;border:0px;"/>-->
     <div class="table table_all" >
-      <!--<div class="pageation" ref="pagenation" v-if="config.pageable==undefined||config.pageable==true">-->
-        <!--<div class="info">-->
-          <!--<select v-model="pagenation.rows" @change="changeRows">-->
-            <!--<option value="5">5</option>-->
-            <!--<option value="10">10</option>-->
-            <!--<option value="20">20</option>-->
-            <!--<option value="50">50</option>-->
-            <!--<option value="100">100</option>-->
-          <!--</select>显示第{{(pagenation.page - 1) * pagenation.rows + 1}}至-->
-          <!--{{pagenation.page * pagenation.rows}}项,共{{pagenation.num}}项-->
-        <!--</div>-->
-        <!--<div class="pages">-->
-          <!--<span v-if="pagenation.page > 1" class="pageLi" @click="pagePev">上页</span>-->
-          <!--<span v-for="i in pagenation.total">-->
-              <!--<i v-if="i<5 || i > pagenation.total-1 || (i > (pagenation.page-2)  && i < (pagenation.page+2))"-->
-                 <!--class="pageLi" :class="{'active':i==pagenation.page}" @click="pageTo(i)">-->
-                <!--{{i}}-->
-              <!--</i>-->
-              <!--<i v-else-if="i==5||i==pagenation.total-4" class="pageLis">...</i>-->
-          <!--</span>-->
-          <!--<span v-if="pagenation.page < pagenation.total" class="pageLi"-->
-                <!--@click="pageNext">下页</span>-->
-        <!--</div>-->
-      <!--</div>-->
+      <div class="pageation" ref="pagenation" v-if="config.pageable==undefined||config.pageable==true">
+        <div class="info">
+          <select v-model="pagenation.rows" @change="changeRows">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>显示第{{(pagenation.page - 1) * pagenation.rows + 1}}至
+          {{pagenation.page * pagenation.rows}}项,共{{pagenation.num}}项
+        </div>
+        <div class="pages">
+          <span v-if="pagenation.page > 1" class="pageLi" @click="pagePev">上页</span>
+          <span v-for="i in pagenation.total">
+              <i v-if="i<5 || i > pagenation.total-1 || (i > (pagenation.page-2)  && i < (pagenation.page+2))"
+                 class="pageLi" :class="{'active':i==pagenation.page}" @click="pageTo(i)">
+                {{i}}
+              </i>
+              <i v-else-if="i==5||i==pagenation.total-4" class="pageLis">...</i>
+          </span>
+          <span v-if="pagenation.page < pagenation.total" class="pageLi"
+                @click="pageNext">下页</span>
+        </div>
+      </div>
 
       <table>
         <thead>
@@ -726,12 +726,11 @@
     line-height: 18px;
     overflow: hidden;
     clear: both;
-    margin-left: 70%;
 
   }
 
   .pageation .info {
-    color: #888;
+    color: #fff;
     float: left;
     width: 30%;
     line-height: 36px;
@@ -745,9 +744,10 @@
   }
 
   .pageation .pages {
-    color: #888;
+    color: #fff;
     float: right;
     width: 60%;
+    line-height: 36px;
     margin-left:-100px;
     text-align: right;
   }
@@ -802,9 +802,6 @@
     background: #278BFF;
     border-radius: 2px;
     border:none;
-  }
-
-  .startTime{
   }
 
 </style>
