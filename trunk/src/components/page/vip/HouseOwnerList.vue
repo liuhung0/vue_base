@@ -237,10 +237,10 @@
     display:block;
   }
   .main h2{
-    font-size:24px;
-    font-weight: 400;
+    color: #fff;
+    font-weight: 300;
     text-align: left;
-    color: #666666;
-    border-bottom: 1px dashed #666666;
+    padding-left: 20px;
+    border-left: 4px solid #49a9ff
   }
 </style>

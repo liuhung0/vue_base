@@ -1,5 +1,6 @@
 .on {
   width:100%;
+  position: relative;
 }
 .outOrIn{
   padding:20px;
@@ -14,7 +15,8 @@
   left: 5%;
 }
 .dk{
-  margin-left: 6%;
+  margin-left: 60%;
+  line-height: 72px;
 }
 .wel{
 }

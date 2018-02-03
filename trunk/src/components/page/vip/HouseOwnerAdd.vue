@@ -107,7 +107,7 @@
 <style scoped>
   .main{
     padding:20px 60px;
-    background:#fff;
+    /*background:#fff;*/
     border-radius: 10px;
   }
   .main h2{

@@ -1,5 +1,5 @@
 <template>
-  <div style="display:block;">
+  <div class="back" style="display:block;">
     <div class="btn—group">
       <button v-if="config.showCheckAll=='1'" class="btn hvr-bounce-to-bottom" @click="checkAll">全 选</button>
       <button v-if="config.showCheckBack=='1'" class="btn hvr-bounce-to-bottom" @click="checkBack">反 选</button>
@@ -328,36 +328,29 @@
 
   .table table {
     width: 100%;
-    border-left:1px solid #cccccc;
-    border-right:1px solid #cccccc;
+    margin-top: 10%;
+    margin: 0 auto;
   }
 
   .table table thead th {
     text-align: center;
-    font-size: 15px;
-    border-left: 1px solid #dedede;
-    border-right: 1px solid #fff;
+    font-size: 14px;
     margin-left: 2px;
     font-weight: 400;
-    background: #dedede;
+    background: #2F3B4C;
     line-height: 26px;
     padding: 4px 10px;
-    color: #828282;
+    color: #888;
   }
-
-  .table table thead th:last-child {
-    border-right: 1px solid #dedede;
-  }
-
   .table table thead td {
     text-align: center;
     padding: 2px 4px;
-    font-size: 15px;
-    border-left: 1px solid #dedede;
-    border-right: 1px solid #dedede;
+    font-size: 14px;
+    border-left: 1px solid #e8e8e8;
+    border-right: 1px solid #e8e8e8;
     margin-left: 2px;
     font-weight: 400;
-    background: #dedede;
+    background: #2F3B4C;
 
   }
 
@@ -365,16 +358,16 @@
     text-align: left;
     width: calc(100% - 32px);
     padding: 2px 2px;
-    border: 1px solid #dedede;
+    border: 1px solid #e8e8e8;
     border-radius: 4px;
-    font-size: 15px;
-    color: #dedede;
+    font-size: 14px;
+    color: #101314;
   }
 
   .table table thead th i {
     text-align: center;
     font-size: 12px;
-    color: #fff;
+    color: #888;
     float: right;
     padding: 10px 8px;
   }
@@ -382,27 +375,25 @@
   .table table tbody td {
     line-height: 26px;
     padding: 4px 10px;
-    color: #828282;
-    font-size: 15px;
-    border-bottom: 1px dashed #dedede;
-    border-left: 1px dashed #dedede;
+    color: #fff;
+    font-size:12px!important;
+    /*word-wrap:break-word;*/
+    /*word-break:break-all;*/
   }
 
   .table table tbody td:first-child {
-    border-left: 0px dashed #dedede;
+    border-left: 0px dashed #e8e8e8;
   }
 
   .table table .ids {
     margin: 2px 4px;
     width: 76px;
   }
-
   .sin {
-    background: #fff;
+    background: #394B64;
   }
-
   .odd {
-    background: #faf7f0;
+    background: #4B607C;
   }
 
   .table table .actions {
@@ -410,32 +401,28 @@
     width: 120px;
     text-align: center;
   }
+  .table table .actions .btn {
+    margin: 2px 4px;
+    padding:2px 6px;
+    text-align: center;
+    font-size:11px;
+    min-height:20px;
+    min-width:60px;
+  }
 
   .table table tbody .actions .btn {
     margin: 2px 4px;
   }
 
-  .pageation {
-    height: 32px;
-    padding: 6px 10px;
-    line-height: 18px;
-    overflow: hidden;
-    border-bottom: 1px solid #cccccc;
-    border-left: 1px solid #cccccc;
-    border-right: 1px solid #cccccc;
-    clear: both;
-    background: #dedede;
-  }
-
   .pageation .info {
-    color: #676767;
+    color: #fff;
     float: left;
+    width: 30%;
     line-height: 36px;
-    font-size:13px;
   }
 
   .pageation .info select {
-    color: #dedede;
+    color: #888;
     height: 26px;
     line-height: 36px;
     margin: 2px 10px 2px 0;
@@ -445,56 +432,62 @@
     color: #fff;
     float: right;
     width: 60%;
+    line-height: 36px;
     margin-left:-100px;
     text-align: right;
   }
 
   .pageation .pages .pageLi {
-    color: #828282;
-    border: 1px solid #828282;
-    min-width: 30px;
+    color: #888;
+    border: 1px solid #cccccc;
+    min-width: 24px;
     text-align: center;
-    padding: 4px 6px;
-    margin: 2px 4px;
+    padding: 4px;
+    margin: 2px;
     display: inline-block;
-    border-radius: 4px;
     cursor: pointer;
-    font-size:13px;
   }
 
   .pageation .pages .active {
-    color: rgba(29, 122, 191, 1);
+    color: #2d5b88;
     background: #ffffff;
-    border: 1px solid #ffffff;
-    min-width: 30px;
+    border: 1px solid #7fddff;
+    min-width: 24px;
     text-align: center;
-    padding: 4px 6px;
-    margin: 2px 4px;
+    padding: 4px;
+    margin: 2px;
     display: inline-block;
-    border-radius: 4px;
     cursor: pointer;
   }
-
+  .back{
+    background-color: #3d4e66;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.50);
+    border-radius: 2px;
+  }
   .pageation .pages .pageLis {
-    color: #fff;
+    color: #7fddff;
     line-height: 32px;
     display: inline-block;
     text-align: center;
     margin: 2px 4px;
-    padding: 4px 12px;
+    padding: 4px 6px;
     cursor: pointer;
-    font-size: 24px;
-
+    font-size: 12px;
   }
   .btn{
     padding:6px 16px;
     font-size:14px;
     border-radius: 4px;
-    border:1px solid #ccc;
+    color: #fff;
     cursor: pointer;
-    background: #ececec;
+    background: #278BFF;
+    border-radius: 2px;;
     opacity: 1;
     font-weight: 300;
+    border:none !important;
+  }
+  .hvr-bounce-to-bottom:before{
+    background: none !important;
   }
 
 </style>
@@ -503,7 +496,11 @@
     color: rgba(134, 85, 20, 0.03);
     cursor: pointer;
   }
-
+  .table table {
+    width: 100%;
+    margin-top: 10%;
+    margin: 0 auto;
+  }
   .table table tbody td > a:hover {
     color: rgba(192, 161, 107, 0.07);
     text-decoration: none;
