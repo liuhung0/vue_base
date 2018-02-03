@@ -38,10 +38,6 @@
                 path:"/main/statistics/orderlog"
               },
               {
-                title:"开闸记录",
-                path:"/main/log/sluicestatelist"
-              },
-              {
                 title:"财务收入统计表",
                 path:"/main/statistics/settlelog"
               },

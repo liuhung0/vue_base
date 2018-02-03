@@ -47,21 +47,21 @@
           callback();
         }
       };
-      let validateCode = (rule, value, callback) => {
-        if (value === ''){
-          console.log(value);
-          callback(new Error('请输入验证码'));
-        }else{
-          console.log(value)
-          console.log(this.boss.checkCode)
-          if(value!==this.boss.checkCode){
-            callback(new Error('验证码不符'));
-          }else{
-            callback();
-          }
-
-        }
-      };
+//      let validateCode = (rule, value, callback) => {
+//        if (value === ''){
+//          console.log(value);
+//          callback(new Error('请输入验证码'));
+//        }else{
+//          console.log(value)
+//          console.log(this.boss.checkCode)
+//          if(value!==this.boss.checkCode){
+//            callback(new Error('验证码不符'));
+//          }else{
+//            callback();
+//          }
+//
+//        }
+//      };
       return {
         picLyanzhengma: '',
         checkCode: '',
@@ -80,9 +80,9 @@
             { validator: validatePass, trigger: 'blur' },
             { min: 6, max: 20, message: '长度在 6 到 20 个字符', trigger: 'blur' }
           ],
-          picLyanzhengma:[
-            { validator: validateCode, trigger: 'blur'},
-          ],
+//          picLyanzhengma:[
+//            { validator: validateCode, trigger: 'blur'},
+//          ],
         }
       };
     },
@@ -128,12 +128,14 @@
               if (that.resData.result) {
                 //登录成功
                 //登录信息保存在sessionStorage中
-                sessionStorage.setItem("LOGIN_PARKING_PID",that.resData.data.pId);
+                //pid  键名为：sessionStorage.getItem("LOGIN_PARKING_PID")
+
                 sessionStorage.setItem("LOGIN_PARKING_USENAME",that.boss.username);
                 sessionStorage.setItem("LOGIN_PARKING_SUBID",that.resData.data.subId);
                 sessionStorage.setItem("LOGIN_PARKING_UID", that.resData.data.uid);
                 sessionStorage.setItem("LOGIN_PARKING_TOKEN", that.resData.data.token);
                 sessionStorage.setItem("LOGIN_PARKING_TYPE", that.resData.data.type);
+             //   alert(that.resData.data.pId);
                 that.$router.replace("/main");
                 that.$message.success('登录成功');
               }

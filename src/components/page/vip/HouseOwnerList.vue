@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <h2>账号管理</h2>
+    <h2>小区业主管理</h2>
     <data-table
       :confignation="dataTableConfig"
       @addObjHandler="addObjHandler"
@@ -14,10 +14,10 @@
 <script>
   import DataTable from "../../ui/cub/DataTable";
   import Layer from "../../ui/cub/Layer";
-  import SubAccountInfo from "@/components/page/account/SubAccountInfo"
+  import HouseOwnerAdd from "@/components/page/vip/HouseOwnerAdd"
   export default {
     components: {DataTable,Layer},
-    name: "rule",
+    name: "houseOwnerAdd",
     data(){
       let that =this;
       return {
@@ -27,7 +27,7 @@
           showDel: 1,
           showCheckBack: 1,
           serverurl: that.Constants().HOUSE_OWNER_LIST,
-          title: "业主管理",
+          title: "小区业主管理",
           key: "id",
           pagenation: {
             page: 1,
@@ -155,9 +155,9 @@
         let that = this;
         let dialog = that.$refs.addLayer;
         let vDialog = dialog.open({
-          template: '<div><SubAccountInfo @addOK="addOK" ></SubAccountInfo></div>',
+          template: '<div><HouseOwnerAdd @addOK="addOK" ></HouseOwnerAdd></div>',
           components: {
-            SubAccountInfo
+            HouseOwnerAdd
           },
           width:720,
           methods: {
@@ -216,7 +216,7 @@
       },
       delete(ids){
         let that = this;
-        that.$http.post(that.Constants().REST_SUB_USER_DELETE_INFO,{id:ids.toString()},{emulateJSON: true}).then(function(res){
+        that.$http.post(that.Constants().HOUSE_OWNER_DELETE,{id:ids.toString()},{emulateJSON: true}).then(function(res){
           if(res.data.result){
             that.$message.success("删除成功");
             that.loadData();

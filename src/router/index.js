@@ -9,6 +9,8 @@ import Welcome from '@/components/page/WelCome'
 
 import OrderList from '@/components/page/log/OrderList'
 import SettleList from '@/components/page/log/SettleList'
+import SluiceStateList from '@/components/page/log/SluiceStateList'
+
 
 import AccountList from '@/components/page/account/AccountList'
 import WorkLog from '@/components/page/account/WorkLog'
@@ -29,6 +31,7 @@ import VipAdd from '@/components/page/vip/VipAdd'
 import VipEdit from '@/components/page/vip/VipEdit'
 import HouseOwnerList from '@/components/page/vip/HouseOwnerList'
 import HouseOwnerAdd from '@/components/page/vip/HouseOwnerAdd'
+import HouseOwnerEdit from '@/components/page/vip/HouseOwnerEdit'
 import FinancePic from '@/components/page/log/FinancePic'
 import Gate from '@/components/parts/Gate'
 import echarts from 'echarts'
@@ -64,6 +67,11 @@ export default new Router({
           path: '/main/statistics/orderlog',
           name: 'order',
           component: OrderList
+        },
+        {
+          path: '/main/log/sluicestatelist',
+          name: 'sluicestatelist',
+          component: SluiceStateList
         },
         {
           path: '/main/statistics/settlelog',
@@ -154,6 +162,11 @@ export default new Router({
           path: '/page/vip/HouseOwnerList',
           name: 'houseownerlist',
           component: HouseOwnerList,
+        },
+        {
+          path: '/page/vip/HouseOwnerEdit/:id',
+          name: 'houseowneredit',
+          component: HouseOwnerEdit,
         },
         {
           path: '/page/log/FinancePic',
