@@ -1,7 +1,7 @@
 <template >
     <div class="main">
       <h2>考勤记录</h2>
-      <button @click="daka()"  @addOK="addOK">{{status == 2 || status == 3? "下班打卡" : "上班打卡"}}</button>
+      <button @click="daka"  >{{status == 2 || status == 3? "下班打卡" : "上班打卡"}}</button>
       <div class="guanli">
         <data-table
           :confignation="dataTableConfig"
@@ -104,7 +104,7 @@
           actions:[],
           dataset: [],
         },
-        status:'',
+        status:1,
         form:{
           suId:sessionStorage.getItem("LOGIN_PARKING_UID"),
         }
@@ -139,6 +139,7 @@
         that.$http.post(that.Constants().REST_USER_CLOCKONANDOFF, that.form,{emulateJSON: true}).then(function (res) {
           if(res.data.result){
             that.$message.success(res.data.data);
+            that.status=2;
             that.loadD();
           }else {
             that.$message.error(that.res.data.message);

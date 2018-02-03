@@ -138,7 +138,6 @@
     background: #203A59;
     box-shadow: 0 0 6px 0 #588FFF;
     border-radius: 2px;
-
   }
 
   .router-link-active{
@@ -165,8 +164,5 @@
     font-size: 18px;
     color: #fff;
   }
-  .tac
-  {
-    width:230px;
-  }
+
 </style>

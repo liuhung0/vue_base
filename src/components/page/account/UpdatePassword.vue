@@ -21,15 +21,10 @@
 
 </template>
 <script>
-  import ElRadio from "../../../../node_modules/element-ui/packages/radio/src/radio.vue";
-  import ElFormItem from "../../../../node_modules/element-ui/packages/form/src/form-item.vue";
-  import ElCheckbox from "../../../../node_modules/element-ui/packages/checkbox/src/checkbox.vue";
 
   export default {
     components: {
-      ElCheckbox,
-      ElFormItem,
-      ElRadio},
+     },
     name: "sub-info",
     props:["id"],
     data() {
