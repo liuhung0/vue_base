@@ -174,17 +174,27 @@
   }
 </style>
 <style>
+  .addAccount  .el-form-item__content{
+    width: 360px;
+  }
   .addAccount .el-form-item__label{
     color:#fff;
   }
   .addAccount .selec{
     width:300px;
-    margin-left: -194px;
+    margin-right: 15%;
+
+  }
+  .addAccount .selec .el-select-dropdown__item span{
+    color: #444 !important;
+  }
+  .addAccount .el-select-dropdown__item.hover{
+    color: #444;
   }
   .addAccount .radio{
-    margin-left: -364px;
+    margin-left: -240px;
   }
   .addAccount .radio2{
-    margin-left: -340px;
+    margin-left: -207px;
   }
 </style>

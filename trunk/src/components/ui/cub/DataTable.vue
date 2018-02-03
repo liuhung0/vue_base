@@ -1,12 +1,12 @@
 <template>
-  <div class="back" style="display:block;">
+  <div  style="display:block;" >
     <div class="btn—group">
       <button v-if="config.showCheckAll=='1'" class="btn hvr-bounce-to-bottom" @click="checkAll">全 选</button>
       <button v-if="config.showCheckBack=='1'" class="btn hvr-bounce-to-bottom" @click="checkBack">反 选</button>
       <button v-if="config.showAdd=='1'" class="btn hvr-bounce-to-bottom" @click="addObj">新 增</button>
       <button v-if="config.showDel=='1'" class="btn hvr-bounce-to-bottom" @click="delObj">删 除</button>
     </div>
-    <div class="table">
+    <div class="table" >
       <div class="pageation" ref="pagenation" v-if="config.pageable==undefined||config.pageable==true">
         <div class="info">
           <select v-model="pagenation.rows" @change="changeRows">
@@ -325,10 +325,14 @@
     text-align: right;
     margin-top: -72px;
   }
-
+  .table{
+    margin-top: 30px;
+    background-color: #3d4e66;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.50);
+    border-radius: 2px;
+  }
   .table table {
     width: 100%;
-    margin-top: 10%;
     margin: 0 auto;
   }
 
@@ -413,7 +417,14 @@
   .table table tbody .actions .btn {
     margin: 2px 4px;
   }
+  .pageation {
+    height: 40px;
+    padding: 2px 6px;
+    line-height: 18px;
+    overflow: hidden;
+    clear: both;
 
+  }
   .pageation .info {
     color: #fff;
     float: left;
@@ -431,21 +442,23 @@
   .pageation .pages {
     color: #fff;
     float: right;
-    width: 60%;
-    line-height: 36px;
-    margin-left:-100px;
+    font-size: 14px;
+    padding-top: 5px;
     text-align: right;
+    margin-right: 20px;
+
   }
 
   .pageation .pages .pageLi {
-    color: #888;
-    border: 1px solid #cccccc;
+    color: #fff;
+    border: 1px solid #fff;
     min-width: 24px;
     text-align: center;
     padding: 4px;
     margin: 2px;
     display: inline-block;
     cursor: pointer;
+    font-size: 12px;
   }
 
   .pageation .pages .active {
@@ -458,11 +471,7 @@
     margin: 2px;
     display: inline-block;
     cursor: pointer;
-  }
-  .back{
-    background-color: #3d4e66;
-    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.50);
-    border-radius: 2px;
+    font-size: 12px;
   }
   .pageation .pages .pageLis {
     color: #7fddff;

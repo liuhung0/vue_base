@@ -3,20 +3,17 @@
   position: relative;
 }
 .outOrIn{
-  padding:20px;
   text-align: left;
   background: #1D242E;
   box-shadow: 0 2px 6px 0 rgba(46,46,46,0.50);
 }
 /*top*/
 .shangban{
-  position: absolute;
-  top:30%;
-  left: 5%;
-}
-.dk{
-  margin-left: 60%;
-  line-height: 72px;
+  /*position: absolute;*/
+  /*top:33%;*/
+  /*left: 5.5%;*/
+  margin-left: 20px;
+  margin-top: 10px;
 }
 .wel{
 }

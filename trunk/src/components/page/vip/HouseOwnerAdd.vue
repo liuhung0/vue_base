@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <h2>{{id?"编辑":"新增"}}业主</h2>
-    <el-form ref="ruleForm" v-model="ruleForm"  label-width="80px">
+    <el-form ref="ruleForm" v-model="ruleForm"  label-width="80px" class="yezhu">
 
       <!--<el-form-item label="小区名称" prop="username">
         <el-input v-model="form.username"></el-input>
@@ -25,7 +25,7 @@
         <el-input  v-model="ruleForm.tel"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">保 &nbsp;&nbsp;&nbsp;&nbsp;   存</el-button>
+        <el-button type="primary" @click="onSubmit">保 &nbsp;&nbsp;存</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -85,21 +85,31 @@
 <style scoped>
   .main{
     padding:20px 60px;
-    /*background:#fff;*/
-    border-radius: 10px;
+    background:#3D4E66;
+    border-radius: 4px;
   }
   .main h2{
-    font-size:24px;
-    font-weight: 400;
-    color:#828282;
-    padding-top:20px;
-    padding-bottom: 20px;
-    text-align:left;
-    border-bottom:1px dashed #ccc;
+    color: #fff;
+    font-weight: 300;
+    padding-left:20px;
+    border-left:4px solid #49a9ff;
+    text-align: left;
   }
   .el-transfer {
     font-size: 14px;
     float: left;
     text-align: left;
+  }
+
+</style>
+<style>
+  .yezhu{
+    margin-left: 10%;
+  }
+  .yezhu .el-form-item__label{
+    color:#fff;
+  }
+  .yezhu .el-form-item__content{
+    width: 360px;
   }
 </style>

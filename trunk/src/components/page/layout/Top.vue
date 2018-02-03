@@ -127,6 +127,7 @@ import UpdatePassword from '@/components/page/account/UpdatePassword'
 <style>
   .flex_box {
     flex: 1 0 100%;
+    height: 60px;
     display: flex;
     justify-content: space-between;
     flex-flow: row wrap;

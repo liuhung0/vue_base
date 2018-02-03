@@ -2,23 +2,18 @@ import Vue from 'vue'
 Vue.use(Router);
 Vue.prototype.$echarts = echarts;
 import Router from 'vue-router'
-
 import Login from '@/components/page/Login'
 import Main from '@/components/page/Main'
 import Welcome from '@/components/page/WelCome'
-
 import OrderList from '@/components/page/log/OrderList'
 import SettleList from '@/components/page/log/SettleList'
-
 
 import AccountList from '@/components/page/account/AccountList'
 import WorkLog from '@/components/page/account/WorkLog'
 import Rule from '@/components/page/account/Rule'
-
 import PDAList from '@/components/page/device/Pda'
 import PDAInfo from '@/components/page/device/PdaInfo'
 import DeviceList from '@/components/page/device/Device'
-
 import Base from '@/components/page/settings/Base'
 import ParkingInfo from '@/components/page/settings/ParkingInfo'
 import MoneyRules from '@/components/page/settings/MoneyRules'
