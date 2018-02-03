@@ -9,7 +9,6 @@ import Welcome from '@/components/page/WelCome'
 
 import OrderList from '@/components/page/log/OrderList'
 import SettleList from '@/components/page/log/SettleList'
-import SluiceStateList from '@/components/page/log/SluiceStateList'
 
 
 import AccountList from '@/components/page/account/AccountList'
@@ -67,11 +66,6 @@ export default new Router({
           path: '/main/statistics/orderlog',
           name: 'order',
           component: OrderList
-        },
-        {
-          path: '/main/log/sluicestatelist',
-          name: 'sluicestatelist',
-          component: SluiceStateList
         },
         {
           path: '/main/statistics/settlelog',

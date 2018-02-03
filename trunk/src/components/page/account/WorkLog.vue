@@ -111,7 +111,7 @@
     },
     mounted(){
       let that = this;
-      that.$http.post(that.Constants().REST_USER_QUERYWORKINFO, that.form,{emulateJSON: true}).then(function (res) {
+      that.$http.post(that.Constants().REST_ROLE_SU_ID, that.form,{emulateJSON: true}).then(function (res) {
         if(res.data.result){
           that.status = res.data.data.status;
         }else {
@@ -129,12 +129,15 @@
         let that =this;
         that.loadData();
       },
+      loadD(){
+        this.$refs.datatable.loadData();
+      },
       daka(){
         let that = this;
         that.$http.post(that.Constants().REST_USER_CLOCKONANDOFF, that.form,{emulateJSON: true}).then(function (res) {
           if(res.data.result){
-
             that.$message.success(res.data.data);
+            that.loadD();
           }else {
             that.$message.error(that.res.data.message);
           }

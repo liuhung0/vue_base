@@ -9,7 +9,7 @@
         <el-input type="textarea" v-model="rule.remark"></el-input>
       </el-form-item>
       <el-form-item label="权 限" prop="menus">
-        <el-transfer v-model="rule.menus"
+        <el-transfer style="float: left;width: 105%;" v-model="rule.menus"
                      :titles="['权限列表', '已有权限']"
                      :data="menuList"
                      :props="{key:'id',label:'name'}"
@@ -146,4 +146,5 @@
     float: left;
     text-align: left;
   }
+  .el-transfer-panel{color: #1D242E}
 </style>
