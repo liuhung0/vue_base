@@ -701,7 +701,9 @@
 </script>
 <style scoped>
   .table_all{
-    /*border:1px solid #eee;*/
+    background-color: #3d4e66;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.50);
+    border-radius: 2px;
   }
   h2 {
     color: #fff;
@@ -827,14 +829,13 @@
   }
 
   .pageation {
-    height: 32px;
+    height: 40px;
     padding: 2px 6px;
     line-height: 18px;
     overflow: hidden;
     clear: both;
 
   }
-
   .pageation .info {
     color: #fff;
     float: left;
@@ -852,21 +853,23 @@
   .pageation .pages {
     color: #fff;
     float: right;
-    width: 60%;
-    line-height: 36px;
-    margin-left:-100px;
+    font-size: 14px;
+    padding-top: 5px;
     text-align: right;
+    margin-right: 20px;
+
   }
 
   .pageation .pages .pageLi {
-    color: #888;
-    border: 1px solid #cccccc;
+    color: #fff;
+    border: 1px solid #fff;
     min-width: 24px;
     text-align: center;
     padding: 4px;
     margin: 2px;
     display: inline-block;
     cursor: pointer;
+    font-size: 12px;
   }
 
   .pageation .pages .active {
@@ -879,11 +882,7 @@
     margin: 2px;
     display: inline-block;
     cursor: pointer;
-  }
-  #out-table{
-    background-color: #3d4e66;
-    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.50);
-    border-radius: 2px;
+    font-size: 12px;
   }
   .pageation .pages .pageLis {
     color: #7fddff;

@@ -140,7 +140,6 @@
                 sessionStorage.setItem("LOGIN_PARKING_UID", that.resData.data.uid);
                 sessionStorage.setItem("LOGIN_PARKING_TOKEN", that.resData.data.token);
                 sessionStorage.setItem("LOGIN_PARKING_TYPE", that.resData.data.type);
-             //   alert(that.resData.data.pId);
                 that.$router.replace("/main");
                 that.$message.success('登录成功');
               }

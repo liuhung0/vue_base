@@ -2,25 +2,20 @@
   <div class="main">
     <h2>{{ruleid?"编辑":"新增"}}角色</h2>
     <el-form ref="ruleForm" :rules="rules" :model="rule" label-width="80px">
-      <el-form-item label="角色名称" prop="name">
+      <el-form-item label="角色名称" prop="name" class="rulesName">
         <el-input v-model="rule.name"></el-input>
       </el-form-item>
-      <el-form-item label="说明" prop="remark">
+      <el-form-item label="说明" prop="remark" class="rulesName">
         <el-input type="textarea" v-model="rule.remark"></el-input>
       </el-form-item>
-      <el-form-item label="权 限" prop="menus">
-        <el-transfer style="float: left;width: 105%;" v-model="rule.menus"
-                     :titles="['权限列表', '已有权限']"
-                     :data="menuList"
-                     :props="{key:'id',label:'name'}"
-        ></el-transfer>
+      <el-form-item label="权 限" prop="menus" class="rulesName">
+        <el-transfer class="power" v-model="rule.menus"></el-transfer>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="setInfo">保 &nbsp;&nbsp;&nbsp;&nbsp;   存</el-button>
       </el-form-item>
     </el-form>
   </div>
-
 </template>
 <script>
     export default {
@@ -129,17 +124,16 @@
 <style scoped>
   .main{
     padding:20px 60px;
-    background:#fff;
-    border-radius: 10px;
+    background: #3D4E66;
+    border-radius: 4px;
   }
   .main h2{
-    font-size:24px;
-    font-weight: 400;
-    color:#828282;
-    padding-top:20px;
-    padding-bottom: 20px;
-    text-align:left;
-    border-bottom:1px dashed #ccc;
+    font-size: 20px;
+    color: #FFFFFF;
+    text-align: left;
+    padding-left: 20px;
+    padding-bottom: 10px;
+    border-bottom:1px solid #314158;
   }
   .el-transfer {
     font-size: 14px;
@@ -147,4 +141,22 @@
     text-align: left;
   }
   .el-transfer-panel{color: #1D242E}
+</style>
+<style>
+  .rulesName .el-form-item__label{
+    color: #fff;
+  }
+  .power .el-transfer-panel .el-transfer-panel__header{
+    background: #54647b;
+  }
+  .power .el-transfer-panel{
+    border: 1px solid #8797AE;
+    border-radius: 2px;
+  }
+  .power .el-checkbox__label{
+    color: #fff !important;
+  }
+  .power .el-transfer-panel__body{
+    background: #344256;
+  }
 </style>

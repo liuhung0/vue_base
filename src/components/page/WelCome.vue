@@ -78,26 +78,25 @@
 </script>
 <style scoped>
   @import "../../assets/css/WelCome.css";
-  .header1{
-    position: fixed;
-    top: 36px;
-    left:230px;
-    height: 72px;
-    z-index:300;
-    background: #1D242E;
-    box-shadow: 0 2px 6px 0 rgba(46,46,46,0.50);
-    width:100%;
+  /*.header1{*/
+    /*position: fixed;*/
+    /*top: 36px;*/
+    /*left:230px;*/
+    /*!*height: 72px;*!*/
+    /*!*z-index:300;*!*/
+    /*background: #1D242E;*/
+    /*box-shadow: 0 2px 6px 0 rgba(46,46,46,0.50);*/
+    /*width:100%;*/
 
-  }
+  /*}*/
   .header1 .dks{
     float:left;
-    Width:200px;
+    /*Width:200px;*/
   }
   .header1 .wel{
     float:right;
-    margin-right:260px;
-    line-height: 36px;
-
+    margin-top: 20px;
+    margin-right: 10%;
   }
  .container_2{
    width:100%;
