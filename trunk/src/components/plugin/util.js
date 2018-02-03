@@ -47,6 +47,8 @@ export default {
 
         //用户登录接口
         REST_USER_LOGIN: BASE_URL + PROXY_URL + "/parkingManager/v1/user/userLogin",
+        //用户修改密码
+        REST_USER_UPDATA_PASSWORD: BASE_URL + PROXY_URL + "/parkingManager/v1/work/updateSubPassword",
         //用户登出接口
         REST_USER_LOGINOUT: BASE_URL + PROXY_URL + "/parkingManager/v1/user/loginOut",
         //基础设置企业信息展示
@@ -146,6 +148,7 @@ export default {
 
         //导出停车场excel表格
         EXCEL_ORDER:BASE_URL + PROXY_URL + "/parkingManager/v1/excel/download/",
+
        }
     }
   }
