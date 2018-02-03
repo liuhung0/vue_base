@@ -30,25 +30,27 @@
   font-size: 10px;
 }
 .gate{
-  width: 45%;
+  width:44%;
+  min-width: 520px;
   background: #3D4E66;
   box-shadow: 0 4px 16px 0 rgba(0,0,0,0.30);
   border-radius: 4px;
   margin: 20px;
   padding: 20px;
   overflow: hidden;
+  float:left;
+  min-Height:600px;
 }
 .gate2{
-  width: 45%;
+  width:44%;
+  min-width: 520px;
   background: #3D4E66;
   box-shadow: 0 4px 16px 0 rgba(0,0,0,0.30);
   border-radius: 4px;
   margin: 20px;
   padding: 20px;
   overflow: hidden;
-  position: absolute;
-  top:0;
-  right: 0%;
+  float:left;
 }
 .img {
   width:100%;
