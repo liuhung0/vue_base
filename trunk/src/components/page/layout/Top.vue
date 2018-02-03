@@ -8,7 +8,7 @@
     </div>
     <div class="flex_item flex_item_40" >
 
-      <el-select v-model="pid" v-if="type == 8" placeholder="你麻痹" :value="pid" >
+      <el-select v-model="pid" v-if="type == 8" placeholder="暂时无" :value="pid" >
         <el-option
           v-for="item in parkingList"
           :key="item.id"
@@ -80,6 +80,7 @@
         change(){
           sessionStorage.removeItem("LOGIN_PARKING_PID")
           sessionStorage.setItem("LOGIN_PARKING_PID",this.pid)
+          this.$router.replace("/main");
         },
         logout(){
           let that = this;
