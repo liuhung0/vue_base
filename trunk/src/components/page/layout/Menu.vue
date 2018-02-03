@@ -1,16 +1,14 @@
 <template>
   <el-row>
     <el-col :span="24">
-      <el-menu
-        default-active="2"
-        class="el-menu-vertical-demo">
-        <el-submenu  v-for="(MENU,index) of menuList" :index="index" :key="index">
+      <el-menu   default-active="2"  class="el-menu-vertical-demo">
+        <el-submenu  v-for="(MENU,index) in menuList" :index="index" :key="index">
           <template slot="title">
             <i :class="MENU.icon"></i>
             <span class="title">{{MENU.title}}</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item v-for="(cmenu,i) of MENU.children" :key="i"  index="i"  >
+            <el-menu-item v-for="(cmenu,i) in MENU.children" :key="i"  index="i"  >
               <router-link :to="cmenu.path">{{cmenu.title}}</router-link>
             </el-menu-item>
           </el-menu-item-group>
