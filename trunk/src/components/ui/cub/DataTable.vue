@@ -120,6 +120,7 @@
           paID:sessionStorage.getItem("LOGIN_PARKING_PID"),
           suId:sessionStorage.getItem("LOGIN_PARKING_UID"),
 //          id:'',
+          pId:sessionStorage.getItem("LOGIN_PARKING_PID"),
         },
         checkedIds: "",
         defaultConfig:{
@@ -279,7 +280,7 @@
         queryData.user_id = sessionStorage.getItem("LOGIN_PARKING_UID");
         queryData.token = sessionStorage.getItem("LOGIN_PARKING_TOKEN");
         queryData.username = sessionStorage.getItem("LOGIN_PARKING_USENAME");
-        queryData.pId = 67;
+        queryData.pId = sessionStorage.getItem("LOGIN_PARKING_PID");
         if(that.config.serverurl){
           that.$http.post(that.config.serverurl, queryData, {emulateJSON: true})
             .then(function (res) {

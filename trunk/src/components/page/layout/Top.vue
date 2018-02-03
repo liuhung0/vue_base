@@ -11,7 +11,7 @@
       <el-select v-model="pid" v-if="type == 8" placeholder="暂时无" :value="pid" >
         <el-option
           v-for="item in parkingList"
-          :key="item.id"
+          :key="item.pid"
           :label="item.name"
           :value="item.id"
           @click.native="change">
@@ -56,23 +56,25 @@ import UpdatePassword from '@/components/page/account/UpdatePassword'
 //        }
       },
       mounted(){
-        let uid = sessionStorage.getItem("LOGIN_PARKING_UID");
-        if(uid == null){
-          this.$message.error("您的登录信息已过期！");
-          this.$router.push('/login')
-        }
+        sessionStorage.removeItem("LOGIN_PARKING_PID")
         let that = this;
         that.$http.post(that.Constants().VIP_PARKING_LIST, that.form,{emulateJSON: true}).then(function (res) {
           if(res.data.result){
             that.parkingList.splice(0, that.parkingList.length, ...res.data.data);
             that.pid =res.data.data[0].id;
-            sessionStorage.setItem("LOGIN_PARKING_PID",res.data.data[0].id)
+            sessionStorage.setItem("LOGIN_PARKING_PID",that.pid)
+            console.log(that.pid)
           }else {
             that.$message.error(that.res.data.message);
           }
         },function (res) {
           that.$message.error(res);
         });
+        let uid = sessionStorage.getItem("LOGIN_PARKING_UID");
+        if(uid == null){
+          this.$message.error("您的登录信息已过期！");
+          this.$router.push('/login')
+        }
       },
       methods:{
         change(){
