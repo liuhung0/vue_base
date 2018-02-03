@@ -114,7 +114,7 @@
           </el-form>
         </div>
       </div>
-      <div class ="footer">
+      <div >
         <el-form ref="form" :model="form" label-width="200px" class="sm2" v-if="form.isOpenSecond==1">
           <el-form-item>
             <el-button  style="float:right;margin-right:64px;margin-top:60px;" type="primary" @click="onSubmit">保存</el-button>
@@ -318,6 +318,10 @@
   .sm .el-input {
     width:60%;
     float:left;
+  }
+  .sm2{
+    clear:both;
+    display: block;
   }
   .sm2 .el-form-item {
   }

@@ -20,7 +20,10 @@ import util from './components/plugin/util.js'
 import VueSweetAlert from 'vue-sweetalert'
 import VueAMap from 'vue-amap';
 import VueAreaLinkage from 'vue-area-linkage';
+
 import echarts from 'echarts'
+Vue.prototype.$echarts = echarts;
+
 import $ from 'jquery';
 window.jQuery = $;
 window.$ = $;
@@ -31,7 +34,6 @@ VueAMap.initAMapApiLoader({
   plugin: ['AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType']
 });
 Vue.use(ElementUI);
-
 Vue.config.productionTip = false
 
 

@@ -116,11 +116,8 @@
         config: that.confignation,
         pagenation: that.confignation.pagenation,
         queryData: {
-//          parkingId:sessionStorage.getItem("LOGIN_PARKING_PID") == null ? "":sessionStorage.getItem("LOGIN_PARKING_PID"),
           paID:sessionStorage.getItem("LOGIN_PARKING_PID"),
           suId:sessionStorage.getItem("LOGIN_PARKING_UID"),
-//          id:'',
-          pId:sessionStorage.getItem("LOGIN_PARKING_PID"),
         },
         checkedIds: "",
         defaultConfig:{
