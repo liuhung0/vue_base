@@ -36,12 +36,10 @@
     data() {
       return {
         reqData: {
-          uId: sessionStorage.getItem("LOGIN_PARKING_UID"),
-          token: sessionStorage.getItem("LOGIN_PARKING_TOKEN"),
+         ppID: sessionStorage.setItem("LOGIN_PARKING_PID",this.pid)
         },
         resDate:{
-          uId: sessionStorage.getItem("LOGIN_PARKING_UID"),
-          token: sessionStorage.getItem("LOGIN_PARKING_TOKEN"),
+          ppID: sessionStorage.setItem("LOGIN_PARKING_PID",this.pid),
           year:null,
           month:null,
           day:null,

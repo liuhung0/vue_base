@@ -69,6 +69,7 @@
           if(res.data.result){
             that.parkingList.splice(0, that.parkingList.length, ...res.data.data);
             that.pid =res.data.data[0].id;
+            sessionStorage.setItem("LOGIN_PARKING_PID",res.data.data[0].id)
           }else {
             that.$message.error(that.res.data.message);
           }
