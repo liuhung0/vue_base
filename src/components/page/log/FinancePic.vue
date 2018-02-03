@@ -1,30 +1,21 @@
 <template>
-  <el-container style="height: 780px;">
-    <el-container style="background-color: rgb(249, 249, 249);height: 1150px">
-      <button  style="cursor: pointer;text-align: center;letter-spacing: 2px; width: 50px;
-      height: 30px; margin-left:2%;color: #fff;background: #239BFA;border: 1px solid #45bb77"><router-link style="color: #0000cc" to="/main/statistics/settlelog">返回</router-link></button>
+  <div class="tubiaoBack">
+    <el-container class="tu">
+      <router-link style="color: #0000cc" to="/main/statistics/settlelog" class="back"><button>返回</button></router-link>
       <div style="border: 2px #C5C5C5;width: 100%;height:500px;position:relative;margin-top:35px">
-
         <div class="bing2">
-          <button   style="cursor: pointer;text-align: center;letter-spacing: 2px; min-width: 30px;
-        min-height: 37px;color: #fff;background: #239BFA;border: 1px solid #45bb77" @click="myallA(5652)">全部</button>
-          <button   style="cursor: pointer;text-align: center;letter-spacing: 2px; min-width: 30px;
-        min-height: 37px;color: #fff; background: #f7ba2a;border: 1px solid #f7ba2a" @click="myyearA(454)">全年</button>
-          <button   style="cursor: pointer;text-align: center;letter-spacing: 2px; min-width: 30px;
-        min-height: 37px;color: #fff;background: red;border: 1px solid red" @click="mymonthA(5656)">本月</button>
-          <button   style="cursor: pointer;text-align: center;letter-spacing: 2px; min-width: 30px;
-        min-height: 37px;color: #fff;background: #00ff00;border: 1px solid #00ff00" @click="mydayA(56)">今日</button>
-          <button   style="cursor: pointer;text-align: center;letter-spacing: 2px; min-width: 30px;
-        min-height: 37px;color: #fff;background: #239BFA;border: 1px solid #45bb77" @click="myweekA(565)">本周</button>
+          <button  @click="myallA(5652)">全部</button>
+          <button  @click="myyearA(454)">全年</button>
+          <button  @click="mymonthA(5656)">本月</button>
+          <button  @click="mydayA(56)">今日</button>
+          <button  @click="myweekA(565)">本周</button>
         </div>
-
         <div id="bing1" class="bing1"></div>
-
         <div id="bingA" class="bingA"></div>
         <div id="echartContainerC" class="echartContainerC"></div>
       </div>
     </el-container>
-  </el-container>
+  </div>
 </template>
 
 <script>
@@ -339,13 +330,34 @@
   }
 </script>
 <style scoped>
+  .tubiaoBack{
+    background: #2f3b4c;
+    padding: 30px;
+  }
+  .tu{
+    background: #3D4E66;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.30);
+    height: 1150px;
+  }
+  .back button{
+    cursor: pointer;
+    width: 50px;
+    text-align: center;
+    letter-spacing: 2px;
+    min-width: 30px;
+    min-height: 37px;
+    color: #fff;
+    border: none;
+    background: #278BFF;
+    margin: 10px;
+  }
   .bing1{
     width: 40%;
     height: 439px;
     position: absolute;
     top: 16%;
     margin-left: 30px;
-    border:2px solid #C5C5C5;
+    border: 1px solid #2F3B4C;
   }
   .pick{
     width: 96%;
@@ -360,7 +372,7 @@
     position: absolute;
     top: 120%;
     left: 2%;
-    border:2px solid #C5C5C5;
+    border: 1px solid #2F3B4C;
   }
   .bingA{
     width: 50%;
@@ -368,15 +380,14 @@
     position: absolute;
     top: 16%;
     left: 48%;
-    border:2px solid #C5C5C5;
+    border: 1px solid #2F3B4C;
   }
   .bing2{
-    width: 40%;
-    height: 439px;
+    width: 30%;
     position: absolute;
     top: 1%;
-    margin-right: 10%;
-    margin-left: 2%;
+    right: 1%;
+    float: right;
   }
 
   .echartContainerC2{
@@ -385,6 +396,16 @@
     position: absolute;
     top: 1%;
     left: 48%;
+  }
+  button{
+    height: 35px;
+    background: none;
+    border: 1px solid #FFFFFF;
+    border-radius: 2px;
+    color: #fff;
+  }
+  button:hover{
+    background: #278BFF;
   }
 
 </style>

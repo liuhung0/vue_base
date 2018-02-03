@@ -1,15 +1,10 @@
 <template>
   <div >
-    <div>
-      <h2 style="float: left">{{config.title}}</h2><br/>
-    </div>
+    <!--<div class="datanr">-->
+      <!--<h2 style="float: left">{{config.title}}</h2><br/>-->
+    <!--</div>-->
     <div class="btn—group">
-      <div style="padding-top: 20px;">
-        <h3 v-if="config.j=='1'">当日总金额:<span style="color: red">{{resData.moy}}</span>元</h3>
-        <h3 v-if="config.j=='1'">当前总金额:<span style="color: red">{{resData.sumMoney}}</span>元</h3>
-      </div>
-      <button v-if="config.hi=='1'" class="biao"  @click="tu()">可视化统计图表</button>
-      <button v-if="config.showAdd=='1'"  @click="myall(5652)">全部</button>
+
       <button v-if="config.showAdd=='1'"  @click="myall(5652)">全部</button>
       <button v-if="config.showAdd=='1'"  @click="myyear(454)">年</button>
       <button v-if="config.showAdd=='1'"  @click="mymonth(5656)">月</button>
@@ -21,7 +16,7 @@
         type="date"
         placeholder="开始时间" class="startTime">
       </el-date-picker>
-      <span class="z">至</span>
+      <span class="zhi">至</span>
       <el-date-picker
         v-model="resData.endTime"
         type="date"
@@ -31,9 +26,10 @@
       <button v-if="config.A=='1'" class="search" @click="addObj(454)">导出excel表格</button>
       <button v-if="config.hi=='1'" class="search" @click="excelExport(454)">导出excel表格</button>
       <button v-if="config.he=='1'" class="search" @click="excelOrder(454)">导出excel表格</button>
+      <button v-if="config.hi=='1'" class="biao"  @click="tu()">可视化统计图表</button>
     </div>
     <!--<hr style="background:#249CFA; height: 2px;width: 100%;border:0px;"/>-->
-    <div class="table table_all" >
+    <div class="table" >
       <div class="pageation" ref="pagenation" v-if="config.pageable==undefined||config.pageable==true">
         <div class="info">
           <select v-model="pagenation.rows" @change="changeRows">
@@ -44,6 +40,10 @@
             <option value="100">100</option>
           </select>显示第{{(pagenation.page - 1) * pagenation.rows + 1}}至
           {{pagenation.page * pagenation.rows}}项,共{{pagenation.num}}项
+        </div>
+        <div  class="money">
+          <h3 v-if="config.j=='1'" class="day">当日总金额:<span style="color: red">{{resData.moy}}</span>元</h3>
+          <h3 v-if="config.j=='1'" class="totle">当前总金额:<span style="color: red">{{resData.sumMoney}}</span>元</h3>
         </div>
         <div class="pages">
           <span v-if="pagenation.page > 1" class="pageLi" @click="pagePev">上页</span>
@@ -703,22 +703,36 @@
   }
 </script>
 <style scoped>
-  .table_all{
-    /*border:1px solid #eee;*/
+  .table{
+    background-color: #3d4e66;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.50);
+    border-radius: 2px;
+  }
+  .datanr{
+    background: #1D242E;
+    box-shadow: 0 2px 6px 0 rgba(46,46,46,0.50);
   }
   h2 {
     color: #fff;
+    line-height: 58px;
     font-weight: 300;
-    padding-left:20px;
-    border-left:4px solid #49a9ff;
+    text-align: left;
+    padding-left: 20px;
+    background: #1D242E;
+    box-shadow: 0 2px 6px 0 rgba(46,46,46,0.50);
+    -webkit-margin-before: 0em;
   }
   h3{
     width: 20%;
+    margin: 0 10px;
     float: left;
     color: #fff;
     font-weight: normal;
-    -webkit-margin-before: 1em;
+    -webkit-margin-before: 0.5em;
     -webkit-margin-after: 1em;
+  }
+  .money{
+    margin-left: 10%;
   }
   .biao{
     cursor: pointer;
@@ -731,10 +745,9 @@
   }
   .btn—group {
     width: 100%;
-    padding: 10px 0;
-    margin-top: -36px;
-    margin-bottom: 20px;
+    padding: 15px 0;
     text-align: right;
+    margin-top: -30px;
   }
 
   .table table {
@@ -750,7 +763,7 @@
     background: #2F3B4C;
     line-height: 26px;
     padding: 4px 10px;
-    color: #888;
+    color: #fff;
   }
 
   .table table thead th:last-child {
@@ -782,7 +795,7 @@
   .table table thead th i {
     text-align: center;
     font-size: 12px;
-    color: #888;
+    color: #fff;
     float: right;
     padding: 10px 8px;
   }
@@ -796,9 +809,9 @@
     /*word-break:break-all;*/
   }
 
-  .table table tbody td:first-child {
-    border-left: 0px dashed #e8e8e8;
-  }
+  /*.table table tbody td:first-child {*/
+    /*border-left: 0px dashed #e8e8e8;*/
+  /*}*/
 
   .table table .ids {
     margin: 2px 4px;
@@ -830,18 +843,16 @@
   }
 
   .pageation {
-    height: 32px;
+    height: 40px;
     padding: 2px 6px;
     line-height: 18px;
     overflow: hidden;
     clear: both;
 
   }
-
   .pageation .info {
     color: #fff;
     float: left;
-    width: 30%;
     line-height: 36px;
   }
 
@@ -855,21 +866,23 @@
   .pageation .pages {
     color: #fff;
     float: right;
-    width: 60%;
-    line-height: 36px;
-    margin-left:-100px;
+    font-size: 14px;
+    padding-top: 5px;
     text-align: right;
+    margin-right: 20px;
+
   }
 
   .pageation .pages .pageLi {
-    color: #888;
-    border: 1px solid #cccccc;
+    color: #fff;
+    border: 1px solid #fff;
     min-width: 24px;
     text-align: center;
     padding: 4px;
     margin: 2px;
     display: inline-block;
     cursor: pointer;
+    font-size: 12px;
   }
 
   .pageation .pages .active {
@@ -882,11 +895,7 @@
     margin: 2px;
     display: inline-block;
     cursor: pointer;
-  }
-  #out-table{
-    background-color: #3d4e66;
-    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.50);
-    border-radius: 2px;
+    font-size: 12px;
   }
   .pageation .pages .pageLis {
     color: #7fddff;
@@ -899,6 +908,7 @@
     font-size: 12px;
   }
   button{
+    height: 35px;
     background: #2F3B4C;
     border: 1px solid #FFFFFF;
     border-radius: 2px;
@@ -912,7 +922,9 @@
     border-radius: 2px;
     border:none;
   }
-
+  .zhi{
+    color: #fff;
+  }
 </style>
 <style>
   .table table tbody td > a {
@@ -928,8 +940,7 @@
     display: none;
   }
   .el-input__inner{
-    background-color: none;
-    height: 20px;
+    padding-left: 10px;
   }
   .el-input--prefix .el-input__inner {
     padding-left: 0px;

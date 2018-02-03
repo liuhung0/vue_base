@@ -2,12 +2,14 @@
 <template>
   <div class="main">
     <h2>租户管理</h2>
-    <data-table
-      :confignation="dataTableConfig"
-      @addObjHandler="addObjHandler"
-      @delObjHandler="delObjHandler"
-      ref="datatable">
-    </data-table>
+    <div class="guanli">
+      <data-table
+        :confignation="dataTableConfig"
+        @addObjHandler="addObjHandler"
+        @delObjHandler="delObjHandler"
+        ref="datatable">
+      </data-table>
+    </div>
   </div>
 </template>
 <script>
@@ -289,15 +291,21 @@
 </script>
 <style scoped>
   .main{
-    padding:30px;
     display:block;
+  }
+  .guanli{
+    padding: 30px;
   }
   .main h2{
     color: #fff;
+    font-size: 18px;
+    line-height: 58px;
     font-weight: 300;
     text-align: left;
     padding-left: 20px;
-    border-left: 4px solid #49a9ff
+    background: #1D242E;
+    box-shadow: 0 2px 6px 0 rgba(46,46,46,0.50);
+    -webkit-margin-before: 0em;
   }
 </style>
 

@@ -233,7 +233,16 @@
     margin: 0;
     padding: 0;
   }
-
+  /*.box .shoufei{*/
+    /*color: #fff;*/
+    /*line-height: 58px;*/
+    /*font-weight: 300;*/
+    /*text-align: left;*/
+    /*padding-left: 20px;*/
+    /*background: #1D242E;*/
+    /*box-shadow: 0 2px 6px 0 rgba(46,46,46,0.50);*/
+    /*-webkit-margin-before: 0em;*/
+  /*}*/
   .box h1 {
     color: #fff;
     font-size: 18px;

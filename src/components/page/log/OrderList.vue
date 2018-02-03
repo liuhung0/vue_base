@@ -1,17 +1,13 @@
 <template>
-  <div style="padding: 20px;">
-    <div id="show" style="color: red;font-size: 20px;font-weight:bold;">
-
+  <div class="main">
+    <h2>订单明细</h2>
+    <div class="guanli">
+      <data-table id="out-table"
+                  :confignation="config"
+                  @addObjHandler="addObjHandler"
+                  ref="datatable">
+      </data-table>
     </div>
-    <P></P>
-    <div>
-
-    </div>
-    <data-table id="out-table"
-                :confignation="config"
-                @addObjHandler="addObjHandler"
-                ref="datatable">
-    </data-table>
   </div>
 </template>
 <script>
@@ -272,8 +268,24 @@
     }
   }
 </script>
-<style>
-
+<style scoped>
+  .main{
+    display:block;
+  }
+  .guanli{
+    padding: 30px;
+  }
+  .main h2{
+    color: #fff;
+    font-size: 18px;
+    line-height: 58px;
+    font-weight: 300;
+    text-align: left;
+    padding-left: 20px;
+    background: #1D242E;
+    box-shadow: 0 2px 6px 0 rgba(46,46,46,0.50);
+    -webkit-margin-before: 0em;
+  }
 </style>
 
 

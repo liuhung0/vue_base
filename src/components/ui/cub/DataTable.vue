@@ -323,9 +323,10 @@
   .btn—group {
     width: 100%;
     text-align: right;
+    margin-top: -20px;
   }
   .table{
-    margin-top: 10px;
+    margin-top: 15px;
     background-color: #3d4e66;
     box-shadow: 0 2px 6px 0 rgba(0,0,0,0.50);
     border-radius: 2px;
