@@ -8,9 +8,15 @@
     </div>
     <div class="flex_item flex_item_40" >
 
-      <el-select :model="pid" v-if="type == 8">
-        <el-option v-for="(parking,index) of parkingList" :key="index" :value="parking.id" v-text="parking.name">
-        </el-option>
+      <el-select v-model="pid" v-if="type == 8" placeholder="你麻痹" :value="pid" >
+        <el-option
+          v-for="item in parkingList"
+          :key="item.id"
+          :label="item.name"
+          :value="item.id"
+          @click.native="change">
+      </el-option>
+
       </el-select>
     </div>
     <div class="flex_item flex_item_10">
@@ -25,7 +31,12 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
+
+    var selected;
+
+
     export default {
+
       components: {},
       props: [],
       data(){
@@ -42,10 +53,10 @@
         }
       },
       watch:{
-        pid(val){
-          sessionStorage.setItem("THIS_PARKING_ID",val);
-          this.$router.push('/main')
-        }
+//        pid(val){
+//          sessionStorage.setItem("THIS_PARKING_ID",val);
+//          this.$router.push('/main')
+//        }
       },
       mounted(){
         let uid = sessionStorage.getItem("LOGIN_PARKING_UID");
@@ -66,6 +77,10 @@
         });
       },
       methods:{
+        change(){
+          sessionStorage.removeItem("LOGIN_PARKING_PID")
+          sessionStorage.setItem("LOGIN_PARKING_PID",this.pid)
+        },
         logout(){
           let that = this;
           that.$http.post(that.Constants().REST_USER_LOGINOUT, that.form,{emulateJSON: true}).then(function (res) {

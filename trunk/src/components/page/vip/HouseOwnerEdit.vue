@@ -1,31 +1,31 @@
 <template>
   <div class="main">
-    <h2>{{id?"编辑":"新增"}}业主</h2>
-    <el-form ref="ruleForm" v-model="ruleForm"  label-width="80px">
+    <h2>{{$route.params.id?"修改":"修改"}}业主</h2>
+    <el-form ref="reqData" v-model="reqData"  label-width="80px">
 
       <!--<el-form-item label="小区名称" prop="username">
         <el-input v-model="form.username"></el-input>
       </el-form-item>-->
       <el-form-item label="所属区域" prop="number">
-        <el-input  v-model="ruleForm.district"></el-input>
+        <el-input  v-model="reqData.district"></el-input>
       </el-form-item>
       <el-form-item label="楼号(栋)" prop="phone">
-        <el-input v-model="ruleForm.tower"></el-input>
+        <el-input v-model="reqData.tower"></el-input>
       </el-form-item>
       <el-form-item label="单元" prop="name">
-        <el-input  v-model="ruleForm.element"></el-input>
+        <el-input  v-model="reqData.element"></el-input>
       </el-form-item>
       <el-form-item label="房间号" prop="identityCard">
-        <el-input  v-model="ruleForm.room"></el-input>
+        <el-input  v-model="reqData.room"></el-input>
       </el-form-item>
       <el-form-item label="姓名" prop="gender">
-        <el-input  v-model="ruleForm.ownerName"></el-input>
+        <el-input  v-model="reqData.ownerName"></el-input>
       </el-form-item>
       <el-form-item label="电话" prop="gender">
-        <el-input  v-model="ruleForm.tel"></el-input>
+        <el-input  v-model="reqData.tel"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">保 &nbsp;&nbsp;&nbsp;&nbsp;   存</el-button>
+        <el-button type="primary" @click="onSubmit">保 &nbsp;&nbsp;&nbsp;&nbsp;存</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -45,8 +45,7 @@
     props:["id"],
     data() {
       return {
-        ruleForm: {
-          id:this.id||-1,
+        reqData: {
           uId: sessionStorage.getItem("LOGIN_PARKING_UID"),
           pId:67,
           district:'',
@@ -55,11 +54,22 @@
           room: '',
           ownerName:'',
           tel:'',
+          id:this.$route.params.id,
         },
       }
     },
     mounted(){
-
+      let that = this;
+      that.$http.post(this.Constants().HOUSE_OWNER_ID, that.reqData,{emulateJSON: true}).then(function (res) {
+        if (res.data.result) {
+          that.reqData = res.data.data;
+        }
+        else {
+          that.$message.info(that.res.data.data.message);
+        }
+      }, function () {
+        that.$message.error("网络发生错误");
+      })
     },
     methods: {
       onSubmit() {
@@ -85,7 +95,7 @@
 <style scoped>
   .main{
     padding:20px 60px;
-    /*background:#fff;*/
+    background:#fff;
     border-radius: 10px;
   }
   .main h2{

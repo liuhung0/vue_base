@@ -23,12 +23,12 @@
       let that = this;
       return {
         reqData: {
-          user_id:sessionStorage.getItem("LOGIN_PARKING_UID"),
-          pId:80
+        //  pId:80
         },
         config: {
           draw: 1,
           showAdd: 1,
+          he:1,
           serverurl:that.Constants().ORDER_LIST,
           title: "订单明细",
           key: "id",

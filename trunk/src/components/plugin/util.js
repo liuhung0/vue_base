@@ -28,8 +28,8 @@ export default {
         LOGIN_COULD_TYPE = "LOGIN_COULD_TYPE";
       //dev
 
-      let BASE_URL = "http://192.168.0.45:9000";
-      let PROXY_URL = "/api";
+      let BASE_URL = "http://192.168.0.9:9109";
+      let PROXY_URL = "";
       // let BASE_URL ="http://cloud.chinahtiot.com",PROXY_URL="/api";
       return {
         LOGIN_COULD_TYPE,
@@ -137,7 +137,13 @@ export default {
         //门闸免费操作
         REST_MENZHA_FREE: BASE_URL + PROXY_URL + "/parkingManager/v1/userbarrier/freeout",
 
-      }
+        HOUSE_OWNER_DELETE:BASE_URL + PROXY_URL + "/parkingManager/v1/houseOwner/delOwner",
+
+        ORDER_LIST:BASE_URL + PROXY_URL + "/parkingManager/v1/order/orderList",
+
+        //导出停车场excel表格
+        EXCEL_ORDER:BASE_URL + PROXY_URL + "/parkingManager/v1/excel/download/",
+       }
     }
   }
 

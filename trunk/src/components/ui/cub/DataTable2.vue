@@ -10,6 +10,7 @@
       </div>
       <button v-if="config.hi=='1'" class="biao"  @click="tu()">可视化统计图表</button>
       <button v-if="config.showAdd=='1'"  @click="myall(5652)">全部</button>
+      <button v-if="config.showAdd=='1'"  @click="myall(5652)">全部</button>
       <button v-if="config.showAdd=='1'"  @click="myyear(454)">年</button>
       <button v-if="config.showAdd=='1'"  @click="mymonth(5656)">月</button>
       <button v-if="config.showAdd=='1'"  @click="myweek(565)">周</button>
@@ -29,6 +30,7 @@
       <button v-if="config.showAdd=='1'" class="search" @click="sousuo">搜索</button>
       <button v-if="config.A=='1'" class="search" @click="addObj(454)">导出excel表格</button>
       <button v-if="config.hi=='1'" class="search" @click="excelExport(454)">导出excel表格</button>
+      <button v-if="config.he=='1'" class="search" @click="excelOrder(454)">导出excel表格</button>
     </div>
     <!--<hr style="background:#249CFA; height: 2px;width: 100%;border:0px;"/>-->
     <div class="table table_all" >
@@ -159,15 +161,16 @@
           all:null,
           payment:null,
           charge_standard:null,
-          vehicle_type:null
+          vehicle_type:null,
+          ppID:sessionStorage.getItem("LOGIN_PARKING_PID")
         },
         config: that.confignation,
         pagenation: that.confignation.pagenation,
         queryData: {
           appId:'',
           payment:null,
-          ppID:sessionStorage.getItem("LOGIN_PARKING_PID"),
-        },
+          ppID:null,
+      },
         checkedIds: "",
         defaultConfig:{
           pagenation: {
@@ -240,7 +243,7 @@
         let page = queryData.page;
         queryData.rows = that.pagenation.rows?that.pagenation.rows:10;
         let rows = queryData.rows;
-        let user_id = sessionStorage.getItem("LOGIN_PARKING_UID");
+        let user_id = sessionStorage.getItem("LOGIN_PARKING_PID");
         let token = sessionStorage.getItem("LOGIN_PARKING_TOKEN");
         let to_time ='1514099197';
         queryData.year = that.resData.year;
@@ -398,6 +401,108 @@
           "/"+week+"/"+all+"/"+payment+"/"+charge_standard
         );
       },
+      excelOrder(){
+        let that = this;
+        let startTime;
+        let endTime;
+        let cope_with;
+        let sluice_state;
+        let payment = that.queryData.payment;
+        console.log(payment);
+        let charge_standard =that.queryData.charge_standard ;
+        let queryData = !!that.queryData ? that.queryData : {};
+        if (that.resData.startTime instanceof Date) {
+          startTime = parseInt(that.resData.startTime.getTime()/1000);
+          queryData.startTime = startTime;
+        }
+        if (that.resData.endTime instanceof Date) {
+          endTime = parseInt(that.resData.endTime.getTime()/1000);
+          queryData.endTime = endTime;
+        }
+        that.pagenation =that.pagenation?that.pagenation:{};
+        queryData.page = that.pagenation.page?that.pagenation.page:1;
+        let page = queryData.page;
+        queryData.rows = that.pagenation.rows?that.pagenation.rows:10;
+        let rows = queryData.rows;
+        let user_id = sessionStorage.getItem("LOGIN_PARKING_UID");
+        let token = sessionStorage.getItem("LOGIN_PARKING_TOKEN");
+        queryData.to_time = '1514099197';
+        let to_time =queryData.to_time;
+        queryData.year = that.resData.year;
+        let year;
+        let month;
+        let day;
+        let week;
+        let all;
+        if(that.queryData.startTime == null){
+          startTime = '4553225';
+        }else{
+          startTime = queryData.startTime;
+        }
+
+        if(that.queryData.endTime == null){
+          endTime = '4553225';
+        }else{
+          endTime = queryData.endTime;
+        }
+
+        if(that.queryData.year == null){
+          year = '4553225';
+        }else{
+          year = that.resData.year;
+        }
+
+        if(that.queryData.month == null){
+          month = '4553225';
+        }else{
+          month = that.resData.month;
+        }
+
+        if(that.queryData.day == null){
+          day = '4553225';
+        }else{
+          day = that.resData.day;
+        }
+
+        if(that.queryData.week == null){
+          week = '4553225';
+        }else{
+          week = that.resData.week;
+        }
+
+        if(that.queryData.all == null){
+          all = '4553225';
+        }else{
+          all = that.resData.all;
+        }
+
+        if(payment == null){
+          payment = '100';
+        }
+
+
+        if(charge_standard == null){
+          charge_standard = '100';
+        }
+
+        if(cope_with == null){
+          cope_with = '100';
+        }
+
+        if(sluice_state == null){
+          sluice_state = '100';
+        }
+
+        that.reqData  = null;
+        //用此种方式可以解决excel表格导出不弹窗的问题
+        window.open(
+          that.Constants().EXCEL_ORDER+
+          user_id+"/"+month+"/"+to_time+"/"+token+
+          "/"+startTime+"/"+endTime+"/"+year+"/"+day+
+          "/"+week+"/"+all+"/"+payment+"/"+charge_standard
+          +"/"+cope_with+"/"+sluice_state
+        );
+      },
       delObj(){
         let ids = "";
         let s = 0;
@@ -550,16 +655,17 @@
         that.pagenation =that.pagenation?that.pagenation:{};
         queryData.page = that.pagenation.page?that.pagenation.page:1;
         queryData.rows = that.pagenation.rows?that.pagenation.rows:10;
-        queryData.user_id = sessionStorage.getItem("LOGIN_PARKING_UID");
-        queryData.token = sessionStorage.getItem("LOGIN_PARKING_TOKEN");
-        queryData.username = sessionStorage.getItem("LOGIN_PARKING_USENAME");
-        queryData.appId = this.$route.params.id;
-        queryData.to_time = '1514099197';
+        //queryData.user_id = sessionStorage.getItem("LOGIN_PARKING_UID");
+        //queryData.token = sessionStorage.getItem("LOGIN_PARKING_TOKEN");
+        //queryData.username = sessionStorage.getItem("LOGIN_PARKING_USENAME");
+        //queryData.appId = this.$route.params.id;
+        queryData.to_time = 20;
         queryData.year = that.resData.year;
         queryData.month = that.resData.month;
         queryData.day = that.resData.day;
         queryData.week = that.resData.week;
         queryData.all = that.resData.all;
+        queryData.ppID = that.resData.ppID;
         if(that.config.serverurl){
           that.$http.post(that.config.serverurl, queryData, {emulateJSON: true})
             .then(function (res) {
