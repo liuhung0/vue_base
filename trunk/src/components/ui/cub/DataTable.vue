@@ -321,12 +321,10 @@
 
   .btn—group {
     width: 100%;
-    padding-bottom:40px;
     text-align: right;
-    margin-top: -72px;
   }
   .table{
-    margin-top: 30px;
+    margin-top: 10px;
     background-color: #3d4e66;
     box-shadow: 0 2px 6px 0 rgba(0,0,0,0.50);
     border-radius: 2px;
@@ -344,7 +342,7 @@
     background: #2F3B4C;
     line-height: 26px;
     padding: 4px 10px;
-    color: #888;
+    color: #fff;
   }
   .table table thead td {
     text-align: center;
@@ -428,7 +426,6 @@
   .pageation .info {
     color: #fff;
     float: left;
-    width: 30%;
     line-height: 36px;
   }
 

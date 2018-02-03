@@ -21,7 +21,7 @@
         type="date"
         placeholder="开始时间" class="startTime">
       </el-date-picker>
-      <span class="z">至</span>
+      <span class="zhi">至</span>
       <el-date-picker
         v-model="resData.endTime"
         type="date"
@@ -33,7 +33,7 @@
       <button v-if="config.he=='1'" class="search" @click="excelOrder(454)">导出excel表格</button>
     </div>
     <!--<hr style="background:#249CFA; height: 2px;width: 100%;border:0px;"/>-->
-    <div class="table table_all" >
+    <div class="table" >
       <div class="pageation" ref="pagenation" v-if="config.pageable==undefined||config.pageable==true">
         <div class="info">
           <select v-model="pagenation.rows" @change="changeRows">
@@ -700,7 +700,7 @@
   }
 </script>
 <style scoped>
-  .table_all{
+  .table{
     background-color: #3d4e66;
     box-shadow: 0 2px 6px 0 rgba(0,0,0,0.50);
     border-radius: 2px;
@@ -731,16 +731,12 @@
   .btn—group {
     width: 100%;
     padding: 10px 0;
-    margin-top: -36px;
-    margin-bottom: 20px;
     text-align: right;
   }
-
   .table table {
     width: 100%;
     margin: 0 auto;
   }
-
   .table table thead th {
     text-align: center;
     font-size: 14px;
@@ -749,13 +745,11 @@
     background: #2F3B4C;
     line-height: 26px;
     padding: 4px 10px;
-    color: #888;
+    color: #fff;
   }
-
   .table table thead th:last-child {
     border-right: 1px solid #e8e8e8;
   }
-
   .table table thead td {
     text-align: center;
     padding: 2px 4px;
@@ -765,7 +759,6 @@
     margin-left: 2px;
     font-weight: 400;
     background: #2F3B4C;
-
   }
 
   .table table thead th input, .table table thead th select {
@@ -781,7 +774,7 @@
   .table table thead th i {
     text-align: center;
     font-size: 12px;
-    color: #888;
+    color: #fff;
     float: right;
     padding: 10px 8px;
   }
@@ -795,9 +788,9 @@
     /*word-break:break-all;*/
   }
 
-  .table table tbody td:first-child {
-    border-left: 0px dashed #e8e8e8;
-  }
+  /*.table table tbody td:first-child {*/
+    /*border-left: 0px dashed #e8e8e8;*/
+  /*}*/
 
   .table table .ids {
     margin: 2px 4px;
@@ -839,7 +832,6 @@
   .pageation .info {
     color: #fff;
     float: left;
-    width: 30%;
     line-height: 36px;
   }
 
@@ -895,6 +887,7 @@
     font-size: 12px;
   }
   button{
+    height: 35px;
     background: #2F3B4C;
     border: 1px solid #FFFFFF;
     border-radius: 2px;
@@ -908,7 +901,9 @@
     border-radius: 2px;
     border:none;
   }
-
+  .zhi{
+    color: #fff;
+  }
 </style>
 <style>
   .table table tbody td > a {
@@ -925,7 +920,6 @@
   }
   .el-input__inner{
     background-color: none;
-    height: 20px;
   }
   .el-input--prefix .el-input__inner {
     padding-left: 0px;
