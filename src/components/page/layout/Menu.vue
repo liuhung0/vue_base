@@ -118,8 +118,10 @@
     width: 100%;
   }
   .el-menu-item{
-    background:  #1D242E;
-
+      background:  #1D242E;
+    }
+  .el-menu-item :focus, .el-menu-item:hover{
+    background: #22404e;
   }
  a{
    font-size: 16px;

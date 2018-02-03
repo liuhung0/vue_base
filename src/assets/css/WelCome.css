@@ -1,13 +1,11 @@
 .on {
   width:100%;
-  position: relative;
 }
 .outOrIn{
   padding:20px;
   text-align: left;
   background: #1D242E;
   box-shadow: 0 2px 6px 0 rgba(46,46,46,0.50);
-  position: relative;
 }
 /*top*/
 .shangban{
@@ -19,9 +17,6 @@
   margin-left: 6%;
 }
 .wel{
-  position: absolute;
-  top:30%;
-  right: 5%;
 }
 .chek >.el-checkbox__inner{
   background: rgba(216,216,216,0.00);
@@ -42,11 +37,5 @@
   border-color: #fff;
 }
 /*车场停车*/
-.contain{
-  width: 100%;
-  display: flex;
-  position: relative;
-  /*justify-content:center;*/
-  /*align-items:center;*/
-}
+
 
