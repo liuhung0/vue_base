@@ -165,13 +165,10 @@
     border-radius: 10px;
   }
   .main h2{
-    font-size:24px;
-    font-weight: 400;
-    color:#828282;
-    padding-top:20px;
-    padding-bottom: 20px;
-    text-align:left;
-    border-bottom:1px dashed #ccc;
+    color: #fff;
+    font-weight: 300;
+    padding-left:20px;
+    border-left:4px solid #49a9ff;
   }
   .el-transfer {
     font-size: 14px;
