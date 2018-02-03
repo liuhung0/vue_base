@@ -7,7 +7,7 @@
         <el-submenu  v-for="(MENU,index) of menuList" :index="index" :key="index">
           <template slot="title">
             <i :class="MENU.icon"></i>
-            <span>{{MENU.title}}</span>
+            <span class="title">{{MENU.title}}</span>
           </template>
           <el-menu-item-group>
             <el-menu-item v-for="(cmenu,i) of MENU.children" :key="i"  index="i"  >
@@ -155,7 +155,7 @@
     border-radius: 2px;
     color: #fff;
   }
-  span{
+  .title{
     font-size: 18px;
     color: #fff;
   }
