@@ -4,7 +4,7 @@
       <el-menu   default-active="2"  class="el-menu-vertical-demo">
         <el-submenu  v-for="(MENU,index) in menuList" :index="index" :key="index">
           <template slot="title">
-            <i :class="MENU.icon"></i>
+            <b :class="MENU.icon"></b>
             <span class="title">{{MENU.title}}</span>
           </template>
           <el-menu-item-group>
@@ -125,6 +125,9 @@
     text-color:#fff;
     active-text-color:#ffd04b;
   }
+  .el-menu-vertical-demo .el-submenu__title i{
+    display: none !important;
+  }
   .el-col{
     width: 100%;
   }
@@ -135,6 +138,7 @@
     background: #203A59;
     box-shadow: 0 0 6px 0 #588FFF;
     border-radius: 2px;
+
   }
 
   .router-link-active{
@@ -155,6 +159,7 @@
     box-shadow: 0 0 2px 0 rgba(113,160,255,0.50);
     border-radius: 2px;
     color: #fff;
+    border-right: 4px solid #49a9ff
   }
   .title{
     font-size: 18px;

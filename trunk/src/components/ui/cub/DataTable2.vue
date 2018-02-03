@@ -1,8 +1,8 @@
 <template>
   <div >
-    <div>
-      <h2 style="float: left">{{config.title}}</h2><br/>
-    </div>
+    <!--<div>-->
+      <!--<h2 style="float: left">{{config.title}}</h2><br/>-->
+    <!--</div>-->
     <div class="btn—group">
       <div style="padding-top: 20px;">
         <h3 v-if="config.j=='1'">当日总金额:<span style="color: red">{{resData.moy}}</span>元</h3>
@@ -730,8 +730,9 @@
   }
   .btn—group {
     width: 100%;
-    padding: 10px 0;
+    padding: 15px 0;
     text-align: right;
+    margin-top: -50px;
   }
   .table table {
     width: 100%;

@@ -4,7 +4,7 @@
       <!--<img src="@/assets/image/logo.png" style="width:32px;Height:32px">-->
     </div>
     <div class="flex_item flex_item_20" >
-      <span>泊联停车场管理系统</span>
+      <span class="packing">泊联停车场管理系统</span>
     </div>
     <div class="flex_item flex_item_40" >
 
@@ -177,5 +177,8 @@ import UpdatePassword from '@/components/page/account/UpdatePassword'
   .zhuxiao{
     line-height: 10px;
   }
-
+.packing{
+  color: #fff;
+  font-size: 20px;
+}
 </style>
