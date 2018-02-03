@@ -248,7 +248,9 @@
   .box .con {
     margin: 20px auto;
     padding: 20px;
-    box-shadow: 2px 2px 4px 4px #000;
+    background: #3D4E66;
+    box-shadow: 0 4px 16px 0 rgba(0,0,0,0.30);
+    border-radius: 4px;
     border: 1px solid #333;
     width: 90%;
     min-height: 680px;
