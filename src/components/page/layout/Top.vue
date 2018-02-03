@@ -21,7 +21,8 @@
     </div>
     <div class="flex_item flex_item_10">
       <span><B>当前值班:</B>{{username}} </span>
-      <router-link  to="" class="router-link-active">修改密码</router-link>
+      <!--v-if="type == 20"-->
+      <router-link to="/page/user/updatePassword" class="router-link-active">修改密码</router-link>
       <router-link id="index" @click.native="logout" to=""><img src="../../../assets/image/zhuxiao.png" class="zhuxiao"/></router-link>
     </div>
     <!--<div class="flex_item flex_item_100_w" >-->
@@ -31,12 +32,9 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
-
+import UpdatePassword from '@/components/page/account/UpdatePassword'
     var selected;
-
-
     export default {
-
       components: {},
       props: [],
       data(){
@@ -78,6 +76,28 @@
         });
       },
       methods:{
+        infoObjHandler:function(){
+          let that = this;
+          let dialog = that.$refs.addLayer;
+          let vDialog = dialog.open({
+            template: '<div><UpdatePassword @addOK="addOK" id="'+sessionStorage.setItem("LOGIN_PARKING_SUBID")+'" ></UpdatePassword></div>',
+            components: {
+              UpdatePassword
+            },
+            width:720,
+            methods: {
+              addOK: function () {
+                dialog.comps.splice(0, 1)
+                if (dialog.comps.length === 0 && dialog.$refs.back.show) {
+                  dialog.$refs.back.close()
+                }
+                this.$router.push('/login')
+              }
+            },
+          }).then(function (arg) {
+            arg.close()
+          })
+        },
         change(){
           sessionStorage.removeItem("LOGIN_PARKING_PID")
           sessionStorage.setItem("LOGIN_PARKING_PID",this.pid)

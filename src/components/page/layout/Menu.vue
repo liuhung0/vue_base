@@ -95,15 +95,17 @@
     },
     mounted(){
       let that = this;
-      that.$http.post(that.Constants().REST_USER_QUERYWORKINFO, that.form,{emulateJSON: true}).then(function (res) {
-        if(res.data.result){
+      if(sessionStorage.setItem("LOGIN_PARKING_TYPE") == 20){
+          that.$http.post(that.Constants().REST_USER_QUERYWORKINFO, that.form,{emulateJSON: true}).then(function (res) {
+            if(res.data.result){
 
-        }else {
-          that.$message.error(that.res.data.message);
-        }
-      },function (res) {
-        that.$message.error(res);
-      });
+            }else {
+              that.$message.error(that.res.data.message);
+            }
+          },function (res) {
+            that.$message.error(res);
+          });
+      }
     },
     methods: {
 

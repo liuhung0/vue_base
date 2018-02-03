@@ -34,6 +34,7 @@ import HouseOwnerEdit from '@/components/page/vip/HouseOwnerEdit'
 import FinancePic from '@/components/page/log/FinancePic'
 import Gate from '@/components/parts/Gate'
 import echarts from 'echarts'
+import UpdatePassword from '@/components/page/account/UpdatePassword'
 
 export default new Router({
   routes: [
@@ -42,6 +43,7 @@ export default new Router({
       name: 'login',
       component: Login
     },
+
     {
       path: '/login',
       name: 'login',
@@ -171,6 +173,11 @@ export default new Router({
           path: '/page/vip/HouseOwnerAdd',
           name:'houseOwnerAdd',
           component:HouseOwnerAdd
+        },
+        {
+          path:'/page/user/updatePassword',
+          name:'updatePassword',
+          component:UpdatePassword
         },
       ]
     },
