@@ -81,7 +81,6 @@
             for (let i = 0; i < len; i++) {
               that.$set(that.doorList[i], "checked", true);
             }
-            console.log(that.doorList);
           }
           else {
             that.$message.error("出入口列表获取失败:" + res.data.message);
