@@ -1,25 +1,23 @@
 <template>
   <div class="main">
     <h2>{{id?"编辑":"新增"}}黑白名单 </h2>
-    <el-form ref="ruleForm" v-model="ruleForm"  label-width="80px">
-
-
-      <el-form-item label="姓名" prop="number">
+    <el-form ref="ruleForm" v-model="ruleForm"  label-width="80px" class="heibai">
+      <el-form-item label="姓名" prop="number" class="nameList">
         <el-input  v-model="ruleForm.name"></el-input>
       </el-form-item>
-      <el-form-item label="车牌号" prop="phone">
+      <el-form-item label="车牌号" prop="phone" class="nameList" >
         <el-input v-model="ruleForm.carNumber"></el-input>
       </el-form-item>
-      <el-form-item label="电话" prop="name">
+      <el-form-item label="电话" prop="name" class="nameList">
         <el-input  v-model="ruleForm.phone"></el-input>
       </el-form-item>
-      <el-form-item label="类型" >
-        <el-radio-group v-model="ruleForm.type" size="medium" style="width: 450px">
-          <el-radio  label="1" >白名单</el-radio>
-          <el-radio  label="2" >黑名单</el-radio>
+      <el-form-item label="类型"  class="nameList">
+        <el-radio-group v-model="ruleForm.type" size="medium" class="radio">
+          <el-radio  label="1" class="dan">白名单</el-radio>
+          <el-radio  label="2" class="dan">黑名单</el-radio>
         </el-radio-group>
       </el-form-item>
-      <el-form-item label="备注" prop="gender">
+      <el-form-item label="备注" prop="gender" class="nameList">
         <el-input  v-model="ruleForm.remark"></el-input>
       </el-form-item>
       <el-form-item>
@@ -104,27 +102,36 @@
   }
 </style>
 <style>
-  .addAccount  .el-form-item__content{
+  .heibai  .el-form-item__content{
     width: 360px;
   }
-  .addAccount .el-form-item__label{
+  .heibai .el-form-item__label{
     color:#fff;
   }
-  .addAccount .selec{
+  .heibai .selec{
     width:300px;
     margin-right: 15%;
 
   }
-  .addAccount .selec .el-select-dropdown__item span{
+  .heibai .selec .el-select-dropdown__item span{
     color: #444 !important;
   }
-  .addAccount .el-select-dropdown__item.hover{
+  .heibai .el-select-dropdown__item.hover{
     color: #444;
   }
-  .addAccount .radio{
+  .heibai .radio{
     margin-left: -240px;
   }
-  .addAccount .radio2{
+  .heibai .radio2{
     margin-left: -207px;
+  }
+  .heibai .radio {
+    margin-left: -190px;
+  }
+  .dan .el-radio__label {
+    color: #fff;
+  }
+  .nameList .el-form-item__label{
+    color: #fff;
   }
 </style>

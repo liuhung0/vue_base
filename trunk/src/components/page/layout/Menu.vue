@@ -4,8 +4,8 @@
       <el-menu   default-active="2"  class="menu-demo">
         <el-submenu class="menu-oicn" v-for="(MENU,index) in menuList" :index="index" :key="index">
           <template slot="title">
-            <!--<b :class="MENU.icon"></b>-->
-            <img src=""/>
+            <b :class="MENU.icon"></b>
+            <img :class="MENU.img" src="../../../assets/image/baobiao.png"/>
             <span class="title">{{MENU.title}}</span>
           </template>
           <el-menu-item-group>
@@ -21,7 +21,6 @@
 <script>
   export default {
     data(){
-
       return{
         menuList:[
           {

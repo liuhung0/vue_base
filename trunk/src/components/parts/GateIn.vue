@@ -22,11 +22,10 @@
             </el-form-item>
           </el-form>
         </div>
-        <div class="item"><b class="label">入口:</b><span>{{record.approach_alleyway}}</span></div>
-        <div class="item"><b class="label">门闸编号:</b><span>{{record.approach_door}}</span></div>
-        <div class="item"><b class="label">摄像头编号:</b><span>{{record.approach_camera}}</span></div>
-        <div class="item"><b class="label">车牌号:</b><span>{{record.car_number}}</span></div>
         <div class="item"><b class="label">进场时间:</b><span>{{new Date(record.dateline*1000).Format("yyyy-MM-dd hh:mm:ss")}}</span></div>
+        <div class="item"><b class="label">出场时间:</b><span>{{record.car_number}}</span></div>
+        <div class="item"><b class="label">收费金额:</b><span>{{record.car_number}}</span></div>
+        <div class="item"><b class="label">停泊类型:</b><span>{{record.car_number}}</span></div>
       </div>
     </div>
     <el-button  @click="GateIn" class="startGate">手动开闸</el-button>
