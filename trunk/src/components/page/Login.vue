@@ -3,13 +3,13 @@
     <div class="flex_item_title">
       <h1>泊联停车场管理系统</h1>
     </div>
-    <div class="flex_item_center hcx">
+    <div class="flex_item_center packing">
       <el-form :model="boss" status-icon :rules="bossRole" ref="bossForm" label-width="60px" class="demo-ruleForm">
         <el-form-item label="用户名" prop="username">
           <el-input type="text" v-model="boss.username" auto-complete="off"  placeholder="邮箱或用户名"></el-input>
         </el-form-item>
         <el-form-item  label="密  码 "prop="password">
-          <el-input type="password" v-model="boss.password" auto-complete="off" placeholder="如如密码"></el-input>
+          <el-input type="password" v-model="boss.password" auto-complete="off" placeholder="请输入密码"></el-input>
         </el-form-item>
           <el-input   type="text" placeholder="请输入验证码" class="yanzhengma_input el-form-item" @blur="checkLpicma"
                          v-model="boss.picLyanzhengma" auto-complete="off"></el-input>
@@ -63,11 +63,11 @@
 //        }
 //      };
       return {
-        picLyanzhengma: '',
+//        picLyanzhengma: '',
         checkCode: '',
         boss: {
           checkCode: '',
-          picLyanzhengma:'',
+//          picLyanzhengma:'',
           username: '',
           password: '',
         },
@@ -86,10 +86,10 @@
         }
       };
     },
-    mounted(){
-      this.createCode();
-      this.checkLpicma();
-    },
+//    mounted(){
+//      this.createCode();
+//      this.checkLpicma();
+//    },
     methods: {
       // 图片验证码
 //      createCode: function() {
@@ -203,7 +203,7 @@
     width:492px;
     align-self: center;
     padding:50px 40px  20px 20px;
-    background: rgba(231,236,255,0.40);
+    background: rgba(231,236,255,0.20);
     box-shadow: 0 0 6px 0 rgba(109,114,146,0.60);
     border-radius: 6px;
     position: absolute;
@@ -214,30 +214,30 @@
   .flex_item_title h1{
     font-size:4.2rem;
   }
-  .hcx .el-form{
+  .packing .el-form{
     width: 100%;
     height: 100%;
     margin-left: 15%;
   }
-   .hcx .el-form-item{
+   .packing .el-form-item{
      background:transparent !important;
      border:1px solid #fff;
      color:#fff;
   }
-  .hcx .el-form-item *{
+  .packing .el-form-item *{
     background:transparent !important;
   }
-  .hcx .el-input{
+  .packing .el-input{
     width: 80%;
     display: flex;
     margin-top: 5px;
     background: none!important;
   }
-  .hcx .el-form-item__content{
+  .packing .el-form-item__content{
     width: 100%;
     margin-left: 0 !important;
   }
-  .hcx .yzm{
+  .packing .yzm{
     width: 50%;
     height: 35px;
     background: none;
@@ -246,7 +246,7 @@
     margin-right: 6%;
     padding-left: 8px;
  }
-  .hcx .el-form-item__label {
+  .packing .el-form-item__label {
     text-align: right;
     vertical-align: middle;
     float: left;
@@ -257,7 +257,7 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
   }
-  .hcx .hq{
+  .packing .hq{
     width: 40%;
     background: #aaaaaa;
     border-radius: 2px;
@@ -266,7 +266,7 @@
     border:none !important;
     padding: 10px 20px;
   }
-  .hcx .el-button{
+  .packing .el-button{
     width:360px;
     margin-left:14px;
     border:none !important;
@@ -278,16 +278,16 @@
     letter-spacing: 1px;
   }
 
-  .hcx .el-form-item{
+  .packing .el-form-item{
     width: 360px;
   }
-  .hcx .el-col{
+  .packing .el-col{
     border:none;
   }
-  .hcx  .yanzhengma_input {
+  .packing  .yanzhengma_input {
     width: 240px;
   }
-  .hcx .verification1 {
+  .packing .verification1 {
     vertical-align: middle;
     transform: translate(0px, 0);
     width: 102px;
