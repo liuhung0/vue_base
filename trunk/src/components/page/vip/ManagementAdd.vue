@@ -1,49 +1,24 @@
 <template>
   <div class="main">
-    <h2>{{id ? "编辑" : "新增"}}租户管理</h2>
+    <h2>{{id ? "编辑" : "新增"}}管理费管理</h2>
     <el-form ref="ruleForm" :rules="ruleForm" :model="ruleForm" label-width="100px" class="addAccount">
 
-      <el-form-item label="姓名">
-        <el-input v-model="ruleForm.name" style="width: 300px;margin-left: -50px"></el-input>
-      </el-form-item>
 
-      <el-form-item label="联系电话">
-        <el-input v-model="ruleForm.phone" style="width: 300px;margin-left: -50px"></el-input>
-      </el-form-item>
-
-      <el-form-item label="车位类型">
-        <el-radio-group v-model="ruleForm.reserve" size="medium" style="width: 300px;margin-left: -140px">
-          <el-radio label="1">自助车位</el-radio>
-          <el-radio label="2">预定车位</el-radio>
-        </el-radio-group>
+      <el-form-item  label="选择车位号：" style="color: black;width: 100px;">
+        <el-select v-model="ruleForm.seatId" filterable placeholder="请选择车位号" style="width:300px;">
+          <el-option
+            v-for="item in seatList"
+            :key="item.seatId"
+            :label="item.seatNumber"
+            :value="item.id">
+          </el-option>
+        </el-select>
       </el-form-item>
 
       <el-form-item label="车牌号">
         <el-input v-model="ruleForm.carNumber" style="width:300px;margin-left: -55px"></el-input>
       </el-form-item>
 
-
-      <el-form-item label="vip卡类型">
-        <el-radio-group v-model="ruleForm.type" size="medium" style="width: 400px">
-          <el-radio label="1">月卡用户</el-radio>
-          <el-radio label="2">季卡用户</el-radio>
-          <el-radio label="3">年卡用户</el-radio>
-        </el-radio-group>
-      </el-form-item>
-
-      <el-form-item label="会员开始时间">
-        <el-col :span="11">
-          <el-date-picker type="date" id="beginDate" placeholder="选择日期" v-model="ruleForm.startTime"
-                          style="width: 300px;margin-left: 10px;"></el-date-picker>
-        </el-col>
-      </el-form-item>
-
-      <el-form-item label="会员结束时间">
-        <el-col :span="11">
-          <el-date-picker type="date" id="endDate" placeholder="选择日期" v-model="ruleForm.endTime"
-                          style="width: 300px;margin-left: 10px;"></el-date-picker>
-        </el-col>
-      </el-form-item>
 
       <el-form-item label="区号">
         <el-input v-model="ruleForm.region" style="width:300px;margin-left: -55px"></el-input>
@@ -67,48 +42,41 @@
 
 </template>
 <script>
-  import ElRadio from "../../../../node_modules/element-ui/packages/radio/src/radio.vue";
-  import ElFormItem from "../../../../node_modules/element-ui/packages/form/src/form-item.vue";
-  import ElCheckbox from "../../../../node_modules/element-ui/packages/checkbox/src/checkbox.vue";
-
   export default {
     components: {
-      ElCheckbox,
-      ElFormItem,
-      ElRadio
     },
     name: "sub-info",
     props: ["id"],
     data() {
       return {
         ruleForm: {
-          platform:2,
           deleted: 0,
           id: this.id || null,
-          name: '',
-          phone: '',
-          reserve: '',
+          seatId: '',
           carNumber: '',
-          type: '',
-          startTime: '',
-          endTime: '',
           region: '',
           tower: '',
           element: '',
           roomNum: '',
           pId: sessionStorage.getItem("LOGIN_PARKING_PID")
         },
+        seatList:[],
       }
     },
     mounted() {
       let that = this;
-      that.$http.post(this.Constants().VIP_ID_LIST, that.ruleForm, {emulateJSON: true}).then(function (res) {
+      that.$http.post(that.Constants().VIP_GLF_SEAT_ID,that.ruleForm,{emulateJSON: true}).then(function (res) {
+        if (res.data.result) {
+          that.seatList.splice(0, that.seatList.length, ...res.data.data);
+        }
+      }).catch(function () {
+      })
+      that.$http.post(this.Constants().VIP_GLF_ID, that.ruleForm, {emulateJSON: true}).then(function (res) {
         if (res.data.result) {
           that.ruleForm = res.data.data;
-          that.ruleForm.type = res.data.data.type.toString();
         }
         else {
-          that.$message.info(that.res.data.data.message);
+          that.$message.info(res.data.message);
         }
       }, function () {
         that.$message.error("网络发生错误");
@@ -117,12 +85,12 @@
     methods: {
       onSubmit() {
         let that = this;
-        this.$http.post(that.Constants().VIP_ADD, that.ruleForm, {emulateJSON: true}).then(function (res) {
+        this.$http.post(that.Constants().VIP_GLF_ADD, that.ruleForm, {emulateJSON: true}).then(function (res) {
           if (res.data.result) {
             that.$message.info("黑白名单添加成功");
             that.$emit("addOK");
           } else {
-            that.$message.error("添加失败：" + res.date.message);
+            that.$message.error("添加失败：" + res.data.data.message);
           }
         }).catch(function () {
           that.$message.error("网络发生异常");

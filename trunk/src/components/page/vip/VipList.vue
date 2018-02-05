@@ -10,17 +10,24 @@
         ref="datatable">
       </data-table>
     </div>
+    <Layer ref="addLayer"></Layer>
   </div>
 </template>
 <script>
   import DataTable from '@/components/ui/cub/DataTable'
+  import Layer from "../../ui/cub/Layer";
+  import VipAdd from "@/components/page/vip/VipAdd"
   export default {
     components: {
-      DataTable},
+      DataTable,Layer},
     data() {
       let that = this;
       return {
         dataTableConfig: {
+          draw: 1,
+          showAdd: 1,
+          showDel: 1,
+          showCheckBack: 1,
           serverurl:that.Constants().VIP_LIST,
           title: "租户管理",
           key: "id",
@@ -33,7 +40,7 @@
             {
               sortable: false,
               sort: "asc",
-              prop: "nick",
+              prop: "name" || "nick",
               name: "用户姓名",
               width: "80px",
               render: function (data) {
@@ -57,6 +64,58 @@
                 type: "none",
               },
               filterData: ""
+            },
+            {
+              sortable: false,
+              sort: "asc",
+              prop: "region",
+              name: "区号",
+              width: "160px",
+              render: function (data) {
+                return "<span>" + data + "</span>";
+              },
+              filter: {
+                type: "none",
+              },
+            },
+            {
+              sortable: false,
+              sort: "asc",
+              prop: "tower",
+              name: "楼号",
+              width: "160px",
+              render: function (data) {
+                return "<span>" + data + "</span>";
+              },
+              filter: {
+                type: "none",
+              },
+            },
+            {
+              sortable: false,
+              sort: "asc",
+              prop: "element",
+              name: "单元",
+              width: "160px",
+              render: function (data) {
+                return "<span>" + data + "</span>";
+              },
+              filter: {
+                type: "none",
+              },
+            },
+            {
+              sortable: false,
+              sort: "asc",
+              prop: "roomNum",
+              name: "房间号",
+              width: "160px",
+              render: function (data) {
+                return "<span>" + data + "</span>";
+              },
+              filter: {
+                type: "none",
+              },
             },
             {
               sortable: false,
@@ -104,7 +163,7 @@
               sort: "asc",
               prop: "type",
               name: "会员类型",
-              width: '120px',
+              width: '160px',
               render: function (data) {
                 if (data == 1) {
                   return "<label style='color: #EEEE00;padding:2px 6px;display: inline-block;'>月卡用户</label>"
@@ -165,7 +224,7 @@
               sort: "asc",
               prop: "status",
               name: "状态",
-              width: '100px',
+              width: '130px',
               render: function (data) {
                 if (data == 1) {
                   return "<label style='color: #1AC45D;padding:2px 6px;display: inline-block;'>正常</label>"
@@ -197,39 +256,97 @@
             }
           ],
           actions: [
+            {
+              name: "编辑",
+              show(){
+                return true;
+              },
+              btnClass: "btn-main",
+              handler: function (id) {
+                that.infoObjHandler(id);
+              }
+            },
           ],
           dataset: [],
         }
       }
     },
     methods: {
-      addObjHandler(){
-        this.$router.push("/page/vip/VipAdd");
-      },
-      delObjHandler(id){
+      addObjHandler:function(){
         let that = this;
-        that.$swal({
-          title:"你确定要删除选中的数据么?",
-          text:"删除后将无法再找回,相关的所有数据都将被删除.",
-          type:"warning",
-          showCancelButton: true,
-          confirmButtonColor: "#dd8b1f",
-          confirmButtonText: "确定删除",
-          cancelButtionText:"算来,再考虑下",
-          closeOnConfirm: true,
-          allowOutsideClick: true,
-        }).then(function(){
-          that.$http.post(that.Constants().VIP_ID_DEL,{id:id},{emulateJSON: true}).then(function(res){
-            if(res.data.result){
-              that.$message.info("删除成功","您选择的数据已经成功删除!");
-              this.$refs.datatable.loadData();
+        let dialog = that.$refs.addLayer;
+        let vDialog = dialog.open({
+          template: '<div><VipAdd @addOK="addOK"></VipAdd></div>',
+          components: {
+            VipAdd
+          },
+          width:720,
+          methods: {
+            addOK: function () {
+              dialog.comps.splice(0, 1)
+              if (dialog.comps.length === 0 && dialog.$refs.back.show) {
+                dialog.$refs.back.close()
+              }
+              that.loadData();
             }
-            else{
-              that.$message.error("删除失败"+res.data.message);
-            }
-          },function(){
-            that.$message.error("删除失败"+res.data.message);
+          },
+        }).then(function (arg) {
+          arg.close()
+        })
+      },
+      delObjHandler:function(ids){
+        let that = this;
+        that.$confirm('此操作将永久删除选择信息, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          console.log(ids);
+          that.delete(ids);
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
           });
+        });
+      },
+      loadData(){
+        this.$refs.datatable.loadData();
+      },
+      delete(ids){
+        let that = this;
+        that.$http.post(that.Constants().VIP_ID_DEL,{id:ids.toString()},{emulateJSON: true}).then(function(res){
+          if(res.data.result){
+            that.$message.success("删除成功");
+            that.loadData();
+          }
+          else{
+            that.$message.error(res.data.messsage);
+          }
+        },function(){
+          that.$message.error("网络连接错误");
+        })
+      },
+      infoObjHandler:function(id){
+        let that = this;
+        let dialog = that.$refs.addLayer;
+        let vDialog = dialog.open({
+          template: '<div><VipAdd @addOK="addOK" id="'+id+'" ></VipAdd></div>',
+          components: {
+            VipAdd
+          },
+          width:720,
+          methods: {
+            addOK: function () {
+              dialog.comps.splice(0, 1)
+              if (dialog.comps.length === 0 && dialog.$refs.back.show) {
+                dialog.$refs.back.close()
+              }
+              that.loadData();
+            }
+          },
+        }).then(function (arg) {
+          arg.close()
         })
       },
       online(id) {

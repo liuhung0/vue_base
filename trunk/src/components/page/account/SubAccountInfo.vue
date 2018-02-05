@@ -2,16 +2,6 @@
   <div class="main">
     <h2>{{id?"编辑":"新增"}}账号</h2>
     <el-form ref="form" :rules="form" :model="form" label-width="100px" class="addAccount">
-      <!--<el-form-item label="隶属停车场" prop="name">-->
-        <!--<el-select v-model="form.pId" filterable placeholder="请选择停车场"  class="selec">-->
-          <!--<el-option-->
-            <!--v-for="item in pidList"-->
-            <!--:key="item.pId"-->
-            <!--:label="item.name"-->
-            <!--:value="item.id">-->
-          <!--</el-option>-->
-        <!--</el-select>-->
-      <!--</el-form-item>-->
       <el-form-item label="用户名" prop="username">
         <el-input v-model="form.username"></el-input>
       </el-form-item>

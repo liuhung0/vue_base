@@ -1,7 +1,6 @@
-<!--韩彩霞-->
 <template>
   <div class="main">
-    <h2>管理费列表</h2>
+    <h2>管理费</h2>
     <div class="guanli">
       <data-table
         :confignation="dataTableConfig"
@@ -10,19 +9,27 @@
         ref="datatable">
       </data-table>
     </div>
+    <Layer ref="addLayer"></Layer>
   </div>
 </template>
+
 <script>
-  import DataTable from '@/components/ui/cub/DataTable'
+  import DataTable from "../../ui/cub/DataTable";
+  import Layer from "../../ui/cub/Layer";
+  import ManagementAdd from "@/components/page/vip/ManagementAdd"
   export default {
-    components: {
-      DataTable},
-    data() {
-      let that = this;
+    components: {DataTable,Layer},
+    name: "rule",
+    data(){
+      let that =this;
       return {
         dataTableConfig: {
-          serverurl:that.Constants().VIP_MANAGE,
-          title: "租户管理",
+          draw: 1,
+          showAdd: 1,
+          showDel: 1,
+          showCheckBack: 1,
+          serverurl: that.Constants().VIP_GLF,
+          title: "管理费",
           key: "id",
           pagenation: {
             page: 1,
@@ -30,20 +37,6 @@
             num: 0,
           },
           columns: [
-            {
-              sortable: false,
-              sort: "asc",
-              prop: "villageName",
-              name: "小区名称",
-              width: "80px",
-              render: function (data) {
-                return data;
-              },
-              filter: {
-                type: "none",
-              },
-              filterData: ""
-            },
             {
               sortable: false,
               sort: "asc",
@@ -129,15 +122,100 @@
               filterData: ""
             }
           ],
-            actions: [
-
-               ],
+          actions: [
+            {
+              name: "编辑",
+              show(){
+                return true;
+              },
+              btnClass: "btn-main",
+              handler: function (id) {
+                that.infoObjHandler(id);
+              }
+            },
+          ],
           dataset: [],
         }
       }
     },
-    methods: {
-
+    methods:{
+      addObjHandler:function(){
+        let that = this;
+        let dialog = that.$refs.addLayer;
+        let vDialog = dialog.open({
+          template: '<div><ManagementAdd @addOK="addOK" ></ManagementAdd></div>',
+          components: {
+            ManagementAdd
+          },
+          width:720,
+          methods: {
+            addOK: function () {
+              dialog.comps.splice(0, 1)
+              if (dialog.comps.length === 0 && dialog.$refs.back.show) {
+                dialog.$refs.back.close()
+              }
+              that.loadData();
+            }
+          },
+        }).then(function (arg) {
+          arg.close()
+        })
+      },
+      loadData(){
+        this.$refs.datatable.loadData();
+      },
+      delObjHandler:function(id){
+        let that = this;
+        that.$confirm('此操作将永久删除选择信息, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          console.log(id);
+          that.delete(id);
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });
+        });
+      },
+      infoObjHandler:function(id){
+        let that = this;
+        let dialog = that.$refs.addLayer;
+        let vDialog = dialog.open({
+          template: '<div><ManagementAdd @addOK="addOK" id="'+id+'" ></ManagementAdd></div>',
+          components: {
+            ManagementAdd
+          },
+          width:720,
+          methods: {
+            addOK: function () {
+              dialog.comps.splice(0, 1)
+              if (dialog.comps.length === 0 && dialog.$refs.back.show) {
+                dialog.$refs.back.close()
+              }
+              that.loadData();
+            }
+          },
+        }).then(function (arg) {
+          arg.close()
+        })
+      },
+      delete(id){
+        let that = this;
+        that.$http.post(that.Constants().SPECIAlVEHICLE_DELETE,{id:id.toString()},{emulateJSON: true}).then(function(res){
+          if(res.data.result){
+            that.$message.success("删除成功");
+            that.loadData();
+          }
+          else{
+            that.$message.error(res.data.messsage);
+          }
+        },function(){
+          that.$message.error("网络连接错误");
+        })
+      }
     }
   }
 </script>
@@ -149,8 +227,8 @@
     padding: 30px;
   }
   .main h2{
-    font-size: 18px;
     color: #fff;
+    font-size: 18px;
     line-height: 58px;
     font-weight: 300;
     text-align: left;
