@@ -251,6 +251,7 @@
     padding: 30px;
   }
   .main h2{
+    font-size: 18px;
     color: #fff;
     line-height: 58px;
     font-weight: 300;

@@ -3,8 +3,11 @@
     <!--<div class="datanr">-->
       <!--<h2 style="float: left">{{config.title}}</h2><br/>-->
     <!--</div>-->
+    <div  class="money">
+      <h3 v-if="config.j=='1'" class="day">当日总金额:<span style="color: red;margin-left: 5px">{{resData.moy}}</span>元</h3>
+      <h3 v-if="config.j=='1'" class="totle">当前总金额:<span style="color: red;margin-left: 5px">{{resData.sumMoney}}</span>元</h3>
+    </div>
     <div class="btn—group">
-
       <button v-if="config.showAdd=='1'"  @click="myall(5652)">全部</button>
       <button v-if="config.showAdd=='1'"  @click="myyear(454)">年</button>
       <button v-if="config.showAdd=='1'"  @click="mymonth(5656)">月</button>
@@ -41,10 +44,6 @@
           </select>显示第{{(pagenation.page - 1) * pagenation.rows + 1}}至
           {{pagenation.page * pagenation.rows}}项,共{{pagenation.num}}项
         </div>
-        <div  class="money">
-          <h3 v-if="config.j=='1'" class="day">当日总金额:<span style="color: red">{{resData.moy}}</span>元</h3>
-          <h3 v-if="config.j=='1'" class="totle">当前总金额:<span style="color: red">{{resData.sumMoney}}</span>元</h3>
-        </div>
         <div class="pages">
           <span v-if="pagenation.page > 1" class="pageLi" @click="pagePev">上页</span>
           <span v-for="i in pagenation.total">
@@ -59,7 +58,7 @@
         </div>
       </div>
 
-      <table>
+      <table class="table3">
         <thead>
         <tr class="header">
 
@@ -728,11 +727,8 @@
     float: left;
     color: #fff;
     font-weight: normal;
-    -webkit-margin-before: 0.5em;
+    -webkit-margin-before: 1em;
     -webkit-margin-after: 1em;
-  }
-  .money{
-    margin-left: 10%;
   }
   .biao{
     cursor: pointer;
@@ -944,16 +940,14 @@
   }
   .el-input--prefix .el-input__inner {
     padding-left: 0px;
-  }
-  .el-input--suffix .el-input__inner{
     padding-right: 0px;
   }
-  .el-date-editor.el-input, .el-date-editor.el-input__inner{
-    width: 80px;
-    height: 20px;
+  .startTime.el-date-editor.el-input, .el-date-editor.el-input__inner{
+    width: 100px;
     background-color: none;
   }
   .startTime > .el-input__inner{
-    width: 80px;
+    width: 100px;
+    padding-left: 10px;
   }
 </style>
