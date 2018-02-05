@@ -96,6 +96,8 @@
     mounted(){
       let that = this;
       if(sessionStorage.getItem("LOGIN_PARKING_TYPE") == 20){
+        return;
+      }
           that.$http.post(that.Constants().REST_USER_QUERYWORKINFO, that.form,{emulateJSON: true}).then(function (res) {
             if(res.data.result){
 
@@ -105,7 +107,6 @@
           },function (res) {
             that.$message.error(res);
           });
-      }
     },
     methods: {
 
