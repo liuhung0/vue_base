@@ -40,6 +40,7 @@
         },
         doorList: [],
         checkList: ['选中且禁用', '复选框 A'],
+        parkingList:[],
       }
     },
     mounted() {
@@ -48,9 +49,7 @@
       that.$http.post(that.Constants().VIP_PARKING_LIST, that.form,{emulateJSON: true}).then(function (res) {
         if(res.data.result){
           that.parkingList.splice(0, that.parkingList.length, ...res.data.data);
-          that.pid =res.data.data[0].id;
-          sessionStorage.setItem("LOGIN_PARKING_PID",that.pid)
-          console.log(that.pid)
+          sessionStorage.setItem("LOGIN_PARKING_PID",res.data.data[0].id)
         }else {
           that.$message.error(that.res.data.message);
         }
@@ -71,7 +70,7 @@
       getDoors() {
         let that = this;
         let pid = sessionStorage.getItem("LOGIN_PARKING_PID");
-        if (pid === null) {
+        if (this.pid === null) {
           that.$message.error("请先选择停车场");
           return;
         }
