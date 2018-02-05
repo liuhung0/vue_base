@@ -14,7 +14,7 @@
               <span class="minute">分钟</span>
             </el-form-item>
             <el-form-item label="临停后免费时间">
-              <el-input style="float:left;width:30%;" v-model="form.beforeMinute"></el-input>
+              <el-input style="float:left;width:30%;" v-model="form.afterMinute"></el-input>
               <span class="minute">分钟</span>
             </el-form-item>
             <el-form-item label="前">
@@ -34,7 +34,7 @@
             </h3>
             <div v-if="form.isOpenFourth==1">
               <el-form-item label="选择开始结束时间">
-                <el-time-picker style="float:left;width:40%" v-model="form.nightStartTime"></el-time-picker>
+                <el-time-picker style="   qfloat:left;width:40%" v-model="form.nightStartTime"></el-time-picker>
 
                 <el-time-picker style="float:left;width:40%;padding-left:20px;"
                                 v-model="form.nightEndTime"></el-time-picker>
@@ -115,11 +115,7 @@
         </div>
       </div>
       <div >
-        <el-form ref="form" :model="form" label-width="200px" class="sm2" v-if="form.isOpenSecond==1">
-          <el-form-item>
-            <el-button  style="float:right;margin-right:64px;margin-top:60px;" type="primary" @click="onSubmit">保存</el-button>
-          </el-form-item>
-        </el-form>
+        <el-button  style="float:right;margin-right:64px;margin-top:60px;" type="primary" @click="onSubmit">保存</el-button>
       </div>
     </div>
 
@@ -156,6 +152,8 @@
           beforeHour: '',
           //   前每小时费用
           beforeFee: '',
+          //临时停车后多少分钟
+          after_minute:'',
           //   后几小时
           afterFee: '',
           //   夜间开始时间
@@ -189,26 +187,40 @@
     },
     mounted() {
       let that = this;
-      that.$http.post(that.Constants().REST_MERCHANT_QUERYPRICE, that.form, {emulateJSON: true}).then(function (res) {
-          if (res.data.result) {
-            that.$set(that, "form", res.data.data)
-            console.log("拉取收费设置成功");
-            that.form.isOpenThird === 1 ? that.form.isOpenThird = false : that.form.isOpenThird = true;
-            that.form.isOpenFourth === 1 ? that.form.isOpenFourth = false : that.form.isOpenFourth = true;
-            that.form.isOpenFifth === 1 ? that.form.isOpenFifth = false : that.form.isOpenFifth = true;
-            that.form.isOpenSecond === 1 ? that.form.isOpenSecond = false : that.form.isOpenSecond = true;
-            that.form.isOpenFirst === 1 ? that.form.isOpenFirst = false : that.form.isOpenFirst = true;
-          } else {
-            that.$message.info(that.res.data.message)
-          }
-        }, function () {
-          that.$message.error("网络发生错误");
-        }
-      )
+      that.init();
     },
     methods: {
+      init(){
+        let that = this;
+        that.$http.post(that.Constants().REST_MERCHANT_QUERYPRICE, that.form, {emulateJSON: true}).then(function (res) {
+            if (res.data.result) {
+              that.$set(that, "form", res.data.data)
+              console.log("拉取收费设置成功");
+              that.form.isOpenThird === 1 ? that.form.isOpenThird = false : that.form.isOpenThird = true;
+              that.form.isOpenFourth === 1 ? that.form.isOpenFourth = false : that.form.isOpenFourth = true;
+              that.form.isOpenFifth === 1 ? that.form.isOpenFifth = false : that.form.isOpenFifth = true;
+              that.form.isOpenSecond === 1 ? that.form.isOpenSecond = false : that.form.isOpenSecond = true;
+              that.form.isOpenFirst === 1 ? that.form.isOpenFirst = false : that.form.isOpenFirst = true;
+            } else {
+              that.$message.info(that.res.data.message)
+            }
+          }, function () {
+            that.$message.error("网络发生错误");
+          }
+        )
+      },
       onSubmit() {
         let that = this;
+          //   夜间结束时间
+//          nightEndTime: '',
+        if (that.form.nightStartTime instanceof Date) {
+          let nightStartTime = parseInt(that.resData.nightStartTime.getTime()/1000);
+          that.form.nightStartTime = nightStartTime;
+        }
+        if (that.form.nightEndTime instanceof Date) {
+          let nightEndTime = parseInt(that.resData.nightEndTime.getTime()/1000);
+          that.form.nightEndTime = nightEndTime;
+        }
         that.form.isOpenThird === false ? that.form.isOpenThird = 1 : that.form.isOpenThird = 2;
         that.form.isOpenFourth === false ? that.form.isOpenFourth = 1 : that.form.isOpenFourth = 2;
         that.form.isOpenFifth === false ? that.form.isOpenFifth = 1 : that.form.isOpenFifth = 2;
@@ -216,6 +228,7 @@
         that.form.isOpenFirst === false ? that.form.isOpenFirst = 1 : that.form.isOpenFirst = 2;
         that.$http.post(that.Constants().REST_MERCHANT_SETPRICE, that.form, {emulateJSON: true}).then(function (res) {
             if (res.data.result) {
+              that.init();
               that.$message.success("信息修改成功！");
             } else {
               that.$message.info(that.res.data.message)
