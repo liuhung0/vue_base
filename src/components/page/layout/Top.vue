@@ -4,7 +4,7 @@
       <!--<img src="@/assets/image/logo.png" style="width:32px;Height:32px">-->
     </div>
     <div class="flex_item flex_item_20" >
-      <span class="packing">泊联停车场管理系统</span>
+      <router-link to="/main/" class="packing">泊联停车场管理系统</router-link>
     </div>
     <div class="flex_item flex_item_40" >
       <el-select v-model="pid" v-if="type == 8" placeholder="暂时无" :value="pid" class="packingCar">
@@ -30,7 +30,6 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
-import UpdatePassword from '@/components/page/account/UpdatePassword'
     var selected;
     export default {
       components: {},

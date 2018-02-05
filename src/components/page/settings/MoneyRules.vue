@@ -11,11 +11,11 @@
             </h3>
             <el-form-item label="临停前免费时间">
               <el-input style="float:left;width:30%;" v-model="form.beforeMinute"></el-input>
-              <span style="float:left;width:80px;">分钟</span>
+              <span class="minute">分钟</span>
             </el-form-item>
             <el-form-item label="临停后免费时间">
               <el-input style="float:left;width:30%;" v-model="form.beforeMinute"></el-input>
-              <span style="float:left;width:80px;">分钟</span>
+              <span class="minute">分钟</span>
             </el-form-item>
             <el-form-item label="前">
               <el-input style="float:left;width:10%;" v-model="form.beforeHour"></el-input>
@@ -251,7 +251,7 @@
     background: #1D242E;
     margin-top: -6px;
     text-align: left;
-
+    font-weight: normal;
   }
 
   .box .con {
@@ -289,15 +289,18 @@
 
   .con h2, .con h3 {
     color: #fff;
-    border-bottom: 2px solid #122133;
+    font-size: 20px;
+    border-bottom: 1px solid #314158;
     text-align: left;
     padding: 10px 20px;
+    font-weight: normal;
   }
 
   .rightSpan {
     float: left;
     margin-left: 20px;
     font-size: 14px;
+    color:#fff;
   }
 
   .settings label, .settings .el-form-item__label {
@@ -328,5 +331,10 @@
   .sm2 .el-input {
     width:60%;
     float:left;
+  }
+  .minute{
+    color: #fff;
+    float:left;
+    width:80px;
   }
 </style>
