@@ -928,12 +928,12 @@
   .el-input--suffix .el-input__inner{
     padding-right: 0px;
   }
-  .el-date-editor.el-input, .el-date-editor.el-input__inner{
-    width: 80px;
-    height: 20px;
+  .startTime.el-date-editor.el-input, .el-date-editor.el-input__inner{
+    width: 100px;
     background-color: none;
   }
   .startTime > .el-input__inner{
-    width: 80px;
+    width: 100px;
+    padding-left: 10px;
   }
 </style>

@@ -27,7 +27,7 @@
           {
             title:"报表管理",
             icon:"el-icon-location",
-            children:[
+              children:[
               {
                 title:"出入明细",
                 path:"/page/parts/Gates"

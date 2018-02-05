@@ -2,20 +2,20 @@
   <div class="main">
     <h2>{{id?"编辑":"新增"}}账号</h2>
     <el-form ref="form" :rules="form" :model="form" label-width="100px" class="addAccount">
-      <el-form-item label="隶属停车场" prop="name">
-        <el-select v-model="form.pId" filterable placeholder="请选择停车场"  class="selec">
-          <el-option
-            v-for="item in pidList"
-            :key="item.pId"
-            :label="item.name"
-            :value="item.id">
-          </el-option>
-        </el-select>
-      </el-form-item>
+      <!--<el-form-item label="隶属停车场" prop="name">-->
+        <!--<el-select v-model="form.pId" filterable placeholder="请选择停车场"  class="selec">-->
+          <!--<el-option-->
+            <!--v-for="item in pidList"-->
+            <!--:key="item.pId"-->
+            <!--:label="item.name"-->
+            <!--:value="item.id">-->
+          <!--</el-option>-->
+        <!--</el-select>-->
+      <!--</el-form-item>-->
       <el-form-item label="用户名" prop="username">
         <el-input v-model="form.username"></el-input>
       </el-form-item>
-      <el-form-item label="编号" prop="number">
+      <el-form-item label="工号" prop="number">
         <el-input  v-model="form.number"></el-input>
       </el-form-item>
       <el-form-item label="手机号" prop="phone">
@@ -27,7 +27,7 @@
       <el-form-item label="身份证号" prop="identityCard">
         <el-input  v-model="form.identityCard"></el-input>
       </el-form-item>
-      <el-form-item label="性别" prop="gender">
+      <el-form-item label="性别" prop="gender" class="xing">
         <el-radio-group v-model="form.gender" size="medium" class="radio">
           <el-radio  label="1" >男</el-radio>
           <el-radio  label="2" >女</el-radio>
@@ -44,7 +44,7 @@
         </el-select>
       </el-form-item>
 
-      <el-form-item label="账号状态" prop="status">
+      <el-form-item label="账号状态" prop="status" class="xing">
         <el-radio-group v-model="form.status" size="medium" class="radio2">
           <el-radio  label="1" >启用</el-radio>
           <el-radio  label="2" >禁用</el-radio>
@@ -75,7 +75,7 @@
         form: {
           uId: sessionStorage.getItem("LOGIN_PARKING_UID"),
           ids:'',
-          pId:'',
+          pId:sessionStorage.getItem("LOGIN_PARKING_PID"),
           rId:'',
           id:this.id||-1,
           username:'',
@@ -196,5 +196,8 @@
   }
   .addAccount .radio2{
     margin-left: -207px;
+  }
+  .xing .el-radio__label {
+    color: #fff;
   }
 </style>

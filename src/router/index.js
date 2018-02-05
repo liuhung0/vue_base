@@ -36,7 +36,6 @@ import HouseOwnerEdit from '@/components/page/vip/HouseOwnerEdit'
 import FinancePic from '@/components/page/log/FinancePic'
 import Gate from '@/components/parts/Gate'
 import UpdatePassword from '@/components/page/account/UpdatePassword'
-import UpdatePassword from '@/components/page/account/UpdatePassword'
 
 
 export default new Router({

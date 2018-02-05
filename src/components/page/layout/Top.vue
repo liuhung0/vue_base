@@ -7,8 +7,7 @@
       <span class="packing">泊联停车场管理系统</span>
     </div>
     <div class="flex_item flex_item_40" >
-
-      <el-select v-model="pid" v-if="type == 8" placeholder="暂时无" :value="pid" >
+      <el-select v-model="pid" v-if="type == 8" placeholder="暂时无" :value="pid" class="packingCar">
         <el-option
           v-for="item in parkingList"
           :key="item.pid"
@@ -121,14 +120,15 @@ import UpdatePassword from '@/components/page/account/UpdatePassword'
     text-align: left;
     padding-top:16px;
   }
-  .flex_item_20 > span{
+  .flex_item_20  .packing{
     font-size:20px;
     display: inline-block;
     line-height: 42px;
+    color: #fff;
   }
   .flex_item_40{
     flex:0 0 50%;
-    text-align: left;
+    text-align: center;
     padding-top:16px;
   }
   .flex_item_10{
@@ -181,4 +181,11 @@ import UpdatePassword from '@/components/page/account/UpdatePassword'
   color: #fff;
   font-size: 20px;
 }
+  .packingCar.el-select{
+    width: 350px;
+    margin-left: 20%;
+  }
+</style>
+<style>
+
 </style>
