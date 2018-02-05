@@ -1,8 +1,8 @@
 <template>
   <el-row>
     <el-col :span="24">
-      <el-menu   default-active="2"  class="el-menu-vertical-demo">
-        <el-submenu  v-for="(MENU,index) in menuList" :index="index" :key="index">
+      <el-menu   default-active="2"  class="menu-demo">
+        <el-submenu class="menu-oicn" v-for="(MENU,index) in menuList" :index="index" :key="index">
           <template slot="title">
             <!--<b :class="MENU.icon"></b>-->
             <img src=""/>
@@ -10,7 +10,7 @@
           </template>
           <el-menu-item-group>
             <el-menu-item v-for="(cmenu,i) in MENU.children" :key="i"  index="i"  >
-              <router-link :to="cmenu.path">{{cmenu.title}}</router-link>
+              <router-link :to="cmenu.path" class="menuStyle">{{cmenu.title}}</router-link>
             </el-menu-item>
           </el-menu-item-group>
         </el-submenu>
@@ -121,47 +121,50 @@
   }
 </script>
 <style>
-  .el-menu-vertical-demo{
+  .menu-demo{
     background-color:#181D24;
     text-color:#fff;
     active-text-color:#ffd04b;
   }
-  .el-menu-vertical-demo .el-submenu__title i{
+  .menu-demo .menu-oicn i{
     display: none !important;
   }
-  .el-col{
+  .menu-demo .el-col{
     width: 100%;
   }
-  .el-menu-item{
+  .menu-demo .el-menu-item{
     background:  #1D242E;
   }
-  .el-menu-item:focus, .el-menu-item:hover{
+  .menu-demo .el-menu-item:focus, .el-menu-item:hover{
     background: #203A59;
     box-shadow: 0 0 6px 0 #588FFF;
     border-radius: 2px;
   }
-
-  .router-link-active{
+ .menuStyle{
+  color: #A5A5A5;
+  }
+  .menuStyle:hover{
+    color: #FFFFFF
+  }
+  .menu-demo .router-link-active{
     color: #FFFFFF
   }
 
-  .el-menu{
+  .menu-demo .el-menu{
     border-right: none;
   }
-  .el-menu-item-group__title{
+  .menu-demo .el-menu-item-group__title{
     padding: 0;
   }
-  .router-link > a{
-    color: #fff;
-  }
-  .el-submenu__title:hover {
+
+  .menu-demo .el-submenu__title:hover {
     background: #203A59;
     box-shadow: 0 0 2px 0 rgba(113,160,255,0.50);
     border-radius: 2px;
     color: #fff;
     border-right: 4px solid #49a9ff
   }
-  .title{
+  .menu-demo .title{
     font-size: 18px;
     color: #fff;
   }
