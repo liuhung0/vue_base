@@ -33,6 +33,11 @@
     },
     data() {
       return {
+        form:{
+          uId:sessionStorage.getItem("LOGIN_PARKING_UID"),
+          platform:sessionStorage.getItem("LOGIN_PARKING_TYPE") === 8 ? 8 : 20,
+          token:sessionStorage.getItem("LOGIN_PARKING_TOKEN"),
+        },
         doorList: [],
         checkList: ['选中且禁用', '复选框 A'],
       }
