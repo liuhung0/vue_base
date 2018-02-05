@@ -38,6 +38,20 @@
       }
     },
     mounted() {
+      sessionStorage.removeItem("LOGIN_PARKING_PID")
+      let that = this;
+      that.$http.post(that.Constants().VIP_PARKING_LIST, that.form,{emulateJSON: true}).then(function (res) {
+        if(res.data.result){
+          that.parkingList.splice(0, that.parkingList.length, ...res.data.data);
+          that.pid =res.data.data[0].id;
+          sessionStorage.setItem("LOGIN_PARKING_PID",that.pid)
+          console.log(that.pid)
+        }else {
+          that.$message.error(that.res.data.message);
+        }
+      },function (res) {
+        that.$message.error(res);
+      });
       this.getDoors();
     },
     methods: {
@@ -52,8 +66,6 @@
       getDoors() {
         let that = this;
         let pid = sessionStorage.getItem("LOGIN_PARKING_PID");
-        alert("首页")
-        alert(pid);
         if (pid === null) {
           that.$message.error("请先选择停车场");
           return;
