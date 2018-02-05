@@ -133,7 +133,7 @@
       return {
         form: {
           id: '',
-          pId: '900',
+          pId: sessionStorage.getItem("LOGIN_PARKING_PID"),
           uId: sessionStorage.getItem("LOGIN_PARKING_UID"),
           token: sessionStorage.getItem("LOGIN_PARKING_TOKEN"),
           //年优惠价

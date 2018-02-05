@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <h2>账号管理</h2>
+    <h2>黑白名单</h2>
     <data-table
       :confignation="dataTableConfig"
       @addObjHandler="addObjHandler"
@@ -15,7 +15,6 @@
   import DataTable from "../../ui/cub/DataTable";
   import Layer from "../../ui/cub/Layer";
   import Add from "@/components/page/specialvehicle/Add"
-  import Update from "@/components/page/specialvehicle/Update"
   export default {
     components: {DataTable,Layer},
     name: "rule",
@@ -192,9 +191,9 @@
         let that = this;
         let dialog = that.$refs.addLayer;
         let vDialog = dialog.open({
-          template: '<div><Update @addOK="addOK" id="'+id+'" ></Update></div>',
+          template: '<div><Add @addOK="addOK" id="'+id+'" ></Add></div>',
           components: {
-            Update
+            Add
           },
           width:720,
           methods: {
