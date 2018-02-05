@@ -10,7 +10,6 @@
       </div>
       <button v-if="config.hi=='1'" class="biao"  @click="tu()">可视化统计图表</button>
       <button v-if="config.showAdd=='1'"  @click="myall(5652)">全部</button>
-      <button v-if="config.showAdd=='1'"  @click="myall(5652)">全部</button>
       <button v-if="config.showAdd=='1'"  @click="myyear(454)">年</button>
       <button v-if="config.showAdd=='1'"  @click="mymonth(5656)">月</button>
       <button v-if="config.showAdd=='1'"  @click="myweek(565)">周</button>
