@@ -78,7 +78,7 @@
 }
 .row{
   width:100%;
-  height: 152px;
+  height: 300px;
   border:1px solid #fff;
 }
 .row .item{
@@ -88,7 +88,7 @@
   border-bottom:1px solid #fff;
   position: relative;
 }
-.row .item:nth-child(5){
+.row .item:nth-child(last){
   border-bottom:none;
 }
 .row .item b{
@@ -144,4 +144,7 @@
 }
 .freetGate > span,.chargeGate >span{
   font-size: 18px;
+}
+.gaizheng .el-input{
+  height: 20px;
 }

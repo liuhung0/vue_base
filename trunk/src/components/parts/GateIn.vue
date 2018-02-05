@@ -17,7 +17,7 @@
           <b class="label">车牌号:</b><span>{{record.car_number}}</span>
           <el-form class="number">
             <el-form-item>
-              <el-input placeholder="手动矫正车牌号"></el-input>
+              <el-input placeholder="手动矫正车牌号" class="gaizheng"></el-input>
               <el-button class="sure">确定</el-button>
             </el-form-item>
           </el-form>
@@ -29,7 +29,7 @@
         <div class="item"><b class="label">进场时间:</b><span>{{new Date(record.dateline*1000).Format("yyyy-MM-dd hh:mm:ss")}}</span></div>
       </div>
     </div>
-    <el-button  @click="GateIn">手动开闸</el-button>
+    <el-button  @click="GateIn" class="startGate">手动开闸</el-button>
       <!--<div class="link">-->
         <!--<a> 更多记录</a>-->
       <!--</div>-->

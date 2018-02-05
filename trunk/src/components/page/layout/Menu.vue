@@ -150,7 +150,7 @@
     color: #FFFFFF
   }
 
-  .menu-demo .el-menu{
+  .menu-demo.el-menu{
     border-right: none;
   }
   .menu-demo .el-menu-item-group__title{
@@ -165,7 +165,7 @@
     border-right: 4px solid #49a9ff
   }
   .menu-demo .title{
-    font-size: 18px;
+    font-size: 16px;
     color: #fff;
   }
 
