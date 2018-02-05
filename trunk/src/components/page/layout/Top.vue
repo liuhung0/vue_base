@@ -60,7 +60,6 @@
           if(res.data.result){
             that.parkingList.splice(0, that.parkingList.length, ...res.data.data);
             that.pid =res.data.data[0].id;
-            alert("停车列表")
             sessionStorage.setItem("LOGIN_PARKING_PID",that.pid)
             console.log(that.pid)
           }else {
