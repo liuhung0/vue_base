@@ -8,8 +8,12 @@
       <el-form-item label="说明" prop="remark" class="rulesName">
         <el-input type="textarea" v-model="rule.remark"></el-input>
       </el-form-item>
-      <el-form-item label="权 限" prop="menus" class="rulesName">
-        <el-transfer class="power" v-model="rule.menus"></el-transfer>
+      <el-form-item label="权 限" prop="menus">
+        <el-transfer style="float: left;width: 105%;" v-model="rule.menus"
+                     :titles="['权限列表', '已有权限']"
+                     :data="menuList"
+                     :props="{key:'id',label:'name'}"
+        ></el-transfer>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="setInfo">保 &nbsp;&nbsp;&nbsp;&nbsp;   存</el-button>
@@ -53,6 +57,7 @@
           that.$http.post(that.Constants().REST_MENU_LIST,{},{emulteJSON: true}).then(function(res){
             if(res.data.result){
               that.menuList.splice(0,that.menuList.length,...res.data.data.data);
+              console.log(res.data.data.data)
               console.log("菜单数据获取成功,一共有"+that.menuList.length);
               if(that.rule.id&&that.rule.id>0){
                 that.getInfo();
