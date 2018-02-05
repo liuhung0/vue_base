@@ -52,6 +52,8 @@
       getDoors() {
         let that = this;
         let pid = sessionStorage.getItem("LOGIN_PARKING_PID");
+        alert("首页")
+        alert(pid);
         if (pid === null) {
           that.$message.error("请先选择停车场");
           return;
