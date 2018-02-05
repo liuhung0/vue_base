@@ -8,13 +8,13 @@
     </div>
     <div class="enter">
       <div class="enter_top">
-        <span>出口:{{record.approach_alleyway}}</span>
+        <span>入口:{{record.approach_alleyway}}</span>
         <span>门闸编号:{{record.approach_door}}</span>
         <span>摄像头编号:{{record.approach_camera}}</span>
       </div>
       <div v-if="record.car_number" class="row">
         <div class="item">
-          <b class="label">车牌号:</b><span>{{record.car_number}}</span>
+          <b class="label">车牌号:</b><span class="sp">{{record.car_number}}</span>
           <el-form class="number">
             <el-form-item>
               <el-input placeholder="手动矫正车牌号" class="gaizheng"></el-input>
@@ -22,10 +22,10 @@
             </el-form-item>
           </el-form>
         </div>
-        <div class="item"><b class="label">进场时间:</b><span>{{new Date(record.dateline*1000).Format("yyyy-MM-dd hh:mm:ss")}}</span></div>
-        <div class="item"><b class="label">出场时间:</b><span>{{record.car_number}}</span></div>
-        <div class="item"><b class="label">收费金额:</b><span>{{record.car_number}}</span></div>
-        <div class="item"><b class="label">停泊类型:</b><span>{{record.car_number}}</span></div>
+        <div class="item"><b class="label">进场时间:</b><span class="sp">{{new Date(record.dateline*1000).Format("yyyy-MM-dd hh:mm:ss")}}</span></div>
+        <div class="item"><b class="label">出场时间:</b><span class="sp">{{record.car_number}}</span></div>
+        <div class="item"><b class="label">收费金额:</b><span class="sp">{{record.car_number}}</span></div>
+        <div class="item"><b class="label">停泊类型:</b><span class="sp">{{record.car_number}}</span></div>
       </div>
     </div>
     <el-button  @click="GateIn" class="startGate">手动开闸</el-button>
@@ -93,4 +93,7 @@
 </script>
 <style scoped>
   @import "../../assets/css/GateIn.css";
+  .sp{
+    color: #fff;
+  }
 </style>

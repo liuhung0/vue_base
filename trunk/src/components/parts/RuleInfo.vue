@@ -57,7 +57,6 @@
           that.$http.post(that.Constants().REST_MENU_LIST,{},{emulteJSON: true}).then(function(res){
             if(res.data.result){
               that.menuList.splice(0,that.menuList.length,...res.data.data.data);
-              console.log(res.data.data.data)
               console.log("菜单数据获取成功,一共有"+that.menuList.length);
               if(that.rule.id&&that.rule.id>0){
                 that.getInfo();
