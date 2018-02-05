@@ -4,7 +4,8 @@
       <el-menu   default-active="2"  class="el-menu-vertical-demo">
         <el-submenu  v-for="(MENU,index) in menuList" :index="index" :key="index">
           <template slot="title">
-            <b :class="MENU.icon"></b>
+            <!--<b :class="MENU.icon"></b>-->
+            <img src=""/>
             <span class="title">{{MENU.title}}</span>
           </template>
           <el-menu-item-group>
