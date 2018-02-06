@@ -8,8 +8,8 @@
     </div>
     <div class="enter">
       <div class="enter_top">
-        <span>入口:{{record.approach_alleyway}}</span>
-        <span>门闸编号:{{record.approach_door}}</span>
+        <span>入口:{{record.passageway}}</span>
+        <span>门闸编号:{{record.terminal_number}}</span>
         <span>摄像头编号:{{record.approach_camera}}</span>
       </div>
       <div v-if="record.car_number" class="row">
@@ -22,10 +22,17 @@
             </el-form-item>
           </el-form>
         </div>
-        <div class="item"><b class="label">进场时间:</b><span class="sp">{{new Date(record.dateline*1000).Format("yyyy-MM-dd hh:mm:ss")}}</span></div>
-        <div class="item"><b class="label">出场时间:</b><span class="sp">{{record.car_number}}</span></div>
-        <div class="item"><b class="label">收费金额:</b><span class="sp">{{record.car_number}}</span></div>
-        <div class="item"><b class="label">停泊类型:</b><span class="sp">{{record.car_number}}</span></div>
+        <div class="item"><b class="label">入口:</b><span class="sp">{{record.passageway}}</span></div>
+        <div class="item"><b class="label">门闸编号:</b><span class="sp">{{record.terminal_number}}</span></div>
+        <!--<div class="item"><b class="label">摄像头编号:</b><span>{{record.approach_camera}}</span></div>-->
+        <div class="item"><b class="label">车牌号:</b><span class="sp">{{record.car_number}}</span></div>
+        <div class="item"><b class="label">进场时间:</b><span class="sp">{{record.enter_time}}</span></div>
+
+
+        <!--<div class="item"><b class="label">进场时间:</b><span class="sp">{{new Date(record.dateline*1000).Format("yyyy-MM-dd hh:mm:ss")}}</span></div>-->
+        <!--<div class="item"><b class="label">出场时间:</b><span class="sp">{{record.car_number}}</span></div>-->
+        <!--<div class="item"><b class="label">收费金额:</b><span class="sp">{{record.car_number}}</span></div>-->
+        <!--<div class="item"><b class="label">停泊类型:</b><span class="sp">{{record.car_number}}</span></div>-->
       </div>
     </div>
     <el-button  @click="GateIn" class="startGate">手动开闸</el-button>
@@ -44,15 +51,13 @@
     data() {
       let that = this;
       return {
-        record:{},
-        params:{
-          pid:67,
+        record:{
+          pid:sessionStorage.getItem("LOGIN_PARKING_PID"),
           passageway:"A通道",
-          enter_time:"2018-2-2 19:32:02",
-          car_number:"甘A·216S7",
+          enter_time:"",
+          car_number:"",
           terminal_number:"SXT-001"
         }
-
 
       }
     },
@@ -60,31 +65,42 @@
       this.getRecord(this.doorId);
     },
     methods: {
-      getRecord(doorId){
+      getRecord(doorId) {
         let that = this;
-        that.$http.post(that.Constants().REST_RECORD_IN_FIRST,{id:doorId},{emulateJSON: true}).then(function(res){
-          if(res.data.result){
-            that.$set(that,"record",res.data.data);
-            that.$set(that,"pid",that.record.p_id);
-            that.$set(that,"passageway",that.record.approach_alleyway);
-            that.$set(that,"car_number",that.record.car_number);
-            that.$set(that,"terminal_number",that.record.approach_door);
-            console.log(that.car_number);
-          }
-        },function(){
-          that.$message.error("获取记录失败,网络连接错误");
-        })
+        var date = new Date();
+        var seperator1 = "-";
+        var seperator2 = ":";
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+          month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+          strDate = "0" + strDate;
+        }
+        var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+          + " " + date.getHours() + seperator2 + date.getMinutes()
+          + seperator2 + date.getSeconds();
+        var number = date.getTime().toString(12).substring(6);
+        console.log(number);
+        that.record.enter_time = currentdate;
+        that.record.car_number = "甘A-" + number;
+        console.log(currentdate);
+        console.log(that.records.pid);
+
       },
-      GateIn :function () {
+      GateIn: function () {
         let that = this;
-        that.$http.post(that.Constants().REST_MENZHA_SAVE,that.params,{emulateJSON: true}).then(function(res){
-          if(res.data.result ==true){
-            that.$set(that,"record",res.data.data);
-            console.log("接受"+that.record);
-          }else{
+        console.log("进来没有");
+        that.$http.post(that.Constants().REST_MENZHA_SAVE, that.record, {emulateJSON: true}).then(function (res) {
+          if (res.data.result == true) {
+            that.$message.info("开闸成功");
+//            that.$set(that, "record", res.data.data);
+//            console.log("接受" + that.record);
+          } else {
             that.$message.error(res.data.message);
           }
-        },function(){
+        }, function () {
           that.$message.error("获取记录失败,网络连接错误");
         })
       }
