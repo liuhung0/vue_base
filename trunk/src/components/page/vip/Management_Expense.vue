@@ -1,3 +1,4 @@
+<!--韩彩霞-->
 <template>
   <div class="main">
     <h2>管理费</h2>
@@ -12,24 +13,23 @@
     <Layer ref="addLayer"></Layer>
   </div>
 </template>
-
 <script>
-  import DataTable from "../../ui/cub/DataTable";
+  import DataTable from '@/components/ui/cub/DataTable'
   import Layer from "../../ui/cub/Layer";
   import ManagementAdd from "@/components/page/vip/ManagementAdd"
   export default {
-    components: {DataTable,Layer},
-    name: "rule",
-    data(){
-      let that =this;
+    components: {
+      DataTable,Layer},
+    data() {
+      let that = this;
       return {
         dataTableConfig: {
           draw: 1,
           showAdd: 1,
           showDel: 1,
           showCheckBack: 1,
-          serverurl: that.Constants().VIP_GLF,
-          title: "管理费",
+          serverurl:that.Constants().VIP_EXP_LIST,
+          title: "租户管理",
           key: "id",
           pagenation: {
             page: 1,
@@ -121,6 +121,7 @@
               },
               filterData: ""
             }
+
           ],
           actions: [
             {
@@ -138,12 +139,12 @@
         }
       }
     },
-    methods:{
+    methods: {
       addObjHandler:function(){
         let that = this;
         let dialog = that.$refs.addLayer;
         let vDialog = dialog.open({
-          template: '<div><ManagementAdd @addOK="addOK" ></ManagementAdd></div>',
+          template: '<div><ManagementAdd @addOK="addOK"></ManagementAdd></div>',
           components: {
             ManagementAdd
           },
@@ -161,24 +162,38 @@
           arg.close()
         })
       },
-      loadData(){
-        this.$refs.datatable.loadData();
-      },
-      delObjHandler:function(id){
+      delObjHandler:function(ids){
         let that = this;
         that.$confirm('此操作将永久删除选择信息, 是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          console.log(id);
-          that.delete(id);
+          console.log(ids);
+          that.delete(ids);
         }).catch(() => {
           this.$message({
             type: 'info',
             message: '已取消删除'
           });
         });
+      },
+      loadData(){
+        this.$refs.datatable.loadData();
+      },
+      delete(ids){
+        let that = this;
+        that.$http.post(that.Constants().VIP_ID_DEL,{id:ids.toString()},{emulateJSON: true}).then(function(res){
+          if(res.data.result){
+            that.$message.success("删除成功");
+            that.loadData();
+          }
+          else{
+            that.$message.error(res.data.messsage);
+          }
+        },function(){
+          that.$message.error("网络连接错误");
+        })
       },
       infoObjHandler:function(id){
         let that = this;
@@ -202,19 +217,59 @@
           arg.close()
         })
       },
-      delete(id){
+      online(id) {
         let that = this;
-        that.$http.post(that.Constants().SPECIAlVEHICLE_DELETE,{id:id.toString()},{emulateJSON: true}).then(function(res){
-          if(res.data.result){
-            that.$message.success("删除成功");
-            that.loadData();
-          }
-          else{
-            that.$message.error(res.data.messsage);
-          }
-        },function(){
-          that.$message.error("网络连接错误");
+        that.$swal({
+          title: "你确定要冻结此Vip用户么?",
+          text: "冻结后此用户的Vip特权将失效...",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#dd8b1f",
+          confirmButtonText: "确定",
+          cancelButtionText: "再考虑下",
+          closeOnConfirm: true,
+          allowOutsideClick: true,
+        }).then(function () {
+          that.$http.post(that.Constants().VIP_FREEZE+id,{}, {emulateJSON: true}).then(function (res) {
+            if (res.data.result) {
+              that.$message.info("此Vip已被冻结...请联系管理员");
+              this.$refs.datatable.loadData();
+            }
+            else {
+              that.$message.error("冻结失败：" + res.data.message);
+            }
+          }, function () {
+            that.$message.error("冻结失败");
+          });
         })
+      },
+      agree(id) {
+        let that = this;
+        that.$swal({
+          title: "确定要解冻此用户的Vip权限吗？",
+          text: "解冻后此用户的Vip权限变更为正常",
+          type: "question",
+          showCancelButton: true,
+          confirmButtonColor: "#5f8bdd",
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          closeOnConfirm: true,
+          allowOutsideClick: true,
+        }).then(function () {
+          that.$http.post(that.Constants().VIP_THAW + id, {}, {emulateJSON: true}).then(function (res) {
+            if (res.data.result) {
+              that.$message.info("解冻成功");
+              this.$refs.datatable.loadData();
+            }
+            else {
+              that.$message.error("解冻失败：" + res.data.message);
+            }
+          }, function () {
+            that.$message.error("解冻失败");
+          })
+        }).catch(function () {
+          that.unagree(id);
+        });
       }
     }
   }
@@ -238,3 +293,4 @@
     -webkit-margin-before: 0em;
   }
 </style>
+
