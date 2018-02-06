@@ -21,9 +21,9 @@
             </el-form-item>
           </el-form>
         </div>
-        <div class="item item2"><b class="label">进场时间:</b><span class="sp">{{new Date(record.dateline*1000).Format("yyyy-MM-dd hh:mm:ss")}}</span></div>
+        <div class="item item2"><b class="label">进场时间:</b><span class="sp">{{new Date(record.approach_time*1000).Format("yyyy-MM-dd hh:mm:ss")}}</span></div>
         <div class="item item2"><b class="label">出场时间:</b><span class="sp">{{record.car_number}}</span></div>
-        <div class="item item2"><b class="label">停泊类型:</b><span class="sp">{{record.car_nuber}}</span></div>
+        <div class="item item2"><b class="label">停泊类型:</b><span class="sp">{{record.vehicle_type}}</span></div>
         <div class="item item2"><b class="label">收费金额:</b><span class="sp">{{record.car_nummber}}</span></div>
         <div class="item item2"><b class="label">应收金额:</b><span class="sp">{{record.cope_with}}</span></div>
         <div class="item item2"><b class="label">实收金额:</b><span class="sp">{{record.real_income}}</span></div>
@@ -45,7 +45,7 @@
       return {
         record:{},
         params:{
-          pid:67,
+          pid:sessionStorage.getItem("LOGIN_PARKING_PID"),
           passageway:"B通道",
           exit_time:"2018-2-2 23:32:02",
           car_number:"甘A·216S7",
@@ -61,6 +61,7 @@
         let that = this;
         that.$http.post(that.Constants().REST_RECORD_OUT_FIRST,{id:doorId},{emulateJSON: true}).then(function(res){
           if(res.data.result){
+
             that.$set(that,"record",res.data.data)
             console.log(that.record);
           }
