@@ -42,7 +42,7 @@
           },
           {
             title:"人员管理",
-            icon:"iconfont icon-rili",
+            icon:"iconfont icon-renyuanguanli",
             children:[
               {
                 title:"账户管理",
@@ -70,7 +70,7 @@
           },
           {
             title:"租户管理",
-            icon:"el-icon-setting",
+            icon:"iconfont icon-zuhuguanli",
             children:[
               {
                 title:"租户列表",
