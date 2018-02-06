@@ -34,10 +34,11 @@
             </h3>
             <div v-if="form.isOpenFourth==1">
               <el-form-item label="选择开始结束时间">
-                <el-time-picker style="   qfloat:left;width:40%" v-model="form.nightStartTime"></el-time-picker>
+
+                <el-time-picker  style="   qfloat:left;width:40%" v-model="form.nightEndTime"   value-format="HH" format="HH"/>
 
                 <el-time-picker style="float:left;width:40%;padding-left:20px;"
-                                v-model="form.nightEndTime"></el-time-picker>
+                                v-model="form.nightStartTime" value-format="HH" format="HH"/>
               </el-form-item>
               <el-form-item label="过夜费">
                 <el-input style="float:left;width:20%" v-model="form.nightFee"></el-input>
@@ -194,13 +195,18 @@
         let that = this;
         that.$http.post(that.Constants().REST_MERCHANT_QUERYPRICE, that.form, {emulateJSON: true}).then(function (res) {
             if (res.data.result) {
-              that.$set(that, "form", res.data.data)
-              console.log("拉取收费设置成功");
-              that.form.isOpenThird === 1 ? that.form.isOpenThird = false : that.form.isOpenThird = true;
-              that.form.isOpenFourth === 1 ? that.form.isOpenFourth = false : that.form.isOpenFourth = true;
-              that.form.isOpenFifth === 1 ? that.form.isOpenFifth = false : that.form.isOpenFifth = true;
-              that.form.isOpenSecond === 1 ? that.form.isOpenSecond = false : that.form.isOpenSecond = true;
-              that.form.isOpenFirst === 1 ? that.form.isOpenFirst = false : that.form.isOpenFirst = true;
+              if(res.data.data!=null){
+                that.$set(that, "form", res.data.data)
+                console.log("拉取收费设置成功");
+                that.form.isOpenThird === 1 ? that.form.isOpenThird = false : that.form.isOpenThird = true;
+                that.form.isOpenFourth === 1 ? that.form.isOpenFourth = false : that.form.isOpenFourth = true;
+                that.form.isOpenFifth === 1 ? that.form.isOpenFifth = false : that.form.isOpenFifth = true;
+                that.form.isOpenSecond === 1 ? that.form.isOpenSecond = false : that.form.isOpenSecond = true;
+                that.form.isOpenFirst === 1 ? that.form.isOpenFirst = false : that.form.isOpenFirst = true;
+                that.form.nightStartTime=new Date("2011-11-11 "+res.data.data.nightStartTime+":00:00");
+                that.form.nightEndTime=new Date("2011-11-11 "+res.data.data.nightEndTime+":00:00");
+              }
+
             } else {
               that.$message.info(that.res.data.message)
             }
@@ -214,13 +220,12 @@
           //   夜间结束时间
 //          nightEndTime: '',
         if (that.form.nightStartTime instanceof Date) {
-          let nightStartTime = parseInt(that.resData.nightStartTime.getTime()/1000);
-          that.form.nightStartTime = nightStartTime;
+          that.form.nightStartTime = that.form.nightStartTime.getHours();
         }
         if (that.form.nightEndTime instanceof Date) {
-          let nightEndTime = parseInt(that.resData.nightEndTime.getTime()/1000);
-          that.form.nightEndTime = nightEndTime;
+          that.form.nightEndTime = that.form.nightEndTime.getHours();
         }
+
         that.form.isOpenThird === false ? that.form.isOpenThird = 1 : that.form.isOpenThird = 2;
         that.form.isOpenFourth === false ? that.form.isOpenFourth = 1 : that.form.isOpenFourth = 2;
         that.form.isOpenFifth === false ? that.form.isOpenFifth = 1 : that.form.isOpenFifth = 2;
