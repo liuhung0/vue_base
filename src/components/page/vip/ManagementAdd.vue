@@ -2,8 +2,6 @@
   <div class="main">
     <h2>{{id ? "编辑" : "新增"}}管理费管理</h2>
     <el-form ref="ruleForm" :rules="ruleForm" :model="ruleForm" label-width="100px" class="addAccount">
-
-
       <el-form-item  label="选择车位号：" style="color: black;width: 100px;">
         <el-select v-model="ruleForm.seatId" filterable placeholder="请选择车位号" style="width:300px;">
           <el-option
@@ -51,6 +49,7 @@
       return {
         ruleForm: {
           deleted: 0,
+          type:4,
           id: this.id || null,
           seatId: '',
           carNumber: '',
@@ -58,6 +57,7 @@
           tower: '',
           element: '',
           roomNum: '',
+          seatNumber:'',
           pId: sessionStorage.getItem("LOGIN_PARKING_PID")
         },
         seatList:[],
@@ -70,13 +70,13 @@
           that.seatList.splice(0, that.seatList.length, ...res.data.data);
         }
       }).catch(function () {
-      })
-      that.$http.post(this.Constants().VIP_GLF_ID, that.ruleForm, {emulateJSON: true}).then(function (res) {
+      }),
+      that.$http.post(this.Constants().VIP_ID_LIST, that.ruleForm, {emulateJSON: true}).then(function (res) {
         if (res.data.result) {
           that.ruleForm = res.data.data;
         }
         else {
-          that.$message.info(res.data.message);
+          that.$message.info(res.data.data.message);
         }
       }, function () {
         that.$message.error("网络发生错误");
@@ -85,9 +85,9 @@
     methods: {
       onSubmit() {
         let that = this;
-        this.$http.post(that.Constants().VIP_GLF_ADD, that.ruleForm, {emulateJSON: true}).then(function (res) {
+        this.$http.post(that.Constants().VIP_ADD, that.ruleForm, {emulateJSON: true}).then(function (res) {
           if (res.data.result) {
-            that.$message.info("黑白名单添加成功");
+            that.$message.info("操作成功");
             that.$emit("addOK");
           } else {
             that.$message.error("添加失败：" + res.data.data.message);
