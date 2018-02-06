@@ -104,6 +104,7 @@
       let that = this;
       that.$http.post(this.Constants().VIP_ID_LIST, that.ruleForm, {emulateJSON: true}).then(function (res) {
         if (res.data.result) {
+          console.log(res.data);
           that.ruleForm = res.data.data;
           that.ruleForm.type = res.data.data.type.toString();
         }
@@ -117,6 +118,20 @@
     methods: {
       onSubmit() {
         let that = this;
+        this.ruleForm.startTime = new Date(this.ruleForm.startTime);
+        this.ruleForm.endTime = new Date(this.ruleForm.endTime);
+
+        if (this.ruleForm.startTime instanceof Date) {
+          let startTime = parseInt(this.ruleForm.startTime.getTime()/1000);
+          console.log("开始时间："+startTime);
+          this.ruleForm.startTime = startTime;
+        }
+        if (this.ruleForm.endTime instanceof Date) {
+          let endTime  = parseInt(this.ruleForm.endTime.getTime()/1000);
+          console.log("结束时间："+endTime);
+          this.ruleForm.endTime = endTime;
+        }
+
         this.$http.post(that.Constants().VIP_ADD, that.ruleForm, {emulateJSON: true}).then(function (res) {
           if (res.data.result) {
             that.$message.info("黑白名单添加成功");
