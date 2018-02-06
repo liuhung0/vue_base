@@ -203,8 +203,18 @@
                 that.form.isOpenFifth === 1 ? that.form.isOpenFifth = false : that.form.isOpenFifth = true;
                 that.form.isOpenSecond === 1 ? that.form.isOpenSecond = false : that.form.isOpenSecond = true;
                 that.form.isOpenFirst === 1 ? that.form.isOpenFirst = false : that.form.isOpenFirst = true;
-                that.form.nightStartTime=new Date("2011-11-11 "+res.data.data.nightStartTime+":00:00");
-                that.form.nightEndTime=new Date("2011-11-11 "+res.data.data.nightEndTime+":00:00");
+                if(res.data.data.nightStartTime!=null){
+                  that.form.nightStartTime=new Date("2011-11-11 "+res.data.data.nightStartTime+":00:00");
+                }else {
+                  that.form.nightStartTime="";
+                }
+                if(res.data.data.nightEndTime!=null){
+                  that.form.nightEndTime=new Date("2011-11-11 "+res.data.data.nightEndTime+":00:00");
+                }else {
+                  that.form.nightEndTime="";
+                }
+            /*    that.form.nightStartTime=new Date("2011-11-11 "+res.data.data.nightStartTime+":00:00");
+                that.form.nightEndTime=new Date("2011-11-11 "+res.data.data.nightEndTime+":00:00");*/
               }
 
             } else {
