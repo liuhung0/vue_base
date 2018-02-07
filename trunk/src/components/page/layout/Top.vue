@@ -7,13 +7,13 @@
       <router-link to="/main/" class="packing">泊联停车场管理系统</router-link>
     </div>
     <div class="flex_item flex_item_40" >
-      <el-select v-model="pid" v-if="type == 8" placeholder="请选择停车场" :value="pid" class="packingCar">
+      <el-select v-model="pid" v-if="type == 8" placeholder="请选择停车场"  class="packingCar">
         <el-option
           v-for="item in parkingList"
           :key="item.pid"
           :label="item.name"
           :value="item.id"
-          @click.native="change">
+          @click.native="change()">
       </el-option>
 
       </el-select>
@@ -74,8 +74,11 @@
       },
       methods:{
         change(){
+          console.log("取到的停车场id"+this.pid)
           sessionStorage.removeItem("LOGIN_PARKING_PID")
           sessionStorage.setItem("LOGIN_PARKING_PID",this.pid)
+          console.log("取到session停车场id"+sessionStorage.getItem("LOGIN_PARKING_PID"))
+//          location.reload()
           this.$router.replace("/main");
         },
         logout(){
