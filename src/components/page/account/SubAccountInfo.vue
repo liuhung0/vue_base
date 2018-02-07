@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <h2>{{id?"编辑":"新增"}}账号</h2>
+    <h2>{{id?"编辑":"新增"}}账号<label style='color: #ff5e46;padding:2px 6px;display: inline-block;font-size: 1px'>子账号初始密码：123456，密码修改请登录子账号修改！</label></h2>
     <el-form ref="form" :rules="form" :model="form" label-width="100px" class="addAccount">
       <el-form-item label="用户名" prop="username">
         <el-input v-model="form.username"></el-input>

@@ -116,8 +116,7 @@
         config: that.confignation,
         pagenation: that.confignation.pagenation,
         queryData: {
-          paID:sessionStorage.getItem("LOGIN_PARKING_PID"),
-          suId:sessionStorage.getItem("LOGIN_PARKING_UID"),
+          suId:sessionStorage.getItem("LOGIN_PARKING_SUBID") === null ? 0 : sessionStorage.getItem("LOGIN_PARKING_SUBID")  ,
         },
         checkedIds: "",
         defaultConfig:{
@@ -150,19 +149,6 @@
       }
     },
     mounted(){
-      let that = this;
-      that.$http.post(that.Constants().REST_USER_QUERYWORKINFO, that.queryData,{emulateJSON: true}).then(function (res) {
-        if(res.data.result){
-          that.status = res.data.data.status;
-        }else {
-          that.$message.error(that.res.data.message);
-        }
-      },function (res) {
-        that.$message.error(res);
-      });
-      this.config=this.confignation;
-      this.pagenation =this.confignation.pagenation;
-      this.loadData();
     },
     methods: {
       checkAll(){
@@ -200,20 +186,6 @@
           this.$message.warning("您需要选择至少一项记录才可以执行删除操作!");
         }
 
-      },
-      hi(){
-        let that = this;
-        that.$http.post(that.Constants().REST_USER_CLOCKONANDOFF, that.queryData,{emulateJSON: true}).then(function (res) {
-          if(res.data.result){
-            that.$message.success(res.data.data);
-
-            that.loadData();
-          }else {
-            that.$message.error(that.res.data.message);
-          }
-        },function (res) {
-          that.$message.error(res);
-        });
       },
       changeRows(){
         let that = this;

@@ -34,37 +34,37 @@
       ElFormItem,
       ElButton},
     data() {
-//     var validateName = (rule, value, callback) => {
-//        if (value === '') {
-//          console.log(value)
-//          callback(new Error('请输入用户名'));
-//        } else {
-//          callback();
-//        }
-//      };
-//      var validatePass = (rule, value, callback) => {
-//        if (value === '') {
-//          console.log(value)
-//          callback(new Error('请输入密码'));
-//        }else {
-//          callback();
-//        }
-//      };
-//      var validateCode = (rule, value, callback) => {
-//        if (value === ''){
-//          console.log(value);
-//          callback(new Error('请输入验证码'));
-//        }else{
-//          console.log("输入的"+value.toUpperCase())
-//          console.log("拿到的"+this.boss.checkCode)
-//          if(value.toUpperCase() != this.boss.checkCode){
-//            callback(new Error('验证码不符'));
-//          }else{
-//            callback();
-//          }
-//
-//        }
-//      };
+     var validateName = (rule, value, callback) => {
+        if (value === '') {
+          console.log(value)
+          callback(new Error('请输入用户名'));
+        } else {
+          callback();
+        }
+      };
+      var validatePass = (rule, value, callback) => {
+        if (value === '') {
+          console.log(value)
+          callback(new Error('请输入密码'));
+        }else {
+          callback();
+        }
+      };
+      var validateCode = (rule, value, callback) => {
+        if (value === ''){
+          console.log(value);
+          callback(new Error('请输入验证码'));
+        }else{
+          console.log("输入的"+value.toUpperCase())
+          console.log("拿到的"+this.boss.checkCode)
+          if(value.toUpperCase() != this.boss.checkCode){
+            callback(new Error('验证码不符'));
+          }else{
+            callback();
+          }
+
+        }
+      };
       return {
         boss: {
           checkCode: '',
@@ -72,19 +72,19 @@
           username: '',
           password: '',
         },
-//        bossRole: {
-//          username: [
-//            { validator: validateName, trigger: 'blur' },
-//            { min: 2, max: 20, message: '长度在 2 到 20 个字符', trigger: 'blur' }
-//          ],
-//          password: [
-//            { validator: validatePass, trigger: 'blur' },
-//            { min: 6, max: 20, message: '长度在 6 到 20 个字符', trigger: 'blur' }
-//          ],
-//          picLyanzhengma:[
-//            { validator: validateCode, trigger: 'blur'},
-//          ],
-//        }
+        bossRole: {
+          username: [
+            { validator: validateName, trigger: 'blur' },
+            { min: 2, max: 20, message: '长度在 2 到 20 个字符', trigger: 'blur' }
+          ],
+          password: [
+            { validator: validatePass, trigger: 'blur' },
+            { min: 6, max: 20, message: '长度在 6 到 20 个字符', trigger: 'blur' }
+          ],
+          picLyanzhengma:[
+            { validator: validateCode, trigger: 'blur'},
+          ],
+        }
       };
     },
     mounted(){
@@ -93,37 +93,35 @@
     },
     methods: {
 //       图片验证码
-//      createCode: function() {
-//        code = "";
-//        var codeLength = 4;//验证码的长度
-//        var random = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
-//          'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');//随机数
-//        for (var i = 0; i < codeLength; i++) {//循环操作
-//          var index = Math.floor(Math.random() * 36);//取得随机数的索引（0~35）
-//          code += random[index];//根据索引取得随机数加到code上
-//        }
-//        this.boss.checkCode = code;//把code值赋给验证码
-//      },
-//      // 失焦验证图和密码
-//      checkLpicma: function() {
-//        this.boss.picLyanzhengma.toUpperCase();//取得输入的验证码并转化为大写
-//        if (this.boss.picLyanzhengma == '') {
-//          $(".login_content1 span:eq(2)").removeClass("disappear");
-//        } else if (this.boss.picLyanzhengma.toUpperCase() != this.boss.checkCode) { //若输入的验证码与产生的验证码不一致时
-//          $(".login_content1 span:eq(2)").removeClass("disappear");
-//          this.createCode();//刷新验证码
-//          this.boss.picLyanzhengma = '';
-//        } else { //输入正确时
-//          $(".login_content1 span:eq(2)").addClass("disappear");
-//          return true;
-//        }
-//      },
+      createCode: function() {
+        code = "";
+        var codeLength = 4;//验证码的长度
+        var random = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+          'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');//随机数
+        for (var i = 0; i < codeLength; i++) {//循环操作
+          var index = Math.floor(Math.random() * 36);//取得随机数的索引（0~35）
+          code += random[index];//根据索引取得随机数加到code上
+        }
+        this.boss.checkCode = code;//把code值赋给验证码
+      },
+      // 失焦验证图和密码
+      checkLpicma: function() {
+        this.boss.picLyanzhengma.toUpperCase();//取得输入的验证码并转化为大写
+        if (this.boss.picLyanzhengma == '') {
+          $(".login_content1 span:eq(2)").removeClass("disappear");
+        } else if (this.boss.picLyanzhengma.toUpperCase() != this.boss.checkCode) { //若输入的验证码与产生的验证码不一致时
+          $(".login_content1 span:eq(2)").removeClass("disappear");
+          this.createCode();//刷新验证码
+          this.boss.picLyanzhengma = '';
+        } else { //输入正确时
+          $(".login_content1 span:eq(2)").addClass("disappear");
+          return true;
+        }
+      },
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
             let that = this;
-            that.boss.username = 'AA';
-            that.boss.password = '123456M',
             this.$http.post(that.Constants().REST_USER_LOGIN, that.boss,{emulateJSON: true}).then(function (response) {
               that.resData = response.data;
               if (that.resData.result) {

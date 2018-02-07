@@ -7,7 +7,7 @@
       <router-link to="/main/" class="packing">泊联停车场管理系统</router-link>
     </div>
     <div class="flex_item flex_item_40" >
-      <el-select v-model="pid" v-if="type == 8" placeholder="暂时无" :value="pid" class="packingCar">
+      <el-select v-model="pid" v-if="type == 8" placeholder="请选择停车场" :value="pid" class="packingCar">
         <el-option
           v-for="item in parkingList"
           :key="item.pid"

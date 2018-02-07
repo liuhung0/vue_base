@@ -27,10 +27,10 @@
     data() {
       return {
         reqData: {
-         ppID: sessionStorage.setItem("LOGIN_PARKING_PID",this.pid)
+         ppID: sessionStorage.getItem("LOGIN_PARKING_PID")
         },
         resDate:{
-          ppID: sessionStorage.setItem("LOGIN_PARKING_PID",this.pid),
+          ppID: sessionStorage.getItem("LOGIN_PARKING_PID"),
           year:null,
           month:null,
           day:null,
