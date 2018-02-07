@@ -128,10 +128,12 @@
             {
               sortable: false,
               sort: "desc",
-              prop: "ParkingTime",
+              prop: "parkingTime",
               name: "停车时长",
               width: '80px',
               render: function (data) {
+                if(data == null)
+                  return "<span>-</span>";
                 return "<span>" + data + "</span>";
               },
               filter: {
