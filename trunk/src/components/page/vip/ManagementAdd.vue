@@ -14,7 +14,7 @@
       </el-form-item>
 
       <el-form-item label="车牌号">
-        <el-input v-model="ruleForm.carNumber" style="width:300px;margin-left: -55px"></el-input>
+        <el-input v-model="ruleForm.carNumber"  maxlength="7" style="width:300px;margin-left: -55px"></el-input>
       </el-form-item>
 
 

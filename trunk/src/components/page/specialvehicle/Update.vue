@@ -5,13 +5,13 @@
 
 
       <el-form-item label="姓名" prop="number">
-        <el-input  v-model="reqData.name"></el-input>
+        <el-input  v-model="reqData.name" ></el-input>
       </el-form-item>
-      <el-form-item label="车牌号" prop="phone">
-        <el-input v-model="reqData.carNumber"></el-input>
+      <el-form-item label="车牌号"  prop="phone">
+        <el-input v-model="reqData.carNumber"  maxlength="7"></el-input>
       </el-form-item>
       <el-form-item label="电话" prop="name">
-        <el-input  v-model="reqData.phone"></el-input>
+        <el-input  v-model="reqData.phone"  maxlength="11"></el-input>
       </el-form-item>
       <el-form-item label="名单类型" >
         <el-radio-group v-model="reqData.type" size="medium" style="width: 450px">
@@ -71,7 +71,7 @@
       onSubmit() {
         let that = this;
         if (that.ruleForm.name.length ==0) {
-          that.$message.error("姓名长度必须在1~5个汉字!");
+          that.$message.error("请输入姓名");
           return;
         }
 

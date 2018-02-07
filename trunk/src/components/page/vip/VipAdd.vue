@@ -4,7 +4,7 @@
     <el-form ref="ruleForm" :rules="ruleForm" :model="ruleForm" label-width="100px" class="addAccount">
 
       <el-form-item label="姓名">
-        <el-input v-model="ruleForm.name" maxlength="5" style="width: 300px;margin-left: -50px"></el-input>
+        <el-input v-model="ruleForm.name"  style="width: 300px;margin-left: -50px"></el-input>
       </el-form-item>
 
       <el-form-item label="联系电话">
@@ -120,7 +120,7 @@
       onSubmit() {
         let that = this;
         if (that.ruleForm.name.length ==0) {
-          that.$message.error("姓名长度必须在1~5个汉字!");
+          that.$message.error("请输入姓名!");
           return;
         }
         var phone = /^1(3|4|5|7|8)\d{9}$/;
