@@ -34,7 +34,7 @@
       <el-form-item label="会员开始时间">
         <el-col :span="11">
           <el-date-picker type="date" id="beginDate" placeholder="选择日期" v-model="ruleForm.startTime"
-                          style="width: 300px;margin-left: 10px;"></el-date-picker>
+                          style="width: 300px;margin-left: 10px;" ></el-date-picker>
         </el-col>
       </el-form-item>
 
@@ -90,8 +90,8 @@
           reserve: '',
           carNumber: '',
           type: '',
-          startTime: '',
-          endTime: '',
+          startTime: new Date(),
+          endTime: new Date(),
           region: '',
           tower: '',
           element: '',
@@ -118,9 +118,14 @@
     methods: {
       onSubmit() {
         let that = this;
+
+        if (that.ruleForm.name.length >5) {
+          that.$message.error("姓名长度不能超过5个汉字!");
+          return;
+        }
+
         this.ruleForm.startTime = new Date(this.ruleForm.startTime);
         this.ruleForm.endTime = new Date(this.ruleForm.endTime);
-
         if (this.ruleForm.startTime instanceof Date) {
           let startTime = parseInt(this.ruleForm.startTime.getTime()/1000);
           console.log("开始时间："+startTime);
@@ -131,8 +136,8 @@
           console.log("结束时间："+endTime);
           this.ruleForm.endTime = endTime;
         }
-
         this.$http.post(that.Constants().VIP_ADD, that.ruleForm, {emulateJSON: true}).then(function (res) {
+
           if (res.data.result) {
             that.$message.info("黑白名单添加成功");
             that.$emit("addOK");
