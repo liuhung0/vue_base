@@ -128,6 +128,19 @@
             {
               sortable: false,
               sort: "desc",
+              prop: "ParkingTime",
+              name: "停车时长",
+              width: '80px',
+              render: function (data) {
+                return "<span>" + data + "</span>";
+              },
+              filter: {
+                type: "none",
+              },
+            },
+            {
+              sortable: false,
+              sort: "desc",
               prop: "vehicle_type",
               name: "车辆类型",
               width: '160px',
