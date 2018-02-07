@@ -74,7 +74,7 @@
           that.$message.error("请先选择停车场");
           return;
         }
-        that.$http.post(that.Constants().REST_BARRIER_LIST, {pId: pid}, {emulateJSON: true}).then(function (res) {
+        that.$http.post(that.Constants().REST_BARRIER_LIST, {pId: 67}, {emulateJSON: true}).then(function (res) {
           if (res.data.result) {
             that.doorList.splice(0, that.doorList.length, ...res.data.data.data);
             let len = that.doorList.length;

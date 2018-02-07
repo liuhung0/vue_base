@@ -7,8 +7,8 @@
     </div>
     <div class="enter">
         <div class="enter_top">
-          <span>出口:{{record.approach_alleyway}}</span>
-          <span>门闸编号:{{record.approach_door}}</span>
+          <span>出口:{{record.exit_alleyway}}</span>
+          <span>门闸编号:{{record.exit_door}}</span>
           <span>摄像头编号:{{record.approach_camera}}</span>
         </div>
       <div v-if="record.car_number" class="row">
@@ -22,14 +22,14 @@
           </el-form>
         </div>
         <div class="item item2"><b class="label">进场时间:</b><span class="sp">{{new Date(record.approach_time*1000).Format("yyyy-MM-dd hh:mm:ss")}}</span></div>
-        <div class="item item2"><b class="label">出场时间:</b><span class="sp">{{record.car_number}}</span></div>
-        <div class="item item2"><b class="label">停泊类型:</b><span class="sp">{{record.vehicle_type}}</span></div>
-        <div class="item item2"><b class="label">收费金额:</b><span class="sp">{{record.car_nummber}}</span></div>
-        <div class="item item2"><b class="label">应收金额:</b><span class="sp">{{record.cope_with}}</span></div>
-        <div class="item item2"><b class="label">实收金额:</b><span class="sp">{{record.real_income}}</span></div>
-        <div class="item item2"><b class="label">支付方式:</b><span class="sp">{{record.payment}}</span></div>
+        <div class="item item2"><b class="label">出场时间:</b><span class="sp">{{new Date(record.exit_time*1000).Format("yyyy-MM-dd hh:mm:ss")}}</span></div>
+        <div class="item item2"><b class="label">停泊类型:</b><span class="sp">{{record.vehicle_type==5?"临时车":"月租车"}}</span></div>
+        <div class="item item2"><b class="label">收费金额:</b><span class="sp">{{record.cope_with}}元</span></div>
+        <div class="item item2"><b class="label">应收金额:</b><span class="sp">{{record.cope_with}}元</span></div>
+        <div class="item item2" v-if="boolean"><b class="label">实收金额:</b><span class="sp">{{record.real_income}}元</span></div>
+        <div class="item item2" v-if="boolean" id="ids"><b class="label">支付方式:</b><span class="sp">{{record.payment==4?"现金收费":"免费"}}</span></div>
       </div>
-        <el-button @click="GateOut" class="freetGate">收费开闸</el-button>
+        <el-button @click="GateOut" class="freetGate" >收费开闸</el-button>
         <el-button @click="FreeOut" class="chargeGate">免费开闸</el-button>
       <div v-if="!record.car_number">暂无记录</div>
     </div>
@@ -43,13 +43,16 @@
     data() {
       let that = this;
       return {
-        record:{},
+        boolean:false,
+        record:{
+          real_income:"",
+        },
         params:{
-          pid:sessionStorage.getItem("LOGIN_PARKING_PID"),
-          passageway:"B通道",
-          exit_time:"2018-2-2 23:32:02",
-          car_number:"甘A·216S7",
-          terminal_number:"SXT-002"
+          pid:67,
+          passageway:"",
+          exit_time:"",
+          car_number:"",
+          terminal_number:""
         }
       }
     },
@@ -58,24 +61,30 @@
     },
     methods: {
       getRecord(doorId){
+        console.log("dajiahao"+doorId);
         let that = this;
         that.$http.post(that.Constants().REST_RECORD_OUT_FIRST,{id:doorId},{emulateJSON: true}).then(function(res){
           if(res.data.result){
+            that.$set(that,"record",res.data.data);
+            that.params.car_number =that.record.car_number;
+            that.params.passageway =that.record.exit_alleyway;
+            that.params.terminal_number =that.record.exit_door;
 
-            that.$set(that,"record",res.data.data)
-            console.log(that.record);
+
           }
         },function(){
           that.$message.error("获取记录失败,网络连接错误");
-        })
+        });
+        console.log(that.params.car_number);
+        console.log(that.params.passageway);
       },
       //门闸手动收费操作
       GateOut :function () {
         let that = this;
         that.$http.post(that.Constants().REST_MENZHA_OUT,that.params,{emulateJSON: true}).then(function(res){
           if(res.data.result ==true){
-            that.$set(that,"record",res.data.data);
-            console.log("接受"+that.record);
+            that.boolean=true;
+            that.$message.info("开闸成功");
           }else{
             that.$message.error(res.data.message);
           }
@@ -88,8 +97,9 @@
         let that = this;
         that.$http.post(that.Constants().REST_MENZHA_FREE,that.params,{emulateJSON: true}).then(function(res){
           if(res.data.result ==true){
-            that.$set(that,"record",res.data.data);
-            console.log("接受"+that.record);
+            that.record.real_income=res.data.data.real_income;
+            that.boolean=true;
+            that.$message.info("开闸成功");
           }else{
             that.$message.error(res.data.message);
           }
