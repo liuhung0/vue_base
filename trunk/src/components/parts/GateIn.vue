@@ -52,7 +52,7 @@
       let that = this;
       return {
         record:{
-          pid:sessionStorage.getItem("LOGIN_PARKING_PID"),
+          pid:67,
           passageway:"A通道",
           enter_time:"",
           car_number:"",
@@ -95,6 +95,7 @@
         that.$http.post(that.Constants().REST_MENZHA_SAVE, that.record, {emulateJSON: true}).then(function (res) {
           if (res.data.result == true) {
             that.$message.info("开闸成功");
+            window.location.reload();
 //            that.$set(that, "record", res.data.data);
 //            console.log("接受" + that.record);
           } else {

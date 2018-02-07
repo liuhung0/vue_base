@@ -28,7 +28,7 @@ export default {
         LOGIN_COULD_TYPE = "LOGIN_COULD_TYPE";
       //dev
 
-      let BASE_URL = "http://192.168.0.9:9109";
+      let BASE_URL = "http://192.168.0.33:9109";
       let PROXY_URL = "";
       // let BASE_URL ="http://cloud.chinahtiot.com",PROXY_URL="/api";
       return {
@@ -190,7 +190,7 @@ export default {
         * begin
          */
 
-       }
+      }
     }
   }
 
