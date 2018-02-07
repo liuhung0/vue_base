@@ -24,10 +24,10 @@
         </el-radio-group>
       </el-form-item>
       <el-form-item label="角色名称" prop="name">
-        <el-select v-model="form.rId" filterable placeholder="请选择角色" class="selec">
+        <el-select v-model="form.role" filterable placeholder="请选择角色" class="selec">
           <el-option
             v-for="item in roleList"
-            :key="item.rId"
+            :key="item.role"
             :label="item.name"
             :value="item.id">
           </el-option>
