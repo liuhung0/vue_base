@@ -133,13 +133,22 @@
               width: '160px',
               render: function (data) {
                 if (data == 1) {
-                  return "<label style='color: #1AC45D;padding:2px 10px;display: inline-block;'>临时车</label>"
+                  return "<label style='color: #FF3030;padding:2px 10px;display: inline-block;'>月卡用户</label>"
                 }
                 if (data == 2) {
-                  return "<label style='color: #1AC45D;padding:2px 10px;display: inline-block;'>月租车</label>"
+                  return "<label style='color: #FFC125;padding:2px 10px;display: inline-block;'>季卡用户</label>"
                 }
                 if (data == 3) {
-                  return "<label style='color: #e64242;padding:2px 10px;display: inline-block;'>免费车</label>"
+                  return "<label style='color: #FFF68F;padding:2px 10px;display: inline-block;'>年卡用户</label>"
+                }
+                if (data == 4) {
+                  return "<label style='color: #1AC45D;padding:2px 10px;display: inline-block;'>管理费</label>"
+                }
+                if (data == 5) {
+                  return "<label style='color: #98F5FF;padding:2px 10px;display: inline-block;'>临时</label>"
+                }
+                if (data == 6) {
+                  return "<label style='color: #87CEFF;padding:2px 10px;display: inline-block;'>免费</label>"
                 }
               },
               filter: {
@@ -147,15 +156,27 @@
                 data: [
                   {
                     value: 1,
-                    text: "临时车"
+                    text: "月卡用户"
                   },
                   {
                     value: 2,
-                    text: "月租车"
+                    text: "季卡用户"
                   },
                   {
                     value: 3,
-                    text: "免费车"
+                    text: "年卡用户"
+                  },
+                  {
+                    value: 4,
+                    text: "管理费"
+                  },
+                  {
+                    value: 5,
+                    text: "临时"
+                  },
+                  {
+                    value: 6,
+                    text: "免费"
                   }
                 ]
               },
@@ -168,19 +189,25 @@
               width: '160px',
               render: function (data) {
                 if (data == 1) {
-                  return "<label style='color: #1AC45D;padding:2px 10px;display: inline-block;'>支付宝</label>"
+                  return "<label style='color: #FF3030;padding:2px 10px;display: inline-block;'>微信</label>"
                 }
                 if (data == 2) {
-                  return "<label style='color: #1AC45D;padding:2px 16px;display: inline-block;'>微信</label>"
+                  return "<label style='color: #FFC125;padding:2px 16px;display: inline-block;'>支付宝</label>"
                 }
                 if (data == 3) {
-                  return "<label style='color: #1AC45D;padding:2px 10px;display: inline-block;'>现金</label>"
+                  return "<label style='color: #FFF68F;padding:2px 10px;display: inline-block;'>万支付</label>"
                 }
                 if (data == 4) {
-                  return "<label style='color: #1AC45D;padding:2px 10px;display: inline-block;'>一卡通</label>"
+                  return "<label style='color: #1AC45D;padding:2px 10px;display: inline-block;'>现金</label>"
                 }
                 if (data == 5) {
-                  return "<label style='color: #e64242;padding:2px 10px;display: inline-block;'>免费</label>"
+                  return "<label style='color: #98F5FF;padding:2px 10px;display: inline-block;'>余额</label>"
+                }
+                if (data == 6) {
+                  return "<label style='color: #87CEFF;padding:2px 10px;display: inline-block;'>其他</label>"
+                }
+                if (data == 7) {
+                  return "<label style='color: #8968CD;padding:2px 10px;display: inline-block;'>小程序</label>"
                 }
               },
               filter: {
@@ -188,23 +215,31 @@
                 data: [
                   {
                     value: 1,
-                    text: "支付宝"
-                  },
-                  {
-                    value: 2,
                     text: "微信"
                   },
                   {
+                    value: 2,
+                    text: "支付宝"
+                  },
+                  {
                     value: 3,
-                    text: "现金"
+                    text: "万支付"
                   },
                   {
                     value: 4,
-                    text: "一卡通"
+                    text: "现金"
                   },
                   {
                     value: 5,
-                    text: "免费"
+                    text: "余额"
+                  },
+                  {
+                    value: 6,
+                    text: "其他"
+                  },
+                  {
+                    value: 7,
+                    text: "小程序"
                   }
                 ]
               },
