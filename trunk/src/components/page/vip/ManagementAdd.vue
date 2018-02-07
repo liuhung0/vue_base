@@ -85,6 +85,32 @@
     methods: {
       onSubmit() {
         let that = this;
+        if (that.ruleForm.seatId.length ==0) {
+          that.$message.error("请选择车位号!");
+          return;
+        }
+        var carnumber = /^[京,津,渝,沪,冀,晋,辽,吉,黑,苏,浙,皖,闽,赣,鲁,豫,鄂,湘,粤,琼,川,贵,云,陕,秦,甘,陇,青,台,内蒙古,桂,宁,新,藏,澳,军,海,航,警][A-Z][0-9,A-Z]{5}$/;
+        if ((!carnumber.test(that.ruleForm.carNumber))) {
+          this.$message.error('车牌号有误,请重新输入!');
+          return;
+        }
+        if (that.ruleForm.region.length ==0) {
+          that.$message.error("请输入区号!");
+          return;
+        }
+        if (that.ruleForm.tower.length ==0) {
+          that.$message.error("请输入楼号!");
+          return;
+        }
+
+        if (that.ruleForm.element.length ==0) {
+          that.$message.error("请输入单元!");
+          return;
+        }
+        if (that.ruleForm.roomNum.length ==0) {
+          that.$message.error("请输入房间号!");
+          return;
+        }
         this.$http.post(that.Constants().VIP_ADD, that.ruleForm, {emulateJSON: true}).then(function (res) {
           if (res.data.result) {
             that.$message.info("操作成功");

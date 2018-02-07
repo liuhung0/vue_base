@@ -13,7 +13,7 @@
       <el-form-item label="电话" prop="name">
         <el-input  v-model="reqData.phone"></el-input>
       </el-form-item>
-      <el-form-item label="设备类型" >
+      <el-form-item label="名单类型" >
         <el-radio-group v-model="reqData.type" size="medium" style="width: 450px">
           <el-radio  label="1" >白名单</el-radio>
           <el-radio  label="2" >黑名单</el-radio>
@@ -70,7 +70,30 @@
     methods: {
       onSubmit() {
         let that = this;
+        if (that.ruleForm.name.length ==0) {
+          that.$message.error("姓名长度必须在1~5个汉字!");
+          return;
+        }
 
+        var carnumber = /^[京,津,渝,沪,冀,晋,辽,吉,黑,苏,浙,皖,闽,赣,鲁,豫,鄂,湘,粤,琼,川,贵,云,陕,秦,甘,陇,青,台,内蒙古,桂,宁,新,藏,澳,军,海,航,警][A-Z][0-9,A-Z]{5}$/;
+        if ((!carnumber.test(that.ruleForm.carNumber))) {
+          this.$message.error('车牌号有误,请重新输入!');
+          return;
+        }
+        var phone = /^1(3|4|5|7|8)\d{9}$/;
+        if ((!phone.test(that.ruleForm.phone))) {
+          this.$message.error('请输入正确的手机号!');
+          return;
+        }
+
+        if (that.ruleForm.type.length ==0) {
+          that.$message.error("请选择名单类型!");
+          return;
+        }
+        if (that.ruleForm.remark.length ==0) {
+          that.$message.error("请填写备注!");
+          return;
+        }
         this.$http.post(that.Constants().SPECIAlVEHICLE_ADD, that.reqData,{emulateJSON: true}).then(function (res) {
 
           if (res.data.result) {
