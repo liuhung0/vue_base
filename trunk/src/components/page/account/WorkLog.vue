@@ -1,7 +1,7 @@
 <template >
     <div class="main">
       <h2>考勤记录</h2>
-      <button @click="daka"  >{{status == 2 || status == 3? "下班打卡" : "上班打卡"}}</button>
+      <button @click="daka"  v-if="type == 20">{{status == 2 || status == 3? "下班打卡" : "上班打卡"}}</button>
       <div class="guanli">
         <data-table
           :confignation="dataTableConfig"
@@ -10,7 +10,6 @@
       </div>
     </div>
 </template>
-
 <script>
   import DataTable from "../../ui/cub/DataTable";
   export default {
@@ -36,6 +35,20 @@
               sort: "asc",
               prop: "username",
               name: "账户",
+              width: "160px",
+              render: function (data) {
+                return "<B>" + data + "</B>"
+              },
+              filter: {
+                type: "none",
+              },
+              filterData: ""
+            },
+            {
+              sortable: false,
+              sort: "asc",
+              prop: "name",
+              name: "姓名",
               width: "160px",
               render: function (data) {
                 return "<B>" + data + "</B>"
@@ -77,6 +90,22 @@
             {
               sortable: false,
               sort: "asc",
+              prop: "totalTime",
+              name: "上班总时长",
+              width: "160px",
+              render: function (data) {
+                if(data == "")
+                  return "<label style='color: #ff5e46;padding:2px 6px;display: inline-block;'>还未打下班卡</label>"
+                  return "<B>" + data + "</B>"
+              },
+              filter: {
+                type: "none",
+              },
+              filterData: ""
+            },
+            {
+              sortable: false,
+              sort: "asc",
               prop: "status",
               name: "打卡状态",
               width: '100px',
@@ -94,7 +123,7 @@
                     text: "正常"
                   },
                   {
-                    value: !(2 || 3),
+                    value: 1 || 4 ,
                     text: "不正常"
                   },
                 ]
@@ -106,14 +135,19 @@
         },
         status:1,
         form:{
+          //子账号suId为空，表示超管登录（超管登录没有打卡————————子账号登录才有打卡功能）
           suId:sessionStorage.getItem("LOGIN_PARKING_UID"),
-        }
-
+        },
+        type:sessionStorage.getItem("LOGIN_PARKING_TYPE"),
       }
     },
     mounted(){
       let that = this;
-      that.$http.post(that.Constants().REST_ROLE_SU_ID, that.form,{emulateJSON: true}).then(function (res) {
+
+      if(that.type == 8){
+        return;
+      }
+      that.$http.post(that.Constants().REST_USER_QUERYWORKINFO, that.form,{emulateJSON: true}).then(function (res) {
         if(res.data.result){
           that.status = res.data.data.status;
         }else {
@@ -122,8 +156,6 @@
       },function (res) {
         that.$message.error(res);
       });
-      this.config=this.confignation;
-      this.pagenation =this.confignation.pagenation;
       this.loadData();
     },
     methods: {

@@ -168,7 +168,7 @@
         queryData: {
           appId:'',
           payment:null,
-          ppID:null,
+          ppID:sessionStorage.getItem("LOGIN_PARKING_PID"),
       },
         checkedIds: "",
         defaultConfig:{
@@ -391,7 +391,7 @@
           charge_standard = '100';
         }
 
-        that.reqData  = null;
+//        that.reqData  = null;
         //用此种方式可以解决excel表格导出不弹窗的问题
         window.open(
           that.Constants().DOWNLOADFINACE+
