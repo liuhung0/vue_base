@@ -3,10 +3,10 @@
     <h2>{{ruleid?"编辑":"新增"}}角色</h2>
     <el-form ref="ruleForm" :rules="rules" :model="rule" label-width="80px">
       <el-form-item label="角色名称" prop="name" class="rulesName">
-        <el-input v-model="rule.name"></el-input>
+        <el-input v-model="rule.name" maxlength="32"></el-input>
       </el-form-item>
       <el-form-item label="说明" prop="remark" class="rulesName">
-        <el-input type="textarea" v-model="rule.remark"></el-input>
+        <el-input type="textarea" v-model="rule.remark" maxlength="32"></el-input>
       </el-form-item>
       <el-form-item label="权 限" prop="menus">
         <el-transfer style="float: left;width: 105%;" v-model="rule.menus"
