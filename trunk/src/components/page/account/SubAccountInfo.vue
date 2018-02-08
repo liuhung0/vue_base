@@ -3,19 +3,19 @@
     <h2>{{id?"编辑":"新增"}}账号<label style='color: #ff5e46;padding:2px 6px;display: inline-block;font-size: 1px'>子账号初始密码：123456，密码修改请登录子账号修改！</label></h2>
     <el-form ref="form" :rules="form" :model="form" label-width="100px" class="addAccount">
       <el-form-item label="用户名" prop="username">
-        <el-input v-model="form.username"></el-input>
+        <el-input v-model="form.username" maxlength="20"></el-input>
       </el-form-item>
       <el-form-item label="工号" prop="number">
-        <el-input  v-model="form.number"></el-input>
+        <el-input  v-model="form.number" maxlength="20"></el-input>
       </el-form-item>
       <el-form-item label="手机号" prop="phone">
-        <el-input v-model="form.phone"></el-input>
+        <el-input v-model="form.phone" maxlength="11"></el-input>
       </el-form-item>
       <el-form-item label="姓名" prop="name">
-        <el-input  v-model="form.name"></el-input>
+        <el-input  v-model="form.name" maxlength="32"></el-input>
       </el-form-item>
       <el-form-item label="身份证号" prop="identityCard">
-        <el-input  v-model="form.identityCard"></el-input>
+        <el-input  v-model="form.identityCard" maxlength="18"></el-input>
       </el-form-item>
       <el-form-item label="性别" prop="gender" class="xing">
         <el-radio-group v-model="form.gender" size="medium" class="radio">
@@ -41,7 +41,7 @@
         </el-radio-group>
       </el-form-item>
       <el-form-item label="描述" prop="mark">
-        <el-input type="textarea" v-model="form.mark"></el-input>
+        <el-input type="textarea" v-model="form.mark" maxlength="255"></el-input>
       </el-form-item>
         <el-button type="primary" @click="setInfo">保 &nbsp;&nbsp;存</el-button>
     </el-form>
