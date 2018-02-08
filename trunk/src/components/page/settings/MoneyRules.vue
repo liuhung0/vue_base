@@ -140,13 +140,13 @@
           //月度优惠价
           monthlyManagerDiscountFee: '',
           //是否开启临时停车计费规则(1,关闭  2 开启)
-          isOpenThird: '',
+          isOpenThird: false,
           //是否开启夜间计费(1,关闭  2，开启)
-          isOpenFourth: '',
+          isOpenFourth: false,
           //是否开启时段封顶（1，关闭 ，2开启）
-          isOpenFifth: '',
+          isOpenFifth: false,
           //是否开启包年包月（1，关闭，2，开启）
-          isOpenFirst: '',
+          isOpenFirst: false,
           //   前多少分钟免费
           beforeMinute: '',
           //   前几小时
@@ -176,7 +176,7 @@
           //   月费
           monthlyFee: '',
           //   是否开启业主管理费(1,关闭，2开启)
-          isOpenSecond: '',
+          isOpenSecond: false,
           //   年管理费
           annualManagerFee: '',
           //   季管理费
@@ -216,7 +216,6 @@
             /*    that.form.nightStartTime=new Date("2011-11-11 "+res.data.data.nightStartTime+":00:00");
                 that.form.nightEndTime=new Date("2011-11-11 "+res.data.data.nightEndTime+":00:00");*/
               }
-
             } else {
               that.$message.info(that.res.data.message)
             }
