@@ -3,7 +3,8 @@
     <div class="outOrIn">
       <div class="header1">
         <div class="dks">
-          <img src="../../assets/image/kaoqing.png" class="shangban"/>
+          <!--只有子账号登录打卡按钮和图片才能看到-->
+          <img v-if="type == 20" src="../../assets/image/kaoqing.png" class="shangban"/>
           <button class="dk" @click="daka"  v-if="type == 20">{{status == 2 || status == 3? "下班打卡" : "上班打卡"}}</button>
         </div>
         <el-checkbox-group class="wel">
