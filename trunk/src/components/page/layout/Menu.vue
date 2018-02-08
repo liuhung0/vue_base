@@ -21,72 +21,7 @@
   export default {
     data(){
       return{
-        menuList:[
-          {
-            title:"报表管理",
-            icon:"iconfont icon-baobiao",
-              children:[
-              {
-                title:"出入明细",
-                path:"/main/statistics/Gates"
-              },
-              {
-                title:"订单明细",
-                path:"/main/statistics/orderlog"
-              },
-              {
-                title:"财务收入统计表",
-                path:"/main/statistics/settlelog"
-              },
-            ]
-          },
-          {
-            title:"人员管理",
-            icon:"iconfont icon-renyuanguanli",
-            children:[
-              {
-                title:"账户管理",
-                path:"/main/staff/account"
-              },
-              {
-                title: "角色管理",
-                path: "/main/staff/rule"
-              },
-              {
-                title: "考勤管理",
-                path: "/main/staff/worklog"
-              }
-            ]
-          },
-          {
-            title:"基本设置",
-            icon:"iconfont icon-sheszhi",
-            children:[
-              {
-                title:"收费规则",
-                path:"/main/setting/moneyRoles"
-              }
-            ]
-          },
-          {
-            title:"租户管理",
-            icon:"iconfont icon-zuhuguanli",
-            children:[
-              {
-                title:"租户列表",
-                path:"/page/vip/VipList"
-              },
-              {
-                title:"管理费列表",
-                path:"/page/vip/ManageList"
-              },
-              {
-                title:"黑白名单",
-                path:"/page/specialvehicle/list"
-              },
-            ]
-          }
-        ],
+        menuList:[],
         children:[],
         form:{
           suId:sessionStorage.getItem("LOGIN_PARKING_SUBID"),

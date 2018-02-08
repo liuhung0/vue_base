@@ -1,7 +1,6 @@
 <template >
     <div class="main">
       <h2>考勤记录</h2>
-      <button @click="daka"  v-if="type == 20">{{status == 2 || status == 3? "下班打卡" : "上班打卡"}}</button>
       <div class="guanli">
         <data-table
           :confignation="dataTableConfig"
@@ -133,54 +132,8 @@
           actions:[],
           dataset: [],
         },
-        status:1,
-        form:{
-          //子账号suId为空，表示超管登录（超管登录没有打卡————————子账号登录才有打卡功能）
-          suId:sessionStorage.getItem("LOGIN_PARKING_UID"),
-        },
-        type:sessionStorage.getItem("LOGIN_PARKING_TYPE"),
       }
     },
-    mounted(){
-      let that = this;
-
-      if(that.type == 8){
-        return;
-      }
-      that.$http.post(that.Constants().REST_USER_QUERYWORKINFO, that.form,{emulateJSON: true}).then(function (res) {
-        if(res.data.result){
-          that.status = res.data.data.status;
-        }else {
-          that.$message.error(that.res.data.message);
-        }
-      },function (res) {
-        that.$message.error(res);
-      });
-      this.loadData();
-    },
-    methods: {
-      addOK: function () {
-        let that =this;
-        that.loadData();
-      },
-      loadD(){
-        this.$refs.datatable.loadData();
-      },
-      daka(){
-        let that = this;
-        that.$http.post(that.Constants().REST_USER_CLOCKONANDOFF, that.form,{emulateJSON: true}).then(function (res) {
-          if(res.data.result){
-            that.$message.success(res.data.data);
-            that.status=2;
-            that.loadD();
-          }else {
-            that.$message.error(that.res.data.message);
-          }
-        },function (res) {
-          that.$message.error(res);
-        });
-      },
-    }
   }
 </script>
 <style scoped>
