@@ -134,6 +134,11 @@
         },
       }
     },
+    mounted(){
+
+    },
+    methods: {
+    }
   }
 </script>
 <style scoped>
