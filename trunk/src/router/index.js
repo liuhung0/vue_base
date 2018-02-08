@@ -142,7 +142,7 @@ export default new Router({
           component: Management_Expense,
         },
         {
-          path: '/page/parts/Gates',
+          path: '/main/statistics/Gates',
           name: 'gate',
           component: Gate,
         },

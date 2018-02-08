@@ -5,11 +5,11 @@
         <el-submenu class="menu-oicn" v-for="(MENU,index) in menuList" :index="index" :key="index">
           <template slot="title">
             <b :class="MENU.icon"></b>
-            <span class="title">{{MENU.title}}</span>
+            <span class="title">{{MENU.name}}</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item v-for="(cmenu,i) in MENU.children" :key="i"  index="i"  >
-              <router-link :to="cmenu.path" class="menuStyle">{{cmenu.title}}</router-link>
+            <el-menu-item v-for="(son,i) in children" :key="i"  v-if="son.parentId===MENU.id"  index="i" >
+              <router-link :to="son.path" class="menuStyle" >{{son.name}}</router-link>
             </el-menu-item>
           </el-menu-item-group>
         </el-submenu>
@@ -28,7 +28,7 @@
               children:[
               {
                 title:"出入明细",
-                path:"/page/parts/Gates"
+                path:"/main/statistics/Gates"
               },
               {
                 title:"订单明细",
@@ -86,16 +86,21 @@
               },
             ]
           }
-        ]
+        ],
+        children:[],
+        form:{
+          suId:sessionStorage.getItem("LOGIN_PARKING_SUBID"),
+          token:sessionStorage.getItem("LOGIN_PARKING_TOKEN")
+        }
       }
     },
     mounted(){
       let that = this;
-      if(sessionStorage.getItem("LOGIN_PARKING_TYPE") == 20){
-        return;
-      }
-          that.$http.post(that.Constants().REST_USER_QUERYWORKINFO, that.form,{emulateJSON: true}).then(function (res) {
+          that.$http.post(that.Constants().REST_ROLE_SU_ID, that.form,{emulateJSON: true}).then(function (res) {
             if(res.data.result){
+              that.menuList.splice(0, that.menuList.length, ...res.data.data.parentList);
+              console.log(that.children.splice(0, that.children.length, ...res.data.data.childrenList))
+              that.children.splice(0, that.children.length, ...res.data.data.childrenList);
 
             }else {
               that.$message.error(that.res.data.message);
