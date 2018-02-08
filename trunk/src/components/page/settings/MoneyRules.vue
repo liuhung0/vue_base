@@ -3,27 +3,27 @@
     <h1>收费规则</h1>
     <div class="con">
       <div class="left">
-        <el-form ref="form" :model="form" label-width="200px" class="settings">
+        <el-form ref="form" :model="form" status-icon :rules="formPrice" label-width="200px" class="settings">
           <h2>临时停车收费规则</h2>
           <div>
             <h3>时段计费
               <small>通用计费规则</small>
             </h3>
-            <el-form-item label="临停前免费时间">
-              <el-input style="float:left;width:30%;" v-model="form.beforeMinute"></el-input>
+            <el-form-item label="临停前免费时间" prop="beforeMinute">
+              <el-input style="float:left;width:30%;" v-model="form.beforeMinute" maxlength="4"></el-input>
               <span class="minute">分钟</span>
             </el-form-item>
-            <el-form-item label="临停后免费时间">
-              <el-input style="float:left;width:30%;" v-model="form.afterMinute"></el-input>
+            <el-form-item label="临停后免费时间" prop="afterMinute">
+              <el-input style="float:left;width:30%;" v-model="form.afterMinute" maxlength="4"></el-input>
               <span class="minute">分钟</span>
             </el-form-item>
             <el-form-item label="前">
-              <el-input style="float:left;width:10%;" v-model="form.beforeHour"></el-input>
+              <el-input style="float:left;width:10%;" v-model="form.beforeHour" maxlength="4"></el-input>
               <label style="float:left;width:20%;">小时每小时</label>
-              <el-input style="float:left;width:10%;" v-model="form.beforeFee"></el-input>
+              <el-input style="float:left;width:10%;" v-model="form.beforeFee" maxlength="10"></el-input>
               <label style="float:left;width:10%;">元</label>
               <label style="float:left;width:20%;">后每小时</label>
-              <el-input style="float:left;width:10%;" v-model="form.afterFee"></el-input>
+              <el-input style="float:left;width:10%;" v-model="form.afterFee" maxlength="10"></el-input>
               <label style="float:left;width:10%;">元</label>
             </el-form-item>
           </div>
@@ -41,11 +41,11 @@
                                 v-model="form.nightStartTime" value-format="HH" format="HH"/>
               </el-form-item>
               <el-form-item label="过夜费">
-                <el-input style="float:left;width:20%" v-model="form.nightFee"></el-input>
+                <el-input style="float:left;width:20%" v-model="form.nightFee" maxlength="10"></el-input>
                 <span class="rightSpan">元</span>
               </el-form-item>
               <el-form-item label="每小时">
-                <el-input style="float:left;width:20%" v-model="form.nightHour"></el-input>
+                <el-input style="float:left;width:20%" v-model="form.nightHour" maxlength="10"></el-input>
                 <span class="rightSpan">元</span>
               </el-form-item>
             </div>
@@ -64,7 +64,7 @@
                 </el-select>
               </el-form-item>
               <el-form-item label="最高">
-                <el-input style="float:left;width:16%;" v-model="form.maxFee"></el-input>
+                <el-input style="float:left;width:16%;" v-model="form.maxFee" maxlength="10"></el-input>
                 <label>元</label>
               </el-form-item>
             </div>
@@ -77,22 +77,22 @@
         </h2>
         <el-form ref="form" :model="form" label-width="80px" class="sm" v-if="form.isOpenFirst==1">
           <el-form-item label="包年费用" class="years">
-            <el-input v-model="form.annualFee"></el-input><span class="rightSpan">元</span>
+            <el-input v-model="form.annualFee" maxlength="10"></el-input><span class="rightSpan">元</span>
           </el-form-item>
           <el-form-item label="优惠价格" class="years">
-            <el-input v-model="form.annualManagerDiscountFee"></el-input><span class="rightSpan">元</span>
+            <el-input v-model="form.annualManagerDiscountFee" maxlength="10"></el-input><span class="rightSpan">元</span>
           </el-form-item>
           <el-form-item label="包季费用" class="years">
-            <el-input v-model="form.quarterFee"></el-input><span class="rightSpan">元</span>
+            <el-input v-model="form.quarterFee" maxlength="10"></el-input><span class="rightSpan">元</span>
           </el-form-item>
           <el-form-item label="优惠价格" class="years">
-            <el-input v-model="form.quarterManagerDiscountFee"></el-input><span class="rightSpan">元</span>
+            <el-input v-model="form.quarterManagerDiscountFee" maxlength="10"></el-input><span class="rightSpan">元</span>
           </el-form-item>
           <el-form-item label="包月费用" class="years">
-            <el-input v-model="form.monthlyFee"></el-input><span class="rightSpan">元</span>
+            <el-input v-model="form.monthlyFee" maxlength="10"></el-input><span class="rightSpan">元</span>
           </el-form-item>
           <el-form-item label="优惠价格" class="years">
-            <el-input v-model="form.monthlyManagerDiscountFee"></el-input><span class="rightSpan">元</span>
+            <el-input v-model="form.monthlyManagerDiscountFee" maxlength="10"></el-input><span class="rightSpan">元</span>
           </el-form-item>
         </el-form>
         <div>
@@ -101,22 +101,22 @@
           </h2>
           <el-form ref="form" :model="form" label-width="200px" class="sm2" v-if="form.isOpenSecond==1">
             <el-form-item label="年管理费（十二个月）">
-              <el-input  v-model="form.annualManagerFee"></el-input><span class="rightSpan">元</span>
+              <el-input  v-model="form.annualManagerFee" maxlength="10"></el-input><span class="rightSpan">元</span>
               元
             </el-form-item>
             <el-form-item label="季管理费（三个月）">
-              <el-input  v-model="form.quarterManagerFee"></el-input><span class="rightSpan">元</span>
+              <el-input  v-model="form.quarterManagerFee" maxlength="10"></el-input><span class="rightSpan">元</span>
               元
             </el-form-item>
             <el-form-item label="月管理费（一个月）">
-              <el-input  v-model="form.monthlyManagerFee"></el-input><span class="rightSpan">元</span>
+              <el-input  v-model="form.monthlyManagerFee" maxlength="10"></el-input><span class="rightSpan">元</span>
               元
             </el-form-item>
           </el-form>
         </div>
       </div>
       <div >
-        <el-button  style="float:right;margin-right:64px;margin-top:60px;" type="primary" @click="onSubmit">保存</el-button>
+        <el-button  style="float:right;margin-right:64px;margin-top:60px;" type="primary" @click="onSubmit('form')">保存</el-button>
       </div>
     </div>
 
@@ -127,12 +127,41 @@
   export default {
     components: {},
     data() {
+      var validatebeforeMinute = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('不能为空!'));
+        }
+        if(isNaN(parseInt(value))){
+          callback(new Error('只能是数字!'));
+        }else {
+          callback();
+        }
+      };
+      var validatorAfterMinute =  (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('不能为空!'));
+        }
+        if(isNaN(parseInt(value))){
+          callback(new Error('只能是数字!'));
+        }else {
+          callback();
+        }
+      };
       return {
+        formPrice:{
+          beforeMinute:[
+            {validator: validatebeforeMinute, trigger: 'blur'}
+          ],
+          afterMinute:[
+            {validator: validatorAfterMinute, trigger: 'blur'}
+          ],
+        },
         form: {
           id: '',
           pId: sessionStorage.getItem("LOGIN_PARKING_PID"),
           uId: sessionStorage.getItem("LOGIN_PARKING_UID"),
           token: sessionStorage.getItem("LOGIN_PARKING_TOKEN"),
+          afterMinute:'',
           //年优惠价
           annualManagerDiscountFee: '',
           //季优惠价
@@ -148,7 +177,7 @@
           //是否开启包年包月（1，关闭，2，开启）
           isOpenFirst: false,
           //   前多少分钟免费
-          beforeMinute: '',
+          beforeMinute:'',
           //   前几小时
           beforeHour: '',
           //   前每小时费用
@@ -224,7 +253,9 @@
           }
         )
       },
-      onSubmit() {
+      onSubmit(formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
         let that = this;
           //   夜间结束时间
 //          nightEndTime: '',
@@ -249,8 +280,15 @@
             }
           }, function () {
             that.$message.error("网络发生错误");
+          });
+          } else {
+            console.log('error submit!!');
+            return false;
           }
-        )
+        });
+      },
+      resetForm(formName) {
+        this.$refs[formName].resetFields();
       }
     }
   }
