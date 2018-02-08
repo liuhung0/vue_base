@@ -4,7 +4,7 @@
       <div class="header1">
         <div class="dks">
           <img src="../../assets/image/kaoqing.png" class="shangban"/>
-          <span class="dk">上班打卡</span>
+          <button class="dk" @click="daka"  v-if="type == 20">{{status == 2 || status == 3? "下班打卡" : "上班打卡"}}</button>
         </div>
         <el-checkbox-group class="wel">
           <el-checkbox class="chek" v-for="(door,index) of doorList" :checked="door.checked" :key="index"
@@ -33,6 +33,12 @@
     },
     data() {
       return {
+        status:1,
+        type:sessionStorage.getItem("LOGIN_PARKING_TYPE"),
+        quest:{
+          //子账号suId为空，表示超管登录（超管登录没有打卡————————子账号登录才有打卡功能）
+          suId:sessionStorage.getItem("LOGIN_PARKING_SUBID"),
+        },
         form:{
           uId:sessionStorage.getItem("LOGIN_PARKING_UID"),
           platform:sessionStorage.getItem("LOGIN_PARKING_TYPE") === 8 ? 8 : 20,
@@ -57,6 +63,20 @@
         that.$message.error(res);
       });
       this.getDoors();
+
+      if(that.type == 8){
+        return;
+      }
+      that.$http.post(that.Constants().REST_USER_QUERYWORKINFO, that.quest,{emulateJSON: true}).then(function (res) {
+        if(res.data.result){
+          that.status = res.data.data.status;
+        }else {
+          that.$message.error(that.res.data.message);
+        }
+      },function (res) {
+        that.$message.error(res);
+      });
+      this.loadData();
     },
     methods: {
       toggle(i) {
@@ -89,7 +109,20 @@
           that.$message.error("数据交互发生错误");
         })
 
-      }
+      },
+      daka(){
+        let that = this;
+        that.$http.post(that.Constants().REST_USER_CLOCKONANDOFF, that.quest,{emulateJSON: true}).then(function (res) {
+          if(res.data.result){
+            that.$message.success(res.data.data);
+            that.status=2;
+          }else {
+            that.$message.error(that.res.data.message);
+          }
+        },function (res) {
+          that.$message.error(res);
+        });
+      },
     }
   }
 </script>
