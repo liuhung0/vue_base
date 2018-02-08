@@ -97,6 +97,7 @@
               console.log("m2",menuIds);
               that.rule.menusStr=menuIds;
               let reqData ={
+                pId:sessionStorage.getItem("LOGIN_PARKING_PID"),
                 id:that.rule.id?that.rule.id:null,
                 name:that.rule.name?that.rule.name:null,
                 remark:that.rule.remark?that.rule.remark:"这家伙很懒,什么都没有留下",

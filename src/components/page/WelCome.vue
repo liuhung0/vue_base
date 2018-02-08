@@ -3,7 +3,7 @@
     <div class="outOrIn">
       <div class="header1">
         <div class="dks">
-          <!--只有子账号登录打卡按钮和图片才能看到-->
+          <!--这里子账号登录才会有图片和按钮显示-->
           <img v-if="type == 20" src="../../assets/image/kaoqing.png" class="shangban"/>
           <button class="dk" @click="daka"  v-if="type == 20">{{status == 2 || status == 3? "下班打卡" : "上班打卡"}}</button>
         </div>
@@ -51,18 +51,7 @@
       }
     },
     mounted() {
-      sessionStorage.removeItem("LOGIN_PARKING_PID")
       let that = this;
-      that.$http.post(that.Constants().VIP_PARKING_LIST, that.form,{emulateJSON: true}).then(function (res) {
-        if(res.data.result){
-          that.parkingList.splice(0, that.parkingList.length, ...res.data.data);
-          sessionStorage.setItem("LOGIN_PARKING_PID",res.data.data[0].id)
-        }else {
-          that.$message.error(that.res.data.message);
-        }
-      },function (res) {
-        that.$message.error(res);
-      });
       this.getDoors();
 
       if(that.type == 8){
