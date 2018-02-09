@@ -44,9 +44,10 @@
               name: "姓名",
               width: "160px",
               render: function (data) {
-                if(data){
-                  return "<B>" + data + "</B>"
-                }
+                if(data)
+                  return "<span>" + data + "</span>";
+                else
+                  return " - ";
               },
               filter: {
                 type: "input",
@@ -60,9 +61,10 @@
               name: "车牌号",
               width: "160px",
               render: function (data) {
-                if(data){
-                  return "<B>" + data + "</B>"
-                }
+                if(data)
+                  return "<span>" + data + "</span>";
+                else
+                  return " - ";
               },
               filter: {
                 type: "input",
@@ -95,10 +97,12 @@
                 if (data == 1) {
                   return "<label style='color: #1AC45D;padding:2px 6px;display: inline-block;'>白名单</label>"
                 }
+                else
+                  return " - ";
                 if(data == 2){
                   return "<label style='color: #ff5e46;padding:2px 6px;display: inline-block;'>黑名单</label>"
                 }
-                return " -- "
+                return " - "
               },
               filter: {
                 type: "select",
@@ -121,9 +125,10 @@
               name: "备注",
               width: "160px",
               render: function (data) {
-                if(data){
-                  return "<B>" + data + "</B>"
-                }
+                if(data)
+                  return "<span>" + data + "</span>";
+                else
+                  return " - ";
               },
               filter: {
                 type: "input",

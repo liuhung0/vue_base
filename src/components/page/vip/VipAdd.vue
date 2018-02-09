@@ -34,14 +34,14 @@
       <el-form-item label="会员开始时间">
         <el-col :span="11">
           <el-date-picker type="date" id="beginDate" placeholder="选择日期" v-model="ruleForm.startTime"
-                          style="width: 300px;margin-left: 10px;" ></el-date-picker>
+                          style="width: 300px;margin-left: 3px;" ></el-date-picker>
         </el-col>
       </el-form-item>
 
       <el-form-item label="会员结束时间">
         <el-col :span="11">
           <el-date-picker type="date" id="endDate" placeholder="选择日期" v-model="ruleForm.endTime"
-                          style="width: 300px;margin-left: 10px;"></el-date-picker>
+                          style="width: 300px;margin-left: 3px;"></el-date-picker>
         </el-col>
       </el-form-item>
 
