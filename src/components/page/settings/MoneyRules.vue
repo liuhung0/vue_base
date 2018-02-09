@@ -46,9 +46,15 @@
                 <el-input style="float:left;width:20%" v-model="form.nightFee" maxlength="10"></el-input>
                 <span class="rightSpan">元</span>
               </el-form-item>
-              <el-form-item label="每小时" prop="nightHour">
-                <el-input style="float:left;width:20%" v-model="form.nightHour" maxlength="10"></el-input>
-                <span class="rightSpan">元</span>
+              <el-form-item label="前" prop="beforeNightHour">
+                <el-input style="float:left;width:15%;" v-model="form.beforeNightHour" maxlength="4" ></el-input>
+              </el-form-item>
+              <el-form-item label="小时每小时" prop="nightHour">
+                <el-input style="float:left;width:15%;" v-model="form.nightHour" maxlength="10"></el-input>
+              </el-form-item>
+              <el-form-item label="元后每小时" prop="beforeNightFee">
+                <el-input style="float:left;width:15%;" v-model="form.beforeNightFee" maxlength="10"></el-input>
+                <label style="float:left;width:10%;">元</label>
               </el-form-item>
             </div>
 
@@ -131,11 +137,9 @@
     data() {
       var validatebeforeMinute = (rule, value, callback) => {
         if (value === '') {
-
           callback(new Error('不能为空!'));
         }
-        if(isNaN(parseInt(value))  || parseInt(value) <= 0){
-
+        if(isNaN(value)  || parseInt(value) != value){
           callback(new Error('只能是正整数!'));
         }else {
           callback();
@@ -145,7 +149,7 @@
         if(value === ''){
           callback(new Error('不能为空！'));
         }
-        if(isNaN(parseFloat(value)) || parseFloat(value) <= 0){
+        if(isNaN(value) || parseFloat(value) <= 0){
           callback(new Error('只能是大于零的数字！'));
         }else{
           callback();
@@ -160,7 +164,7 @@
             {validator: validatebeforeMinute, trigger: 'blur'}
           ],
           beforeHour:[
-            {validator: validatorBeforeHour, trigger:'blur'}
+            {validator: validatebeforeMinute, trigger:'blur'}
           ],
           beforeFee:[
             {validator: validatorBeforeHour, trigger:'blur'},
@@ -204,12 +208,24 @@
           monthlyManagerFee:[
             {validator: validatorBeforeHour, trigger:'blur'}
           ],
+          beforeNightHour:[
+            {validator: validatebeforeMinute, trigger:'blur'}
+          ],
+          beforeNightFee:[
+            {validator: validatorBeforeHour, trigger:'blur'}
+          ],
+          nightHour:[
+            {validator: validatorBeforeHour, trigger:'blur'}
+          ],
         },
         form: {
           id: '',
           pId: sessionStorage.getItem("LOGIN_PARKING_PID"),
           uId: sessionStorage.getItem("LOGIN_PARKING_UID"),
           token: sessionStorage.getItem("LOGIN_PARKING_TOKEN"),
+          beforeNightHour:'',
+          beforeNightFee:'',
+          nightHour:'',
           afterMinute:'',
           //年优惠价
           annualManagerDiscountFee: '',
@@ -305,31 +321,31 @@
       onSubmit(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-        let that = this;
-          //   夜间结束时间
-//          nightEndTime: '',
-        if (that.form.nightStartTime instanceof Date) {
-          that.form.nightStartTime = that.form.nightStartTime.getHours();
-        }
-        if (that.form.nightEndTime instanceof Date) {
-          that.form.nightEndTime = that.form.nightEndTime.getHours();
-        }
+              let that = this;
+                //   夜间结束时间
+      //          nightEndTime: '',
+              if (that.form.nightStartTime instanceof Date) {
+                that.form.nightStartTime = that.form.nightStartTime.getHours();
+              }
+              if (that.form.nightEndTime instanceof Date) {
+                that.form.nightEndTime = that.form.nightEndTime.getHours();
+              }
 
-        that.form.isOpenThird === false ? that.form.isOpenThird = 1 : that.form.isOpenThird = 2;
-        that.form.isOpenFourth === false ? that.form.isOpenFourth = 1 : that.form.isOpenFourth = 2;
-        that.form.isOpenFifth === false ? that.form.isOpenFifth = 1 : that.form.isOpenFifth = 2;
-        that.form.isOpenSecond === false ? that.form.isOpenSecond = 1 : that.form.isOpenSecond = 2;
-        that.form.isOpenFirst === false ? that.form.isOpenFirst = 1 : that.form.isOpenFirst = 2;
-        that.$http.post(that.Constants().REST_MERCHANT_SETPRICE, that.form, {emulateJSON: true}).then(function (res) {
-            if (res.data.result) {
-              that.init();
-              that.$message.success("信息修改成功！");
-            } else {
-              that.$message.info(that.res.data.message)
-            }
-          }, function () {
-            that.$message.error("网络发生错误");
-          });
+              that.form.isOpenThird === false ? that.form.isOpenThird = 1 : that.form.isOpenThird = 2;
+              that.form.isOpenFourth === false ? that.form.isOpenFourth = 1 : that.form.isOpenFourth = 2;
+              that.form.isOpenFifth === false ? that.form.isOpenFifth = 1 : that.form.isOpenFifth = 2;
+              that.form.isOpenSecond === false ? that.form.isOpenSecond = 1 : that.form.isOpenSecond = 2;
+              that.form.isOpenFirst === false ? that.form.isOpenFirst = 1 : that.form.isOpenFirst = 2;
+              that.$http.post(that.Constants().REST_MERCHANT_SETPRICE, that.form, {emulateJSON: true}).then(function (res) {
+                  if (res.data.result) {
+                    that.init();
+                    that.$message.success("信息修改成功！");
+                  } else {
+                    that.$message.info(that.res.data.message)
+                  }
+                }, function () {
+                  that.$message.error("网络发生错误");
+                });
           } else {
             console.log('error submit!!');
             return false;
