@@ -6,6 +6,7 @@
         :confignation="dataTableConfig"
         @addObjHandler="addObjHandler"
         @delObjHandler="delObjHandler"
+        @expObjHandler="expObjHandler"
         ref="datatable">
       </data-table>
     </div>
@@ -152,6 +153,25 @@
       }
     },
     methods:{
+      expObjHandler:function(){
+        alert("12");
+       let that = this;
+        console.log(that.reqData);
+        window.open(
+          that.Constants().SPECIAlVEHICLE_DELETE_EXP_EXCEL
+        );
+ /*       this.$http.get(that.Constants().SPECIAlVEHICLE_DELETE_EXP_EXCEL,that.reqData,{emulateJSON: true}).then(function (res) {
+          console.log(res.data);
+              if (res.data.result) {
+    alert("cccccccccc");
+            that.$message.info("下载文件成功！请去桌面查看！");
+          } else {
+            that.$message.error("下载文件失败！"+res.date.message);
+          }
+        }).catch(function () {
+          that.$message.error("网络发生异常");
+        })*/
+      },
       addObjHandler:function(){
         let that = this;
         let dialog = that.$refs.addLayer;
