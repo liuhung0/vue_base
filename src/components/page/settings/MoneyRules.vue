@@ -18,48 +18,65 @@
               <span class="minute">分钟</span>
             </el-form-item>
 
-            <el-form-item label="前" prop="beforeHour">
-              <el-input style="float:left;width:15%;" v-model="form.beforeHour" maxlength="4" prop="beforeHour"></el-input>
+            <el-form-item label="前" prop="beforeHour" style="float: left;width: 33%">
+              <el-input  v-model="form.beforeHour" maxlength="4" prop="beforeHour"></el-input>
             </el-form-item>
-            <el-form-item label="小时每小时" prop="beforeFee">
-              <el-input style="float:left;width:15%;" v-model="form.beforeFee" maxlength="10"></el-input>
+            <el-form-item label="小时每小时" prop="beforeFee" style="float: left;width: 33%;margin-left: -115px">
+              <el-input  v-model="form.beforeFee" maxlength="10"></el-input>
             </el-form-item>
-            <el-form-item label="元后每小时" prop="afterFee">
-              <el-input style="float:left;width:15%;" v-model="form.afterFee" maxlength="10"></el-input>
-              <label style="float:left;width:10%;">元</label>
+            <el-form-item label="元后每小时" prop="afterFee" style="float: left;width: 34%;margin-left: -115px">
+              <el-input  v-model="form.afterFee" maxlength="10"></el-input>
+              <label style="float:left;width:200px;margin-top: -40px">元</label>
             </el-form-item>
           </div>
-          <div>
+          <div style="margin-top: 120px">
             <h3>夜间计费
               <small>夜间特殊计费规则 可以打开或者关闭</small>
               <el-switch style="float:right;padding:10px 0;width:10%;" v-model="form.isOpenFourth"/>
             </h3>
             <div v-if="form.isOpenFourth==1">
-              <el-form-item label="选择开始结束时间">
+              <el-form-item label="选择开始时间">
+                <!--<el-time-picker  style="   qfloat:left;width:40%" v-model="form.nightEndTime"   value-format="HH" format="HH"/>-->
 
-                <el-time-picker  style="   qfloat:left;width:40%" v-model="form.nightEndTime"   value-format="HH" format="HH"/>
-
-                <el-time-picker style="float:left;width:40%;padding-left:20px;"
-                                v-model="form.nightStartTime" value-format="HH" format="HH"/>
+                <!--<el-time-picker style="float:left;width:40%;padding-left:20px;"-->
+                                <!--v-model="form.nightStartTime" value-format="HH" format="HH"/>-->
+                <el-select v-model="form.nightStartTime" placeholder="开始" style="width:65px;float:left">
+                  <el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                  </el-option>
+                </el-select>
+                <!--<span style="float:left" class="rightSpan">选择结束时间</span>-->
+                <label style="float:left;margin-left: 10px">选择结束时间</label>
+                <el-select v-model="form.nightEndTime" placeholder="结束" style="width:65px;float:left;margin-left:18px">
+                  <el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                  </el-option>
+                </el-select>
               </el-form-item>
               <el-form-item label="过夜费" prop="nightFee">
                 <el-input style="float:left;width:20%" v-model="form.nightFee" maxlength="10"></el-input>
                 <span class="rightSpan">元</span>
               </el-form-item>
-              <el-form-item label="前" prop="beforeNightHour">
-                <el-input style="float:left;width:15%;" v-model="form.beforeNightHour" maxlength="4" ></el-input>
+              <el-form-item label="前" prop="beforeNightHour" style="float: left;width: 33%">
+                <el-input  v-model="form.beforeNightHour" maxlength="4" prop="beforeHour"></el-input>
               </el-form-item>
-              <el-form-item label="小时每小时" prop="nightHour">
-                <el-input style="float:left;width:15%;" v-model="form.nightHour" maxlength="10"></el-input>
+              <el-form-item label="小时每小时" prop="nightHour" style="float: left;width: 33%;margin-left: -115px">
+                <el-input  v-model="form.nightHour" maxlength="10"></el-input>
               </el-form-item>
-              <el-form-item label="元后每小时" prop="beforeNightFee">
-                <el-input style="float:left;width:15%;" v-model="form.beforeNightFee" maxlength="10"></el-input>
-                <label style="float:left;width:10%;">元</label>
+              <el-form-item label="元后每小时" prop="beforeNightFee" style="float: left;width: 34%;margin-left: -115px">
+                <el-input  v-model="form.beforeNightFee" maxlength="10"></el-input>
+                <label style="float:left;width:200px;margin-top: -40px">元</label>
               </el-form-item>
             </div>
 
           </div>
-          <div>
+          <div style="margin-top: 120px">
             <h3>时段封顶
               <small>夜间特殊计费规则 可以打开或者关闭</small>
               <el-switch style="float:right;padding:10px 0;width:10%;" v-model="form.isOpenFifth"></el-switch>
@@ -74,7 +91,7 @@
 
               <el-form-item label="最高" prop="maxFee">
                 <el-input style="float:left;width:16%;" v-model="form.maxFee" maxlength="10"></el-input>
-                <label style="margin-left: -275px">元</label>
+                <label style="margin-left: -500px">元</label>
               </el-form-item>
             </div>
           </div>
@@ -277,12 +294,21 @@
           quarterManagerFee: '',
           //   月管理费
           monthlyManagerFee: '',
-        }
+        },
+        options: [{value:1,lable:1},{value:1,lable:1},{value:1,lable:1},{value:1,lable:1},{value:1,lable:1},{value:1,lable:1},{value:1,lable:1}
+          ,{value:1,lable:1},{value:1,lable:1},{value:1,lable:1},{value:1,lable:1},{value:1,lable:1},{value:1,lable:1},{value:1,lable:1},{value:1,lable:1}
+          ,{value:1,lable:1},{value:1,lable:1},{value:1,lable:1},{value:1,lable:1},{value:1,lable:1},{value:1,lable:1},{value:1,lable:1},{value:1,lable:1}
+          ,{value:1,lable:1},{value:1,lable:1}
+        ]
       }
     },
     mounted() {
       let that = this;
       that.init();
+      for(var i=0;i<=24;i++){
+        that.options[i].value=i
+        that.options[i].lable=i
+      }
     },
     methods: {
       init(){
@@ -297,16 +323,17 @@
                 that.form.isOpenFifth === 1 ? that.form.isOpenFifth = false : that.form.isOpenFifth = true;
                 that.form.isOpenSecond === 1 ? that.form.isOpenSecond = false : that.form.isOpenSecond = true;
                 that.form.isOpenFirst === 1 ? that.form.isOpenFirst = false : that.form.isOpenFirst = true;
-                if(res.data.data.nightStartTime!=null){
-                  that.form.nightStartTime=new Date("2011-11-11 "+res.data.data.nightStartTime+":00:00");
-                }else {
-                  that.form.nightStartTime="";
-                }
-                if(res.data.data.nightEndTime!=null){
-                  that.form.nightEndTime=new Date("2011-11-11 "+res.data.data.nightEndTime+":00:00");
-                }else {
-                  that.form.nightEndTime="";
-                }
+                that.form.maxHour=res.data.data.maxHour.toString();
+//                if(res.data.data.nightStartTime!=null){
+//                  that.form.nightStartTime=new Date("2011-11-11 "+res.data.data.nightStartTime+":00:00");
+//                }else {
+//                  that.form.nightStartTime="";
+//                }
+//                if(res.data.data.nightEndTime!=null){
+//                  that.form.nightEndTime=new Date("2011-11-11 "+res.data.data.nightEndTime+":00:00");
+//                }else {
+//                  that.form.nightEndTime="";
+//                }
             /*    that.form.nightStartTime=new Date("2011-11-11 "+res.data.data.nightStartTime+":00:00");
                 that.form.nightEndTime=new Date("2011-11-11 "+res.data.data.nightEndTime+":00:00");*/
               }
@@ -324,12 +351,12 @@
               let that = this;
                 //   夜间结束时间
       //          nightEndTime: '',
-              if (that.form.nightStartTime instanceof Date) {
-                that.form.nightStartTime = that.form.nightStartTime.getHours();
-              }
-              if (that.form.nightEndTime instanceof Date) {
-                that.form.nightEndTime = that.form.nightEndTime.getHours();
-              }
+//              if (that.form.nightStartTime instanceof Date) {
+//                that.form.nightStartTime = that.form.nightStartTime.getHours();
+//              }
+//              if (that.form.nightEndTime instanceof Date) {
+//                that.form.nightEndTime = that.form.nightEndTime.getHours();
+//              }
 
               that.form.isOpenThird === false ? that.form.isOpenThird = 1 : that.form.isOpenThird = 2;
               that.form.isOpenFourth === false ? that.form.isOpenFourth = 1 : that.form.isOpenFourth = 2;

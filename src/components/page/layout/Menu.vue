@@ -34,9 +34,7 @@
           that.$http.post(that.Constants().REST_ROLE_SU_ID, that.form,{emulateJSON: true}).then(function (res) {
             if(res.data.result){
               that.menuList.splice(0, that.menuList.length, ...res.data.data.parentList);
-              console.log(that.children.splice(0, that.children.length, ...res.data.data.childrenList))
               that.children.splice(0, that.children.length, ...res.data.data.childrenList);
-
             }else {
               that.$message.error(that.res.data.message);
             }
