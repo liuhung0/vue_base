@@ -63,7 +63,7 @@
                   if(data)
                     return data.length>36?"<a title="+data+">"+ data.subString(0,36)+"...</a>":data;
                   else
-                    return " - ";
+                    return " -- ";
                   },
                 filter: {
                   type: "none",
