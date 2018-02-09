@@ -97,11 +97,10 @@
                 if (data == 1) {
                   return "<label style='color: #1AC45D;padding:2px 6px;display: inline-block;'>白名单</label>"
                 }
-                else
-                  return " - ";
                 if(data == 2){
                   return "<label style='color: #ff5e46;padding:2px 6px;display: inline-block;'>黑名单</label>"
                 }
+                else
                 return " - "
               },
               filter: {
