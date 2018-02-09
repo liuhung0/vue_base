@@ -5,7 +5,7 @@
         <img  :src="record.exit_picture">
       </div>
     </div>
-    <div class="enter">
+    <div class="enter"     style="margin-top: 5%;" >
         <div class="enter_top">
           <span>出口:{{record.exit_alleyway}}</span>
           <span>门闸编号:{{record.exit_door}}</span>
@@ -23,6 +23,8 @@
         </div>
         <div class="item item2"><b class="label">进场时间:</b><span class="sp">{{new Date(record.approach_time*1000).Format("yyyy-MM-dd hh:mm:ss")}}</span></div>
         <div class="item item2"><b class="label">出场时间:</b><span class="sp">{{new Date(record.exit_time*1000).Format("yyyy-MM-dd hh:mm:ss")}}</span></div>
+        <div class="item item2"><b class="label">进场门闸编号:</b><span class="sp">{{record.approach_door}}</span></div>
+        <div class="item item2"><b class="label">进场通道:</b><span class="sp">{{record.approach_alleyway}}</span></div>
         <div class="item item2"><b class="label">停泊类型:</b><span class="sp">{{record.vehicle_type==5?"临时车":"月租车"}}</span></div>
         <div class="item item2"><b class="label">收费金额:</b><span class="sp">{{record.cope_with}}元</span></div>
         <div class="item item2"><b class="label">应收金额:</b><span class="sp">{{record.cope_with}}元</span></div>
@@ -170,6 +172,7 @@
   .enter{
     background: #4B607C;
     padding: 20px;
+
   }
   .enter_top{
     text-align: left;
