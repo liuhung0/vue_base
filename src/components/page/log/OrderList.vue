@@ -56,7 +56,10 @@
               name: "进场时间",
               width: "160px",
               render: function (data) {
+                if(data)
                 return new Date(data * 1000).Format("yyyy-MM-dd hh:mm:ss");
+                else
+                  return " - ";
               },
               filter: {
                 type: "none",
@@ -69,7 +72,10 @@
               name: "出场时间",
               width: '160px',
               render: function (data) {
+                if(data)
                 return new Date(data * 1000).Format("yyyy-MM-dd hh:mm:ss");
+                else
+                  return " - ";
               },
               filter: {
                 type: "none",
@@ -82,7 +88,10 @@
               name: "应付金额",
               width: '80px',
               render: function (data) {
-                return "<span>" + data + "</span>";
+                if(data)
+                  return "<span>" + data + "</span>";
+                else
+                  return " - ";
               },
               filter: {
                 type: "none",
@@ -95,7 +104,10 @@
               name: "实收金额",
               width: '80px',
               render: function (data) {
-                return "<span>" + data + "</span>";
+                if(data)
+                  return "<span>" + data + "</span>";
+                else
+                  return " - ";
               },
               filter: {
                 type: "none",
@@ -108,7 +120,10 @@
               name: "停车时长",
               width: '80px',
               render: function (data) {
-                return "<span>" + data + "</span>";
+                if(data)
+                  return "<span>" + data + "</span>";
+                else
+                  return " - ";
               },
               filter: {
                 type: "none",
@@ -124,21 +139,33 @@
                 if (data == 1) {
                   return "<label style='color: #FF3030;padding:2px 10px;display: inline-block;'>月卡用户</label>"
                 }
+                else
+                  return " - ";
                 if (data == 2) {
                   return "<label style='color: #FFC125;padding:2px 10px;display: inline-block;'>季卡用户</label>"
                 }
+                else
+                  return " - ";
                 if (data == 3) {
                   return "<label style='color: #FFF68F;padding:2px 10px;display: inline-block;'>年卡用户</label>"
                 }
+                else
+                  return " - ";
                 if (data == 4) {
                   return "<label style='color: #1AC45D;padding:2px 10px;display: inline-block;'>管理费</label>"
                 }
+                else
+                  return " - ";
                 if (data == 5) {
                   return "<label style='color: #98F5FF;padding:2px 10px;display: inline-block;'>临时</label>"
                 }
+                else
+                  return " - ";
                 if (data == 6) {
                   return "<label style='color: #87CEFF;padding:2px 10px;display: inline-block;'>免费</label>"
                 }
+                else
+                  return " - ";
               },
               filter: {
                 type: "select",
@@ -198,6 +225,8 @@
                 if (data == 7) {
                   return "<label style='color: #8968CD;padding:2px 10px;display: inline-block;'>小程序</label>"
                 }
+                else
+                  return " - ";
               },
               filter: {
                 type: "select",
@@ -243,12 +272,15 @@
                 if (data == 1) {
                   return "<label style='color: #e64242;padding:2px 10px;display: inline-block;'>免费开闸</label>"
                 }
+
                 if (data == 2) {
                   return "<label style='color: #FFEC8B;padding:2px 16px;display: inline-block;'>收费开闸</label>"
                 }
                 if (data == 3) {
                   return "<label style='color: #1AC45D;padding:2px 16px;display: inline-block;'>正常开闸</label>"
                 }
+                else
+                  return "-";
               },
               filter: {
                 type: "select",

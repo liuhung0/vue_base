@@ -40,7 +40,7 @@
             {
               sortable: false,
               sort: "asc",
-              prop: "name",
+              prop: "carNumber",
               name: "姓名",
               width: "160px",
               render: function (data) {
@@ -57,7 +57,7 @@
             {
               sortable: false,
               sort: "asc",
-              prop: "carNumber",
+              prop: "name",
               name: "车牌号",
               width: "160px",
               render: function (data) {

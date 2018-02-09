@@ -42,7 +42,7 @@
               sort: "asc",
               prop: "name" || "nick",
               name: "用户姓名",
-              width: "80px",
+              width: "120px",
               render: function (data) {
                 if(data)
                   return "<span>" + data + "</span>";
@@ -156,13 +156,11 @@
               sort: "asc",
               prop: "reserve",
               name: "车位类型",
-              width: "160px",
+              width: "200px",
               render: function (data) {
                 if (data == 1) {
                   return "<label style='color: #1AC45D;padding:2px 6px;display: inline-block;'>自助车位</label>"
                 }
-                else
-                  return " - ";
                 if (data == 2) {
                   return "<label style='color: #40A6FF;padding:2px 6px;display: inline-block;'>预定车位</label>"
                 }
@@ -188,7 +186,7 @@
               sort: "asc",
               prop: "type",
               name: "会员类型",
-              width: '160px',
+              width: '200px',
               render: function (data) {
                 if (data == 1) {
                   return "<label style='color: #EEEE00;padding:2px 6px;display: inline-block;'>月卡用户</label>"
@@ -263,7 +261,7 @@
               sort: "asc",
               prop: "status",
               name: "状态",
-              width: '130px',
+              width: '160px',
               render: function (data) {
                 if (data == 1) {
                   return "<label style='color: #1AC45D;padding:2px 6px;display: inline-block;'>正常</label>"

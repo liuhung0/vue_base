@@ -54,7 +54,10 @@
               name: "进场时间",
               width: "160px",
               render: function (data) {
+                if(data)
                 return new Date(data * 1000).Format("yyyy-MM-dd hh:mm:ss");
+                else
+                  return "-";
               },
               filter: {
                 type: "none",
@@ -67,7 +70,10 @@
               name: "进场图片",
               width: "120px",
               render: function (data) {
+                if(data)
                 return "<img src='" + data + "' width='120px'/>";
+                else
+                  return "-";
               },
               filter: {
                 type: "none",
@@ -80,7 +86,10 @@
               name: "入场通道",
               width: "160px",
               render: function (data) {
+                if(data)
                 return "<span>" + data + "</span>";
+                else
+                  return "-";
               },
               filter: {
                 type: "none",
@@ -93,7 +102,10 @@
               name: "出场图片",
               width: '120px',
               render: function (data) {
+                if(data)
                 return "<img src='" + data + "' width='120px'/>";
+                else
+                  return "-";
               },
               filter: {
                 type: "none",
@@ -106,7 +118,10 @@
               name: "出场时间",
               width: '160px',
               render: function (data) {
+                if(data)
                 return new Date(data * 1000).Format("yyyy-MM-dd hh:mm:ss");
+                else
+                  return "-";
               },
               filter: {
                 type: "none",
@@ -119,7 +134,10 @@
               name: "出场通道",
               width: '80px',
               render: function (data) {
+                if(data)
                 return "<span>" + data + "</span>";
+                else
+                  return "-";
               },
               filter: {
                 type: "none",
@@ -132,9 +150,10 @@
               name: "停车时长",
               width: '80px',
               render: function (data) {
-                if(data == null)
-                  return "<span>-</span>";
-                return "<span>" + data + "</span>";
+                if(data)
+                  return "<span>" + data + "</span>";
+                else
+                  return "-";
               },
               filter: {
                 type: "none",
@@ -165,6 +184,8 @@
                 if (data == 6) {
                   return "<label style='color: #87CEFF;padding:2px 10px;display: inline-block;'>免费</label>"
                 }
+                else
+                  return "-";
               },
               filter: {
                 type: "select",
@@ -224,6 +245,8 @@
                 if (data == 7) {
                   return "<label style='color: #8968CD;padding:2px 10px;display: inline-block;'>小程序</label>"
                 }
+                else
+                  return "-";
               },
               filter: {
                 type: "select",

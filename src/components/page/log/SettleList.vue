@@ -63,6 +63,8 @@
                 if (data == 3) {
                   return "<label style='color: #1AC45D;padding:2px 10px;display: inline-block;'>免费车</label>"
                 }
+                else
+                  return "-";
               },
               filter: {
                 type: "select",
@@ -89,7 +91,10 @@
               name: "停车时长",
               width: "160px",
               render: function (data) {
+                if(data)
                 return "<B>" + data + "</B>"
+                else
+                  return "-";
               },
               filter: {
                 type: "none",
@@ -102,7 +107,10 @@
               name: "应付金额",
               width: "160px",
               render: function (data) {
+                if(data)
                 return "<span>" + data + "</span>";
+                else
+                  return "-";
               },
               filter: {
                 type: "none",
@@ -115,7 +123,10 @@
               name: "实收金额",
               width: '80px',
               render: function (data) {
+                if(data)
                 return "<span>" + data + "</span>";
+                else
+                  return "-";
               },
               filter: {
                 type: "none",
@@ -143,6 +154,8 @@
                 if (data == 5) {
                   return "<label style='color: #e64242;padding:2px 10px;display: inline-block;'>免费</label>"
                 }
+                else
+                  return "-";
               },
               filter: {
                 type: "select",
