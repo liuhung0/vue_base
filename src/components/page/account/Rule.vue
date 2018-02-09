@@ -44,9 +44,10 @@
                 name: "名称",
                 width: "160px",
                 render: function (data) {
-                  if(data){
-                    return "<B>" + data + "</B>"
-                  }
+                  if(data)
+                    return "<span>" + data + "</span>";
+                  else
+                    return " - ";
                 },
                 filter: {
                   type: "input",
@@ -62,7 +63,7 @@
                   if(data)
                     return data.length>36?"<a title="+data+">"+ data.subString(0,36)+"...</a>":data;
                   else
-                    return " -- ";
+                    return " - ";
                   },
                 filter: {
                   type: "none",
