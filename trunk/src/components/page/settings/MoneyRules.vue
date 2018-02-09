@@ -17,13 +17,15 @@
               <el-input style="float:left;width:30%;" v-model="form.afterMinute" maxlength="4"></el-input>
               <span class="minute">分钟</span>
             </el-form-item>
-            <el-form-item label="前">
-              <el-input style="float:left;width:10%;" v-model="form.beforeHour" maxlength="4"></el-input>
-              <label style="float:left;width:20%;">小时每小时</label>
-              <el-input style="float:left;width:10%;" v-model="form.beforeFee" maxlength="10"></el-input>
-              <label style="float:left;width:10%;">元</label>
-              <label style="float:left;width:20%;">后每小时</label>
-              <el-input style="float:left;width:10%;" v-model="form.afterFee" maxlength="10"></el-input>
+
+            <el-form-item label="前" prop="beforeHour">
+              <el-input style="float:left;width:15%;" v-model="form.beforeHour" maxlength="4" prop="beforeHour"></el-input>
+            </el-form-item>
+            <el-form-item label="小时每小时" prop="beforeFee">
+              <el-input style="float:left;width:15%;" v-model="form.beforeFee" maxlength="10"></el-input>
+            </el-form-item>
+            <el-form-item label="元后每小时" prop="afterFee">
+              <el-input style="float:left;width:15%;" v-model="form.afterFee" maxlength="10"></el-input>
               <label style="float:left;width:10%;">元</label>
             </el-form-item>
           </div>
@@ -40,11 +42,11 @@
                 <el-time-picker style="float:left;width:40%;padding-left:20px;"
                                 v-model="form.nightStartTime" value-format="HH" format="HH"/>
               </el-form-item>
-              <el-form-item label="过夜费">
+              <el-form-item label="过夜费" prop="nightFee">
                 <el-input style="float:left;width:20%" v-model="form.nightFee" maxlength="10"></el-input>
                 <span class="rightSpan">元</span>
               </el-form-item>
-              <el-form-item label="每小时">
+              <el-form-item label="每小时" prop="nightHour">
                 <el-input style="float:left;width:20%" v-model="form.nightHour" maxlength="10"></el-input>
                 <span class="rightSpan">元</span>
               </el-form-item>
@@ -63,9 +65,10 @@
                   <el-option value="2" key="2" label="自然日">自然日</el-option>
                 </el-select>
               </el-form-item>
-              <el-form-item label="最高">
+
+              <el-form-item label="最高" prop="maxFee">
                 <el-input style="float:left;width:16%;" v-model="form.maxFee" maxlength="10"></el-input>
-                <label>元</label>
+                <label style="margin-left: -275px">元</label>
               </el-form-item>
             </div>
           </div>
@@ -75,23 +78,23 @@
         <h2>包年包月用户
           <el-switch style="float:right;padding:10px 0;" v-model="form.isOpenFirst"></el-switch>
         </h2>
-        <el-form ref="form" :model="form" label-width="80px" class="sm" v-if="form.isOpenFirst==1">
-          <el-form-item label="包年费用" class="years">
+        <el-form ref="form" :model="form" status-icon :rules="formPrice" label-width="80px" class="sm" v-if="form.isOpenFirst==1">
+          <el-form-item label="包年费用" class="years" prop="annualFee">
             <el-input v-model="form.annualFee" maxlength="10"></el-input><span class="rightSpan">元</span>
           </el-form-item>
-          <el-form-item label="优惠价格" class="years">
+          <el-form-item label="优惠价格" class="years" prop="annualManagerDiscountFee">
             <el-input v-model="form.annualManagerDiscountFee" maxlength="10"></el-input><span class="rightSpan">元</span>
           </el-form-item>
-          <el-form-item label="包季费用" class="years">
+          <el-form-item label="包季费用" class="years" prop="quarterFee">
             <el-input v-model="form.quarterFee" maxlength="10"></el-input><span class="rightSpan">元</span>
           </el-form-item>
-          <el-form-item label="优惠价格" class="years">
+          <el-form-item label="优惠价格" class="years" prop="quarterManagerDiscountFee">
             <el-input v-model="form.quarterManagerDiscountFee" maxlength="10"></el-input><span class="rightSpan">元</span>
           </el-form-item>
-          <el-form-item label="包月费用" class="years">
+          <el-form-item label="包月费用" class="years" prop="monthlyFee">
             <el-input v-model="form.monthlyFee" maxlength="10"></el-input><span class="rightSpan">元</span>
           </el-form-item>
-          <el-form-item label="优惠价格" class="years">
+          <el-form-item label="优惠价格" class="years" prop="monthlyManagerDiscountFee">
             <el-input v-model="form.monthlyManagerDiscountFee" maxlength="10"></el-input><span class="rightSpan">元</span>
           </el-form-item>
         </el-form>
@@ -99,18 +102,15 @@
           <h2>业主管理费用
             <el-switch style="float:right;padding:10px 0;" v-model="form.isOpenSecond"></el-switch>
           </h2>
-          <el-form ref="form" :model="form" label-width="200px" class="sm2" v-if="form.isOpenSecond==1">
-            <el-form-item label="年管理费（十二个月）">
+          <el-form ref="form" :model="form" status-icon :rules="formPrice" label-width="200px" class="sm2" v-if="form.isOpenSecond==1">
+            <el-form-item label="年管理费（十二个月）" prop="annualManagerFee">
               <el-input  v-model="form.annualManagerFee" maxlength="10"></el-input><span class="rightSpan">元</span>
-              元
             </el-form-item>
-            <el-form-item label="季管理费（三个月）">
+            <el-form-item label="季管理费（三个月）" prop="quarterManagerFee">
               <el-input  v-model="form.quarterManagerFee" maxlength="10"></el-input><span class="rightSpan">元</span>
-              元
             </el-form-item>
-            <el-form-item label="月管理费（一个月）">
+            <el-form-item label="月管理费（一个月）" prop="monthlyManagerFee">
               <el-input  v-model="form.monthlyManagerFee" maxlength="10"></el-input><span class="rightSpan">元</span>
-              元
             </el-form-item>
           </el-form>
         </div>
@@ -124,26 +124,30 @@
 
 </template>
 <script>
+  import ElFormItem from "../../../../node_modules/element-ui/packages/form/src/form-item.vue";
+
   export default {
-    components: {},
+    components: {ElFormItem},
     data() {
       var validatebeforeMinute = (rule, value, callback) => {
         if (value === '') {
+
           callback(new Error('不能为空!'));
         }
-        if(isNaN(parseInt(value))){
-          callback(new Error('只能是数字!'));
+        if(isNaN(parseInt(value))  || parseInt(value) <= 0){
+
+          callback(new Error('只能是正整数!'));
         }else {
           callback();
         }
       };
-      var validatorAfterMinute =  (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('不能为空!'));
+      var validatorBeforeHour = (rule, value ,callback) => {
+        if(value === ''){
+          callback(new Error('不能为空！'));
         }
-        if(isNaN(parseInt(value))){
-          callback(new Error('只能是数字!'));
-        }else {
+        if(isNaN(parseFloat(value)) || parseFloat(value) <= 0){
+          callback(new Error('只能是大于零的数字！'));
+        }else{
           callback();
         }
       };
@@ -153,7 +157,52 @@
             {validator: validatebeforeMinute, trigger: 'blur'}
           ],
           afterMinute:[
-            {validator: validatorAfterMinute, trigger: 'blur'}
+            {validator: validatebeforeMinute, trigger: 'blur'}
+          ],
+          beforeHour:[
+            {validator: validatorBeforeHour, trigger:'blur'}
+          ],
+          beforeFee:[
+            {validator: validatorBeforeHour, trigger:'blur'},
+          ],
+          afterFee:[
+            {validator: validatorBeforeHour, trigger:'blur'}
+          ],
+          nightFee:[
+            {validator: validatorBeforeHour, trigger:'blur'}
+          ],
+          nightHour:[
+            {validator: validatorBeforeHour, trigger:'blur'}
+          ],
+          maxFee:[
+            {validator: validatorBeforeHour, trigger:'blur'}
+          ],
+          annualFee:[
+            {validator: validatorBeforeHour, trigger:'blur'}
+          ],
+          annualManagerDiscountFee:[
+            {validator: validatorBeforeHour, trigger:'blur'}
+          ],
+          quarterFee:[
+            {validator: validatorBeforeHour, trigger:'blur'}
+          ],
+          quarterManagerDiscountFee:[
+            {validator: validatorBeforeHour, trigger:'blur'}
+          ],
+          monthlyFee:[
+            {validator: validatorBeforeHour, trigger:'blur'}
+          ],
+          monthlyManagerDiscountFee:[
+            {validator: validatorBeforeHour, trigger:'blur'}
+          ],
+          annualManagerFee:[
+            {validator: validatorBeforeHour, trigger:'blur'}
+          ],
+          quarterManagerFee:[
+            {validator: validatorBeforeHour, trigger:'blur'}
+          ],
+          monthlyManagerFee:[
+            {validator: validatorBeforeHour, trigger:'blur'}
           ],
         },
         form: {
