@@ -28,8 +28,8 @@ export default {
         LOGIN_COULD_TYPE = "LOGIN_COULD_TYPE";
       //dev
 
-      let BASE_URL = "http://192.168.0.16:9109";
-      let PROXY_URL = "";
+      let BASE_URL = "http://192.168.0.13:9000";
+      let PROXY_URL = "/api";
       // let BASE_URL ="http://cloud.chinahtiot.com",PROXY_URL="/api";
       return {
         LOGIN_COULD_TYPE,
@@ -185,6 +185,7 @@ export default {
         SPECIAlVEHICLE_ID:BASE_URL + PROXY_URL + "/parkingManager/v1/SpecialVehicle/queryById",
 
         SPECIAlVEHICLE_DELETE:BASE_URL + PROXY_URL + "/parkingManager/v1/SpecialVehicle/delete",
+        SPECIAlVEHICLE_DELETE_EXP_EXCEL:BASE_URL + PROXY_URL + "/parkingManager/v1/SpecialVehicle/export/",
         /*
         *黑白名单
         * begin
