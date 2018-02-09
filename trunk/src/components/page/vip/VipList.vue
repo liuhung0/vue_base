@@ -44,7 +44,10 @@
               name: "用户姓名",
               width: "80px",
               render: function (data) {
-                return "<B>" + data + "</B>"
+                if(data)
+                  return "<span>" + data + "</span>";
+                else
+                  return " - ";
               },
               filter: {
                 type: "none",
@@ -58,7 +61,10 @@
               name: "车牌号",
               width: "80px",
               render: function (data) {
-                return "<B>" + data + "</B>"
+                if(data)
+                  return "<span>" + data + "</span>";
+                else
+                  return " - ";
               },
               filter: {
                 type: "none",
@@ -72,7 +78,10 @@
               name: "区号",
               width: "160px",
               render: function (data) {
-                return "<span>" + data + "</span>";
+                if(data)
+                  return "<span>" + data + "</span>";
+                else
+                  return " - ";
               },
               filter: {
                 type: "none",
@@ -85,7 +94,10 @@
               name: "楼号",
               width: "160px",
               render: function (data) {
-                return "<span>" + data + "</span>";
+                if(data)
+                  return "<span>" + data + "</span>";
+                else
+                  return " - ";
               },
               filter: {
                 type: "none",
@@ -98,7 +110,10 @@
               name: "单元",
               width: "160px",
               render: function (data) {
-                return "<span>" + data + "</span>";
+                if(data)
+                  return "<span>" + data + "</span>";
+                else
+                  return " - ";
               },
               filter: {
                 type: "none",
@@ -111,7 +126,10 @@
               name: "房间号",
               width: "160px",
               render: function (data) {
-                return "<span>" + data + "</span>";
+                if(data)
+                  return "<span>" + data + "</span>";
+                else
+                  return " - ";
               },
               filter: {
                 type: "none",
@@ -124,7 +142,10 @@
               name: "联系电话",
               width: "160px",
               render: function (data) {
-                return "<span>" + data + "</span>";
+                if(data)
+                  return "<span>" + data + "</span>";
+                else
+                  return " - ";
               },
               filter: {
                 type: "none",
@@ -140,9 +161,13 @@
                 if (data == 1) {
                   return "<label style='color: #1AC45D;padding:2px 6px;display: inline-block;'>自助车位</label>"
                 }
+                else
+                  return " - ";
                 if (data == 2) {
                   return "<label style='color: #40A6FF;padding:2px 6px;display: inline-block;'>预定车位</label>"
                 }
+                else
+                  return " - ";
               },
               filter: {
                 type: "select",
@@ -168,12 +193,18 @@
                 if (data == 1) {
                   return "<label style='color: #EEEE00;padding:2px 6px;display: inline-block;'>月卡用户</label>"
                 }
+                else
+                  return " - ";
                 if (data == 2) {
                   return "<label style='color: #1AC45D;padding:2px 6px;display: inline-block;'>季卡用户</label>"
                 }
+                else
+                  return " - "
                 if (data == 3) {
                   return "<label style='color: #40A6FF;padding:2px 6px;display: inline-block;'>年卡用户</label>"
                 }
+                else
+                  return " - "
               },
               filter: {
                 type: "select",
@@ -200,7 +231,11 @@
               name: "付费时间",
               width: '160px',
               render: function (data) {
-                return new Date(data * 1000).Format("yyyy-MM-dd hh:mm:ss");
+                if (data != null) {
+                  return new Date(data * 1000).Format("yyyy-MM-dd hh:mm:ss");
+                }
+                else
+                  return " - ";
               },
               filter: {
                 type: "none",
@@ -213,7 +248,11 @@
               name: "到期时间",
               width: '160px',
               render: function (data) {
-                return new Date(data * 1000).Format("yyyy-MM-dd hh:mm:ss");
+                if (data != null) {
+                  return new Date(data * 1000).Format("yyyy-MM-dd hh:mm:ss");
+                }
+                else
+                  return " - ";
               },
               filter: {
                 type: "none",
@@ -229,12 +268,18 @@
                 if (data == 1) {
                   return "<label style='color: #1AC45D;padding:2px 6px;display: inline-block;'>正常</label>"
                 }
+                else
+                  return " - ";
                 if (data == 2) {
                   return "<label style='color: #ff5e46;padding:2px 6px;display: inline-block;'>已过期</label>"
                 }
+                else
+                  return " - ";
                 if (data == 3) {
                   return "<label style='color: #40A6FF;padding:2px 6px;display: inline-block;'>已冻结</label>"
                 }
+                else
+                  return " - "
               },
               filter: {
                 type: "select",

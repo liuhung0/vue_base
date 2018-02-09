@@ -44,7 +44,10 @@
               name: "所属区域",
               width: "80px",
               render: function (data) {
-                return data;
+                if(data)
+                  return "<span>" + data + "</span>";
+                else
+                  return " - ";
               },
               filter: {
                 type: "none",
@@ -58,7 +61,10 @@
               name: "楼号(栋)",
               width: "80px",
               render: function (data) {
-                return data;
+                if(data)
+                  return "<span>" + data + "</span>";
+                else
+                  return " - ";
               },
               filter: {
                 type: "none",
@@ -72,7 +78,10 @@
               name: "单元",
               width: "80px",
               render: function (data) {
-                return data;
+                if(data)
+                  return "<span>" + data + "</span>";
+                else
+                  return " - ";
               },
               filter: {
                 type: "none",
@@ -86,7 +95,10 @@
               name: "房间号",
               width: "80px",
               render: function (data) {
-                return data;
+                if(data)
+                  return "<span>" + data + "</span>";
+                else
+                  return " - ";
               },
               filter: {
                 type: "none",
@@ -100,7 +112,10 @@
               name: "车牌号",
               width: "80px",
               render: function (data) {
-                return data;
+                if(data)
+                  return "<span>" + data + "</span>";
+                else
+                  return " - ";
               },
               filter: {
                 type: "none",
@@ -114,7 +129,10 @@
               name: "车位号",
               width: "80px",
               render: function (data) {
-                return data;
+                if(data)
+                  return "<span>" + data + "</span>";
+                else
+                  return " - ";
               },
               filter: {
                 type: "none",

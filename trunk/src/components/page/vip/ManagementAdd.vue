@@ -2,8 +2,8 @@
   <div class="main">
     <h2>{{id ? "编辑" : "新增"}}管理费管理</h2>
     <el-form ref="ruleForm" :rules="ruleForm" :model="ruleForm" label-width="100px" class="addAccount">
-      <el-form-item  label="选择车位号：" style="color: black;width: 100px;">
-        <el-select v-model="ruleForm.seatId" filterable placeholder="请选择车位号" style="width:300px;">
+      <el-form-item  label="选择车位号" style="color: black;width: 100px;">
+        <el-select v-model="ruleForm.seatId" filterable placeholder="请选择车位号" style="width:300px;margin-left: -55px">
           <el-option
             v-for="item in seatList"
             :key="item.seatId"
