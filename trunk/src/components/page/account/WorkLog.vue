@@ -36,7 +36,10 @@
               name: "账户",
               width: "160px",
               render: function (data) {
-                return "<B>" + data + "</B>"
+                if(data)
+                  return "<span>" + data + "</span>";
+                else
+                  return " - ";
               },
               filter: {
                 type: "none",
@@ -50,7 +53,10 @@
               name: "姓名",
               width: "160px",
               render: function (data) {
-                return "<B>" + data + "</B>"
+                if(data)
+                  return "<span>" + data + "</span>";
+                else
+                  return " - ";
               },
               filter: {
                 type: "none",
@@ -64,7 +70,10 @@
               name: "上班打卡时间",
               width: "200px",
               render: function (data) {
+                if(data)
                 return new Date(data * 1000).Format("yyyy-MM-dd hh:mm:ss");
+                else
+                  return " - ";
               },
               filter: {
                 type: "none",

@@ -44,9 +44,10 @@
               name: "编号",
               width: "160px",
               render: function (data) {
-                if(data){
-                  return "<B>" + data + "</B>"
-                }
+                if(data)
+                  return "<span>" + data + "</span>";
+                else
+                  return " - ";
               },
               filter: {
                 type: "input",
@@ -60,9 +61,10 @@
               name: "用户名",
               width: "160px",
               render: function (data) {
-                if(data){
-                  return "<B>" + data + "</B>"
-                }
+                if(data)
+                  return "<span>" + data + "</span>";
+                else
+                  return " - ";
               },
               filter: {
                 type: "input",
@@ -110,6 +112,8 @@
                 if(data){
                   return "<B>" + data + "</B>"
                 }
+                else
+                  return " - ";
               },
               filter: {
                 type: "none",
