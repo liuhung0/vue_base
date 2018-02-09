@@ -37,7 +37,6 @@
             <div v-if="form.isOpenFourth==1">
               <el-form-item label="选择开始时间">
                 <!--<el-time-picker  style="   qfloat:left;width:40%" v-model="form.nightEndTime"   value-format="HH" format="HH"/>-->
-
                 <!--<el-time-picker style="float:left;width:40%;padding-left:20px;"-->
                                 <!--v-model="form.nightStartTime" value-format="HH" format="HH"/>-->
                 <el-select v-model="form.nightStartTime" placeholder="开始" style="width:65px;float:left">
@@ -48,7 +47,6 @@
                     :value="item.value">
                   </el-option>
                 </el-select>
-                <!--<span style="float:left" class="rightSpan">选择结束时间</span>-->
                 <label style="float:left;margin-left: 10px">选择结束时间</label>
                 <el-select v-model="form.nightEndTime" placeholder="结束" style="width:65px;float:left;margin-left:18px">
                   <el-option
@@ -60,7 +58,7 @@
                 </el-select>
               </el-form-item>
               <el-form-item label="过夜费" prop="nightFee">
-                <el-input style="float:left;width:20%" v-model="form.nightFee" maxlength="10"></el-input>
+                <el-input style="float:left;width:12%" v-model="form.nightFee" maxlength="10"></el-input>
                 <span class="rightSpan">元</span>
               </el-form-item>
               <el-form-item label="前" prop="beforeNightHour" style="float: left;width: 33%">
@@ -79,18 +77,18 @@
           <div style="margin-top: 120px">
             <h3>时段封顶
               <small>夜间特殊计费规则 可以打开或者关闭</small>
-              <el-switch style="float:right;padding:10px 0;width:10%;" v-model="form.isOpenFifth"></el-switch>
+                <el-switch style="float:right;padding:10px 0;width:10%;" v-model="form.isOpenFifth" @click.native="changeData()"></el-switch>
             </h3>
             <div v-if="form.isOpenFifth==1">
               <el-form-item label="封顶规则">
-                <el-select style="float:left;" v-model="form.maxHour">
+                <el-select style="float:left;width: 90px" v-model="form.maxHour">
                   <el-option value="1" key="1" label="24小时" selected>24小时</el-option>
                   <el-option value="2" key="2" label="自然日">自然日</el-option>
                 </el-select>
               </el-form-item>
 
               <el-form-item label="最高" prop="maxFee">
-                <el-input style="float:left;width:16%;" v-model="form.maxFee" maxlength="10"></el-input>
+                <el-input style="float:left;width:14%;" v-model="form.maxFee" maxlength="10"></el-input>
                 <label style="margin-left: -500px">元</label>
               </el-form-item>
             </div>
@@ -142,9 +140,7 @@
         <el-button  style="float:right;margin-right:64px;margin-top:60px;" type="primary" @click="onSubmit('form')">保存</el-button>
       </div>
     </div>
-
   </div>
-
 </template>
 <script>
   import ElFormItem from "../../../../node_modules/element-ui/packages/form/src/form-item.vue";
@@ -172,6 +168,32 @@
           callback();
         }
       };
+      var validatorNightFee = (rule, value ,callback) => {
+        if(this.form.isOpenFifth === true){
+          if( value != ""){
+            callback(new Error('时段封顶开启，过夜费必须为空！'));
+          }
+        }
+        if(isNaN(value) || parseFloat(value) <= 0){
+          callback(new Error('只能是大于零的数字！'));
+        }else{
+          callback();
+        }
+      };
+//      var validatorIsOpenFifth = (rule, value ,callback) => {
+//        if(value === true){
+//          if(this.form.nightFee != "" || this.form.nightFee != null ){
+//            callback(new Error('夜间计费，过夜费只能为空！'));
+//          }
+//        }
+//        if(value === false){
+//          if(this.form.nightFee === "" || this.form.nightFee === null ){
+//            callback(new Error('夜间计费，过夜费不能为空！'));
+//          }
+//        }else{
+//          callback();
+//        }
+//      };
       return {
         formPrice:{
           beforeMinute:[
@@ -190,7 +212,7 @@
             {validator: validatorBeforeHour, trigger:'blur'}
           ],
           nightFee:[
-            {validator: validatorBeforeHour, trigger:'blur'}
+            {validator: validatorNightFee, trigger:'blur'}
           ],
           nightHour:[
             {validator: validatorBeforeHour, trigger:'blur'}
@@ -234,6 +256,9 @@
           nightHour:[
             {validator: validatorBeforeHour, trigger:'blur'}
           ],
+//          isOpenFifth:[
+//            {validator: validatorIsOpenFifth, trigger:'switchChange'}
+//          ],
         },
         form: {
           id: '',
