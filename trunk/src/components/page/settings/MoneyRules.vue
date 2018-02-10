@@ -190,20 +190,6 @@
           callback();
         }
       };
-//      var validatorIsOpenFifth = (rule, value ,callback) => {
-//        if(value === true){
-//          if(this.form.nightFee != "" || this.form.nightFee != null ){
-//            callback(new Error('夜间计费，过夜费只能为空！'));
-//          }
-//        }
-//        if(value === false){
-//          if(this.form.nightFee === "" || this.form.nightFee === null ){
-//            callback(new Error('夜间计费，过夜费不能为空！'));
-//          }
-//        }else{
-//          callback();
-//        }
-//      };
       return {
         timetopShow: 1,
         formPrice: {
@@ -267,9 +253,6 @@
           nightHour: [
             {validator: validatorBeforeHour, trigger: 'blur'}
           ],
-//          isOpenFifth:[
-//            {validator: validatorIsOpenFifth, trigger:'switchChange'}
-//          ],
         },
         form: {
           id: '',
@@ -361,6 +344,7 @@
           if (val) {
             console.log("过夜费有值了", val);
             this.timetopShow = 0;
+            this.form.isOpenFourth = false;
           }
           else {
             console.log("过夜费没值了", val);
