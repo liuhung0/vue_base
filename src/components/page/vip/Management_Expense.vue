@@ -29,6 +29,7 @@
           showAdd: 1,
           showDel: 1,
           showCheckBack: 1,
+          excel:1,
           serverurl:that.Constants().VIP_EXP_LIST,
           title: "租户管理",
           key: "id",

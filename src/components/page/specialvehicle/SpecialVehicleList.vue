@@ -20,7 +20,7 @@
   import Add from "@/components/page/specialvehicle/Add"
   export default {
     components: {DataTable,Layer},
-    name: "rule",
+    //name: "rule",
     data(){
       let that =this;
       return {
@@ -29,6 +29,7 @@
           showAdd: 1,
           showDel: 1,
           showCheckBack: 1,
+          excel:1,
           serverurl: that.Constants().SPECIAlVEHICLE_LIST,
           title: "黑白名单",
           key: "id",
@@ -36,13 +37,13 @@
             page: 1,
             rows: 10,
             num: 0,
-            carNumber:''
+            carNumber:'',
           },
           columns: [
             {
               sortable: false,
               sort: "asc",
-              prop: "carNumber",
+              prop: "name",
               name: "姓名",
               width: "160px",
               render: function (data) {
@@ -59,7 +60,7 @@
             {
               sortable: false,
               sort: "asc",
-              prop: "name",
+              prop: "carNumber",
               name: "车牌号",
               width: "160px",
               render: function (data) {
@@ -132,7 +133,7 @@
                   return " - ";
               },
               filter: {
-                type: "input",
+                type: "none",
               },
               filterData: ""
             },
@@ -155,21 +156,18 @@
     },
     methods:{
       expObjHandler:function(){
-       let that = this;
+
+        let that =this;
+
+        //console.log(that.$refs.datatable.queryData.type)
+       /* var type = that.$refs.datatable.queryData.type === undefined ? null : that.$refs.datatable.queryData.type;
+        var carNumber=that.$refs.datatable.queryData.carNumber === undefined ? null : that.$refs.datatable.queryData.carNumber ;
+        var name=that.$refs.datatable.queryData.name  === undefined ? null : that.$refs.datatable.queryData.name;*/
+       that.pId =sessionStorage.getItem("LOGIN_PARKING_PID");
         window.open(
-          that.Constants().SPECIAlVEHICLE_EXL
+          //that.Constants().SPECIAlVEHICLE_EXL+"?pId="+that.pId+"&name="+name+"&carNumber="+carNumber+"&type="+type
+        that.Constants().SPECIAlVEHICLE_EXL+"?pId="+that.pId
         );
- /*       this.$http.get(that.Constants().SPECIAlVEHICLE_DELETE_EXP_EXCEL,that.reqData,{emulateJSON: true}).then(function (res) {
-          console.log(res.data);
-              if (res.data.result) {
-    alert("cccccccccc");
-            that.$message.info("下载文件成功！请去桌面查看！");
-          } else {
-            that.$message.error("下载文件失败！"+res.date.message);
-          }
-        }).catch(function () {
-          that.$message.error("网络发生异常");
-        })*/
       },
       addObjHandler:function(){
         let that = this;
