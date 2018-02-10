@@ -7,6 +7,7 @@
         :confignation="dataTableConfig"
         @addObjHandler="addObjHandler"
         @delObjHandler="delObjHandler"
+        @expObjHandler="expObjHandler"
         ref="datatable">
       </data-table>
     </div>
@@ -315,6 +316,13 @@
       }
     },
     methods: {
+      expObjHandler:function(){
+        let that =this;
+        that.pId =sessionStorage.getItem("LOGIN_PARKING_PID");
+        window.open(
+          that.Constants().TENANT_EXCL+"?pId="+that.pId
+        );
+      },
       addObjHandler:function(){
         let that = this;
         let dialog = that.$refs.addLayer;

@@ -2,13 +2,13 @@
   <div class="main">
     <h2>{{id?"编辑":"新增"}}黑白名单 </h2>
     <el-form ref="ruleForm" v-model="ruleForm"  label-width="80px" class="heibai">
-      <el-form-item label="姓名" prop="number" class="nameList">
+      <el-form-item label="姓名" prop="name" class="nameList">
         <el-input  v-model="ruleForm.name"></el-input>
       </el-form-item>
-      <el-form-item label="车牌号" prop="phone" class="nameList" >
+      <el-form-item label="车牌号" prop="carNumber" class="nameList" >
         <el-input v-model="ruleForm.carNumber"></el-input>
       </el-form-item>
-      <el-form-item label="电话" prop="name" class="nameList">
+      <el-form-item label="电话" prop="phone" class="nameList">
         <el-input  v-model="ruleForm.phone"></el-input>
       </el-form-item>
       <el-form-item label="类型"  class="nameList">
@@ -17,7 +17,7 @@
           <el-radio  label="2" class="dan">黑名单</el-radio>
         </el-radio-group>
       </el-form-item>
-      <el-form-item label="备注" prop="gender" class="nameList">
+      <el-form-item label="备注" prop="remark" class="nameList">
         <el-input  v-model="ruleForm.remark"></el-input>
       </el-form-item>
       <el-form-item>

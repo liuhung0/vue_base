@@ -7,6 +7,7 @@
         :confignation="dataTableConfig"
         @addObjHandler="addObjHandler"
         @delObjHandler="delObjHandler"
+        @expObjHandler="expObjHandler"
         ref="datatable">
       </data-table>
     </div>
@@ -37,6 +38,23 @@
             num: 0,
           },
           columns: [
+            {
+              sortable: false,
+              sort: "asc",
+              prop: "carNumber",
+              name: "车牌号",
+              width: "80px",
+              render: function (data) {
+                if(data)
+                  return "<span>" + data + "</span>";
+                else
+                  return " - ";
+              },
+              filter: {
+                type: "input",
+              },
+              filterData: ""
+            },
             {
               sortable: false,
               sort: "asc",
@@ -108,23 +126,6 @@
             {
               sortable: false,
               sort: "asc",
-              prop: "carNumber",
-              name: "车牌号",
-              width: "80px",
-              render: function (data) {
-                if(data)
-                  return "<span>" + data + "</span>";
-                else
-                  return " - ";
-              },
-              filter: {
-                type: "none",
-              },
-              filterData: ""
-            },
-            {
-              sortable: false,
-              sort: "asc",
               prop: "seatNumber",
               name: "车位号",
               width: "80px",
@@ -158,6 +159,13 @@
       }
     },
     methods: {
+      expObjHandler:function(){
+        let that =this;
+        that.pId =sessionStorage.getItem("LOGIN_PARKING_PID");
+        window.open(
+          that.Constants().MANAGEMENT_EXPENSE_EXCL+"?pId="+that.pId
+        );
+      },
       addObjHandler:function(){
         let that = this;
         let dialog = that.$refs.addLayer;

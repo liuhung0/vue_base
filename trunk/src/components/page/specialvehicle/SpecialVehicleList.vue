@@ -20,7 +20,7 @@
   import Add from "@/components/page/specialvehicle/Add"
   export default {
     components: {DataTable,Layer},
-    name: "rule",
+    //name: "rule",
     data(){
       let that =this;
       return {
@@ -36,13 +36,13 @@
             page: 1,
             rows: 10,
             num: 0,
-            carNumber:''
+            carNumber:'',
           },
           columns: [
             {
               sortable: false,
               sort: "asc",
-              prop: "carNumber",
+              prop: "name",
               name: "姓名",
               width: "160px",
               render: function (data) {
@@ -59,7 +59,7 @@
             {
               sortable: false,
               sort: "asc",
-              prop: "name",
+              prop: "carNumber",
               name: "车牌号",
               width: "160px",
               render: function (data) {
@@ -132,7 +132,7 @@
                   return " - ";
               },
               filter: {
-                type: "input",
+                type: "none",
               },
               filterData: ""
             },
@@ -155,21 +155,17 @@
     },
     methods:{
       expObjHandler:function(){
-       let that = this;
+
+        let that =this;
+        //var name=that.dataTableConfig.columns[0].filterData;
+       // var carNumber=that.dataTableConfig.columns[1].filterData;
+        //var btype=that.dataTableConfig.columns[3].filter.data.type;
+         // alert(btype)
+       that.pId =sessionStorage.getItem("LOGIN_PARKING_PID");
         window.open(
-          that.Constants().SPECIAlVEHICLE_EXL
+          //that.Constants().SPECIAlVEHICLE_EXL+"?pId="+that.pId+"&name="+name+"&carNumber="+carNumber+"&type="+btype
+        that.Constants().SPECIAlVEHICLE_EXL+"?pId="+that.pId
         );
- /*       this.$http.get(that.Constants().SPECIAlVEHICLE_DELETE_EXP_EXCEL,that.reqData,{emulateJSON: true}).then(function (res) {
-          console.log(res.data);
-              if (res.data.result) {
-    alert("cccccccccc");
-            that.$message.info("下载文件成功！请去桌面查看！");
-          } else {
-            that.$message.error("下载文件失败！"+res.date.message);
-          }
-        }).catch(function () {
-          that.$message.error("网络发生异常");
-        })*/
       },
       addObjHandler:function(){
         let that = this;
