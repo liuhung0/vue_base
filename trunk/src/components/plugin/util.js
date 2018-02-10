@@ -191,7 +191,7 @@ export default {
         *黑白名单
         * begin
          */
-
+        SPECIAlVEHICLE_FILE_UPLOAD: BASE_URL + PROXY_URL + "/parkingManager/v1/SpecialVehicle/uploadExcel?pid="+sessionStorage.getItem("LOGIN_PARKING_PID"),
 
         /**
          * 租户列表

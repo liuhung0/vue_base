@@ -23,7 +23,23 @@
       <el-form-item>
         <el-button type="primary" @click="onSubmit">保 &nbsp;&nbsp;&nbsp;&nbsp; 存</el-button>
       </el-form-item>
+      <el-form-item label="上传数据：">
+        <el-upload
+          ref ="excelUpload"
+          class="upload-demo"
+          v-loading ="loading"
+          :action="Constants().SPECIAlVEHICLE_FILE_UPLOAD"
+          :file-list="fileList"
+          name="upfile"
+
+        >
+          <el-button size="small" type="primary">点击上传</el-button>
+
+        </el-upload>
+        <a class="el-button" href="http://oss.isbein.com/OPO/data/template/Equipment_template.xls">下载Excel表格模板</a>
+      </el-form-item>
     </el-form>
+
   </div>
 
 </template>
@@ -36,6 +52,7 @@
     props:["id"],
     data() {
       return {
+        piid:sessionStorage.getItem("LOGIN_PARKING_PID"),
         ruleForm: {
           id:this.id || null,
           pId: sessionStorage.getItem("LOGIN_PARKING_PID"),
