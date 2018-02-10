@@ -41,23 +41,6 @@
             {
               sortable: false,
               sort: "asc",
-              prop: "carNumber",
-              name: "车牌号",
-              width: "80px",
-              render: function (data) {
-                if(data)
-                  return "<span>" + data + "</span>";
-                else
-                  return " - ";
-              },
-              filter: {
-                type: "input",
-              },
-              filterData: ""
-            },
-            {
-              sortable: false,
-              sort: "asc",
               prop: "region",
               name: "所属区域",
               width: "80px",
@@ -126,6 +109,23 @@
             {
               sortable: false,
               sort: "asc",
+              prop: "carNumber",
+              name: "车牌号",
+              width: "80px",
+              render: function (data) {
+                if(data)
+                  return "<span>" + data + "</span>";
+                else
+                  return " - ";
+              },
+              filter: {
+                type: "none",
+              },
+              filterData: ""
+            },
+            {
+              sortable: false,
+              sort: "asc",
               prop: "seatNumber",
               name: "车位号",
               width: "80px",
@@ -160,11 +160,11 @@
     },
     methods: {
       expObjHandler:function(){
-        let that =this;
-        that.pId =sessionStorage.getItem("LOGIN_PARKING_PID");
+        let that = this;
         window.open(
-          that.Constants().MANAGEMENT_EXPENSE_EXCL+"?pId="+that.pId
+          that.Constants().VIP_EXP_LIST+"?pId="+sessionStorage.getItem("LOGIN_PARKING_PID")
         );
+
       },
       addObjHandler:function(){
         let that = this;

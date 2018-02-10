@@ -84,7 +84,7 @@ export default {
 
         VIP_MANAGE: BASE_URL + PROXY_URL +"/parkingManager/v1/vip/get",
 
-        VIP_EXP_LIST: BASE_URL + PROXY_URL +"/parkingManager/v1/vip/getExpInfo",
+        VIP_EXP_LIST: BASE_URL + PROXY_URL +"/parkingManager/v1/vip/export",
 
         VIP_GLF: BASE_URL + PROXY_URL +"/parkingManager/v1/useraccountrecharge/get",
 
@@ -95,7 +95,7 @@ export default {
         VIP_GLF_SEAT_ID: BASE_URL + PROXY_URL +"/parkingManager/v1/useraccountrecharge/getseatList",
 
         VIP_GLF_DEL: BASE_URL + PROXY_URL +"/parkingManager/v1/useraccountrecharge/delete",
-
+        VIP_GLF_EXP: BASE_URL + PROXY_URL +"/parkingManager/v1/useraccountrecharge/export",
         /*
         *vip
         *end
