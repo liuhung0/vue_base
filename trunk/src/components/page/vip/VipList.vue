@@ -7,6 +7,7 @@
         :confignation="dataTableConfig"
         @addObjHandler="addObjHandler"
         @delObjHandler="delObjHandler"
+        @expObjHandler="expObjHandler"
         ref="datatable">
       </data-table>
     </div>
@@ -316,6 +317,25 @@
       }
     },
     methods: {
+      expObjHandler:function(){
+        let that =this;
+        var reserve = "";
+        var type = "";
+        var status = "";
+        if(that.$refs.datatable.queryData.reserve != undefined){
+          reserve = that.$refs.datatable.queryData.reserve;
+        }
+        if(that.$refs.datatable.queryData.type != undefined){
+          type=that.$refs.datatable.queryData.type;
+        }
+        if(that.$refs.datatable.queryData.status  != undefined){
+          status = that.$refs.datatable.queryData.status;
+        }
+        that.pId =sessionStorage.getItem("LOGIN_PARKING_PID");
+        window.open(
+          that.Constants().SPECIAlVEHICLE_EXL+"?pId="+that.pId+"&reserve="+reserve+"&type="+type+"&status="+status
+        );
+      },
       addObjHandler:function(){
         let that = this;
         let dialog = that.$refs.addLayer;
