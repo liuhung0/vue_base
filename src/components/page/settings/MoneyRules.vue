@@ -39,7 +39,7 @@
                 <!--<el-time-picker  style="   qfloat:left;width:40%" v-model="form.nightEndTime"   value-format="HH" format="HH"/>-->
                 <!--<el-time-picker style="float:left;width:40%;padding-left:20px;"-->
                                 <!--v-model="form.nightStartTime" value-format="HH" format="HH"/>-->
-                <el-select v-model="form.nightStartTime" placeholder="开始" style="width:65px;float:left">
+                <el-select v-model="form.nightStartTime" placeholder="开始" style="width:75px;float:left">
                   <el-option
                     v-for="item in options"
                     :key="item.value"
@@ -48,7 +48,7 @@
                   </el-option>
                 </el-select>
                 <label style="float:left;margin-left: 10px">选择结束时间</label>
-                <el-select v-model="form.nightEndTime" placeholder="结束" style="width:65px;float:left;margin-left:18px">
+                <el-select v-model="form.nightEndTime" placeholder="结束" style="width:75px;float:left;margin-left:18px">
                   <el-option
                     v-for="item in options"
                     :key="item.value"
