@@ -156,17 +156,22 @@
     },
     methods:{
       expObjHandler:function(){
-
         let that =this;
-
-        //console.log(that.$refs.datatable.queryData.type)
-       /* var type = that.$refs.datatable.queryData.type === undefined ? null : that.$refs.datatable.queryData.type;
-        var carNumber=that.$refs.datatable.queryData.carNumber === undefined ? null : that.$refs.datatable.queryData.carNumber ;
-        var name=that.$refs.datatable.queryData.name  === undefined ? null : that.$refs.datatable.queryData.name;*/
+        var type = "";
+        var carNumber = "";
+        var name = "";
+        if(that.$refs.datatable.queryData.type != undefined){
+          type = that.$refs.datatable.queryData.type;
+        }
+        if(that.$refs.datatable.queryData.carNumber != undefined){
+          carNumber=that.$refs.datatable.queryData.carNumber;
+        }
+        if(that.$refs.datatable.queryData.name  != undefined){
+          name = that.$refs.datatable.queryData.name;
+        }
        that.pId =sessionStorage.getItem("LOGIN_PARKING_PID");
         window.open(
-          //that.Constants().SPECIAlVEHICLE_EXL+"?pId="+that.pId+"&name="+name+"&carNumber="+carNumber+"&type="+type
-        that.Constants().SPECIAlVEHICLE_EXL+"?pId="+that.pId
+          that.Constants().SPECIAlVEHICLE_EXL+"?pId="+that.pId+"&name="+name+"&carNumber="+carNumber+"&type="+type
         );
       },
       addObjHandler:function(){
