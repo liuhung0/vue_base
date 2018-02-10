@@ -10,22 +10,22 @@
               <small>通用计费规则</small>
             </h3>
             <el-form-item label="临停前免费时间" prop="beforeMinute">
-              <el-input style="float:left;width:30%;" v-model="form.beforeMinute" maxlength="4"></el-input>
+              <el-input style="float:left;width:30%;" v-model="form.beforeMinute" :maxlength="4"></el-input>
               <span class="minute">分钟</span>
             </el-form-item>
             <el-form-item label="临停后免费时间" prop="afterMinute">
-              <el-input style="float:left;width:30%;" v-model="form.afterMinute" maxlength="4"></el-input>
+              <el-input style="float:left;width:30%;" v-model="form.afterMinute" :maxlength="4"></el-input>
               <span class="minute">分钟</span>
             </el-form-item>
 
             <el-form-item label="前" prop="beforeHour" style="float: left;width: 33%">
-              <el-input  v-model="form.beforeHour" maxlength="4" prop="beforeHour"></el-input>
+              <el-input v-model="form.beforeHour" :maxlength="4" prop="beforeHour"/>
             </el-form-item>
             <el-form-item label="小时每小时" prop="beforeFee" style="float: left;width: 33%;margin-left: -115px">
-              <el-input  v-model="form.beforeFee" maxlength="10"></el-input>
+              <el-input v-model="form.beforeFee" :maxlength="10"/>
             </el-form-item>
             <el-form-item label="元后每小时" prop="afterFee" style="float: left;width: 34%;margin-left: -115px">
-              <el-input  v-model="form.afterFee" maxlength="10"></el-input>
+              <el-input v-model="form.afterFee" :maxlngth="10"/>
               <label style="float:left;width:200px;margin-top: -40px">元</label>
             </el-form-item>
           </div>
@@ -55,26 +55,27 @@
                 </el-select>
               </el-form-item>
               <el-form-item label="过夜费" prop="nightFee">
-                <el-input style="float:left;width:12%" v-model="form.nightFee" maxlength="10"></el-input>
-                <span class="rightSpan">元</span>
+                <el-input style="float:left;width:12%" v-model="form.nightFee" :maxlength="10"></el-input>
+                <span class="rightSpan">元</span><span class="remark"> 设置过夜费用后,将无法打开时段封顶</span>
               </el-form-item>
               <el-form-item label="前" prop="beforeNightHour" style="float: left;width: 33%">
-                <el-input  v-model="form.beforeNightHour" maxlength="4" prop="beforeHour"></el-input>
+                <el-input v-model="form.beforeNightHour" :maxlength="4" prop="beforeHour"></el-input>
               </el-form-item>
               <el-form-item label="小时每小时" prop="nightHour" style="float: left;width: 33%;margin-left: -115px">
-                <el-input  v-model="form.nightHour" maxlength="10"></el-input>
+                <el-input v-model="form.nightHour" :maxlength="10"></el-input>
               </el-form-item>
               <el-form-item label="元后每小时" prop="beforeNightFee" style="float: left;width: 34%;margin-left: -115px">
-                <el-input  v-model="form.beforeNightFee" maxlength="10"></el-input>
+                <el-input v-model="form.beforeNightFee" :maxlength="10"></el-input>
                 <label style="float:left;width:200px;margin-top: -40px">元</label>
               </el-form-item>
             </div>
 
           </div>
-          <div style="margin-top: 120px">
+          <div style="margin-top: 120px" v-if="timetopShow==1">
             <h3>时段封顶
-              <small>夜间特殊计费规则 可以打开或者关闭</small>
-                <el-switch style="float:right;padding:10px 0;width:10%;" v-model="form.isOpenFifth" @click.native="changeData()"></el-switch>
+              <small>封顶计费规则 可以打开或者关闭</small>
+              <el-switch style="float:right;padding:10px 0;width:10%;" v-model="form.isOpenFifth"
+                         @click.native="changeData()"></el-switch>
             </h3>
             <div v-if="form.isOpenFifth==1">
               <el-form-item label="封顶规则">
@@ -96,45 +97,57 @@
         <h2>包年包月用户
           <el-switch style="float:right;padding:10px 0;" v-model="form.isOpenFirst"></el-switch>
         </h2>
-        <el-form ref="form" :model="form" status-icon :rules="formPrice" label-width="80px" class="sm" v-if="form.isOpenFirst==1">
+        <el-form ref="form" :model="form" status-icon :rules="formPrice" label-width="80px" class="sm"
+                 v-if="form.isOpenFirst==1">
           <el-form-item label="包年费用" class="years" prop="annualFee">
-            <el-input v-model="form.annualFee" maxlength="10"></el-input><span class="rightSpan">元</span>
+            <el-input v-model="form.annualFee" maxlength="10"></el-input>
+            <span class="rightSpan">元</span>
           </el-form-item>
           <el-form-item label="优惠价格" class="years" prop="annualManagerDiscountFee">
-            <el-input v-model="form.annualManagerDiscountFee" maxlength="10"></el-input><span class="rightSpan">元</span>
+            <el-input v-model="form.annualManagerDiscountFee" maxlength="10"></el-input>
+            <span class="rightSpan">元</span>
           </el-form-item>
           <el-form-item label="包季费用" class="years" prop="quarterFee">
-            <el-input v-model="form.quarterFee" maxlength="10"></el-input><span class="rightSpan">元</span>
+            <el-input v-model="form.quarterFee" maxlength="10"></el-input>
+            <span class="rightSpan">元</span>
           </el-form-item>
           <el-form-item label="优惠价格" class="years" prop="quarterManagerDiscountFee">
-            <el-input v-model="form.quarterManagerDiscountFee" maxlength="10"></el-input><span class="rightSpan">元</span>
+            <el-input v-model="form.quarterManagerDiscountFee" maxlength="10"></el-input>
+            <span class="rightSpan">元</span>
           </el-form-item>
           <el-form-item label="包月费用" class="years" prop="monthlyFee">
-            <el-input v-model="form.monthlyFee" maxlength="10"></el-input><span class="rightSpan">元</span>
+            <el-input v-model="form.monthlyFee" maxlength="10"></el-input>
+            <span class="rightSpan">元</span>
           </el-form-item>
           <el-form-item label="优惠价格" class="years" prop="monthlyManagerDiscountFee">
-            <el-input v-model="form.monthlyManagerDiscountFee" maxlength="10"></el-input><span class="rightSpan">元</span>
+            <el-input v-model="form.monthlyManagerDiscountFee" maxlength="10"></el-input>
+            <span class="rightSpan">元</span>
           </el-form-item>
         </el-form>
         <div>
           <h2>业主管理费用
             <el-switch style="float:right;padding:10px 0;" v-model="form.isOpenSecond"></el-switch>
           </h2>
-          <el-form ref="form" :model="form" status-icon :rules="formPrice" label-width="200px" class="sm2" v-if="form.isOpenSecond==1">
+          <el-form ref="form" :model="form" status-icon :rules="formPrice" label-width="200px" class="sm2"
+                   v-if="form.isOpenSecond==1">
             <el-form-item label="年管理费（十二个月）" prop="annualManagerFee">
-              <el-input  v-model="form.annualManagerFee" maxlength="10"></el-input><span class="rightSpan">元</span>
+              <el-input v-model="form.annualManagerFee" maxlength="10"></el-input>
+              <span class="rightSpan">元</span>
             </el-form-item>
             <el-form-item label="季管理费（三个月）" prop="quarterManagerFee">
-              <el-input  v-model="form.quarterManagerFee" maxlength="10"></el-input><span class="rightSpan">元</span>
+              <el-input v-model="form.quarterManagerFee" maxlength="10"></el-input>
+              <span class="rightSpan">元</span>
             </el-form-item>
             <el-form-item label="月管理费（一个月）" prop="monthlyManagerFee">
-              <el-input  v-model="form.monthlyManagerFee" maxlength="10"></el-input><span class="rightSpan">元</span>
+              <el-input v-model="form.monthlyManagerFee" maxlength="10"></el-input>
+              <span class="rightSpan">元</span>
             </el-form-item>
           </el-form>
         </div>
       </div>
-      <div >
-        <el-button  style="float:right;margin-right:64px;margin-top:60px;" type="primary" @click="onSubmit('form')">保存</el-button>
+      <div>
+        <el-button style="float:right;margin-right:64px;margin-top:60px;" type="primary" @click="onSubmit('form')">保存
+        </el-button>
       </div>
     </div>
   </div>
@@ -149,31 +162,31 @@
         if (value === '') {
           callback(new Error('不能为空!'));
         }
-        if(isNaN(value)  || parseInt(value) != value){
+        if (isNaN(value) || parseInt(value) != value) {
           callback(new Error('只能是正整数!'));
-        }else {
+        } else {
           callback();
         }
       };
-      var validatorBeforeHour = (rule, value ,callback) => {
-        if(value === ''){
+      var validatorBeforeHour = (rule, value, callback) => {
+        if (value === '') {
           callback(new Error('不能为空！'));
         }
-        if(isNaN(value) || parseFloat(value) <= 0){
+        if (isNaN(value) || parseFloat(value) <= 0) {
           callback(new Error('只能是大于零的数字！'));
-        }else{
+        } else {
           callback();
         }
       };
-      var validatorNightFee = (rule, value ,callback) => {
-        if(this.form.isOpenFifth === true){
-          if( value != ""){
+      var validatorNightFee = (rule, value, callback) => {
+        if (this.form.isOpenFifth === true) {
+          if (value != "") {
             callback(new Error('时段封顶开启，过夜费必须为空！'));
           }
         }
-        if(isNaN(value) || parseFloat(value) <= 0){
+        if (isNaN(value) || parseFloat(value) <= 0) {
           callback(new Error('只能是大于零的数字！'));
-        }else{
+        } else {
           callback();
         }
       };
@@ -192,66 +205,67 @@
 //        }
 //      };
       return {
-        formPrice:{
-          beforeMinute:[
+        timetopShow: 1,
+        formPrice: {
+          beforeMinute: [
             {validator: validatebeforeMinute, trigger: 'blur'}
           ],
-          afterMinute:[
+          afterMinute: [
             {validator: validatebeforeMinute, trigger: 'blur'}
           ],
-          beforeHour:[
-            {validator: validatebeforeMinute, trigger:'blur'}
+          beforeHour: [
+            {validator: validatebeforeMinute, trigger: 'blur'}
           ],
-          beforeFee:[
-            {validator: validatorBeforeHour, trigger:'blur'},
+          beforeFee: [
+            {validator: validatorBeforeHour, trigger: 'blur'},
           ],
-          afterFee:[
-            {validator: validatorBeforeHour, trigger:'blur'}
+          afterFee: [
+            {validator: validatorBeforeHour, trigger: 'blur'}
           ],
-          nightFee:[
-            {validator: validatorNightFee, trigger:'blur'}
+          nightFee: [
+            {validator: validatorNightFee, trigger: 'blur'}
           ],
-          nightHour:[
-            {validator: validatorBeforeHour, trigger:'blur'}
+          nightHour: [
+            {validator: validatorBeforeHour, trigger: 'blur'}
           ],
-          maxFee:[
-            {validator: validatorBeforeHour, trigger:'blur'}
+          maxFee: [
+            {validator: validatorBeforeHour, trigger: 'blur'}
           ],
-          annualFee:[
-            {validator: validatorBeforeHour, trigger:'blur'}
+          annualFee: [
+            {validator: validatorBeforeHour, trigger: 'blur'}
           ],
-          annualManagerDiscountFee:[
-            {validator: validatorBeforeHour, trigger:'blur'}
+          annualManagerDiscountFee: [
+            {validator: validatorBeforeHour, trigger: 'blur'}
           ],
-          quarterFee:[
-            {validator: validatorBeforeHour, trigger:'blur'}
+          quarterFee: [
+            {validator: validatorBeforeHour, trigger: 'blur'}
           ],
-          quarterManagerDiscountFee:[
-            {validator: validatorBeforeHour, trigger:'blur'}
+          quarterManagerDiscountFee: [
+            {validator: validatorBeforeHour, trigger: 'blur'}
           ],
-          monthlyFee:[
-            {validator: validatorBeforeHour, trigger:'blur'}
+          monthlyFee: [
+            {validator: validatorBeforeHour, trigger: 'blur'}
           ],
-          monthlyManagerDiscountFee:[
-            {validator: validatorBeforeHour, trigger:'blur'}
+          monthlyManagerDiscountFee: [
+            {validator: validatorBeforeHour, trigger: 'blur'}
           ],
-          annualManagerFee:[
-            {validator: validatorBeforeHour, trigger:'blur'}
+          annualManagerFee: [
+            {validator: validatorBeforeHour, trigger: 'blur'}
           ],
-          quarterManagerFee:[
-            {validator: validatorBeforeHour, trigger:'blur'}
+          quarterManagerFee: [
+            {validator: validatorBeforeHour, trigger: 'blur'}
           ],
-          monthlyManagerFee:[
-            {validator: validatorBeforeHour, trigger:'blur'}
+          monthlyManagerFee: [
+            {validator: validatorBeforeHour, trigger: 'blur'}
           ],
-          beforeNightHour:[
-            {validator: validatebeforeMinute, trigger:'blur'}
+          beforeNightHour: [
+            {validator: validatebeforeMinute, trigger: 'blur'}
           ],
-          beforeNightFee:[
-            {validator: validatorBeforeHour, trigger:'blur'}
+          beforeNightFee: [
+            {validator: validatorBeforeHour, trigger: 'blur'}
           ],
-          nightHour:[
-            {validator: validatorBeforeHour, trigger:'blur'}
+          nightHour: [
+            {validator: validatorBeforeHour, trigger: 'blur'}
           ],
 //          isOpenFifth:[
 //            {validator: validatorIsOpenFifth, trigger:'switchChange'}
@@ -262,10 +276,10 @@
           pId: sessionStorage.getItem("LOGIN_PARKING_PID"),
           uId: sessionStorage.getItem("LOGIN_PARKING_UID"),
           token: sessionStorage.getItem("LOGIN_PARKING_TOKEN"),
-          beforeNightHour:'',
-          beforeNightFee:'',
-          nightHour:'',
-          afterMinute:'',
+          beforeNightHour: '',
+          beforeNightFee: '',
+          nightHour: '',
+          afterMinute: '',
           //年优惠价
           annualManagerDiscountFee: '',
           //季优惠价
@@ -281,13 +295,13 @@
           //是否开启包年包月（1，关闭，2，开启）
           isOpenFirst: false,
           //   前多少分钟免费
-          beforeMinute:'',
+          beforeMinute: '',
           //   前几小时
           beforeHour: '',
           //   前每小时费用
           beforeFee: '',
           //临时停车后多少分钟
-          after_minute:'',
+          after_minute: '',
           //   后几小时
           afterFee: '',
           //   夜间开始时间
@@ -317,27 +331,50 @@
           //   月管理费
           monthlyManagerFee: '',
         },
-        options: [{value:1,lable:1},{value:1,lable:1},{value:1,lable:1},{value:1,lable:1},{value:1,lable:1},{value:1,lable:1},{value:1,lable:1}
-          ,{value:1,lable:1},{value:1,lable:1},{value:1,lable:1},{value:1,lable:1},{value:1,lable:1},{value:1,lable:1},{value:1,lable:1},{value:1,lable:1}
-          ,{value:1,lable:1},{value:1,lable:1},{value:1,lable:1},{value:1,lable:1},{value:1,lable:1},{value:1,lable:1},{value:1,lable:1},{value:1,lable:1}
-          ,{value:1,lable:1},{value:1,lable:1}
+        options: [{value: 1, lable: 1}, {value: 1, lable: 1}, {value: 1, lable: 1}, {value: 1, lable: 1}, {
+          value: 1,
+          lable: 1
+        }, {value: 1, lable: 1}, {value: 1, lable: 1}
+          , {value: 1, lable: 1}, {value: 1, lable: 1}, {value: 1, lable: 1}, {value: 1, lable: 1}, {
+            value: 1,
+            lable: 1
+          }, {value: 1, lable: 1}, {value: 1, lable: 1}, {value: 1, lable: 1}
+          , {value: 1, lable: 1}, {value: 1, lable: 1}, {value: 1, lable: 1}, {value: 1, lable: 1}, {
+            value: 1,
+            lable: 1
+          }, {value: 1, lable: 1}, {value: 1, lable: 1}, {value: 1, lable: 1}
+          , {value: 1, lable: 1}, {value: 1, lable: 1}
         ]
       }
     },
     mounted() {
       let that = this;
       that.init();
-      for(var i=0;i<=24;i++){
-        that.options[i].value=i
-        that.options[i].lable=i
+      for (var i = 0; i <= 24; i++) {
+        that.options[i].value = i
+        that.options[i].lable = i
+      }
+    },
+    watch: {
+      'form.nightFee': {
+        handler(val, oldval) {
+          if (val) {
+            console.log("过夜费有值了", val);
+            this.timetopShow = 0;
+          }
+          else {
+            console.log("过夜费没值了", val);
+            this.timetopShow = 1;
+          }
+        }
       }
     },
     methods: {
-      init(){
+      init() {
         let that = this;
         that.$http.post(that.Constants().REST_MERCHANT_QUERYPRICE, that.form, {emulateJSON: true}).then(function (res) {
             if (res.data.result) {
-              if(res.data.data!=null){
+              if (res.data.data != null) {
                 that.$set(that, "form", res.data.data)
                 console.log("拉取收费设置成功");
                 that.form.isOpenThird === 1 ? that.form.isOpenThird = false : that.form.isOpenThird = true;
@@ -345,7 +382,7 @@
                 that.form.isOpenFifth === 1 ? that.form.isOpenFifth = false : that.form.isOpenFifth = true;
                 that.form.isOpenSecond === 1 ? that.form.isOpenSecond = false : that.form.isOpenSecond = true;
                 that.form.isOpenFirst === 1 ? that.form.isOpenFirst = false : that.form.isOpenFirst = true;
-                that.form.maxHour=res.data.data.maxHour.toString();
+                that.form.maxHour = res.data.data.maxHour.toString();
               }
             } else {
               that.$message.info(that.res.data.message)
@@ -354,9 +391,10 @@
             that.$message.error("网络发生错误");
           }
         )
-      },
+      }
+      ,
       onSubmit(formName) {
-        if(this.form.isOpenFourth === false){
+        if (this.form.isOpenFourth === false) {
           this.form.nightStartTime = null;
           this.form.nightEndTime = null;
           this.form.nightFee = null;
@@ -364,11 +402,11 @@
           this.form.nightHour = null;
           this.form.beforeNightFee = null;
         }
-        if(this.form.isOpenFifth){
+        if (this.form.isOpenFifth) {
           this.form.maxHour = null;
           this.form.maxFee = null;
         }
-        if(this.form.isOpenFirst === false){
+        if (this.form.isOpenFirst === false) {
           this.form.annualFee = null;
           this.form.annualManagerDiscountFee = null;
           this.form.quarterFee = null;
@@ -376,35 +414,36 @@
           this.form.monthlyFee = null;
           this.form.monthlyManagerDiscountFee = null;
         }
-        if(this.form.isOpenSecond){
+        if (this.form.isOpenSecond) {
           this.form.annualManagerFee = null;
           this.form.quarterManagerFee = null;
           this.form.monthlyManagerFee = null;
         }
         this.$refs[formName].validate((valid) => {
           if (valid) {
-              let that = this;
-              that.form.isOpenThird === false ? that.form.isOpenThird = 1 : that.form.isOpenThird = 2;
-              that.form.isOpenFourth === false ? that.form.isOpenFourth = 1 : that.form.isOpenFourth = 2;
-              that.form.isOpenFifth === false ? that.form.isOpenFifth = 1 : that.form.isOpenFifth = 2;
-              that.form.isOpenSecond === false ? that.form.isOpenSecond = 1 : that.form.isOpenSecond = 2;
-              that.form.isOpenFirst === false ? that.form.isOpenFirst = 1 : that.form.isOpenFirst = 2;
-              that.$http.post(that.Constants().REST_MERCHANT_SETPRICE, that.form, {emulateJSON: true}).then(function (res) {
-                  if (res.data.result) {
-                    that.init();
-                    that.$message.success("信息修改成功！");
-                  } else {
-                    that.$message.info(that.res.data.message)
-                  }
-                }, function () {
-                  that.$message.error("网络发生错误");
-                });
+            let that = this;
+            that.form.isOpenThird === false ? that.form.isOpenThird = 1 : that.form.isOpenThird = 2;
+            that.form.isOpenFourth === false ? that.form.isOpenFourth = 1 : that.form.isOpenFourth = 2;
+            that.form.isOpenFifth === false ? that.form.isOpenFifth = 1 : that.form.isOpenFifth = 2;
+            that.form.isOpenSecond === false ? that.form.isOpenSecond = 1 : that.form.isOpenSecond = 2;
+            that.form.isOpenFirst === false ? that.form.isOpenFirst = 1 : that.form.isOpenFirst = 2;
+            that.$http.post(that.Constants().REST_MERCHANT_SETPRICE, that.form, {emulateJSON: true}).then(function (res) {
+              if (res.data.result) {
+                that.init();
+                that.$message.success("信息修改成功！");
+              } else {
+                that.$message.info(that.res.data.message)
+              }
+            }, function () {
+              that.$message.error("网络发生错误");
+            });
           } else {
             console.log('error submit!!');
             return false;
           }
         });
-      },
+      }
+      ,
       resetForm(formName) {
         this.$refs[formName].resetFields();
       }
@@ -416,15 +455,16 @@
     margin: 0;
     padding: 0;
   }
+
   /*.box .shoufei{*/
-    /*color: #fff;*/
-    /*line-height: 58px;*/
-    /*font-weight: 300;*/
-    /*text-align: left;*/
-    /*padding-left: 20px;*/
-    /*background: #1D242E;*/
-    /*box-shadow: 0 2px 6px 0 rgba(46,46,46,0.50);*/
-    /*-webkit-margin-before: 0em;*/
+  /*color: #fff;*/
+  /*line-height: 58px;*/
+  /*font-weight: 300;*/
+  /*text-align: left;*/
+  /*padding-left: 20px;*/
+  /*background: #1D242E;*/
+  /*box-shadow: 0 2px 6px 0 rgba(46,46,46,0.50);*/
+  /*-webkit-margin-before: 0em;*/
   /*}*/
   .box h1 {
     color: #fff;
@@ -441,7 +481,7 @@
     margin: 20px auto;
     padding: 20px;
     background: #3D4E66;
-    box-shadow: 0 4px 16px 0 rgba(0,0,0,0.30);
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.30);
     border-radius: 4px;
     border: 1px solid #333;
     width: 90%;
@@ -483,7 +523,7 @@
     float: left;
     margin-left: 20px;
     font-size: 14px;
-    color:#fff;
+    color: #fff;
   }
 
   .settings label, .settings .el-form-item__label {
@@ -495,29 +535,35 @@
   }
 
   .sm .el-form-item {
-   width:50%;
-    float:left;
+    width: 50%;
+    float: left;
   }
-  .sm label,.sm2 label{
+
+  .sm label, .sm2 label {
     color: #fff !important;
   }
+
   .sm .el-input {
-    width:60%;
-    float:left;
+    width: 60%;
+    float: left;
   }
-  .sm2{
-    clear:both;
+
+  .sm2 {
+    clear: both;
     display: block;
   }
+
   .sm2 .el-form-item {
   }
+
   .sm2 .el-input {
-    width:60%;
-    float:left;
+    width: 60%;
+    float: left;
   }
-  .minute{
+
+  .minute {
     color: #fff;
-    float:left;
-    width:80px;
+    float: left;
+    width: 80px;
   }
 </style>
