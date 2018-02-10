@@ -67,6 +67,29 @@
     methods: {
       onSubmit() {
         let that = this;
+        if (that.ruleForm.name.length ==0) {
+          that.$message.error("请输入姓名!");
+          return;
+        }
+        var carnumber = /^[京,津,渝,沪,冀,晋,辽,吉,黑,苏,浙,皖,闽,赣,鲁,豫,鄂,湘,粤,琼,川,贵,云,陕,秦,甘,陇,青,台,内蒙古,桂,宁,新,藏,澳,军,海,航,警][A-Z][0-9,A-Z]{5}$/;
+        if ((!carnumber.test(that.ruleForm.carNumber))) {
+          this.$message.error('车牌号有误,请重新输入!');
+          return;
+        }
+        var phone = /^1(3|4|5|7|8)\d{9}$/;
+        if ((!phone.test(that.ruleForm.phone))) {
+          this.$message.error('请输入正确的手机号!');
+          return;
+        }
+
+        if (that.ruleForm.type.length ==0) {
+          that.$message.error("请选择类型!");
+          return;
+        }
+        if (that.ruleForm.remark.length ==0) {
+          that.$message.error("请输入备注信息!");
+          return;
+        }
         this.$http.post(that.Constants().SPECIAlVEHICLE_ADD, that.ruleForm,{emulateJSON: true}).then(function (res) {
           if (res.data.result) {
             that.$message.info("黑白名单添加成功");
