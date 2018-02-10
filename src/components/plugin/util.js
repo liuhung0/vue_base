@@ -82,7 +82,7 @@ export default {
         //解冻Vip
         VIP_THAW:BASE_URL + PROXY_URL +"/parkingManager/v1/vip/setVipThaw/",
 
-        VIP_MANAGE: BASE_URL + PROXY_URL +"/parkingManager/v1/vip/get",
+        VIP_MANAGE: BASE_URL + PROXY_URL +"/parkingManager/v1/vip/getExpInfo",
 
         VIP_EXP_LIST: BASE_URL + PROXY_URL +"/parkingManager/v1/vip/export",
 
