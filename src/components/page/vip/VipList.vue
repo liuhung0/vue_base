@@ -333,7 +333,7 @@
         }
         that.pId =sessionStorage.getItem("LOGIN_PARKING_PID");
         window.open(
-          that.Constants().SPECIAlVEHICLE_EXL+"?pId="+that.pId+"&reserve="+reserve+"&type="+type+"&status="+status
+          that.Constants().TENANT_EXCL+"?pId="+that.pId+"&reserve="+reserve+"&type="+type+"&status="+status
         );
       },
       addObjHandler:function(){
