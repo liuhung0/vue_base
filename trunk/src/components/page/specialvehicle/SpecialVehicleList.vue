@@ -36,6 +36,7 @@
             page: 1,
             rows: 10,
             num: 0,
+            carNumber:''
           },
           columns: [
             {
@@ -154,11 +155,9 @@
     },
     methods:{
       expObjHandler:function(){
-        alert("12");
        let that = this;
-        console.log(that.reqData);
         window.open(
-          that.Constants().SPECIAlVEHICLE_DELETE_EXP_EXCEL
+          that.Constants().SPECIAlVEHICLE_EXL
         );
  /*       this.$http.get(that.Constants().SPECIAlVEHICLE_DELETE_EXP_EXCEL,that.reqData,{emulateJSON: true}).then(function (res) {
           console.log(res.data);
