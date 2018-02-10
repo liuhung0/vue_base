@@ -146,7 +146,7 @@
             {
               sortable: false,
               sort: "desc",
-              prop: "parkingTime",
+              prop: "ParkingTime",
               name: "停车时长",
               width: '80px',
               render: function (data) {

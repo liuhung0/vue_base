@@ -11,7 +11,7 @@
   </div>
 </template>
 <script>
-  import DataTable from '@/components/ui/cub/DataTable3'
+  import DataTable from '@/components/ui/cub/DataTable2'
   export default {
     components: {
       DataTable},
