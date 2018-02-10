@@ -28,7 +28,7 @@ export default {
         LOGIN_COULD_TYPE = "LOGIN_COULD_TYPE";
       //dev
 
-      let BASE_URL = "http://192.168.0.9:9109";
+      let BASE_URL = "http://192.168.0.16:9109";
       let PROXY_URL = "";
       // let BASE_URL ="http://cloud.chinahtiot.com",PROXY_URL="/api";
       return {
@@ -104,9 +104,9 @@ export default {
         //停车场出入记录
         PARKING_EXIT:BASE_URL + PROXY_URL + "/parkingManager/v1/record/recordList",
         //导出停车场excel表格
-        EXCEL:BASE_URL + PROXY_URL + "/parkingManager/v1/record/download/",
+        EXCEL:BASE_URL + PROXY_URL + "/parkingManager/v1/record/download",
         //导出财务报表excel表格
-        DOWNLOADFINACE:BASE_URL + PROXY_URL + "/parkingManager/v1/record/downloadFinace/",
+        DOWNLOADFINACE:BASE_URL + PROXY_URL + "/parkingManager/v1/record/downloadFinace",
         //财务列表
         FINANCE_LIST:BASE_URL + PROXY_URL + "/parkingManager/v1/financeList/financeList",
         //各类车辆数，及其收入金额
