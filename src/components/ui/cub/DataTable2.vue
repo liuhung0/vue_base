@@ -161,7 +161,8 @@
           payment:null,
           charge_standard:null,
           vehicle_type:null,
-          ppID:sessionStorage.getItem("LOGIN_PARKING_PID")
+          ppID:sessionStorage.getItem("LOGIN_PARKING_PID"),
+          pay_type:null,
         },
         config: that.confignation,
         pagenation: that.confignation.pagenation,
@@ -169,6 +170,7 @@
           appId:'',
           payment:null,
           ppID:sessionStorage.getItem("LOGIN_PARKING_PID"),
+          pay_type:null,
       },
         checkedIds: "",
         defaultConfig:{
@@ -244,7 +246,6 @@
         let rows = queryData.rows;
         let user_id = sessionStorage.getItem("LOGIN_PARKING_PID");
         let token = sessionStorage.getItem("LOGIN_PARKING_TOKEN");
-        let to_time ='1514099197';
         queryData.year = that.resData.year;
         let year;
         let month;
@@ -300,12 +301,10 @@
           vehicle_type = '100';
         }
         that.reqData  = null;
+        var params="month=11&pId=67";
         //用此种方式可以解决excel表格导出不弹窗的问题
         window.open(
-          that.Constants().EXCEL+
-          user_id+"/"+month+"/"+to_time+"/"+token+
-          "/"+startTime+"/"+endTime+"/"+year+"/"+day+
-          "/"+week+"/"+all+"/"+payment+"/"+vehicle_type
+          that.Constants().EXCEL+"?"+params
         );
       },
       excelExport(){
@@ -406,8 +405,8 @@
         let endTime;
         let cope_with;
         let sluice_state;
-        let payment = that.queryData.payment;
-        console.log(payment);
+        let pay_type = that.queryData.pay_type;
+        console.log(pay_type);
         let charge_standard =that.queryData.charge_standard ;
         let queryData = !!that.queryData ? that.queryData : {};
         if (that.resData.startTime instanceof Date) {
@@ -423,7 +422,7 @@
         let page = queryData.page;
         queryData.rows = that.pagenation.rows?that.pagenation.rows:10;
         let rows = queryData.rows;
-        let user_id = sessionStorage.getItem("LOGIN_PARKING_UID");
+        let user_id = sessionStorage.getItem("LOGIN_PARKING_PID");
         let token = sessionStorage.getItem("LOGIN_PARKING_TOKEN");
         queryData.to_time = '1514099197';
         let to_time =queryData.to_time;
@@ -433,73 +432,46 @@
         let day;
         let week;
         let all;
-        if(that.queryData.startTime == null){
-          startTime = '4553225';
-        }else{
-          startTime = queryData.startTime;
+        var params="?pId="+user_id;
+        if(that.queryData.startTime != null){
+          params+="&startTime="+queryData.startTime;
         }
 
-        if(that.queryData.endTime == null){
-          endTime = '4553225';
-        }else{
-          endTime = queryData.endTime;
+        if(that.queryData.endTime != null){
+            params+="&endTime="+queryData.endTime;
         }
 
-        if(that.queryData.year == null){
-          year = '4553225';
-        }else{
-          year = that.resData.year;
+        if(that.queryData.year != null){
+            params+="&year="+that.resData.year;
         }
 
-        if(that.queryData.month == null){
-          month = '4553225';
-        }else{
-          month = that.resData.month;
+        if(that.queryData.month != null){
+            params+="&month="+that.resData.month;
         }
 
-        if(that.queryData.day == null){
-          day = '4553225';
-        }else{
-          day = that.resData.day;
+        if(that.queryData.day != null){
+            params+="&day="+that.resData.day;
         }
 
-        if(that.queryData.week == null){
-          week = '4553225';
-        }else{
-          week = that.resData.week;
+        if(that.queryData.week != null){
+            params+="&week="+that.resData.week;
+        }
+        if(pay_type != null){
+            params+="&payType="+ cope_with ;
+        }
+        if(cope_with != null){
+            params+="&cope_with="+ cope_with ;
+        }
+        if(sluice_state != null){
+            params+="&sluice_state="+ sluice_state ;
         }
 
-        if(that.queryData.all == null){
-          all = '4553225';
-        }else{
-          all = that.resData.all;
-        }
+      alert(params);
 
-        if(payment == null){
-          payment = '100';
-        }
-
-
-        if(charge_standard == null){
-          charge_standard = '100';
-        }
-
-        if(cope_with == null){
-          cope_with = '100';
-        }
-
-        if(sluice_state == null){
-          sluice_state = '100';
-        }
-
-        that.reqData  = null;
         //用此种方式可以解决excel表格导出不弹窗的问题
         window.open(
-          that.Constants().EXCEL_ORDER+
-          user_id+"/"+month+"/"+to_time+"/"+token+
-          "/"+startTime+"/"+endTime+"/"+year+"/"+day+
-          "/"+week+"/"+all+"/"+payment+"/"+charge_standard
-          +"/"+cope_with+"/"+sluice_state
+          that.Constants().EXCEL_ORDER+params
+
         );
       },
       delObj(){

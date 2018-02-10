@@ -171,9 +171,9 @@
         this.$emit("addObjHandler");
       },
       excelExport(){
-        alert("22");
         this.$emit("expObjHandler");
       },
+
       delObj(){
         let ids = "";
         let s = 0;

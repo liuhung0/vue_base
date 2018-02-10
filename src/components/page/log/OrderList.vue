@@ -32,6 +32,7 @@
             page: 1,
             rows: 10,
             num: 0,
+            ppID:sessionStorage.getItem("LOGIN_PARKING_PID"),
           },
           columns: [
             {
@@ -331,9 +332,7 @@
       },
       addObjHandler(){
         let that = this;
-
-        console.log(that.reqData);
-        this.$http.get(that.Constants().EXCEL,that.reqData,{emulateJSON: true}).then(function (res) {
+        this.$http.get(that.Constants().EXCEL_ORDER,that.reqData,{emulateJSON: true}).then(function (res) {
           console.log(res.data);
           if (res.data.result) {
 
