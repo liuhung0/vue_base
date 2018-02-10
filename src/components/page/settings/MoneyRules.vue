@@ -59,7 +59,7 @@
                 <span class="rightSpan">元</span><span class="remark"> 设置过夜费用后,将无法打开时段封顶</span>
               </el-form-item>
               <el-form-item label="前" prop="beforeNightHour" style="float: left;width: 33%">
-                <el-input v-model="form.beforeNightHour" :maxlength="4" prop="beforeHour"></el-input>
+                <el-input v-model="form.beforeNightHour" :maxlength="4" ></el-input>
               </el-form-item>
               <el-form-item label="小时每小时" prop="nightHour" style="float: left;width: 33%;margin-left: -115px">
                 <el-input v-model="form.nightHour" :maxlength="10"></el-input>

@@ -81,6 +81,9 @@
         },
         roleList:[],
         pidList:[],
+        reqData:{
+          pId:sessionStorage.getItem("LOGIN_PARKING_PID"),
+        }
       }
     },
     mounted(){
@@ -95,7 +98,7 @@
         }
       }).catch(function () {
       }),
-      that.$http.post(that.Constants().REST_SUB_USER_ROLE_INFO,{emulateJSON: true}).then(function (res) {
+      that.$http.post(that.Constants().REST_SUB_USER_ROLE_INFO,that.reqData,{emulateJSON: true}).then(function (res) {
         if(res.data.result){
           console.log("进入角色list");
           that.roleList.splice(0, that.roleList.length, ...res.data.data);
