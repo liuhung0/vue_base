@@ -4,8 +4,12 @@
       <el-menu   default-active="2"  class="menu-demo">
         <el-submenu class="menu-oicn" v-for="(MENU,index) in menuList" :index="index" :key="index">
           <template slot="title">
-            <b :class="MENU.icon"></b>
-            <span class="title">{{MENU.name}}</span>
+            <router-link :to="MENU.path" v-if="MENU.name === '主界面'" >
+              <b :class="MENU.icon"></b>
+              <span class="title">{{MENU.name}}</span>
+            </router-link>
+              <b :class="MENU.icon" v-if="MENU.name != '主界面'"></b>
+              <span class="title" v-if="MENU.name != '主界面'">{{MENU.name}}</span>
           </template>
           <el-menu-item-group>
             <el-menu-item v-for="(son,i) in children" :key="i"  v-if="son.parentId===MENU.id"  index="i" >
@@ -43,7 +47,6 @@
           });
     },
     methods: {
-
       handleOpen(key, keyPath) {
         console.log(key, keyPath);
       },
