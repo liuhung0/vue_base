@@ -62,7 +62,9 @@
     mounted() {
       let that = this;
       this.$http.post(that.Constants().CARTYPE, that.reqData, {emulateJSON: true}).then(function (response) {
+
         that.resData = response.data;
+        console.log(response.data);
         that.Resdata = response.data.data;
         this.viewbing1(that.Resdata);
         this.viewbingA(that.Resdata)
@@ -83,6 +85,7 @@
         that.resDate.all = that.resData.all;
         this.$http.post(that.Constants().DATECARTYPE, that.resDate, {emulateJSON: true}).then(function (response) {
           that.Resdata = response.data.data;
+
           this.viewbing1(that.Resdata);
           this.viewbingA(that.Resdata)
         });
@@ -200,6 +203,13 @@
       viewbing1:function(data) {
         let myChart = this.$echarts.init(document.getElementById('bing1'));
         var datas = data;
+        console.log(datas);
+        var vtype=[];
+        var total=[];
+        for(var i=0;i<datas.length;i++){
+          vtype[i]=datas[i].vtype;
+          total.push({"value": datas[i].total,"name":datas[i].vtype});
+        }
         myChart.setOption({
           title: {
             text: '各类车收入情况（单位：元）',
@@ -213,7 +223,7 @@
           legend: {
             orient: 'vertical',
             x: 'left',
-            data: ['临时车', '月租车', '免费车',]
+            data:vtype
           },
           toolbox: {
             show: true,
@@ -240,7 +250,7 @@
           series: [
 
             {
-              name: '泊联',
+              name: '',
               type: 'pie',
               itemStyle: {
                 normal: {
@@ -253,11 +263,7 @@
               },
               radius: '55%',
               center: ['50%', '60%'],
-              data: [
-                {value: datas.sumA1, name: '临时车'},
-                {value: datas.sumA2, name: '月租车'},
-                {value: datas.sumA3, name: '免费车'},
-              ],
+              data: total,
             }
           ]
         });
@@ -265,9 +271,15 @@
       viewbingA:function(data) {
         let myChart = this.$echarts.init(document.getElementById('bingA'));
         var datas = data;
+        var vtype=[];
+        var total=[];
+        for(var i=0;i<datas.length;i++){
+          vtype[i]=datas[i].vtype;
+          total.push({"value": datas[i].counts,"name":datas[i].vtype});
+        }
         myChart.setOption({
           title: {
-            text: '各类车进出频次（单位：辆）',
+            text: '各类车进出频次（单位：次）',
             subtext: '',
             x: 'center'
           },
@@ -278,7 +290,7 @@
           legend: {
             orient: 'vertical',
             x: 'left',
-            data: ['临时车', '月租车', '免费车',]
+            data:vtype
           },
           toolbox: {
             show: true,
@@ -311,17 +323,13 @@
                   label: {
                     show: true,
                     position: 'top',
-                    formatter: '{b}泊车\n{c}辆'
+                    formatter: '{b}泊车\n{c}次'
                   }
                 }
               },
               radius: '55%',
               center: ['50%', '60%'],
-              data: [
-                {value: datas.a1, name: '临时车'},
-                {value: datas.a2, name: '月租车'},
-                {value: datas.a3, name: '免费车'},
-              ]
+              data: total
             }
           ]
         });
