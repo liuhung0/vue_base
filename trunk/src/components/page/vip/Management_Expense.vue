@@ -42,6 +42,40 @@
             {
               sortable: false,
               sort: "asc",
+              prop: "carNumber",
+              name: "车牌号",
+              width: "80px",
+              render: function (data) {
+                if(data)
+                  return "<span>" + data + "</span>";
+                else
+                  return " - ";
+              },
+              filter: {
+                type: "input",
+              },
+              filterData: ""
+            },
+            {
+              sortable: false,
+              sort: "asc",
+              prop: "seatNumber",
+              name: "车位号",
+              width: "80px",
+              render: function (data) {
+                if(data)
+                  return "<span>" + data + "</span>";
+                else
+                  return " - ";
+              },
+              filter: {
+                type: "none",
+              },
+              filterData: ""
+            },
+            {
+              sortable: false,
+              sort: "asc",
               prop: "region",
               name: "所属区域",
               width: "80px",
@@ -107,41 +141,6 @@
               },
               filterData: ""
             },
-            {
-              sortable: false,
-              sort: "asc",
-              prop: "carNumber",
-              name: "车牌号",
-              width: "80px",
-              render: function (data) {
-                if(data)
-                  return "<span>" + data + "</span>";
-                else
-                  return " - ";
-              },
-              filter: {
-                type: "none",
-              },
-              filterData: ""
-            },
-            {
-              sortable: false,
-              sort: "asc",
-              prop: "seatNumber",
-              name: "车位号",
-              width: "80px",
-              render: function (data) {
-                if(data)
-                  return "<span>" + data + "</span>";
-                else
-                  return " - ";
-              },
-              filter: {
-                type: "none",
-              },
-              filterData: ""
-            }
-
           ],
           actions: [
             {
@@ -162,10 +161,14 @@
     methods: {
       expObjHandler:function(){
         let that = this;
+        var pId = sessionStorage.getItem("LOGIN_PARKING_PID");
+        var carNumber = "";
+        if(that.$refs.datatable.queryData.carNumber != undefined){
+          carNumber = that.$refs.datatable.queryData.carNumber;
+        }
         window.open(
-          that.Constants().VIP_EXP_LIST+"?pId="+sessionStorage.getItem("LOGIN_PARKING_PID")
+          that.Constants().MANAGEMENT_EXPENSE_EXCL+"?pId="+pId+"&carNumber="+carNumber
         );
-
       },
       addObjHandler:function(){
         let that = this;
