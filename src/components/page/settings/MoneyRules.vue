@@ -36,9 +36,6 @@
             </h3>
             <div v-if="form.isOpenFourth==1">
               <el-form-item label="选择开始时间">
-                <!--<el-time-picker  style="   qfloat:left;width:40%" v-model="form.nightEndTime"   value-format="HH" format="HH"/>-->
-                <!--<el-time-picker style="float:left;width:40%;padding-left:20px;"-->
-                                <!--v-model="form.nightStartTime" value-format="HH" format="HH"/>-->
                 <el-select v-model="form.nightStartTime" placeholder="开始" style="width:75px;float:left">
                   <el-option
                     v-for="item in options"
@@ -349,18 +346,6 @@
                 that.form.isOpenSecond === 1 ? that.form.isOpenSecond = false : that.form.isOpenSecond = true;
                 that.form.isOpenFirst === 1 ? that.form.isOpenFirst = false : that.form.isOpenFirst = true;
                 that.form.maxHour=res.data.data.maxHour.toString();
-//                if(res.data.data.nightStartTime!=null){
-//                  that.form.nightStartTime=new Date("2011-11-11 "+res.data.data.nightStartTime+":00:00");
-//                }else {
-//                  that.form.nightStartTime="";
-//                }
-//                if(res.data.data.nightEndTime!=null){
-//                  that.form.nightEndTime=new Date("2011-11-11 "+res.data.data.nightEndTime+":00:00");
-//                }else {
-//                  that.form.nightEndTime="";
-//                }
-            /*    that.form.nightStartTime=new Date("2011-11-11 "+res.data.data.nightStartTime+":00:00");
-                that.form.nightEndTime=new Date("2011-11-11 "+res.data.data.nightEndTime+":00:00");*/
               }
             } else {
               that.$message.info(that.res.data.message)
@@ -371,18 +356,34 @@
         )
       },
       onSubmit(formName) {
+        if(this.form.isOpenFourth === false){
+          this.form.nightStartTime = null;
+          this.form.nightEndTime = null;
+          this.form.nightFee = null;
+          this.form.beforeNightHour = null;
+          this.form.nightHour = null;
+          this.form.beforeNightFee = null;
+        }
+        if(this.form.isOpenFifth){
+          this.form.maxHour = null;
+          this.form.maxFee = null;
+        }
+        if(this.form.isOpenFirst === false){
+          this.form.annualFee = null;
+          this.form.annualManagerDiscountFee = null;
+          this.form.quarterFee = null;
+          this.form.quarterManagerDiscountFee = null;
+          this.form.monthlyFee = null;
+          this.form.monthlyManagerDiscountFee = null;
+        }
+        if(this.form.isOpenSecond){
+          this.form.annualManagerFee = null;
+          this.form.quarterManagerFee = null;
+          this.form.monthlyManagerFee = null;
+        }
         this.$refs[formName].validate((valid) => {
           if (valid) {
               let that = this;
-                //   夜间结束时间
-      //          nightEndTime: '',
-//              if (that.form.nightStartTime instanceof Date) {
-//                that.form.nightStartTime = that.form.nightStartTime.getHours();
-//              }
-//              if (that.form.nightEndTime instanceof Date) {
-//                that.form.nightEndTime = that.form.nightEndTime.getHours();
-//              }
-
               that.form.isOpenThird === false ? that.form.isOpenThird = 1 : that.form.isOpenThird = 2;
               that.form.isOpenFourth === false ? that.form.isOpenFourth = 1 : that.form.isOpenFourth = 2;
               that.form.isOpenFifth === false ? that.form.isOpenFifth = 1 : that.form.isOpenFifth = 2;
