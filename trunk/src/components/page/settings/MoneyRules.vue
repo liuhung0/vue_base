@@ -440,17 +440,6 @@
     margin: 0;
     padding: 0;
   }
-
-  /*.box .shoufei{*/
-  /*color: #fff;*/
-  /*line-height: 58px;*/
-  /*font-weight: 300;*/
-  /*text-align: left;*/
-  /*padding-left: 20px;*/
-  /*background: #1D242E;*/
-  /*box-shadow: 0 2px 6px 0 rgba(46,46,46,0.50);*/
-  /*-webkit-margin-before: 0em;*/
-  /*}*/
   .box h1 {
     color: #fff;
     font-size: 18px;
@@ -460,12 +449,12 @@
     margin-top: -6px;
     text-align: left;
     font-weight: normal;
+    border-bottom: none !important;
   }
-
   .box .con {
     margin: 20px auto;
     padding: 20px;
-    background: #3D4E66;
+    background: #3D4E66 !important;
     box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.30);
     border-radius: 4px;
     border: 1px solid #333;

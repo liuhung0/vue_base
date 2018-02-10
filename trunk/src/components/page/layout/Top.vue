@@ -102,7 +102,7 @@
       }
     }
 </script>
-<style>
+<style  scoped="scoped">
   .flex_box {
     flex: 1 0 100%;
     height: 60px;

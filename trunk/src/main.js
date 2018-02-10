@@ -1,14 +1,13 @@
 // The Vue build version to load with the `import` command
 
 import Vue from 'vue'
-import App from './App'
+
 import router from './router'
 //引入element-ui
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-
 import './assets/css/hover-min.css'
-
+import App from './App'
 //引入本地全局
 //引入这个可以传多个参数——fanzeyu
 import VueResource from 'vue-resource'

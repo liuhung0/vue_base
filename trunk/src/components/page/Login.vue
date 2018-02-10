@@ -4,19 +4,19 @@
       <h1>泊联停车场管理系统</h1>
     </div>
     <div class="flex_item_center packing">
-      <el-form :model="boss" status-icon :rules="bossRole" ref="bossForm" label-width="60px" class="demo-ruleForm">
-        <el-form-item label="用户名" prop="username">
-          <el-input type="text" v-model="boss.username" auto-complete="off"  placeholder="邮箱或用户名"></el-input>
+      <el-form :model="boss" status-icon :rules="bossRole" ref="bossForm" label-width="60px" >
+        <el-form-item label="用户名" prop="username" class="demo-ruleForm">
+          <el-input type="text" v-model="boss.username" auto-complete="off"  placeholder="邮箱或用户名" ></el-input>
         </el-form-item>
-        <el-form-item  label="密  码"prop="password">
+        <el-form-item  label="密  码"prop="password" class="demo-ruleForm">
           <el-input type="password" v-model="boss.password" auto-complete="off" placeholder="请输入密码"></el-input>
         </el-form-item>
-        <el-form-item label="验证码" prop="picLyanzhengma">
+        <el-form-item label="验证码" prop="picLyanzhengma" class="demo-ruleForm">
           <el-input   type="text" placeholder="请输入验证码"
                          v-model="boss.picLyanzhengma" auto-complete="off"></el-input>
         </el-form-item>
         <el-input type="button" id="code" @click.native="createCode" class="verification1"
-                  v-model="boss.checkCode" STYLE="margin-top:-60px;margin-left:260px; padding-bottom:40px;"></el-input>
+                  v-model="boss.checkCode" STYLE="margin-top:-63px;margin-left:260px; padding-bottom:40px;color:#cfcfcf"></el-input>
 
       </el-form>
       <el-button @click="submitForm('bossForm')">登录</el-button>
@@ -162,7 +162,7 @@
   }
 </script>
 
-<style >
+<style>
   html,body{
     padding:0;
     margin:0;
@@ -181,11 +181,11 @@
     flex-flow: column;
     position: relative;
   }
-   .el-input__inner {
+  .demo-ruleForm  .el-input__inner {
     background-color:transparent!important;
-    border: none;
+    border: none !important;
     font-size: 14px;
-    color: #CFCFCF;
+    color:#fff;
   }
   .flex_item_title{
     flex: 0 0 100%;
@@ -226,7 +226,8 @@
   .packing .el-input{
     width: 80%;
     display: flex;
-    margin-top: 5px;
+    margin-top: 3px;
+    color:#fff;
     background: none!important;
   }
   .packing .el-form-item__content{
@@ -294,6 +295,7 @@
     color: #053d84;
     background: #f2f2f5!important;
     border:2px solid #fff;
+    height: 40px;
   }
   .disappear {
     visibility: hidden;
