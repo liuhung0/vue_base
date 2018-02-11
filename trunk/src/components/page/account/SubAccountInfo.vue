@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <h2>{{id?"编辑":"新增"}}账号<label style='color: #ff5e46;padding:2px 6px;display: inline-block;font-size: 1px'>子账号初始密码：123456，密码修改请登录子账号修改！</label></h2>
-    <el-form ref="form" :rules="form" :model="form" label-width="100px" class="addAccount">
+    <el-form ref="form" :rules="form" :model="form" label-width="100px" class="addAccount1">
       <el-form-item label="用户名" prop="username">
         <el-input v-model="form.username" maxlength="20"></el-input>
       </el-form-item>
@@ -17,7 +17,7 @@
       <el-form-item label="身份证号" prop="identityCard">
         <el-input  v-model="form.identityCard" maxlength="18"></el-input>
       </el-form-item>
-      <el-form-item label="性别" prop="gender" class="xing">
+      <el-form-item label="性别" prop="gender" class="xb">
         <el-radio-group v-model="form.gender" size="medium" class="radio">
           <el-radio  label="1" >男</el-radio>
           <el-radio  label="2" >女</el-radio>
@@ -34,7 +34,7 @@
         </el-select>
       </el-form-item>
 
-      <el-form-item label="账号状态" prop="status" class="xing">
+      <el-form-item label="账号状态" prop="status" class="xb">
         <el-radio-group v-model="form.status" size="medium" class="radio2">
           <el-radio  label="1" >启用</el-radio>
           <el-radio  label="2" >禁用</el-radio>
@@ -165,10 +165,33 @@
     float: left;
     text-align: left;
   }
+  .xb .radio{
+    margin-left: -240px;
+  }
+  .xb .radio2{
+    margin-left: -207px;
+  }
 </style>
 <style>
+  .addAccount1  .el-form-item__content{
+    width: 360px;
+  }
+  .addAccount1 .el-form-item__label{
+    color:#fff;
+  }
+  .role  .selec{
+    width:300px;
+    margin-right: 15%;
 
+  }
+  .addAccount1 .selec .el-select-dropdown__item span{
+    color: #444 !important;
+  }
+  .addAccount1 .el-select-dropdown__item.hover{
+    color: #444;
+  }
 
-
-
+  .xb .el-radio__label {
+    color: #fff !important;
+  }
 </style>
