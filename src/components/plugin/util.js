@@ -28,9 +28,10 @@ export default {
         LOGIN_COULD_TYPE = "LOGIN_COULD_TYPE";
       //dev
 
+      // let BASE_URL = "http://192.168.0.16:9109";
+      // let PROXY_URL = "";
       let BASE_URL = "http://park.chinahtiot.com";
       let PROXY_URL = "/api";
-      // let BASE_URL ="http://cloud.chinahtiot.com",PROXY_URL="/api";
       return {
         LOGIN_COULD_TYPE,
         LOGIN_CLOUD_USERNAME,
@@ -82,9 +83,9 @@ export default {
         //解冻Vip
         VIP_THAW:BASE_URL + PROXY_URL +"/parkingManager/v1/vip/setVipThaw/",
 
-        VIP_MANAGE: BASE_URL + PROXY_URL +"/parkingManager/v1/vip/get",
+        VIP_MANAGE: BASE_URL + PROXY_URL +"/parkingManager/v1/vip/getExpInfo",
 
-        VIP_EXP_LIST: BASE_URL + PROXY_URL +"/parkingManager/v1/vip/getExpInfo",
+        VIP_EXP_LIST: BASE_URL + PROXY_URL +"/parkingManager/v1/vip/export",
 
         VIP_GLF: BASE_URL + PROXY_URL +"/parkingManager/v1/useraccountrecharge/get",
 
@@ -95,7 +96,7 @@ export default {
         VIP_GLF_SEAT_ID: BASE_URL + PROXY_URL +"/parkingManager/v1/useraccountrecharge/getseatList",
 
         VIP_GLF_DEL: BASE_URL + PROXY_URL +"/parkingManager/v1/useraccountrecharge/delete",
-
+        VIP_GLF_EXP: BASE_URL + PROXY_URL +"/parkingManager/v1/useraccountrecharge/export",
         /*
         *vip
         *end
