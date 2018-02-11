@@ -53,7 +53,7 @@
     }
   }
 </script>
-<style>
+<style scoped>
   .on {
     display: flex;
     flex-flow: row wrap;

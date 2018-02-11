@@ -1,5 +1,5 @@
 <template>
-  <div class="box ">
+  <div class="base">
     <h1>基础设置</h1>
     <el-form ref="form" :model="form" label-width="120px" class="settings">
       <h2>企业信息</h2>
@@ -94,10 +94,10 @@
   }
 </script>
 <style>
-  .box{
+  .base{
     padding:20px;
   }
-  .box h1{
+  .base h1{
     text-align: left;
     font-weight: 400;
     padding:10px 10px 30px 10px;

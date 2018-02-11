@@ -29,7 +29,6 @@
           showAdd: 1,
           showDel: 1,
           showCheckBack: 1,
-          excel:1,
           serverurl: that.Constants().SPECIAlVEHICLE_LIST,
           title: "黑白名单",
           key: "id",
@@ -156,22 +155,18 @@
     },
     methods:{
       expObjHandler:function(){
+
         let that =this;
-        var type = "";
-        var carNumber = "";
-        var name = "";
-        if(that.$refs.datatable.queryData.type != undefined){
-          type = that.$refs.datatable.queryData.type;
-        }
-        if(that.$refs.datatable.queryData.carNumber != undefined){
-          carNumber=that.$refs.datatable.queryData.carNumber;
-        }
-        if(that.$refs.datatable.queryData.name  != undefined){
-          name = that.$refs.datatable.queryData.name;
-        }
+        //var name=that.dataTableConfig.columns[0].filterData;
+        // var carNumber=that.dataTableConfig.columns[1].filterData;
+        //var btype=that.dataTableConfig.columns[3].filter.data.type;
+        var queryData = that.$refs.datatable.queryData;
+        console.log(queryData);
+         // alert(btype)
        that.pId =sessionStorage.getItem("LOGIN_PARKING_PID");
         window.open(
-          that.Constants().SPECIAlVEHICLE_EXL+"?pId="+that.pId+"&name="+name+"&carNumber="+carNumber+"&type="+type
+          //that.Constants().SPECIAlVEHICLE_EXL+"?pId="+that.pId+"&name="+name+"&carNumber="+carNumber+"&type="+btype
+        that.Constants().SPECIAlVEHICLE_EXL+"?pId="+that.pId
         );
       },
       addObjHandler:function(){
