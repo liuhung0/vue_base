@@ -23,7 +23,7 @@
           <el-radio  label="2" >女</el-radio>
         </el-radio-group>
       </el-form-item>
-      <el-form-item label="角色名称" prop="name">
+      <el-form-item label="角色名称" prop="name" class="role">
         <el-select v-model="form.role" filterable placeholder="请选择角色" class="selec">
           <el-option
             v-for="item in roleList"
@@ -167,30 +167,8 @@
   }
 </style>
 <style>
-  .addAccount  .el-form-item__content{
-    width: 360px;
-  }
-  .addAccount .el-form-item__label{
-    color:#fff;
-  }
-  .addAccount .selec{
-    width:300px;
-    margin-right: 15%;
 
-  }
-  .addAccount .selec .el-select-dropdown__item span{
-    color: #444 !important;
-  }
-  .addAccount .el-select-dropdown__item.hover{
-    color: #444;
-  }
-  .addAccount .radio{
-    margin-left: -240px;
-  }
-  .addAccount .radio2{
-    margin-left: -207px;
-  }
-  .xing .el-radio__label {
-    color: #fff;
-  }
+
+
+
 </style>

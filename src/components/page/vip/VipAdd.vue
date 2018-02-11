@@ -11,8 +11,8 @@
         <el-input v-model="ruleForm.phone" maxlength="11" style="width: 300px;margin-left: -50px"></el-input>
       </el-form-item>
 
-      <el-form-item label="车位类型">
-        <el-radio-group v-model="ruleForm.reserve" size="medium" style="width: 300px;margin-left: -140px">
+      <el-form-item label="车位类型" class="chew">
+        <el-radio-group v-model="ruleForm.reserve" size="medium" style="width: 300px;margin-left: -140px" class="radio">
           <el-radio label="1">自助车位</el-radio>
           <el-radio label="2">预定车位</el-radio>
         </el-radio-group>
@@ -23,8 +23,8 @@
       </el-form-item>
 
 
-      <el-form-item label="vip卡类型">
-        <el-radio-group v-model="ruleForm.type" size="medium" style="width: 400px">
+      <el-form-item label="vip卡类型" class="leix">
+        <el-radio-group v-model="ruleForm.type" size="medium" class="radio2" >
           <el-radio label="1">月卡用户</el-radio>
           <el-radio label="2">季卡用户</el-radio>
           <el-radio label="3">年卡用户</el-radio>
@@ -224,24 +224,28 @@
     margin-right: 15%;
 
   }
-
+  .chew .el-radio-group{
+    padding-right: 10% !important;
+  }
+  .chew  .el-input__icon{
+   display: none !important;
+  }
   .addAccount .selec .el-select-dropdown__item span {
     color: #444 !important;
   }
-
   .addAccount .el-select-dropdown__item.hover {
     color: #444;
   }
-
   .addAccount .radio {
     margin-left: -240px;
   }
-
   .addAccount .radio2 {
     margin-left: -207px;
   }
-
-  .xing .el-radio__label {
-    color: #fff;
+  .leix .el-radio{
+    color: #fff !important;
+  }
+  .leix .el-radio__label {
+    color: #fff !important;
   }
 </style>
