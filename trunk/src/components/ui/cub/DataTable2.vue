@@ -783,24 +783,22 @@
     color: #5faec0;
     text-decoration: none;
   }
-  .el-input__icon {
-    display: none;
+  .startTime .el-input__icon {
+    display: none !important;
   }
-  .el-input__inner{
+  .table .el-input__inner{
     background-color: none;
   }
   .el-input--prefix .el-input__inner {
-    padding-left: 0px;
+    padding-left: 10px !important;
+    padding-right: 15px;
   }
-  .el-input--suffix .el-input__inner{
-    padding-right: 0px;
+  .table .el-input--suffix .el-input__inner{
+    padding-right: 0px !important;
   }
   .startTime.el-date-editor.el-input, .el-date-editor.el-input__inner{
     width: 100px;
     background-color: none;
   }
-  .startTime > .el-input__inner{
-    width: 100px;
-    padding-left: 10px;
-  }
+
 </style>

@@ -9,22 +9,22 @@
             <h3>时段计费
               <small>通用计费规则</small>
             </h3>
-            <el-form-item label="临停前免费时间" prop="beforeMinute">
+            <el-form-item label="临停前免费时间" prop="beforeMinute" class="sj">
               <el-input style="float:left;width:30%;" v-model="form.beforeMinute" :maxlength="4"></el-input>
               <span class="minute">分钟</span>
             </el-form-item>
-            <el-form-item label="临停后免费时间" prop="afterMinute">
+            <el-form-item label="临停后免费时间" prop="afterMinute" class="sj">
               <el-input style="float:left;width:30%;" v-model="form.afterMinute" :maxlength="4"></el-input>
               <span class="minute">分钟</span>
             </el-form-item>
 
-            <el-form-item label="前" prop="beforeHour" style="float: left;width: 33%">
+            <el-form-item label="前" prop="beforeHour" style="float: left;width: 33%"class="sj">
               <el-input v-model="form.beforeHour" :maxlength="4" prop="beforeHour"/>
             </el-form-item>
-            <el-form-item label="小时每小时" prop="beforeFee" style="float: left;width: 33%;margin-left: -115px">
+            <el-form-item label="小时每小时" prop="beforeFee" style="float: left;width: 33%;margin-left: -115px" class="sj">
               <el-input v-model="form.beforeFee" :maxlength="10"/>
             </el-form-item>
-            <el-form-item label="元后每小时" prop="afterFee" style="float: left;width: 34%;margin-left: -115px">
+            <el-form-item label="元后每小时" prop="afterFee" style="float: left;width: 34%;margin-left: -115px" class="sj">
               <el-input v-model="form.afterFee" :maxlngth="10"/>
               <label style="float:left;width:200px;margin-top: -40px">元</label>
             </el-form-item>
@@ -35,8 +35,8 @@
               <el-switch style="float:right;padding:10px 0;width:10%;" v-model="form.isOpenFourth"/>
             </h3>
             <div v-if="form.isOpenFourth==1">
-              <el-form-item label="选择开始时间">
-                <el-select v-model="form.nightStartTime" placeholder="开始" style="width:75px;float:left">
+              <el-form-item label="选择开始时间" class="sj">
+                <el-select v-model="form.nightStartTime" placeholder="开始" style="width:75px;float:left" >
                   <el-option
                     v-for="item in options"
                     :key="item.value"
@@ -54,17 +54,17 @@
                   </el-option>
                 </el-select>
               </el-form-item>
-              <el-form-item label="过夜费" prop="nightFee">
+              <el-form-item label="过夜费" prop="nightFee" class="sj">
                 <el-input style="float:left;width:12%" v-model="form.nightFee" :maxlength="10"></el-input>
                 <span class="rightSpan">元</span><span class="remark"> 设置过夜费用后,将无法打开时段封顶</span>
               </el-form-item>
-              <el-form-item label="前" prop="beforeNightHour" style="float: left;width: 33%">
+              <el-form-item label="前" prop="beforeNightHour" style="float: left;width: 33%" class="sj">
                 <el-input v-model="form.beforeNightHour" :maxlength="4" prop="beforeHour"></el-input>
               </el-form-item>
-              <el-form-item label="小时每小时" prop="nightHour" style="float: left;width: 33%;margin-left: -115px">
+              <el-form-item label="小时每小时" prop="nightHour" style="float: left;width: 33%;margin-left: -115px" class="sj">
                 <el-input v-model="form.nightHour" :maxlength="10"></el-input>
               </el-form-item>
-              <el-form-item label="元后每小时" prop="beforeNightFee" style="float: left;width: 34%;margin-left: -115px">
+              <el-form-item label="元后每小时" prop="beforeNightFee" style="float: left;width: 34%;margin-left: -115px" class="sj">
                 <el-input v-model="form.beforeNightFee" :maxlength="10"></el-input>
                 <label style="float:left;width:200px;margin-top: -40px">元</label>
               </el-form-item>
@@ -78,14 +78,14 @@
                          @click.native="changeData()"></el-switch>
             </h3>
             <div v-if="form.isOpenFifth==1">
-              <el-form-item label="封顶规则">
+              <el-form-item label="封顶规则" class="sj">
                 <el-select style="float:left;width: 90px" v-model="form.maxHour">
                   <el-option value="1" key="1" label="24小时" selected>24小时</el-option>
                   <el-option value="2" key="2" label="自然日">自然日</el-option>
                 </el-select>
               </el-form-item>
 
-              <el-form-item label="最高" prop="maxFee">
+              <el-form-item label="最高" prop="maxFee" class="sj">
                 <el-input style="float:left;width:14%;" v-model="form.maxFee" maxlength="10"></el-input>
                 <label style="margin-left: -500px">元</label>
               </el-form-item>
@@ -99,27 +99,27 @@
         </h2>
         <el-form ref="form" :model="form" status-icon :rules="formPrice" label-width="80px" class="sm"
                  v-if="form.isOpenFirst==1">
-          <el-form-item label="包年费用" class="years" prop="annualFee">
+          <el-form-item label="包年费用" class="years" prop="annualFee" class="sj">
             <el-input v-model="form.annualFee" maxlength="10"></el-input>
             <span class="rightSpan">元</span>
           </el-form-item>
-          <el-form-item label="优惠价格" class="years" prop="annualManagerDiscountFee">
+          <el-form-item label="优惠价格" class="years" prop="annualManagerDiscountFee" class="sj">
             <el-input v-model="form.annualManagerDiscountFee" maxlength="10"></el-input>
             <span class="rightSpan">元</span>
           </el-form-item>
-          <el-form-item label="包季费用" class="years" prop="quarterFee">
+          <el-form-item label="包季费用" class="years" prop="quarterFee" class="sj">
             <el-input v-model="form.quarterFee" maxlength="10"></el-input>
             <span class="rightSpan">元</span>
           </el-form-item>
-          <el-form-item label="优惠价格" class="years" prop="quarterManagerDiscountFee">
+          <el-form-item label="优惠价格" class="sj" prop="quarterManagerDiscountFee">
             <el-input v-model="form.quarterManagerDiscountFee" maxlength="10"></el-input>
             <span class="rightSpan">元</span>
           </el-form-item>
-          <el-form-item label="包月费用" class="years" prop="monthlyFee">
+          <el-form-item label="包月费用" class="sj" prop="monthlyFee">
             <el-input v-model="form.monthlyFee" maxlength="10"></el-input>
             <span class="rightSpan">元</span>
           </el-form-item>
-          <el-form-item label="优惠价格" class="years" prop="monthlyManagerDiscountFee">
+          <el-form-item label="优惠价格" class="sj"  prop="monthlyManagerDiscountFee">
             <el-input v-model="form.monthlyManagerDiscountFee" maxlength="10"></el-input>
             <span class="rightSpan">元</span>
           </el-form-item>
@@ -130,15 +130,15 @@
           </h2>
           <el-form ref="form" :model="form" status-icon :rules="formPrice" label-width="200px" class="sm2"
                    v-if="form.isOpenSecond==1">
-            <el-form-item label="年管理费（十二个月）" prop="annualManagerFee">
+            <el-form-item label="年管理费（十二个月）" prop="annualManagerFee" class="sj">
               <el-input v-model="form.annualManagerFee" maxlength="10"></el-input>
               <span class="rightSpan">元</span>
             </el-form-item>
-            <el-form-item label="季管理费（三个月）" prop="quarterManagerFee">
+            <el-form-item label="季管理费（三个月）" prop="quarterManagerFee" class="sj">
               <el-input v-model="form.quarterManagerFee" maxlength="10"></el-input>
               <span class="rightSpan">元</span>
             </el-form-item>
-            <el-form-item label="月管理费（一个月）" prop="monthlyManagerFee">
+            <el-form-item label="月管理费（一个月）" prop="monthlyManagerFee" class="sj">
               <el-input v-model="form.monthlyManagerFee" maxlength="10"></el-input>
               <span class="rightSpan">元</span>
             </el-form-item>
@@ -450,7 +450,8 @@
     }
   }
 </script>
-<style>
+<style scoped>
+  /*@import "../../../assets/css/MoneyRules.css";*/
   .moneyRules {
     margin: 0;
     padding: 0;
@@ -467,11 +468,11 @@
   /*-webkit-margin-before: 0em;*/
   /*}*/
   .moneyRules h1 {
-    color: #fff;
+    color: #fff !important;
     font-size: 18px;
     font-family: fantasy;
     padding: 20px 20px 16px;
-    background: #1D242E;
+    background: #1D242E  !important;
     margin-top: -6px;
     text-align: left;
     font-weight: normal;
@@ -493,7 +494,7 @@
     width: 56%;
     min-width: 560px;
     float: left;
-    border-right: 2px solid #FFFFFF;
+    /*border-right: 2px solid #FFFFFF !important;*/
     padding-right: 40px;
   }
 
@@ -513,7 +514,7 @@
   .con h2, .con h3 {
     color: #fff;
     font-size: 20px;
-    border-bottom: 1px solid #314158;
+    border-bottom: 1px solid #314158 !important;
     text-align: left;
     padding: 10px 20px;
     font-weight: normal;
@@ -525,11 +526,40 @@
     font-size: 14px;
     color: #fff;
   }
+  .settings{
+    max-width: 100%;
+    margin:2%;
+    background: none !important;
+    /*box-shadow: 0 0 8px 0 rgba(5,5,5,0.50);*/
+    padding:10px 20px;
+    border-radius: 10px;
+  }
 
-  .settings label, .settings .el-form-item__label {
+  .settings label{
     color: #fff !important;
   }
 
+
+  .sm label, .sm2 label {
+    color: #fff !important;
+  }
+
+
+  .sm2 {
+    clear: both;
+    display: block;
+  }
+
+  .minute {
+    color: #fff;
+    float: left;
+    width: 80px;
+  }
+</style>
+<style>
+  .sj .el-form-item__label{
+    color: #fff !important;
+  }
   .settings .el-input__prefix {
     margin-left: 98%;
   }
@@ -538,32 +568,15 @@
     width: 50%;
     float: left;
   }
-
-  .sm label, .sm2 label {
-    color: #fff !important;
-  }
-
   .sm .el-input {
     width: 60%;
     float: left;
   }
-
-  .sm2 {
-    clear: both;
-    display: block;
-  }
-
   .sm2 .el-form-item {
   }
 
   .sm2 .el-input {
     width: 60%;
     float: left;
-  }
-
-  .minute {
-    color: #fff;
-    float: left;
-    width: 80px;
   }
 </style>

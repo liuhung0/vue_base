@@ -8,7 +8,7 @@
       <el-form-item label="说明" prop="remark" class="rulesName">
         <el-input type="textarea" v-model="rule.remark" maxlength="32"></el-input>
       </el-form-item>
-      <el-form-item label="权 限" prop="menus">
+      <el-form-item label="权 限" prop="menus" class="rulesName">
         <el-transfer style="float: left;width: 105%;" v-model="rule.menus"
                      :titles="['权限列表', '已有权限']"
                      :data="menuList"
