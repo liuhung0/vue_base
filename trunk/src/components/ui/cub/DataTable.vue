@@ -204,6 +204,7 @@
             prop = prop+"Search";
           }
           that.queryData[prop] = fitervalue;
+          that.queryData.name=1;
           that.pagenation.page = parseInt(1);
           that.loadData();
         },200);

@@ -177,10 +177,10 @@
   .zhuxiao{
     line-height: 10px;
   }
-.packing{
-  color: #fff;
-  font-size: 20px;
-}
+  .packing{
+    color: #fff;
+    font-size: 20px;
+  }
   .packingCar.el-select{
     width: 350px;
     margin-left: 20%;

@@ -168,10 +168,10 @@
   .heibai .radio {
     margin-left: -190px;
   }
-  .dan .el-radio__label {
+  .heibai .dan .el-radio__label {
     color: #fff;
   }
-  .nameList .el-form-item__label{
+  .heibai .nameList .el-form-item__label{
     color: #fff;
   }
 </style>

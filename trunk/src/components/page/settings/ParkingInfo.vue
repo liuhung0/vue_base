@@ -55,7 +55,7 @@
     }
   }
 </script>
-<style>
+<style scoped>
   .box{
     padding:20px;
   }

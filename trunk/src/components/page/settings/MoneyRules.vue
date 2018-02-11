@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <div class="moneyRules">
     <h1>收费规则</h1>
     <div class="con">
       <div class="left">
@@ -56,11 +56,10 @@
               </el-form-item>
               <el-form-item label="过夜费" prop="nightFee">
                 <el-input style="float:left;width:12%" v-model="form.nightFee" :maxlength="10"></el-input>
-                <span class="rightSpan">元</span>
-                <label style='float:left;margin-left:10px;color:#aa1111;font-size: 1px'>(设置过夜费用后,将无法打开时段封顶)</label>
+                <span class="rightSpan">元</span><span class="remark"> 设置过夜费用后,将无法打开时段封顶</span>
               </el-form-item>
               <el-form-item label="前" prop="beforeNightHour" style="float: left;width: 33%">
-                <el-input v-model="form.beforeNightHour" :maxlength="4" ></el-input>
+                <el-input v-model="form.beforeNightHour" :maxlength="4" prop="beforeHour"></el-input>
               </el-form-item>
               <el-form-item label="小时每小时" prop="nightHour" style="float: left;width: 33%;margin-left: -115px">
                 <el-input v-model="form.nightHour" :maxlength="10"></el-input>
@@ -191,6 +190,20 @@
           callback();
         }
       };
+//      var validatorIsOpenFifth = (rule, value ,callback) => {
+//        if(value === true){
+//          if(this.form.nightFee != "" || this.form.nightFee != null ){
+//            callback(new Error('夜间计费，过夜费只能为空！'));
+//          }
+//        }
+//        if(value === false){
+//          if(this.form.nightFee === "" || this.form.nightFee === null ){
+//            callback(new Error('夜间计费，过夜费不能为空！'));
+//          }
+//        }else{
+//          callback();
+//        }
+//      };
       return {
         timetopShow: 1,
         formPrice: {
@@ -254,6 +267,9 @@
           nightHour: [
             {validator: validatorBeforeHour, trigger: 'blur'}
           ],
+//          isOpenFifth:[
+//            {validator: validatorIsOpenFifth, trigger:'switchChange'}
+//          ],
         },
         form: {
           id: '',
@@ -345,7 +361,6 @@
           if (val) {
             console.log("过夜费有值了", val);
             this.timetopShow = 0;
-            this.form.isOpenFourth = false;
           }
           else {
             console.log("过夜费没值了", val);
@@ -436,11 +451,22 @@
   }
 </script>
 <style>
-  .box {
+  .moneyRules {
     margin: 0;
     padding: 0;
   }
-  .box h1 {
+
+  /*.moneyRules .shoufei{*/
+  /*color: #fff;*/
+  /*line-height: 58px;*/
+  /*font-weight: 300;*/
+  /*text-align: left;*/
+  /*padding-left: 20px;*/
+  /*background: #1D242E;*/
+  /*moneyRules-shadow: 0 2px 6px 0 rgba(46,46,46,0.50);*/
+  /*-webkit-margin-before: 0em;*/
+  /*}*/
+  .moneyRules h1 {
     color: #fff;
     font-size: 18px;
     font-family: fantasy;
@@ -449,13 +475,13 @@
     margin-top: -6px;
     text-align: left;
     font-weight: normal;
-    border-bottom: none !important;
   }
-  .box .con {
+
+  .moneyRules .con {
     margin: 20px auto;
     padding: 20px;
-    background: #3D4E66 !important;
-    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.30);
+    background: #3D4E66;
+    moneyRules-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.30);
     border-radius: 4px;
     border: 1px solid #333;
     width: 90%;
@@ -463,7 +489,7 @@
     overflow: hidden;
   }
 
-  .box .con .left {
+  .moneyRules .con .left {
     width: 56%;
     min-width: 560px;
     float: left;
@@ -477,7 +503,7 @@
     font-weight: 300;
   }
 
-  .box .con .right {
+  .moneyRules .con .right {
     width: 32%;
     min-width: 360px;
     float: left;
