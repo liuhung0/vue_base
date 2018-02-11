@@ -228,14 +228,6 @@
         let startTime;
         let endTime;
         let queryData = !!that.queryData ? that.queryData : {};
-        if (that.resData.startTime instanceof Date) {
-          startTime = parseInt(that.resData.startTime.getTime()/1000);
-          queryData.startTime = startTime;
-        }
-        if (that.resData.endTime instanceof Date) {
-          endTime = parseInt(that.resData.endTime.getTime()/1000);
-          queryData.endTime = endTime;
-        }
         that.pagenation =that.pagenation?that.pagenation:{};
         queryData.page = that.pagenation.page?that.pagenation.page:1;
         queryData.rows = that.pagenation.rows?that.pagenation.rows:10;
@@ -251,8 +243,8 @@
           endTime = parseInt(that.resData.endTime.getTime()/1000);
           queryData.endTime = endTime;
         }
-          startTime = startTime === null ? "" : startTime;
-          endTime = endTime === null ? "" : endTime;
+          startTime = queryData.startTime === undefined ? "" : queryData.startTime;
+          endTime = queryData.endTime === undefined ? "" :  queryData.endTime;
           year = that.resData.year === null ? "" : that.resData.year;
           month = that.resData.month === null ? "" : that.resData.month;
           day = that.resData.day === null ? "" : that.resData.day ;
