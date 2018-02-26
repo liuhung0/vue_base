@@ -1,7 +1,7 @@
 <!--韩彩霞-->
 <template>
   <div class="main">
-    <h2>管理费1</h2>
+    <h2>管理费</h2>
     <div class="guanli">
       <data-table
         :confignation="dataTableConfig"
