@@ -99,15 +99,15 @@
         </h2>
         <el-form ref="form" :model="form" status-icon :rules="formPrice" label-width="80px" class="sm"
                  v-if="form.isOpenFirst==1">
-          <el-form-item label="包年费用" class="years" prop="annualFee" class="sj">
+          <el-form-item label="包年费用"  prop="annualFee" class="sj">
             <el-input v-model="form.annualFee" maxlength="10"></el-input>
             <span class="rightSpan">元</span>
           </el-form-item>
-          <el-form-item label="优惠价格" class="years" prop="annualManagerDiscountFee" class="sj">
+          <el-form-item label="优惠价格"  prop="annualManagerDiscountFee" class="sj">
             <el-input v-model="form.annualManagerDiscountFee" maxlength="10"></el-input>
             <span class="rightSpan">元</span>
           </el-form-item>
-          <el-form-item label="包季费用" class="years" prop="quarterFee" class="sj">
+          <el-form-item label="包季费用"  prop="quarterFee" class="sj">
             <el-input v-model="form.quarterFee" maxlength="10"></el-input>
             <span class="rightSpan">元</span>
           </el-form-item>
