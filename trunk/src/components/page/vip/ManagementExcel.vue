@@ -5,23 +5,22 @@
 
       <el-form-item label="批量导入" style="width:100px;margin-top: 10%">
         <el-upload
-          ref ="excelUpload"
           class="upload-demo"
-          v-loading ="loading"
-          :action="Constants().MANAGEMENT_FILE_UPLOAD"
+          ref="upload"
+          :action=Constants().MANAGEMENT_FILE_UPLOAD
+          :on-preview="handlePreview"
+          :on-remove="handleRemove"
           :file-list="fileList"
+          :auto-upload="false"
           name="upfile"
-
         >
-          <el-button  type="primary">点击上传</el-button>
+          <el-button slot="trigger" type="primary">选取文件</el-button>
+          <el-button  type="success" @click="onSubmit">保存</el-button>
           <a class="el-button" @click="expObjHandler">下载Excel表格模板</a>
         </el-upload>
 
       </el-form-item>
 
-      <el-form-item>
-        <el-button type="primary" @click="onSubmit">保 &nbsp;&nbsp;&nbsp;&nbsp; 存</el-button>
-      </el-form-item>
     </el-form>
 
   </div>
@@ -48,6 +47,18 @@
         window.open(
           that.Constants().MANAGEMENT_EXPENSE_EXCL
         );
+      },
+      onSubmit() {
+        let that = this;
+        this.$refs.upload.submit();
+        that.$message.info("操作成功");
+        that.$emit("addOK");
+      },
+      handleRemove(file, fileList) {
+        console.log(file, fileList);
+      },
+      handlePreview(file) {
+        console.log(file);
       }
     }
   }
