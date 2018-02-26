@@ -17,7 +17,6 @@
               <!--<el-input style="float:left;width:30%;" v-model="form.afterMinute" :maxlength="4"></el-input>-->
               <!--<span class="minute">分钟</span>-->
             <!--</el-form-item>-->
-
             <el-form-item label="前" prop="beforeHour" style="float: left;width: 33%"class="sj">
               <el-input v-model="form.beforeHour" :maxlength="4" prop="beforeHour"/>
             </el-form-item>

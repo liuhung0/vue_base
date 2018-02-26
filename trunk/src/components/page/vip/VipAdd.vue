@@ -13,8 +13,8 @@
 
       <el-form-item label="车位类型" class="chew">
         <el-radio-group v-model="ruleForm.reserve" size="medium"  class="radio">
-          <el-radio label="1">自助车位</el-radio>
-          <el-radio label="2">预定车位</el-radio>
+          <el-radio label="1">固定车位</el-radio>
+          <el-radio label="2">临时车位</el-radio>
         </el-radio-group>
       </el-form-item>
 
