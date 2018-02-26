@@ -13,10 +13,10 @@
               <el-input style="float:left;width:30%;" v-model="form.beforeMinute" :maxlength="4"></el-input>
               <span class="minute">分钟</span>
             </el-form-item>
-            <el-form-item label="临停后免费时间" prop="afterMinute" class="sj">
-              <el-input style="float:left;width:30%;" v-model="form.afterMinute" :maxlength="4"></el-input>
-              <span class="minute">分钟</span>
-            </el-form-item>
+            <!--<el-form-item label="临停后免费时间" prop="afterMinute" class="sj">-->
+              <!--<el-input style="float:left;width:30%;" v-model="form.afterMinute" :maxlength="4"></el-input>-->
+              <!--<span class="minute">分钟</span>-->
+            <!--</el-form-item>-->
 
             <el-form-item label="前" prop="beforeHour" style="float: left;width: 33%"class="sj">
               <el-input v-model="form.beforeHour" :maxlength="4" prop="beforeHour"/>
@@ -103,24 +103,24 @@
             <el-input v-model="form.annualFee" maxlength="10"></el-input>
             <span class="rightSpan">元</span>
           </el-form-item>
-          <el-form-item label="优惠价格"  prop="annualManagerDiscountFee" class="sj">
-            <el-input v-model="form.annualManagerDiscountFee" maxlength="10"></el-input>
+          <el-form-item label="优惠价格"  prop="annualDiscountFee" class="sj">
+            <el-input v-model="form.annualDiscountFee" maxlength="10"></el-input>
             <span class="rightSpan">元</span>
           </el-form-item>
           <el-form-item label="包季费用"  prop="quarterFee" class="sj">
             <el-input v-model="form.quarterFee" maxlength="10"></el-input>
             <span class="rightSpan">元</span>
           </el-form-item>
-          <el-form-item label="优惠价格" class="sj" prop="quarterManagerDiscountFee">
-            <el-input v-model="form.quarterManagerDiscountFee" maxlength="10"></el-input>
+          <el-form-item label="优惠价格" class="sj" prop="quarterDiscountFee">
+            <el-input v-model="form.quarterDiscountFee" maxlength="10"></el-input>
             <span class="rightSpan">元</span>
           </el-form-item>
           <el-form-item label="包月费用" class="sj" prop="monthlyFee">
             <el-input v-model="form.monthlyFee" maxlength="10"></el-input>
             <span class="rightSpan">元</span>
           </el-form-item>
-          <el-form-item label="优惠价格" class="sj"  prop="monthlyManagerDiscountFee">
-            <el-input v-model="form.monthlyManagerDiscountFee" maxlength="10"></el-input>
+          <el-form-item label="优惠价格" class="sj"  prop="monthlyDiscountFee">
+            <el-input v-model="form.monthlyDiscountFee" maxlength="10"></el-input>
             <span class="rightSpan">元</span>
           </el-form-item>
         </el-form>
@@ -134,12 +134,24 @@
               <el-input v-model="form.annualManagerFee" maxlength="10"></el-input>
               <span class="rightSpan">元</span>
             </el-form-item>
+            <el-form-item label="优惠价格"  prop="annualManagerDiscountFee" class="sj">
+              <el-input v-model="form.annualManagerDiscountFee" maxlength="10"></el-input>
+              <span class="rightSpan">元</span>
+            </el-form-item>
             <el-form-item label="季管理费（三个月）" prop="quarterManagerFee" class="sj">
               <el-input v-model="form.quarterManagerFee" maxlength="10"></el-input>
               <span class="rightSpan">元</span>
             </el-form-item>
+            <el-form-item label="优惠价格" class="sj" prop="quarterManagerDiscountFee">
+              <el-input v-model="form.quarterManagerDiscountFee" maxlength="10"></el-input>
+              <span class="rightSpan">元</span>
+            </el-form-item>
             <el-form-item label="月管理费（一个月）" prop="monthlyManagerFee" class="sj">
               <el-input v-model="form.monthlyManagerFee" maxlength="10"></el-input>
+              <span class="rightSpan">元</span>
+            </el-form-item>
+            <el-form-item label="优惠价格" class="sj"  prop="monthlyManagerDiscountFee">
+              <el-input v-model="form.monthlyManagerDiscountFee" maxlength="10"></el-input>
               <span class="rightSpan">元</span>
             </el-form-item>
           </el-form>
@@ -190,20 +202,6 @@
           callback();
         }
       };
-//      var validatorIsOpenFifth = (rule, value ,callback) => {
-//        if(value === true){
-//          if(this.form.nightFee != "" || this.form.nightFee != null ){
-//            callback(new Error('夜间计费，过夜费只能为空！'));
-//          }
-//        }
-//        if(value === false){
-//          if(this.form.nightFee === "" || this.form.nightFee === null ){
-//            callback(new Error('夜间计费，过夜费不能为空！'));
-//          }
-//        }else{
-//          callback();
-//        }
-//      };
       return {
         timetopShow: 1,
         formPrice: {
@@ -246,6 +244,15 @@
           monthlyFee: [
             {validator: validatorBeforeHour, trigger: 'blur'}
           ],
+          annualDiscountFee: [
+            {validator: validatorBeforeHour, trigger: 'blur'}
+          ],
+          quarterDiscountFee: [
+            {validator: validatorBeforeHour, trigger: 'blur'}
+          ],
+          monthlyDiscountFee: [
+            {validator: validatorBeforeHour, trigger: 'blur'}
+          ],
           monthlyManagerDiscountFee: [
             {validator: validatorBeforeHour, trigger: 'blur'}
           ],
@@ -264,12 +271,6 @@
           beforeNightFee: [
             {validator: validatorBeforeHour, trigger: 'blur'}
           ],
-          nightHour: [
-            {validator: validatorBeforeHour, trigger: 'blur'}
-          ],
-//          isOpenFifth:[
-//            {validator: validatorIsOpenFifth, trigger:'switchChange'}
-//          ],
         },
         form: {
           id: '',
@@ -278,13 +279,18 @@
           token: sessionStorage.getItem("LOGIN_PARKING_TOKEN"),
           beforeNightHour: '',
           beforeNightFee: '',
-          nightHour: '',
           afterMinute: '',
           //年优惠价
-          annualManagerDiscountFee: '',
+          annualDiscountFee:'',
           //季优惠价
+          quarterDiscountFee:'',
+          //月优惠价
+          monthlyDiscountFee:'',
+          //年管理优惠价
+          annualManagerDiscountFee: '',
+          //季管理优惠价
           quarterManagerDiscountFee: '',
-          //月度优惠价
+          //月度管理优惠价
           monthlyManagerDiscountFee: '',
           //是否开启临时停车计费规则(1,关闭  2 开启)
           isOpenThird: false,
