@@ -28,13 +28,10 @@ export default {
         LOGIN_COULD_TYPE = "LOGIN_COULD_TYPE";
       //dev
 
-      let BASE_URL = "http://192.168.0.9:9000";
-      let PROXY_URL = "/api";
-      // let BASE_URL ="http://cloud.chinahtiot.com",PROXY_URL="/api";
-      // let BASE_URL = "http://192.168.0.16:9109";
-      //let PROXY_URL = "";
-      //let BASE_URL = "http://park.chinahtiot.com";
-      //let PROXY_URL = "/api";
+      let BASE_URL = "http://192.168.0.8:9109";
+      let PROXY_URL = "";
+      // let BASE_URL = "http://park.chinahtiot.com";
+      // let PROXY_URL = "/api";
       return {
         LOGIN_COULD_TYPE,
         LOGIN_CLOUD_USERNAME,
@@ -48,6 +45,10 @@ export default {
         REST_RECORD_IN_FIRST: BASE_URL + PROXY_URL + "/parkingManager/v1/barrier/in",
         REST_RECORD_OUT_FIRST: BASE_URL + PROXY_URL + "/parkingManager/v1/barrier/out",
         REST_WORKLOG_LIST:  BASE_URL +PROXY_URL  +  "",
+        //搜索当前停车场最近纪录的车牌号（订单表）
+        REST_QUERY_CARNUMBER: BASE_URL + PROXY_URL + "/parkingManager/v1/barrier/queryCarNumber",
+        //修改车牌号
+        REST_UPDATA_ODER_CARNUMBER: BASE_URL + PROXY_URL + "/parkingManager/v1/barrier/updataCarNumber",
 
         //用户登录接口
         REST_USER_LOGIN: BASE_URL + PROXY_URL + "/parkingManager/v1/user/userLogin",

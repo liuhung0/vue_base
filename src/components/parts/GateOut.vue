@@ -14,15 +14,21 @@
       <div v-if="record.car_number" class="row">
         <div class="item">
           <b class="label" >车牌号:</b><span class="sp">{{record.car_number}}</span>
-          <el-form class="number">
+          <el-form class="number" :model="boss" status-icon :rules="bossRole" ref="bossForm">
             <el-form-item>
-              <el-input placeholder="手动矫正车牌号"></el-input>
-              <el-button class="sure">确定</el-button>
+              <el-autocomplete
+                v-model="state4"
+                :fetch-suggestions="querySearchAsync"
+                placeholder="手动矫正车牌号"
+                @select="handleSelect"
+              ></el-autocomplete>
+              <el-button class="sure" @click="submitForm()">确定</el-button>
             </el-form-item>
           </el-form>
         </div>
         <div class="item item2"><b class="label">进场时间:</b><span class="sp">{{new Date(record.approach_time*1000).Format("yyyy-MM-dd hh:mm:ss")}}</span></div>
         <div class="item item2"><b class="label">出场时间:</b><span class="sp">{{new Date(record.exit_time*1000).Format("yyyy-MM-dd hh:mm:ss")}}</span></div>
+        <div class="item item2"><b class="label">停车总时长:</b><span class="sp">{{params.totalTime}}</span></div>
         <div class="item item2"><b class="label">进场门闸编号:</b><span class="sp">{{record.approach_door}}</span></div>
         <div class="item item2"><b class="label">进场通道:</b><span class="sp">{{record.approach_alleyway}}</span></div>
         <div class="item item2"><b class="label">停泊类型:</b><span class="sp">{{record.vehicle_type==5?"临时车":"月租车"}}</span></div>
@@ -45,6 +51,9 @@
     data() {
       let that = this;
       return {
+        restaurants: [],
+        state4: '',
+        timeout:  null,
         boolean:false,
         record:{
           real_income:"",
@@ -54,12 +63,21 @@
           passageway:"",
           exit_time:"",
           car_number:"",
-          terminal_number:""
+          terminal_number:"",
+          totalTime:'',
+        },
+        canshu:{
+          pid:67,
+          carNumber:"",
+        },
+        updata:{
+          id:''
         }
       }
     },
     mounted(){
       this.getRecord(this.doorId);
+      this.loadAll();
     },
     methods: {
       getRecord(doorId){
@@ -71,8 +89,14 @@
             that.params.car_number =that.record.car_number;
             that.params.passageway =that.record.exit_alleyway;
             that.params.terminal_number =that.record.exit_door;
-
-
+            //下面算法计算停车总时长
+            var between=(that.record.exit_time-that.record.approach_time);//除以1000是为了转换成秒
+            var hour=between/3600;
+            var minute=between%3600/60;
+            if(hour==0 && minute==0){
+              minute=1;
+            }
+            that.params.totalTime =parseInt(hour)+"小时"+parseInt(minute)+"分钟";
           }
         },function(){
           that.$message.error("获取记录失败,网络连接错误");
@@ -100,13 +124,59 @@
         that.$http.post(that.Constants().REST_MENZHA_FREE,that.params,{emulateJSON: true}).then(function(res){
           if(res.data.result ==true){
             that.record.real_income=res.data.data.real_income;
-            that.boolean=true;
+            that.boolean = true;
             that.$message.info("开闸成功");
           }else{
             that.$message.error(res.data.message);
           }
         },function(){
           that.$message.error("获取记录失败,网络连接错误");
+        })
+      },
+      //以下mothod方法里面的是搜索服务端数据
+      querySearchAsync(queryString, cb) {
+        let that = this;
+        that.canshu.carNumber = queryString;
+        that.$http.post(that.Constants().REST_QUERY_CARNUMBER,that.canshu,{emulateJSON: true}).then(function(res){
+          if(res.data.result){
+            for(var i=0;i<res.data.data.length;i++){
+              console.log(res.data.data.length)
+              that.restaurants.push({"id": res.data.data[i].id,"value":res.data.data[i].carNumber});
+            }
+          }else{
+            that.$message.error(res.data.message);
+          }
+        },function(){
+          that.$message.error("获取记录失败,网络连接错误");
+        })
+        var restaurants = this.restaurants;
+        var results = queryString ? restaurants.filter(this.createStateFilter(queryString)) : restaurants;
+        console.log(queryString)
+        clearTimeout(this.timeout);
+        this.timeout = setTimeout(() => {
+          cb(results);
+        }, 3000 * Math.random());
+      },
+      createStateFilter(queryString) {
+        return (state) => {
+          return (state.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
+        };
+      },
+      handleSelect(item) {
+        console.log(item.id);
+        this.updata.id = item.id;
+      },
+      submitForm(){
+        let that = this;
+        console.log(that.state4);
+        that.$http.post(that.Constants().REST_UPDATA_ODER_CARNUMBER,that.updata,{emulateJSON: true}).then(function(res){
+          if(res.data.result){
+
+          }else{
+            that.$message.error(res.data.message);
+          }
+        },function(){
+          that.$message.error("修改记录失败,网络连接错误");
         })
       }
     }
@@ -185,7 +255,7 @@
   }
   .row{
     width:100%;
-    height: 247px;
+    height: 280px;
     border:1px solid #fff;
   }
   .row .item{
@@ -195,7 +265,7 @@
     border-bottom:1px solid #fff;
     position: relative;
   }
-  .row .item:nth-child(8){
+  .row .item:nth-child(9){
     border-bottom:none;
   }
   .row .item b{
