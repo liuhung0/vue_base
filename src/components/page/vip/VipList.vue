@@ -161,10 +161,10 @@
               width: "200px",
               render: function (data) {
                 if (data == 1) {
-                  return "<label style='color: #1AC45D;padding:2px 6px;display: inline-block;'>自助车位</label>"
+                  return "<label style='color: #1AC45D;padding:2px 6px;display: inline-block;'>固定车位</label>"
                 }
                 if (data == 2) {
-                  return "<label style='color: #40A6FF;padding:2px 6px;display: inline-block;'>预定车位</label>"
+                  return "<label style='color: #40A6FF;padding:2px 6px;display: inline-block;'>临时车位</label>"
                 }
                 else
                   return " - ";
@@ -174,11 +174,11 @@
                 data: [
                   {
                     value: 1,
-                    text: "自助车位"
+                    text: "固定车位"
                   },
                   {
                     value: 2,
-                    text: "预定车位"
+                    text: "临时车位"
                   }
                 ]
               },
