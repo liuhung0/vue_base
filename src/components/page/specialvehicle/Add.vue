@@ -21,22 +21,6 @@
         <el-input  v-model="ruleForm.remark"></el-input>
       </el-form-item>
 
-      <el-form-item label="批量导入" style="width:100px;">
-        <el-upload
-          ref ="excelUpload"
-          class="upload-demo"
-          v-loading ="loading"
-          :action="Constants().SPECIAlVEHICLE_FILE_UPLOAD"
-          :file-list="fileList"
-          name="upfile"
-
-        >
-          <el-button  type="primary">点击上传</el-button>
-          <a class="el-button" @click="expObjHandler">下载Excel表格模板</a>
-        </el-upload>
-
-      </el-form-item>
-
       <el-form-item>
         <el-button type="primary" @click="onSubmit">保 &nbsp;&nbsp;&nbsp;&nbsp; 存</el-button>
       </el-form-item>
