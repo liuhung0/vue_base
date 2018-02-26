@@ -6,6 +6,7 @@
       <button v-if="config.showAdd=='1'" class="btn hvr-bounce-to-bottom" @click="addObj">新 增</button>
       <button v-if="config.showDel=='1'" class="btn hvr-bounce-to-bottom" @click="delObj">删 除</button>
       <button v-if="config.excel=='1'" class="btn hvr-bounce-to-bottom" @click="excelExport">导出excel表格</button>
+      <button v-if="config.import=='1'" class="btn hvr-bounce-to-bottom" @click="excelImport">导入excel表格</button>
     </div>
     <div class="table" >
       <div class="pageation" ref="pagenation" v-if="config.pageable==undefined||config.pageable==true">
@@ -173,7 +174,9 @@
       excelExport(){
         this.$emit("expObjHandler");
       },
-
+      excelImport(){
+        this.$emit("expImpObjHandler");
+      },
       delObj(){
         let ids = "";
         let s = 0;
@@ -204,7 +207,6 @@
             prop = prop+"Search";
           }
           that.queryData[prop] = fitervalue;
-          that.queryData.name=1;
           that.pagenation.page = parseInt(1);
           that.loadData();
         },200);
