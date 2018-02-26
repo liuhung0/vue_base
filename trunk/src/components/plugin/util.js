@@ -28,10 +28,13 @@ export default {
         LOGIN_COULD_TYPE = "LOGIN_COULD_TYPE";
       //dev
 
-      // let BASE_URL = "http://192.168.0.16:9109";
-      // let PROXY_URL = "";
-      let BASE_URL = "http://park.chinahtiot.com";
+      let BASE_URL = "http://192.168.0.9:9000";
       let PROXY_URL = "/api";
+      // let BASE_URL ="http://cloud.chinahtiot.com",PROXY_URL="/api";
+      // let BASE_URL = "http://192.168.0.16:9109";
+      //let PROXY_URL = "";
+      //let BASE_URL = "http://park.chinahtiot.com";
+      //let PROXY_URL = "/api";
       return {
         LOGIN_COULD_TYPE,
         LOGIN_CLOUD_USERNAME,
@@ -105,9 +108,9 @@ export default {
         //停车场出入记录
         PARKING_EXIT:BASE_URL + PROXY_URL + "/parkingManager/v1/record/recordList",
         //导出停车场excel表格
-        EXCEL:BASE_URL + PROXY_URL + "/parkingManager/v1/record/download/",
+        EXCEL:BASE_URL + PROXY_URL + "/parkingManager/v1/record/download",
         //导出财务报表excel表格
-        DOWNLOADFINACE:BASE_URL + PROXY_URL + "/parkingManager/v1/record/downloadFinace/",
+        DOWNLOADFINACE:BASE_URL + PROXY_URL + "/parkingManager/v1/record/downloadFinace",
         //财务列表
         FINANCE_LIST:BASE_URL + PROXY_URL + "/parkingManager/v1/financeList/financeList",
         //各类车辆数，及其收入金额
@@ -188,6 +191,11 @@ export default {
         SPECIAlVEHICLE_DELETE:BASE_URL + PROXY_URL + "/parkingManager/v1/SpecialVehicle/delete",
 
         SPECIAlVEHICLE_EXL:BASE_URL + PROXY_URL + "/parkingManager/v1/SpecialVehicle/export",
+
+        SPECIAlVEHICLE_FILE_UPLOAD: BASE_URL + PROXY_URL + "/parkingManager/v1/SpecialVehicle/uploadExcel?pid="+sessionStorage.getItem("LOGIN_PARKING_PID"),
+
+        SPECIAlVEHICLE_EXL_TEMPLATE:BASE_URL + PROXY_URL + "/parkingManager/v1/SpecialVehicle/template",
+
         /*
         *黑白名单
         * begin
@@ -201,6 +209,8 @@ export default {
 
 
         TENANT_EXCL:BASE_URL + PROXY_URL + "/parkingManager/v1/vip/export",
+
+        TENANT_FILE_UPLOAD:BASE_URL + PROXY_URL + "/parkingManager/v1/vip/uploadExcel?pid="+sessionStorage.getItem("LOGIN_PARKING_PID"),
 
 
         /**
@@ -218,6 +228,9 @@ export default {
 
 
         MANAGEMENT_EXPENSE_EXCL:BASE_URL + PROXY_URL + "/parkingManager/v1/vip/exportlist",
+
+        MANAGEMENT_FILE_UPLOAD:BASE_URL + PROXY_URL + "/parkingManager/v1/vip/manageupload?pid="+sessionStorage.getItem("LOGIN_PARKING_PID"),
+
 
 
         /**
