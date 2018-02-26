@@ -10,7 +10,7 @@ import OrderList from '@/components/page/log/OrderList'
 import SettleList from '@/components/page/log/SettleList'
 import SpecialVehicleList from '@/components/page/specialvehicle/SpecialVehicleList'
 import Add from '@/components/page/specialvehicle/Add'
-import Update from '@/components/page/specialvehicle/Update'
+
 
 
 import AccountList from '@/components/page/account/AccountList'
@@ -29,7 +29,6 @@ import SeatList from '@/components/page/settings/SeatList'
 import VipList from '@/components/page/vip/VipList'
 import Management_Expense from '@/components/page/vip/Management_Expense'
 import VipAdd from '@/components/page/vip/VipAdd'
-import VipEdit from '@/components/page/vip/VipEdit'
 import HouseOwnerList from '@/components/page/vip/HouseOwnerList'
 import HouseOwnerAdd from '@/components/page/vip/HouseOwnerAdd'
 import HouseOwnerEdit from '@/components/page/vip/HouseOwnerEdit'
@@ -152,11 +151,6 @@ export default new Router({
           component: VipAdd,
         },
         {
-          path: '/page/vip/VipEdit/:id',
-          name: 'vipedit',
-          component: VipEdit,
-        },
-        {
           path: '/page/vip/HouseOwnerList',
           name: 'houseownerlist',
           component: HouseOwnerList,
@@ -185,11 +179,6 @@ export default new Router({
           path: '/page/specialvehicle/add',
           name:'specialvehicleadd',
           component:Add
-        },
-        {
-          path: '/page/specialvehicle/update/:id',
-          name:'specialvehicleupdate',
-          component:Update
         },
         {
           path:'/page/user/updatePassword',

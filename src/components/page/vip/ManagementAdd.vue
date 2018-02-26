@@ -2,6 +2,23 @@
   <div class="main">
     <h2>{{id ? "编辑" : "新增"}}管理费管理</h2>
     <el-form ref="ruleForm" :rules="ruleForm" :model="ruleForm" label-width="100px" class="addAccount">
+
+
+      <el-form-item label="姓名">
+        <el-input v-model="ruleForm.name"  maxlength="7" style="width:300px;margin-left: -55px"></el-input>
+      </el-form-item>
+
+      <el-form-item label="电话">
+        <el-input v-model="ruleForm.phone"  maxlength="7" style="width:300px;margin-left: -55px"></el-input>
+      </el-form-item>
+
+      <el-form-item label="续费时间">
+        <el-col :span="11">
+          <el-date-picker type="date" id="beginDate" placeholder="选择日期" v-model="ruleForm.startTime"
+                          style="width: 300px;margin-left: 3px;" ></el-date-picker>
+        </el-col>
+      </el-form-item>
+
       <el-form-item  label="选择车位号" style="color: black;width: 100px;">
         <el-select v-model="ruleForm.seatId" filterable placeholder="请选择车位号" style="width:300px;margin-left: -55px">
           <el-option
@@ -58,6 +75,9 @@
           element: '',
           roomNum: '',
           seatNumber:'',
+          name:'',
+          startTime:'',
+          phone:'',
           pId: sessionStorage.getItem("LOGIN_PARKING_PID")
         },
         seatList:[],
@@ -110,6 +130,12 @@
         if (that.ruleForm.roomNum.length ==0) {
           that.$message.error("请输入房间号!");
           return;
+        }
+        this.ruleForm.startTime = new Date(this.ruleForm.startTime);
+        if (this.ruleForm.startTime instanceof Date) {
+          let startTime = parseInt(this.ruleForm.startTime.getTime()/1000);
+          console.log("开始时间："+startTime);
+          this.ruleForm.startTime = startTime;
         }
         this.$http.post(that.Constants().VIP_ADD, that.ruleForm, {emulateJSON: true}).then(function (res) {
           if (res.data.result) {

@@ -20,10 +20,8 @@
       <el-form-item label="备注" prop="remark" class="nameList">
         <el-input  v-model="ruleForm.remark"></el-input>
       </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="onSubmit">保 &nbsp;&nbsp;&nbsp;&nbsp; 存</el-button>
-      </el-form-item>
-      <el-form-item label="上传数据：">
+
+      <el-form-item label="批量导入" style="width:100px;">
         <el-upload
           ref ="excelUpload"
           class="upload-demo"
@@ -33,10 +31,14 @@
           name="upfile"
 
         >
-          <el-button size="small" type="primary">点击上传</el-button>
-
+          <el-button  type="primary">点击上传</el-button>
+          <a class="el-button" @click="expObjHandler">下载Excel表格模板</a>
         </el-upload>
-        <a class="el-button" href="http://oss.isbein.com/OPO/data/template/Equipment_template.xls">下载Excel表格模板</a>
+
+      </el-form-item>
+
+      <el-form-item>
+        <el-button type="primary" @click="onSubmit">保 &nbsp;&nbsp;&nbsp;&nbsp; 存</el-button>
       </el-form-item>
     </el-form>
 
@@ -82,6 +84,12 @@
       }
     },
     methods: {
+      expObjHandler:function(){
+        let that = this;
+        window.open(
+          that.Constants().SPECIAlVEHICLE_EXL
+        );
+      },
       onSubmit() {
         let that = this;
         if (that.ruleForm.name.length ==0) {

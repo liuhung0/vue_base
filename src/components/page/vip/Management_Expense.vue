@@ -1,13 +1,14 @@
 <!--韩彩霞-->
 <template>
   <div class="main">
-    <h2>管理费</h2>
+    <h2>管理费1</h2>
     <div class="guanli">
       <data-table
         :confignation="dataTableConfig"
         @addObjHandler="addObjHandler"
         @delObjHandler="delObjHandler"
         @expObjHandler="expObjHandler"
+        @expImpObjHandler="expImpObjHandler"
         ref="datatable">
       </data-table>
     </div>
@@ -18,6 +19,8 @@
   import DataTable from '@/components/ui/cub/DataTable'
   import Layer from "../../ui/cub/Layer";
   import ManagementAdd from "@/components/page/vip/ManagementAdd"
+  import ManagementExcel from "@/components/page/vip/ManagementExcel"
+
   export default {
     components: {
       DataTable,Layer},
@@ -30,8 +33,9 @@
           showDel: 1,
           showCheckBack: 1,
           excel:1,
+          import:1,
           serverurl:that.Constants().VIP_MANAGE,
-          title: "租户管理",
+          title: "管理费",
           key: "id",
           pagenation: {
             page: 1,
@@ -39,6 +43,40 @@
             num: 0,
           },
           columns: [
+            {
+              sortable: false,
+              sort: "asc",
+              prop: "name" || "nick",
+              name: "姓名",
+              width: "80px",
+              render: function (data) {
+                if(data)
+                  return "<span>" + data + "</span>";
+                else
+                  return " - ";
+              },
+              filter: {
+                type: "none",
+              },
+              filterData: ""
+            },
+            {
+              sortable: false,
+              sort: "asc",
+              prop: "phone",
+              name: "联系电话",
+              width: "80px",
+              render: function (data) {
+                if(data)
+                  return "<span>" + data + "</span>";
+                else
+                  return " - ";
+              },
+              filter: {
+                type: "none",
+              },
+              filterData: ""
+            },
             {
               sortable: false,
               sort: "asc",
@@ -141,6 +179,23 @@
               },
               filterData: ""
             },
+            {
+              sortable: false,
+              sort: "desc",
+              prop: "startTime",
+              name: "付费时间",
+              width: '160px',
+              render: function (data) {
+                if (data != null) {
+                  return new Date(data * 1000).Format("yyyy-MM-dd hh:mm:ss");
+                }
+                else
+                  return " - ";
+              },
+              filter: {
+                type: "none",
+              },
+            },
           ],
           actions: [
             {
@@ -207,6 +262,31 @@
             message: '已取消删除'
           });
         });
+      },
+      loadData(){
+        this.$refs.datatable.loadData();
+      },
+      expImpObjHandler:function(){
+        let that = this;
+        let dialog = that.$refs.addLayer;
+        let vDialog = dialog.open({
+          template: '<div><ManagementExcel @addOK="addOK" ></ManagementExcel></div>',
+          components: {
+            ManagementExcel
+          },
+          width:720,
+          methods: {
+            addOK: function () {
+              dialog.comps.splice(0, 1)
+              if (dialog.comps.length === 0 && dialog.$refs.back.show) {
+                dialog.$refs.back.close()
+              }
+              that.loadData();
+            }
+          },
+        }).then(function (arg) {
+          arg.close()
+        })
       },
       loadData(){
         this.$refs.datatable.loadData();

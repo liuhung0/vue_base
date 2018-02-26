@@ -7,8 +7,10 @@
         @addObjHandler="addObjHandler"
         @delObjHandler="delObjHandler"
         @expObjHandler="expObjHandler"
+        @expImpObjHandler="expImpObjHandler"
         ref="datatable">
       </data-table>
+
     </div>
     <Layer ref="addLayer"></Layer>
   </div>
@@ -18,6 +20,7 @@
   import DataTable from "../../ui/cub/DataTable";
   import Layer from "../../ui/cub/Layer";
   import Add from "@/components/page/specialvehicle/Add"
+  import SpecialExcel from "@/components/page/specialvehicle/SpecialExcel"
   export default {
     components: {DataTable,Layer},
     //name: "rule",
@@ -29,6 +32,8 @@
           showAdd: 1,
           showDel: 1,
           showCheckBack: 1,
+          excel:1,
+          import:1,
           serverurl: that.Constants().SPECIAlVEHICLE_LIST,
           title: "黑白名单",
           key: "id",
@@ -176,6 +181,31 @@
           template: '<div><Add @addOK="addOK" ></Add></div>',
           components: {
             Add
+          },
+          width:720,
+          methods: {
+            addOK: function () {
+              dialog.comps.splice(0, 1)
+              if (dialog.comps.length === 0 && dialog.$refs.back.show) {
+                dialog.$refs.back.close()
+              }
+              that.loadData();
+            }
+          },
+        }).then(function (arg) {
+          arg.close()
+        })
+      },
+      loadData(){
+        this.$refs.datatable.loadData();
+      },
+      expImpObjHandler:function(){
+        let that = this;
+        let dialog = that.$refs.addLayer;
+        let vDialog = dialog.open({
+          template: '<div><SpecialExcel @addOK="addOK" ></SpecialExcel></div>',
+          components: {
+            SpecialExcel
           },
           width:720,
           methods: {

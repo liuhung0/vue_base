@@ -8,6 +8,7 @@
         @addObjHandler="addObjHandler"
         @delObjHandler="delObjHandler"
         @expObjHandler="expObjHandler"
+        @expImpObjHandler="expImpObjHandler"
         ref="datatable">
       </data-table>
     </div>
@@ -18,6 +19,7 @@
   import DataTable from '@/components/ui/cub/DataTable'
   import Layer from "../../ui/cub/Layer";
   import VipAdd from "@/components/page/vip/VipAdd"
+  import VipExcel from "@/components/page/vip/VipExcel"
   export default {
     components: {
       DataTable,Layer},
@@ -30,6 +32,7 @@
           showDel: 1,
           showCheckBack: 1,
           excel:1,
+          import:1,
           serverurl:that.Constants().VIP_LIST,
           title: "租户管理",
           key: "id",
@@ -357,6 +360,31 @@
         }).then(function (arg) {
           arg.close()
         })
+      },
+      expImpObjHandler:function(){
+        let that = this;
+        let dialog = that.$refs.addLayer;
+        let vDialog = dialog.open({
+          template: '<div><VipExcel @addOK="addOK" ></VipExcel></div>',
+          components: {
+            VipExcel
+          },
+          width:720,
+          methods: {
+            addOK: function () {
+              dialog.comps.splice(0, 1)
+              if (dialog.comps.length === 0 && dialog.$refs.back.show) {
+                dialog.$refs.back.close()
+              }
+              that.loadData();
+            }
+          },
+        }).then(function (arg) {
+          arg.close()
+        })
+      },
+      loadData(){
+        this.$refs.datatable.loadData();
       },
       delObjHandler:function(ids){
         let that = this;
