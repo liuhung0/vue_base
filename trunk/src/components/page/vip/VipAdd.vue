@@ -32,14 +32,14 @@
       </el-form-item>
 
       <el-form-item label="会员开始时间">
-        <el-col :span="11">
+        <el-col :span="11" class="start">
           <el-date-picker type="date" id="beginDate" placeholder="选择日期" v-model="ruleForm.startTime"
                           style="width: 300px;margin-left: 3px;" ></el-date-picker>
         </el-col>
       </el-form-item>
 
       <el-form-item label="会员结束时间">
-        <el-col :span="11">
+        <el-col :span="11" class="start">
           <el-date-picker type="date" id="endDate" placeholder="选择日期" v-model="ruleForm.endTime"
                           style="width: 300px;margin-left: 3px;"></el-date-picker>
         </el-col>
@@ -61,7 +61,7 @@
         <el-input v-model="ruleForm.roomNum" style="width:300px;margin-left: -55px"></el-input>
       </el-form-item>
 
-      <el-button type="primary" @click="onSubmit">保 &nbsp;&nbsp;存</el-button>
+      <el-button type="primary" @click="onSubmit" class="baocun">保 &nbsp;&nbsp;存</el-button>
     </el-form>
   </div>
 
@@ -246,7 +246,13 @@
   .leix .el-radio{
     color: #fff !important;
   }
-   .el-radio__label {
+  .el-radio__label {
     color: #fff !important;
+  }
+  .start i{
+      display: none !important;
+    }
+  .baocun{
+    margin-right: 18%;
   }
 </style>

@@ -15,7 +15,7 @@
       <el-form-item label="续费时间">
         <el-col :span="11">
           <el-date-picker type="date" id="beginDate" placeholder="选择日期" v-model="ruleForm.startTime"
-                          style="width: 300px;margin-left: 3px;" ></el-date-picker>
+                          style="width: 300px;margin-left: 3px;" class="xuf"></el-date-picker>
         </el-col>
       </el-form-item>
 
@@ -51,7 +51,7 @@
         <el-input v-model="ruleForm.roomNum" style="width:300px;margin-left: -55px"></el-input>
       </el-form-item>
 
-      <el-button type="primary" @click="onSubmit">保 &nbsp;&nbsp;存</el-button>
+      <el-button type="primary" @click="onSubmit" class="save">保 &nbsp;&nbsp;存</el-button>
     </el-form>
   </div>
 
@@ -172,6 +172,7 @@
     float: left;
     text-align: left;
   }
+
 </style>
 <style>
   .addAccount .el-form-item__content {
@@ -206,5 +207,11 @@
 
   .xing .el-radio__label {
     color: #fff;
+  }
+  .xuf i{
+    display: none !important;
+  }
+  .save{
+    margin-right: 18%;
   }
 </style>
