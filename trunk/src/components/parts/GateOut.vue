@@ -21,7 +21,7 @@
                 :fetch-suggestions="querySearchAsync"
                 placeholder="手动矫正车牌号"
                 @select="handleSelect"
-              ></el-autocomplete>
+               class="xiala"></el-autocomplete>
               <el-button class="sure" @click="submitForm()">确定</el-button>
             </el-form-item>
           </el-form>
@@ -71,13 +71,14 @@
           carNumber:"",
         },
         updata:{
-          id:''
+          oId:'',
+          oldCarNumber:'',
+          newCarNumber:'',
         }
       }
     },
     mounted(){
       this.getRecord(this.doorId);
-      this.loadAll();
     },
     methods: {
       getRecord(doorId){
@@ -151,8 +152,6 @@
         })
         var restaurants = this.restaurants;
         var results = queryString ? restaurants.filter(this.createStateFilter(queryString)) : restaurants;
-        console.log(queryString)
-        clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
           cb(results);
         }, 3000 * Math.random());
@@ -163,15 +162,23 @@
         };
       },
       handleSelect(item) {
-        console.log(item.id);
-        this.updata.id = item.id;
+        this.updata.oId = item.id;
+        this.updata.oldCarNumber = item.value;
       },
       submitForm(){
         let that = this;
-        console.log(that.state4);
+        that.updata.newCarNumber = that.state4;
+        if(that.updata.oldCarNumber === '' || that.updata.oldCarNumber === null){
+          that.$message.info("请选定车牌!");
+          return;
+        }
+        if(that.updata.oldCarNumber === that.updata.newCarNumber){
+          that.$message.info("车牌号未做任何修改!");
+          return;
+        }
         that.$http.post(that.Constants().REST_UPDATA_ODER_CARNUMBER,that.updata,{emulateJSON: true}).then(function(res){
           if(res.data.result){
-
+            that.$massage.success("车牌号矫正成功!");
           }else{
             that.$message.error(res.data.message);
           }
@@ -332,5 +339,10 @@
   }
   .sp{
     color: #fff;
+  }
+</style>
+<style>
+  .xiala{
+    width: 125px !important;
   }
 </style>
