@@ -15,10 +15,15 @@
       <div v-if="record.car_number" class="row">
         <div class="item">
           <b class="label">车牌号:</b><span class="sp">{{record.car_number}}</span>
-          <el-form class="number">
+          <el-form class="number" :model="boss" status-icon :rules="bossRole" ref="bossForm">
             <el-form-item>
-              <el-input placeholder="手动矫正车牌号" class="gaizheng"></el-input>
-              <el-button class="sure">确定</el-button>
+              <el-autocomplete
+                v-model="state4"
+                :fetch-suggestions="querySearchAsync"
+                placeholder="手动矫正车牌号"
+                @select="handleSelect"
+                class="xiala"></el-autocomplete>
+              <el-button class="sure" @click="submitForm()">确定</el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -51,6 +56,18 @@
     data() {
       let that = this;
       return {
+        restaurants: [],
+        state4: '',
+        timeout:  null,
+        canshu:{
+          pid:67,
+          carNumber:"",
+        },
+        updata:{
+          oId:'',
+          oldCarNumber:'',
+          newCarNumber:'',
+        },
         record:{
           pid:67,
           passageway:"A通道",
@@ -103,6 +120,58 @@
           }
         }, function () {
           that.$message.error("获取记录失败,网络连接错误");
+        })
+      },
+      //以下mothod方法里面的是搜索服务端数据
+      querySearchAsync(queryString, cb) {
+        let that = this;
+        that.canshu.carNumber = queryString;
+        that.$http.post(that.Constants().REST_QUERY_CARNUMBER,that.canshu,{emulateJSON: true}).then(function(res){
+          if(res.data.result){
+            for(var i=0;i<res.data.data.length;i++){
+              console.log(res.data.data.length)
+              that.restaurants.push({"id": res.data.data[i].id,"value":res.data.data[i].carNumber});
+            }
+          }else{
+            that.$message.error(res.data.message);
+          }
+        },function(){
+          that.$message.error("获取记录失败,网络连接错误");
+        })
+        var restaurants = this.restaurants;
+        var results = queryString ? restaurants.filter(this.createStateFilter(queryString)) : restaurants;
+        this.timeout = setTimeout(() => {
+          cb(results);
+        }, 3000 * Math.random());
+      },
+      createStateFilter(queryString) {
+        return (state) => {
+          return (state.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
+        };
+      },
+      handleSelect(item) {
+        this.updata.oId = item.id;
+        this.updata.oldCarNumber = item.value;
+      },
+      submitForm(){
+        let that = this;
+        that.updata.newCarNumber = that.state4;
+        if(that.updata.oldCarNumber === '' || that.updata.oldCarNumber === null){
+          that.$message.info("请选定车牌!");
+          return;
+        }
+        if(that.updata.oldCarNumber === that.updata.newCarNumber){
+          that.$message.info("车牌号未做任何修改!");
+          return;
+        }
+        that.$http.post(that.Constants().REST_UPDATA_ODER_CARNUMBER,that.updata,{emulateJSON: true}).then(function(res){
+          if(res.data.result){
+            that.$massage.success("车牌号矫正成功!");
+          }else{
+            that.$message.error(res.data.message);
+          }
+        },function(){
+          that.$message.error("修改记录失败,网络连接错误");
         })
       }
     }
