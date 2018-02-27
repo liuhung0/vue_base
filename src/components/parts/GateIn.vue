@@ -129,7 +129,6 @@
         that.$http.post(that.Constants().REST_QUERY_CARNUMBER,that.canshu,{emulateJSON: true}).then(function(res){
           if(res.data.result){
             for(var i=0;i<res.data.data.length;i++){
-              console.log(res.data.data.length)
               that.restaurants.push({"id": res.data.data[i].id,"value":res.data.data[i].carNumber});
             }
           }else{
@@ -166,7 +165,7 @@
         }
         that.$http.post(that.Constants().REST_UPDATA_ODER_CARNUMBER,that.updata,{emulateJSON: true}).then(function(res){
           if(res.data.result){
-            that.$massage.success("车牌号矫正成功!");
+            that.$message.success('车牌号矫正成功');
           }else{
             that.$message.error(res.data.message);
           }
