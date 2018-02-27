@@ -177,7 +177,7 @@
         }
         that.$http.post(that.Constants().REST_UPDATA_ODER_CARNUMBER,that.updata,{emulateJSON: true}).then(function(res){
           if(res.data.result){
-            that.$massage.success("车牌号矫正成功!");
+            that.$message.success('车牌号矫正成功');
           }else{
             that.$message.error(res.data.message);
           }
