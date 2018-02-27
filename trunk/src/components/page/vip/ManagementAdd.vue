@@ -5,11 +5,11 @@
 
 
       <el-form-item label="姓名">
-        <el-input v-model="ruleForm.name"  maxlength="7" style="width:300px;margin-left: -55px"></el-input>
+        <el-input v-model="ruleForm.name"  maxlength="15" style="width:300px;margin-left: -55px"></el-input>
       </el-form-item>
 
       <el-form-item label="电话">
-        <el-input v-model="ruleForm.phone"  maxlength="7" style="width:300px;margin-left: -55px"></el-input>
+        <el-input v-model="ruleForm.phone"  maxlength="11" style="width:300px;margin-left: -55px"></el-input>
       </el-form-item>
 
       <el-form-item label="续费时间">
