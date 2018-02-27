@@ -20,8 +20,7 @@
                 v-model="state4"
                 :fetch-suggestions="querySearchAsync"
                 placeholder="手动矫正车牌号"
-                @select="handleSelect"
-               class="xiala"></el-autocomplete>
+                @select="handleSelect" class="xial"></el-autocomplete>
               <el-button class="sure" @click="submitForm()">确定</el-button>
             </el-form-item>
           </el-form>
@@ -340,9 +339,11 @@
   .sp{
     color: #fff;
   }
+
 </style>
 <style>
-  .xiala{
-    width: 125px !important;
+  .el-popper[x-placement^=bottom]{
+    width: 130px !important;
   }
 </style>
+

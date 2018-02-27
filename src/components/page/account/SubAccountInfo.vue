@@ -43,7 +43,7 @@
       <el-form-item label="描述" prop="mark">
         <el-input type="textarea" v-model="form.mark" maxlength="255"></el-input>
       </el-form-item>
-        <el-button type="primary" @click="setInfo">保 &nbsp;&nbsp;存</el-button>
+        <el-button type="primary" @click="setInfo" class="bc">保 &nbsp;&nbsp;存</el-button>
     </el-form>
   </div>
 
@@ -193,5 +193,8 @@
 
   .xb .el-radio__label {
     color: #fff !important;
+  }
+  .bc{
+    margin-right: 10%;
   }
 </style>

@@ -16,7 +16,7 @@
         ></el-transfer>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="setInfo">保 &nbsp;&nbsp;&nbsp;&nbsp;   存</el-button>
+        <el-button type="primary" @click="setInfo" class="bc">保 &nbsp;&nbsp;&nbsp;&nbsp;   存</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -163,5 +163,8 @@
   }
   .power .el-transfer-panel__body{
     background: #344256;
+  }
+  .bc{
+    margin-right: 6%;
   }
 </style>
