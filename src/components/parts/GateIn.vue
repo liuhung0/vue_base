@@ -183,3 +183,8 @@
     color: #fff;
   }
 </style>
+<style>
+  .el-popper[x-placement^=bottom]{
+    width: 130px !important;
+  }
+</style>
